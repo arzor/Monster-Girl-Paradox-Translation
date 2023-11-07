@@ -1,0 +1,5 @@
+﻿// EVENT 3471
+Name "Lyla"
+
+RunCommonEvent(3484)
+0()

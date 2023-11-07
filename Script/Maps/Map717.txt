@@ -1,0 +1,1123 @@
+﻿
+
+
+EVENT   1
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>For your excellent service, I salute you!\nMay I share a personal story with you?")
+  ShowChoices(strings("Sure","No way"),2)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>My little brother was on the front lines, but he made it back safely. If the war had dragged on any longer though...")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Guard>So I can't thank you enough for putting an end to the war!")
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Guard>Right, sorry for my rudeness!")
+   0()
+  404()
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>For your excellent service, I salute you!")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Guard>Umm, can I get your autograph?")
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("The banquet is still going on...\nEnd the banquet and return to your room?")
+  ShowChoices(strings("Continue the banquet","Return to your room"),0)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("ruka_fc1",0,0,2,2)
+   ShowMessage("\\n<Luka>I suppose I should enjoy this a while longer...")
+   205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x09,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("ruka_fc1",0,0,2,3)
+   ShowMessage("\\n<Luka>That's enough for one night, I guess.")
+   ScrollMap(8,6,5)
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",1,0,2,4)
+    ShowMessage("\\n<Alice>You're worn out already?\nJust a bit longer, there's still so much food left to eat--")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",0,0,2,5)
+    ShowMessage("\\n<Ilias>Already going back to your room?\nWe never get chances to enjoy ourselves like this, so--")
+    0()
+   EndIf()
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x6b,0x69,0x6b,0x69,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   ScrollMap(8,6,5)
+   ShowMessageFace("",0,0,2,6)
+   ShowMessage("\\n<？？？>Esteemed representatives of the world and party members of the hero, I apologize for interrupting your merriment.")
+   ShowMessageFace("grandnoa_fc1",0,0,2,7)
+   ShowMessage("\\n<Queen of Grand Noah>Who's there!?")
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0e,0x44,0x61,0x72,0x6b,0x6e,0x65,0x73,0x73,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   PictureDisplay(1,"sys_black",0,0,0,0,100,100,0,0)
+   PictureMove(1,null,0,0,0,0,100,100,255,0,30,true)
+   TeleportEvent(4,0,14,4,2)
+   ChangeSwitch(32,32,0)
+   PictureMove(1,null,0,0,0,0,100,100,0,0,30,true)
+   ChangeSwitch(33,33,0)
+   205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x46,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x0a,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x09,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x62,0x6f,0x73,0x73,0x30,0x2d,0x33,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   Wait(60)
+   PictureDisplay(5,"80_alice15th_st51b",0,0,0,0,100,100,0,0)
+   PictureMove(5,null,0,0,0,0,100,100,255,0,60,true)
+   ShowMessageFace("alice15th_fc1",4,0,2,8)
+   ShowMessage("\\n<Alipheese the 15th>To all those gathered here...\nI am the Monster Lord, Alipheese the 15th.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc6",0,0,2,9)
+    ShowMessage("\\n<Alice>M-Mother!?")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",5,0,2,10)
+    ShowMessage("\\n<Ilias>Alipheese the 15th!?")
+    0()
+   EndIf()
+   ShowMessageFace("mefist_fc1",2,0,2,11)
+   ShowMessage("\\n<Mephisto>No, it's just an illusion of her.")
+   ShowMessageFace("alice15th_fc1",4,0,2,12)
+   ShowMessage("\\n<Alipheese the 15th>Allow me to congratulate you humans on settling your quarrels with one another. However, I have come with news of greater import.")
+   ShowMessageFace("alice15th_fc1",4,0,2,13)
+   ShowMessage("\\n<Alipheese the 15th>Today, I formally declare war on all of humankind. This will be a war of total genocide, not a single human will be spared.")
+   ShowMessageFace("grandnoa_fc1",2,0,2,14)
+   ShowMessage("\\n<Queen of Grand Noah>A declaration of war!? Genocide!?\nHave you lost your mind?")
+   ShowMessageFace("alice15th_fc1",4,0,2,15)
+   ShowMessage("\\n<Alipheese the 15th>I am perfectly sane.")
+   ShowMessageFace("grangold_fc2",0,0,2,16)
+   ShowMessage("\\n<King of Grangold>You instigated the Great War between humans, costing countless lives. Were they not enough to satisfy you?")
+   ShowMessageFace("alice15th_fc1",4,0,2,17)
+   ShowMessage("\\n<Alipheese the 15th>Not even close.\nThe fires of war shall rage until humanity is wiped out.")
+   ShowMessageFace("saniria_fc2",0,0,2,18)
+   ShowMessage("\\n<King of San Ilia>Why do you wish for the end of humanity?\nDo you want this world to be yours alone?")
+   ShowMessageFace("alice15th_fc1",4,0,2,19)
+   ShowMessage("\\n<Alipheese the 15th>There's no point explaining my reasons to humans. You need only know that this war shall bring about your end.")
+   ShowMessageFace("sara_fc2",3,0,2,20)
+   ShowMessage("\\n<Sara>There are many monsters living peacefully in human cities. Do you really want to break the bonds formed between them and humans!?")
+   ShowMessageFace("alice15th_fc1",4,0,2,21)
+   ShowMessage("\\n<Alipheese the 15th>Any monster who allies herself with humanity shall be purified.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc6",1,0,2,22)
+    ShowMessage("\\n<Alice>...This is bullshit, Alipheese the 15th!\nWhat the hell are you...")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",7,0,2,23)
+    ShowMessage("\\n<Ilias>What's your scheme, Alipheese the 15th!\nGenocide humanity? As if I'd...")
+    0()
+   EndIf()
+   ShowMessageFace("alice15th_fc1",4,0,2,24)
+   ShowMessage("\\n<Alipheese the 15th>That's all I came here to say.\nEnjoy the short amount of life you have left, humans.")
+   PictureClear(5)
+   Wait(60)
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0e,0x44,0x61,0x72,0x6b,0x6e,0x65,0x73,0x73,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   PictureDisplay(1,"sys_black",0,0,0,0,100,100,0,0)
+   PictureMove(1,null,0,0,0,0,100,100,255,0,30,true)
+   ChangeSwitch(32,32,1)
+   PictureMove(1,null,0,0,0,0,100,100,0,0,30,true)
+   If(0,4,0)
+    ShowMessageFace("alice_fc6",1,0,2,25)
+    ShowMessage("\\n<Alice>Hey, wait!\n...Damn, she's gone!")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",7,0,2,26)
+    ShowMessage("\\n<Ilias>Hold it right there, Monster Lord!\n...Damn, she disappeared.")
+    0()
+   EndIf()
+   0()
+  404()
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x6b,0x69,0x6b,0x69,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  205(6,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("grandnoa_fc1",2,0,2,27)
+  ShowMessage("\\n<Queen of Grand Noah>Mephisto, put the military on high alert!\nNotify our border outposts at once!")
+  205(10,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("sara_fc2",0,0,2,28)
+  ShowMessage("\\n<Sara>I apologize, but I must return to my country immediately. I have to get our soldiers ready and lead them.")
+  205(24,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("grangold_fc2",0,0,2,29)
+  ShowMessage("\\n<King of Grangold>I must return to Grangold, although we don't have much of a military to speak of right now...")
+  205(9,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("saniria_fc2",0,0,2,30)
+  ShowMessage("\\n<King of San Ilia>Yes, it would be best for us to strengthen our defenses first. After that, let's reconvene to discuss strategy.")
+  205(6,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x15,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("grandnoa_fc1",2,0,2,31)
+  ShowMessage("\\n<Queen of Grand Noah>Luka, would you mind staying here at the palace? I'd like you to be available to move as soon as the Monster Lord's army begins its invasion.")
+  ScrollMap(2,10,6)
+  ShowMessageFace("ruka_fc1",0,0,2,32)
+  ShowMessage("\\n<Luka>Sure thing!")
+  If(0,6,0)
+   ShowMessageFace("sonia_fc3",7,0,2,33)
+   ShowMessage("\\n<Sonya>Wh-what now...\nHow could this have happened...")
+   0()
+  EndIf()
+  If(0,4,0)
+   ShowMessageFace("alice_fc6",0,0,2,34)
+   ShowMessage("\\n<Alice>Mother... What are you doing...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",7,0,2,35)
+   ShowMessage("\\n<Ilias>That damn Monster Lord... Just what is she...")
+   0()
+  EndIf()
+  221()
+  ShowMessageFace("",0,0,2,36)
+  ShowMessage("With the Monster Lord's declaration of war, the happiness of the previous victory is shattered. The rulers of the various countries each teleport back to their lands.")
+  ShowMessageFace("",0,0,2,37)
+  ShowMessage("Luka waits at Grand Noah Palace and prepares for battle.\nThe next day--")
+  Wait(60)
+  216(0)
+  TeleportPlayer(0,383,22,7,8,0)
+  222()
+  PictureDisplay(5,"80_grandnoa_st01",0,0,0,0,100,100,255,0)
+  ShowMessageFace("grandnoa_fc1",2,0,2,38)
+  ShowMessage("\\n<Queen of Grand Noah>I know only a single day has passed, but none of our countries have seen signs of the Monster Lord's army.")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",3,0,2,39)
+   ShowMessage("\\n<Alice>Modern military theory says to invade at the same time as your declaration of war. So why aren't they making their move?")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,40)
+   ShowMessage("\\n<Ilias>I expected a full-scale invasion along with the declaration of war, so why haven't they made a move yet?")
+   0()
+  EndIf()
+  ShowMessageFace("grandnoa_fc1",2,0,2,41)
+  ShowMessage("\\n<Queen of Grand Noah>I know I requested you to wait here, but I can't make you stay indefinitely.")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,42)
+   ShowMessage("\\n<Alice>Our objective is to investigate Tartarus and look for Luka's father, though we can't just ignore the Monster Lord either.")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,43)
+   ShowMessage("\\n<Ilias>Our objective is to investigate Tartarus and find Marcellus, but naturally, we cannot let the Monster Lord do as she pleases.")
+   0()
+  EndIf()
+  ShowMessageFace("grandnoa_fc1",2,0,2,44)
+  ShowMessage("\\n<Queen of Grand Noah>As you know, the Tartarus rift in my kingdom is in the middle of a lake, making it hard to enter without extraordinary measures.")
+  ShowMessageFace("grandnoa_fc1",2,0,2,45)
+  ShowMessage("\\n<Queen of Grand Noah>From what you've told me, the continued existence of our world could depend on it. So I'll see what I can do about finding a way in.")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,46)
+   ShowMessage("\\n<Alice>Ooh, that'd be a big help.")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",0,0,2,47)
+   ShowMessage("\\n<Ilias>May your efforts bear fruit.")
+   0()
+  EndIf()
+  ShowMessageFace("grandnoa_fc1",2,0,2,48)
+  ShowMessage("\\n<Queen of Grand Noah>The King of Grangold had a request for you, did he not? Apparently there has been some unusual activity from powerful monsters in his territory.")
+  If(0,6,0)
+   ShowMessageFace("sonia_fc2",2,0,2,49)
+   ShowMessage("\\n<Sonya>Unusual activity? That could be related to the Monster Lord's invasion, maybe?")
+   0()
+  Else()
+   ShowMessageFace("ruka_fc1",0,0,2,50)
+   ShowMessage("\\n<Luka>Unusual activity? That could be related to the Monster Lord's invasion, maybe?")
+   0()
+  EndIf()
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,51)
+   ShowMessage("\\n<Alice>Understood. We'll head back to Grangold Palace.\nWe still have business in the area anyway.")
+   ShowMessageFace("alice_fc5",0,0,2,52)
+   ShowMessage("\\n<Alice>We need to form a contract with Salamander, for one thing. The western edge of the Gold region also has a Tartarus rift.")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",0,0,2,53)
+   ShowMessage("\\n<Ilias>Understood, we shall head to Grangold Palace.\nWe need to revisit the area anyway.")
+   ShowMessageFace("iriasu_fc4",0,0,2,54)
+   ShowMessage("\\n<Ilias>There is a Tartarus rift on the western edge of the Gold region, after all. Not to mention... the contract... with Salamander.")
+   0()
+  EndIf()
+  ShowMessageFace("grandnoa_fc1",2,0,2,55)
+  ShowMessage("\\n<Queen of Grand Noah>Mephisto, please continue traveling with Luka. If anything notable happens here, I will contact you at once.")
+  ShowMessageFace("mefist_fc1",0,0,2,56)
+  ShowMessage("\\n<Mephisto>Very well, Your Majesty.\nI'll support the hero's party and act as your liaison.")
+  ShowMessageFace("ruka_fc1",0,0,2,57)
+  ShowMessage("\\n<Luka>Okay then, our next destination is Grangold Palace. Let's go ask the king about that request!")
+  ChangeSwitch(33,33,1)
+  ChangeSwitch(100,100,1)
+  PictureClear(5)
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  // condition: switch 31 is ON
+  0()
+ PAGE   2
+  // condition: switch 32 is ON
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  355("gain_medal(44)")
+  Wait(60)
+  PictureDisplay(5,"80_grandnoa_st02",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("grandnoa_fc1",1,0,2,1)
+  ShowMessage("\\n<Queen of Grand Noah>...and with this, the terms of the peace treaty are agreed upon. Now let us celebrate the long-awaited peace with a banquet.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,2)
+  ShowMessage("\\n<Queen of Grand Noah>Please forgive the meager offerings, but so soon after the war, there are still many people suffering.")
+  If(0,6,0)
+   ShowMessageFace("sonia_fc3",2,0,2,3)
+   ShowMessage("\\n<Sonya>She thinks this is meager?\nNever in a million years would our village see a feast like this...")
+   0()
+  EndIf()
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",7,0,2,4)
+   ShowMessage("\\n<Alice>What a treat...♪")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",1,0,2,5)
+   ShowMessage("\\n<Ilias>There's so much food...♪")
+   0()
+  EndIf()
+  ShowMessageFace("grandnoa_fc1",1,0,2,6)
+  ShowMessage("\\n<Queen of Grand Noah>Also, in an unprecedented development, the King of Grangold himself is in attendance.")
+  PictureDisplay(5,"80_grangold_st11b",0,0,0,0,100,100,255,0)
+  ShowMessageFace("grangold_fc2",0,0,2,7)
+  ShowMessage("\\n<King of Grangold>Even I wasn't sure I would attend until the last moment. After all, I was the one you fine folks were crossing swords with not long ago.")
+  ShowMessageFace("grangold_fc2",0,0,2,8)
+  ShowMessage("\\n<King of Grangold>Many soldiers and citizens of this country lost their lives because of me. Some due to my orders, and others by my hand personally.")
+  ShowMessageFace("grangold_fc2",0,0,2,9)
+  ShowMessage("\\n<King of Grangold>I decided to attend tonight to express the desire for my country to walk hand-in-hand with yours.")
+  ShowMessageFace("grangold_fc2",0,0,2,10)
+  ShowMessage("\\n<King of Grangold>I know many of you here likely still harbor resentment, but I have hope that we will be able to work past our issues in the coming years.")
+  ShowMessageFace("grangold_fc2",0,0,2,11)
+  ShowMessage("\\n<King of Grangold>...Thank you.")
+  PictureDisplay(5,"80_grandnoa_st02",0,0,0,0,100,100,255,0)
+  ShowMessageFace("grandnoa_fc1",1,0,2,12)
+  ShowMessage("\\n<Queen of Grand Noah>I have a few words to add myself...\nThis Great War was orchestrated from the beginning by the Monster Lord.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,13)
+  ShowMessage("\\n<Queen of Grand Noah>King Gold and Queen Sara were being controlled, and one of the Monster Lord's subordinates infiltrated Grand Noah.")
+  ShowMessageFace("mefist_fc1",0,0,2,14)
+  ShowMessage("\\n<Mephisto>I've shrewdly infiltrated this banquet, as well...")
+  If(0,6,0)
+   ShowMessageFace("sonia_fc4",0,0,2,15)
+   ShowMessage("\\n<Sonya>Shrewdly? More like shamelessly...")
+   0()
+  EndIf()
+  ShowMessageFace("grandnoa_fc1",1,0,2,16)
+  ShowMessage("\\n<Queen of Grand Noah>We were all victims in this war.\nYour hate should be directed at the Monster Lord, not at King Gold, who is not responsible for what happened.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,17)
+  ShowMessage("\\n<Queen of Grand Noah>I sincerely hope we can all agree on that point. Anyway, I think I've gone on long enough.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,18)
+  ShowMessage("\\n<Queen of Grand Noah>I'll turn things over to the brave young man who brought an end to this war. Hero Luka, if you wouldn't mind...")
+  ShowMessageFace("ruka_fc1",0,0,2,19)
+  ShowMessage("\\n<Luka>Eh... Me!?")
+  ShowChoices(strings("Thank everyone","Pay respects to the fallen","Declare the world to be yours"),0)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("ruka_fc1",0,0,2,20)
+   ShowMessage("\\n<Luka>I want to thank everyone who helped us along the way!")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",1,0,2,21)
+    ShowMessage("\\n<Alice>Yeah, this victory belongs to everyone!")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",0,0,2,22)
+    ShowMessage("\\n<Ilias>You all served me exceptionally well.\nOn this rare occasion, I offer you my thanks.")
+    0()
+   EndIf()
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("ruka_fc1",0,0,2,23)
+   ShowMessage("\\n<Luka>Many lost their lives in the course of the war.\nTo each of them, may you rest in peace.")
+   ShowMessageFace("grandnoa_fc1",1,0,2,24)
+   ShowMessage("\\n<Queen of Grand Noah>I pray the victims find happiness in the next world...\nAnd for those who survived, may we find the strength to carry on.")
+   0()
+  IfPlayerPicksChoice(2,null)
+   ShowMessageFace("ruka_fc1",0,0,2,25)
+   ShowMessage("\\n<Luka>The world is mine.")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc2",2,0,2,26)
+    ShowMessage("\\n<Sonya>Luka... Is enough oxygen getting to your brain?")
+    0()
+   EndIf()
+   ShowMessageFace("grandnoa_fc1",1,0,2,27)
+   ShowMessage("\\n<Queen of Grand Noah>The rigors of battle can be hard on the mind. Hopefully this banquet will aid your swift recovery.")
+   0()
+  404()
+  ShowMessageFace("grandnoa_fc1",1,0,2,28)
+  ShowMessage("\\n<Queen of Grand Noah>From the bottom of my heart, thank you all for your efforts. Now eat, drink, and be merry!")
+  PictureClear(5)
+  205(4,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x0c,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x08,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x08,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x06,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x06,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x06,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x16,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ChangeSwitch(31,31,1)
+  ChangeSelfSwitch("A",0)
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x07,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2b,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  ShowMessageFace("grandnoa_fc1",1,0,2,1)
+  ShowMessage("\\n<Queen of Grand Noah>Hero Luka, you really pulled it off. Words cannot express my thanks for your deeds.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,2)
+  ShowMessage("\\n<Queen of Grand Noah>...However, our battles are by no means over. We may have thwarted the Monster Lord's plans, but we did not defeat her.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,3)
+  ShowMessage("\\n<Queen of Grand Noah>Our four countries are united in fighting against the Monster Lord. When that time comes, I hope we can count on your support again.")
+  ShowMessageFace("grandnoa_fc1",1,0,2,4)
+  ShowMessage("\\n<Queen of Grand Noah>...That said, please enjoy tonight's feast.\nIf you don't rest when you get the opportunity, you'll eventually run out of steam.")
+  0()
+ PAGE   2
+  // condition: switch 31 is ON
+  0()
+ PAGE   3
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  // condition: switch 4 is ON
+  ShowMessageFace("alice_fc5",7,0,2,1)
+  ShowMessage("\\n<Alice>*munch* *munch*\nDelicious♪")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>See? It was all worth the effort, Alice.")
+  ShowMessageFace("alice_fc5",7,0,2,3)
+  ShowMessage("\\n<Alice>Yep! This is so good♪")
+  ShowMessageFace("ruka_fc1",0,0,2,4)
+  ShowMessage("\\n<Luka>We didn't take care of the root cause, though. What is the Monster Lord... your mother, planning?")
+  ShowMessageFace("alice_fc5",7,0,2,5)
+  ShowMessage("\\n<Alice>*munch* *munch*\nI've been racking my brains so long trying to find an answer that I finally decided to stop worrying about it.")
+  ShowMessageFace("alice_fc5",7,0,2,6)
+  ShowMessage("\\n<Alice>*mumble* *mumble*\nWe're still missing so many of the facts.\n*munch* *munch*\nIt's like trying to solve a puzzle missing pieces.")
+  ShowMessageFace("alice_fc5",7,0,2,7)
+  ShowMessage("\\n<Alice>*crunch* *smack*\nSo worrying is pointless. We need more information.\n*munch* *munch* All we can do is keep traveling.")
+  ShowMessageFace("alice_fc5",6,0,2,8)
+  ShowMessage("\\n<Alice>*crunch* *smash*\nOops, that was the plate.")
+  ShowMessageFace("ruka_fc1",0,0,2,9)
+  ShowMessage("\\n<Luka>Maybe slow down and enjoy the food...\nYou're right, though. Worrying about things doesn't help us any.")
+  ShowMessageFace("alice_fc5",1,0,2,10)
+  ShowMessage("\\n<Alice>There's still a ton more information to gather about Tartarus and your father. If we're thorough in our search, we'll eventually unravel my mother's intentions.")
+  ShowMessageFace("alice_fc5",1,0,2,11)
+  ShowMessage("\\n<Alice>Then if I don't agree with what they are... I'll kick her ass! I'm done being indecisive!")
+  ShowMessageFace("alice_fc5",7,0,2,12)
+  ShowMessage("\\n<Alice>So whatever happens, happens...\nEverything here is so delicious, even the plates.")
+  ShowMessageFace("ruka_fc1",0,0,2,13)
+  ShowMessage("\\n<Luka>You clearly aren't worried about anything...")
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  ShowMessageFace("iriasu_fc4",1,0,2,1)
+  ShowMessage("\\n<Ilias>Even in Heaven we never had a feast like this.\nPerhaps next time I'll have the angelic chefs cook...")
+  ShowMessageFace("iriasu_fc4",7,0,2,2)
+  ShowMessage("\\n<Ilias>...but this isn't the time for idle chatter.\nHow could a Tamamo from a parallel world slip into this one?")
+  ShowMessageFace("iriasu_fc4",7,0,2,3)
+  ShowMessage("\\n<Ilias>I dare say she came from the same world as the Lilith Sisters, and the whole lot of them are conspiring with the Monster Lord.")
+  ShowMessageFace("iriasu_fc4",7,0,2,4)
+  ShowMessage("\\n<Ilias>I'm at a loss as to what their plans are, but they are undoubtedly up to no good.")
+  ShowMessageFace("ruka_fc1",0,0,2,5)
+  ShowMessage("\\n<Luka>We have to stop them no matter what it takes...")
+  ShowMessageFace("iriasu_fc4",7,0,2,6)
+  ShowMessage("\\n<Ilias>What if they were the ones who placed the Six Ancestors' Great Seal on me...")
+  ShowMessageFace("ruka_fc1",0,0,2,7)
+  ShowMessage("\\n<Luka>You still can't remember who did it?")
+  ShowMessageFace("iriasu_fc4",2,0,2,8)
+  ShowMessage("\\n<Ilias>It's not a simple matter of forgetting. The information was physically lost when my body was shrunk...")
+  ShowMessageFace("iriasu_fc4",2,0,2,9)
+  ShowMessage("\\n<Ilias>My memory from 30 years ago, everything before the Great Disaster, is almost entirely intact. After that, nothing...")
+  ShowMessageFace("iriasu_fc4",2,0,2,10)
+  ShowMessage("\\n<Ilias>I remember someone placing the Six Ancestors' Great Seal on me, but the who and the why are lost to me...")
+  ShowMessageFace("ruka_fc1",0,0,2,11)
+  ShowMessage("\\n<Luka>Well, don't worry about it. Hopefully we'll find the answer on our travels...")
+  ShowMessageFace("iriasu_fc4",0,0,2,12)
+  ShowMessage("\\n<Ilias>You're right...\nI'm sure this adventure will unravel the mysteries surrounding my predicament.")
+  ShowMessageFace("iriasu_fc4",1,0,2,13)
+  ShowMessage("\\n<Ilias>For now, let's enjoy the food!")
+  0()
+ PAGE   3
+  // condition: switch 4 is ON
+  // condition: switch 33 is ON
+  0()
+ PAGE   4
+  // condition: switch 5 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  // condition: switch 6 is ON
+  ShowMessageFace("sonia_fc1",0,0,2,1)
+  ShowMessage("\\n<Sonya>We did it, Luka!\nWe're awesome, aren't we?!")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>Yeah, and we couldn't have done it without you.")
+  ShowMessageFace("sonia_fc2",2,0,2,3)
+  ShowMessage("\\n<Sonya>Nero, Neris, and Tamamo were nuts there at the end, though. There really wasn't any place for us in a battle of that magnitude...")
+  ShowMessageFace("ruka_fc1",0,0,2,4)
+  ShowMessage("\\n<Luka>Yeah, they were crazy strong...\nI guess because they're all from another world?")
+  ShowMessageFace("sonia_fc3",4,0,2,5)
+  ShowMessage("\\n<Sonya>Well, it's not right that all these weirdos are pouring into our world. We need to send them packing back to theirs...")
+  ShowMessageFace("ruka_fc1",0,0,2,6)
+  ShowMessage("\\n<Luka>Agreed... They're sure making a mess of things here. That Tamamo just took over an entire country like it was nothing.")
+  ShowMessageFace("sonia_fc1",2,0,2,7)
+  ShowMessage("\\n<Sonya>So now's the time to stuff our faces and put on some muscle! Increase our power to take on stronger enemies!")
+  ShowMessageFace("ruka_fc1",0,0,2,8)
+  ShowMessage("\\n<Luka>I think that'll just make you fat...")
+  ShowMessageFace("",0,0,2,9)
+  ShowMessage("(Well, she's already kinda chubby...)\nBut even I know better than to say that out loud.")
+  ShowMessageFace("sonia_fc2",5,0,2,10)
+  ShowMessage("\\n<Sonya>HEY!?")
+  ShowMessageFace("ruka_fc1",0,0,2,11)
+  ShowMessage("\\n<Luka>Whoa! I didn't say anything!")
+  ShowMessageFace("sonia_fc1",1,0,2,12)
+  ShowMessage("\\n<Sonya>I knew what you were thinking. It felt like telepathy or something...")
+  ShowMessageFace("ruka_fc1",0,0,2,13)
+  ShowMessage("\\n<Luka>Sonya, are you getting enough sleep?")
+  0()
+ PAGE   2
+  // condition: switch 6 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  ShowMessageFace("saniria_fc2",0,0,2,1)
+  ShowMessage("\\n<King of San Ilia>To think the King of Grangold would become something not entirely human, too... I wonder if Queen Sara is next?")
+  ShowMessageFace("grangold_fc2",0,0,2,2)
+  ShowMessage("\\n<King of Grangold>Quite the sense of humor you have... Ahahaha.")
+  ShowMessageFace("saniria_fc2",0,0,2,3)
+  ShowMessage("\\n<King of San Ilia>Hahaha...")
+  ShowMessageFace("sara_fc2",5,0,2,4)
+  ShowMessage("\\n<Sara>Is this really a laughing matter?")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  ShowMessageFace("sara_fc2",5,0,2,1)
+  ShowMessage("\\n<Sara>The King of Grangold was being controlled just like I was, but he has a lot more weighing on his conscience.")
+  ShowMessageFace("sara_fc2",1,0,2,2)
+  ShowMessage("\\n<Sara>I'll never forgive the Lilith Sisters or the Monster Lord for what they've done. I'll get my revenge, and for my father, too!")
+  ShowMessageFace("sara_fc2",1,0,2,3)
+  ShowMessage("\\n<Sara>Well... It's exhausting to be serious all the time. I need to lighten up and enjoy a banquet like this once in a while.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  ShowMessageFace("sara_fc1",4,0,2,1)
+  ShowMessage("\\n<Sara>I wonder if the King of Grangold is brainwashed just like I was. If he's being controlled, he's going through a lot worse than I did...")
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  // condition: switch 1079 is ON
+  ShowMessageFace("nuruko_fc1",1,0,2,1)
+  ShowMessage("\\n<Nuruko>Kyuu♪ Kyuu♪")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>You like the food?")
+  ShowMessageFace("nuruko_fc1",1,0,2,3)
+  ShowMessage("\\n<Nuruko>Kyukyuu♪")
+  0()
+ PAGE   2
+  // condition: switch 1079 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  ShowMessageFace("mefist_fc1",0,0,2,1)
+  ShowMessage("\\n<Mephisto>With the war over, my job is done.\nIt's quite a weight off my shoulders.")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>What are you going to do now, Mephisto?\nYou successfully carried out the Monster Lord's order to aid Grand Noah, right?")
+  ShowMessageFace("mefist_fc1",0,0,2,3)
+  ShowMessage("\\n<Mephisto>That doesn't change anything. I'm going to continue supporting this country.")
+  ShowMessageFace("ruka_fc1",0,0,2,4)
+  ShowMessage("\\n<Luka>Because of your original orders?\nOr because that's what you want to do?")
+  ShowMessageFace("mefist_fc1",0,0,2,5)
+  ShowMessage("\\n<Mephisto>I want to obey the Monster Lord's orders. Does that answer satisfy you?")
+  ShowMessageFace("ruka_fc1",0,0,2,6)
+  ShowMessage("\\n<Luka>.........")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  ShowMessageFace("mefist_fc1",0,0,2,1)
+  ShowMessage("\\n<Mephisto>Grangold Palace is nearby.\nOur supporters should be arriving any time now...")
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  // condition: switch 1129 is ON
+  ShowMessageFace("brunhild_fc1",0,0,2,1)
+  ShowMessage("\\n<Hild>Hild loves delicious cuisine.\nFood processor: full power.")
+  ShowMessageFace("brunhild_fc1",0,0,2,2)
+  ShowMessage("\\n<Hild>...Why do I have this function?\nThere is so much about my body I do not understand.")
+  0()
+ PAGE   2
+  // condition: switch 1129 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  // condition: switch 1041 is ON
+  ShowMessageFace("stein_fc2",0,0,2,1)
+  ShowMessage("\\n<Promestein>.........")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("Promestein is reviewing her notes while eating.")
+  ShowMessageFace("ruka_fc1",0,0,2,3)
+  ShowMessage("\\n<Luka>Promestein, that's kind of rude, you know.")
+  ShowMessageFace("stein_fc2",2,0,2,4)
+  ShowMessage("\\n<Promestein>Sorry, I've never been good with parties.\nEven in Heaven, I'd read books alone and spoil the mood at banquets.")
+  ShowMessageFace("stein_fc2",1,0,2,5)
+  ShowMessage("\\n<Promestein>I suppose all those rowdy angels are dead now, though. It kind of makes me want to believe in divine punishment.")
+  ShowMessageFace("ruka_fc1",0,0,2,6)
+  ShowMessage("\\n<Luka>.........")
+  ShowMessageFace("stein_fc2",0,0,2,7)
+  ShowMessage("\\n<Promestein>...So yeah, can you leave me alone?")
+  ShowMessageFace("ruka_fc1",0,0,2,8)
+  ShowMessage("\\n<Luka>(Her stare is colder than ice...)")
+  0()
+ PAGE   2
+  // condition: switch 1041 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  ShowMessageFace("sylph_fc1",0,0,2,1)
+  ShowMessage("\\n<Sylph>Deeeeeelicious!\nThis is the best food I've ever had!")
+  ShowMessageFace("sylph_fc1",1,0,2,2)
+  ShowMessage("\\n<Sylph>Though if I keep eating, I might become too heavy to fly... Oh well, it'll be worth it.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  ShowMessageFace("gnome_fc1",0,0,2,1)
+  ShowMessage("\\n<Gnome>.........")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("Gnome is chewing her food in silence.")
+  ShowMessageFace("ruka_fc1",0,0,2,3)
+  ShowMessage("\\n<Luka>You like the food, Gnome?")
+  ShowMessageFace("gnome_fc1",0,0,2,4)
+  ShowMessage("\\n<Gnome>.........")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("Gnome nods her head up and down.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  ShowMessageFace("gnome_fc1",0,0,2,1)
+  ShowMessage("\\n<Gnome>.........")
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  ShowMessageFace("undine_fc1",1,0,2,1)
+  ShowMessage("\\n<Undine>Salamander is the only one of us Four Spirits missing out on this feast. I'll make sure to rub it in when we meet her... Fufufu.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  // condition: switch 1143 is ON
+  ShowMessageFace("eva_fc1",0,0,2,1)
+  ShowMessage("\\n<Eva>Can you bring me some containers? I want to take all this food back with me.")
+  ShowMessageFace("eva_fc1",0,0,2,2)
+  ShowMessage("\\n<Eva>I definitely want as much of this fruit as I can carry... Hey, they aren't going to ask me to pay for the food after, are they?")
+  If(0,1056,0)
+   ShowMessageFace("inp_fc1",3,0,2,3)
+   ShowMessage("\\n<Rami>(I hope I never end up like her...)")
+   ShowMessageFace("eva_fc1",2,0,2,4)
+   ShowMessage("\\n<Eva>Huh...? Why does it feel like everyone is giving me weird looks?")
+   0()
+  EndIf()
+  0()
+ PAGE   2
+  // condition: switch 1143 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  ShowMessageFace("arumaeruma_fc2",0,0,2,1)
+  ShowMessage("\\n<Alma Elma>The decisive battle came at just the worst time...\nI can't believe I was locked up for the whole thing.")
+  ShowMessageFace("arumaeruma_fc2",0,0,2,2)
+  ShowMessage("\\n<Alma Elma>Oh well, at least Morrigan and Astaroth weren't able to be there. That was a worthy trade for me being captured.")
+  ShowMessageFace("ruka_fc1",0,0,2,3)
+  ShowMessage("\\n<Luka>What are you going to do now?\nIf it's all right with you, I'd love to have you in my party...")
+  ShowMessageFace("arumaeruma_fc2",3,0,2,4)
+  ShowMessage("\\n<Alma Elma>I can't accept...\nI plan to pursue the Lilith Sisters.")
+  ShowMessageFace("arumaeruma_fc2",3,0,2,5)
+  ShowMessage("\\n<Alma Elma>I'll hunt them down to the ends of the earth to get payback. So I'm going to keep working alone for a while longer.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  ShowMessageFace("tamamo_fc1",0,0,2,1)
+  ShowMessage("\\n<Tamamo>I thoroughly embarrassed myself at the Fox Shrine.\nWell, I think getting you out of that jam made up for it.")
+  ShowMessageFace("tamamo_fc1",3,0,2,2)
+  ShowMessage("\\n<Tamamo>Never in a million years did I think I'd come face to face with myself from another world, though. She was as cruel as I was during the Great Monster Wars.")
+  ShowMessageFace("tamamo_fc1",3,0,2,3)
+  ShowMessage("\\n<Tamamo>I'm as gentle as a feather now in comparison, but I remember those days...")
+  ShowMessageFace("ruka_fc1",0,0,2,4)
+  ShowMessage("\\n<Luka>What are you going to do now?\nIf it's all right with you, I'd love to have you in my party...")
+  ShowMessageFace("tamamo_fc1",0,0,2,5)
+  ShowMessage("\\n<Tamamo>My apologies, but I intend to chase down the other version of me. If left alone, who knows how much damage she could inflict on this world.")
+  ShowMessageFace("tamamo_fc1",0,0,2,6)
+  ShowMessage("\\n<Tamamo>Thus, I may end up gone for a long while.\nMay we both find success.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  // condition: switch 4 is ON
+  ShowMessageFace("iriasu_fc4",4,0,2,1)
+  ShowMessage("\\n<Ilias>So delicious...\nSo delicious...\n")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>Huh? Why are you crying while you eat?")
+  ShowMessageFace("iriasu_fc4",4,0,2,3)
+  ShowMessage("\\n<Ilias>You can't begin to imagine how hungry I was in that cell! I was desperate enough to grill rats for food!")
+  ShowMessageFace("iriasu_fc4",4,0,2,4)
+  ShowMessage("\\n<Ilias>It's a miracle I didn't eat my own wings or my companions. I went through hell in there...")
+  ShowMessageFace("ruka_fc1",0,0,2,5)
+  ShowMessage("\\n<Luka>That does sound pretty terrible...")
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  ShowMessageFace("alice_fc5",7,0,2,1)
+  ShowMessage("\\n<Alice>*munch* *munch*\nDelicious♪")
+  ShowMessageFace("alice_fc5",1,0,2,2)
+  ShowMessage("\\n<Alice>Oh, it's you.\nChange your mind about working for me?")
+  ShowMessageFace("ruka_fc1",0,0,2,3)
+  ShowMessage("\\n<Luka>I'll pass...")
+  ShowMessageFace("alice_fc5",1,0,2,4)
+  ShowMessage("\\n<Alice>By the way, I was just talking with Tamamo and Alma Elma. Apparently they aren't serving my mother anymore.")
+  ShowMessageFace("alice_fc5",1,0,2,5)
+  ShowMessage("\\n<Alice>I have no idea what my mother is up to, but I'm going to crush her treachery!")
+  ShowMessageFace("ruka_fc1",0,0,2,6)
+  ShowMessage("\\n<Luka>Just don't get caught again...")
+  ShowMessageFace("alice_fc5",6,0,2,7)
+  ShowMessage("\\n<Alice>Getting caught was just part of my strategy!")
+  0()
+ PAGE   3
+  // condition: switch 4 is ON
+  // condition: switch 33 is ON
+  0()
+ PAGE   4
+  // condition: switch 5 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  // condition: switch 4 is ON
+  ShowMessageFace("dog_fc1",4,0,2,1)
+  ShowMessage("\\n<Wanko>*sniff* *sniff* *chew* *chew*")
+  ShowMessage("So good...♪")
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  ShowMessageFace("youko_fc1",2,0,2,1)
+  ShowMessage("\\n<Mofuyu>I said some bad things about Tamamo to join this party, and now she's sitting right behind me! Awkward...")
+  0()
+ PAGE   3
+  // condition: switch 4 is ON
+  // condition: switch 33 is ON
+  0()
+ PAGE   4
+  // condition: switch 5 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  // condition: switch 4 is ON
+  ShowMessageFace("slime_fc1",0,0,2,1)
+  ShowMessage("\\n<Puruko>Puru puru puru! ♪")
+  ShowMessage("It's a feast! ♪")
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  ShowMessageFace("bunnyslime_fc1",0,0,2,1)
+  ShowMessage("\\n<Usako>Hop hop! ♪ Delicious! ♪")
+  ShowMessage("This more than makes up for getting locked up! ♪")
+  0()
+ PAGE   3
+  // condition: switch 4 is ON
+  // condition: switch 33 is ON
+  0()
+ PAGE   4
+  // condition: switch 5 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  ShowMessageFace("grangold_fc2",0,0,2,1)
+  ShowMessage("\\n<King of Grangold>Let me answer before you even ask: yes, as you can tell... I'm back!")
+  ShowMessageFace("grangold_fc2",0,0,2,2)
+  ShowMessage("\\n<King of Grangold>Tamamo was able to use her power to restore my sanity, but the alterations to my physical body are apparently permanent.")
+  ShowMessageFace("mefist_fc1",0,0,2,3)
+  ShowMessage("\\n<Mephisto>Shall I teach you some transformation magic?\nAt least then you could disguise your outward appearance.")
+  ShowMessageFace("grangold_fc2",0,0,2,4)
+  ShowMessage("\\n<King of Grangold>I may take you up on that.\nAfter all, I can't even show myself in my own country looking like this...")
+  ShowMessageFace("grangold_fc2",0,0,2,5)
+  ShowMessage("\\n<King of Grangold>Anyway, I know I caused you a lot of grief, Luka.\nPlease allow me to make up for my mistakes in some way.")
+  ShowMessageFace("grangold_fc2",0,0,2,6)
+  ShowMessage("\\n<King of Grangold>Having said that, it's a bit awkward to ask, but I was wondering if you'd do me a small favor.")
+  ShowMessageFace("grangold_fc2",0,0,2,7)
+  ShowMessage("\\n<King of Grangold>Of course, I'd make it worth your while.\nWe've got a lot on our plates today, so I will get in touch with you again at a later date.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  ShowMessageFace("lazarus3_fc1",0,0,2,1)
+  ShowMessage("\\n<Lazarus>Hey, nice job.\nDon't get involved in shit like this again, though.")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>Is it okay for you to be moving around with your injuries, Uncle Lazarus?")
+  ShowMessageFace("lazarus3_fc1",0,0,2,3)
+  ShowMessage("\\n<Lazarus>I ain't dying from these.\nI do need calories to help my body heal, so lemme eat.")
+  If(0,6,0)
+   ShowMessageFace("ruka_fc1",0,0,2,4)
+   ShowMessage("\\n<Luka>Umm, so about you being the Don of the underworld...\nI decided I wouldn't bother you about it, but Sonya's still super pissed.")
+   ShowMessageFace("lazarus3_fc1",0,0,2,5)
+   ShowMessage("\\n<Lazarus>Maybe I should apologize while I'm still injured. It's harder to get mad at a cripple...")
+   ShowMessageFace("merlin_fc1",0,0,2,6)
+   ShowMessage("\\n<Merlin>You're just putting off the inevitable, Lazarus.")
+   ShowMessageFace("ruka_fc1",0,0,2,7)
+   ShowMessage("\\n<Luka>Sonya's mad at you too, Merlin.")
+   ShowMessageFace("merlin_fc1",0,0,2,8)
+   ShowMessage("\\n<Merlin>Apologizing while we're injured sounds like a good plan.")
+   0()
+  EndIf()
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  ShowMessageFace("merlin_fc1",0,0,2,1)
+  ShowMessage("\\n<Merlin>Bravely fought, Luka. I'm proud of you.")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>Those injuries look serious.\nAre you going to be okay, Merlin?")
+  ShowMessageFace("merlin_fc1",0,0,2,3)
+  ShowMessage("\\n<Merlin>I thought I was a dead man. If Tamamo hadn't come to our rescue, I would have been.")
+  ShowMessageFace("tamamo_fc1",3,0,2,4)
+  ShowMessage("\\n<Tamamo>(They all looked like villains, so I wasn't sure whom I was supposed to beat up... I can't tell them that, though.)")
+  ShowMessageFace("lazarus3_fc1",0,0,2,5)
+  ShowMessage("\\n<Lazarus>Listen up, Luka...\nEven when the situation looks bleak, choosing to sacrifice yourself is never the answer.")
+  ShowMessageFace("lazarus3_fc1",0,0,2,6)
+  ShowMessage("\\n<Lazarus>Resist the temptation to throw away your life. Survive, even if it puts you through hell. A man should always be thinking about how to make it home alive.")
+  ShowMessageFace("merlin_fc1",0,0,2,7)
+  ShowMessage("\\n<Merlin>(He was seriously dying to say that...)")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  // condition: switch 1062 is ON
+  ShowMessageFace("gob_fc1",0,0,2,1)
+  ShowMessage("\\n<Gob>Now I can return home in glory! Everyone in Yamatai Village can brag about me, too!")
+  0()
+ PAGE   2
+  // condition: switch 1062 is ON
+  // condition: switch 33 is ON
+  ShowMessageFace("gob_fc1",3,0,2,1)
+  ShowMessage("\\n<Gob>How did a monster like me end up in a war between humans... Well, I guess Grangold has monsters influencing them, too.")
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  // condition: switch 1064 is ON
+  ShowMessageFace("pramia_fc1",0,0,2,1)
+  ShowMessage("\\n<Teeny>Everyone, please eat with proper table manners...")
+  0()
+ PAGE   2
+  // condition: switch 1064 is ON
+  // condition: switch 33 is ON
+  ShowMessageFace("pramia_fc1",0,0,2,1)
+  ShowMessage("\\n<Teeny>This tree is perfect for hanging up laundry to dry.")
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  // condition: switch 1068 is ON
+  ShowMessageFace("dragonp_fc1",0,0,2,1)
+  ShowMessage("\\n<Papi>*munch* *munch*\n*stuff* *stuff*\nI'm gonna eat until I burst!\nSeconds!")
+  0()
+ PAGE   2
+  // condition: switch 1068 is ON
+  // condition: switch 33 is ON
+  ShowMessageFace("dragonp_fc1",0,0,2,1)
+  ShowMessage("\\n<Papi>Dragons can breathe ice too!\n*suuuuuck* ...... *freeeeeeeeeze*!")
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  // condition: switch 1072 is ON
+  ShowMessageFace("phoenix_fc1",1,0,2,1)
+  ShowMessage("\\n<Mini>This food is delicious!\nWe should have banquets like this every day at our castle!")
+  ShowMessageFace("ruka_fc1",0,0,2,2)
+  ShowMessage("\\n<Luka>We'd be broke by day three...")
+  0()
+ PAGE   2
+  // condition: switch 1072 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  // condition: switch 1066 is ON
+  ShowMessageFace("vgirl_fc1",2,0,2,1)
+  ShowMessage("\\n<Vanilla>This place is so bright...\nFor one who lives in the shadows, such as myself, it's too... too...")
+  ShowMessageFace("vgirl_fc1",2,0,2,2)
+  ShowMessage("\\n<Vanilla>Normies scare me...")
+  0()
+ PAGE   2
+  // condition: switch 1066 is ON
+  // condition: switch 33 is ON
+  ShowMessageFace("vgirl_fc1",2,0,2,1)
+  ShowMessage("\\n<Vanilla>This lewd air is giving me goosebumps. Nobility like me has sensitive skin. I'm jealous of Gob and Papi for being thick-skinned.")
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  ShowMessageFace("durahan_fc1",1,0,2,1)
+  ShowMessage("\\n<Arthur>I've never seen so much delicious food...\nIt makes me wish I had multiple heads, too.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  ShowMessageFace("durahan_fc1",0,0,2,1)
+  ShowMessage("\\n<Arthur>Do you have a minute, Hero Luka?\nAfter seeing your prowess, I was hoping you'd help me with an errand...")
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  ShowMessageFace("kerberos_fc1",0,0,2,1)
+  ShowMessage("\\n<Caesar>I started helping out the reconstruction effort yesterday. I better eat up so I can work hard!")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  ShowMessageFace("kerberos_fc1",0,0,2,1)
+  ShowMessage("\\n<Caesar>Hey there!\nCan I have a few minutes of your time!?")
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  // condition: switch 2149 is ON
+  ShowMessageFace("ashel_fc1",1,0,2,1)
+  ShowMessage("\\n<Ashel>I wish all the Fishy Pirates could attend this feast, but I'll at least bring some of this delicious food back for them.")
+  0()
+ PAGE   2
+  // condition: switch 2148 is ON
+  ShowMessageFace("umiusi_k_fc1",0,0,2,1)
+  ShowMessage("\\n<Stacy>I can't believe I got invited to this event...\nI'm so glad I joined the navy.")
+  0()
+ PAGE   3
+  // condition: switch 2149 is ON
+  // condition: switch 33 is ON
+  0()
+ PAGE   4
+  // condition: switch 2148 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  // condition: switch 2149 is ON
+  ShowMessageFace("bonny_fc1",2,0,2,1)
+  ShowMessage("\\n<Bonnie>*huff* *huff* *fooooooooo*\nOh, to be honest, I can't handle hot food. I have to cool this down to eat it.")
+  ShowMessageFace("bonny_fc1",2,0,2,2)
+  ShowMessage("\\n<Bonnie>*fooooooooo* *fooooooooo*\n*huff* *huff* *fooooooooo*")
+  0()
+ PAGE   2
+  // condition: switch 2148 is ON
+  ShowMessageFace("tatunoko_k_fc1",1,0,2,1)
+  ShowMessage("\\n<Tatsuko>So gooooood!\n*munch* *munch*")
+  0()
+ PAGE   3
+  // condition: switch 2149 is ON
+  // condition: switch 33 is ON
+  0()
+ PAGE   4
+  // condition: switch 2148 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  // condition: switch 1118 is ON
+  ShowMessageFace("meia_fc1",0,0,2,1)
+  ShowMessage("\\n<Meia>Aaah, such wonderful cuisine.\nI wish my husband were here to taste it, too.")
+  ShowMessageFace("meia_fc1",0,0,2,2)
+  ShowMessage("\\n<Meia>We'll have to replicate the full course at the next harem--Ummm, forget I said anything.")
+  0()
+ PAGE   2
+  // condition: switch 1118 is ON
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  ShowMessageFace("queenant_fc1",0,0,2,1)
+  ShowMessage("\\n<Queen Ant>I was invited as a state guest as queen of the ant girls. I also received an apology for them being used as soldiers.")
+  ShowMessageFace("queenant_fc1",0,0,2,2)
+  ShowMessage("\\n<Queen Ant>Seeing as how the king himself was being manipulated, the apology was sufficient, and I'd like to put the whole affair behind me.")
+  ShowMessageFace("queenant_fc1",0,0,2,3)
+  ShowMessage("\\n<Queen Ant>That said, I owe you a large debt.\nIt was only thanks to your efforts that I was freed.")
+  ShowMessageFace("queenant_fc1",0,0,2,4)
+  ShowMessage("\\n<Queen Ant>I'm busy wrapping up food at the moment, but I'll be sure to reward you soon.")
+  ShowMessageFace("queenant_fc1",0,0,2,5)
+  ShowMessage("\\n<Queen Ant>...Why am I wrapping up food?\nTo bring home and feed my girls.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+EVENT   38
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Sabasa Statesman>A hero's betrothed should certainly be a woman from an ancient royal family. Oh, and it so happens that Sabasa has a queen of just the right age!")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Grand Noah Statesman>Grand Noah has a royal woman as well, you know!")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Sabasa Statesman>However, when you consider their ages, she's not exactly a suitable partner for the hero...")
+  ShowMessageFace("grandnoa_fc1",0,0,2,4)
+  ShowMessage("\\n<Queen of Grand Noah>Off with his head!")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Sabasa Statesman>Gah! She has the hearing of a monster!")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Grand Noah Statesman>You wouldn't happen to prefer older women, would you? No reason for asking, only curious.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Grand Noah Statesman>Just talking to myself here, but our country's queen is of prime marriageable age...")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Sabasa Statesman>You know that's never happening...")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Grand Noah Statesman>Quiet, you.\nI digress, but in legends, heroes typically take royal wives.")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Grand Noah Statesman>Sabasa has a queen, too, but you've heard the rumors about how much of a temptress she is. She's not exactly bride material for a hero...")
+  ShowMessageFace("sara_fc2",1,0,2,6)
+  ShowMessage("\\n<Sara>I'm suddenly in the mood to dance...\nWould you serve me that man's head on a platter?")
+  ShowMessageFace("",0,0,2,7)
+  ShowMessage("\\n<Grand Noah Statesman>Gah! She has the hearing of a monster!")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Grangold Statesman>So those companions of yours...\nGood gracious, talk about a lot to choose from.")
+  0()
+ PAGE   2
+  // condition: switch 33 is ON
+  0()
+
+

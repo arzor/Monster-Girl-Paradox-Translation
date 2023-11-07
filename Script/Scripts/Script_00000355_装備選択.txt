@@ -1,0 +1,66 @@
+module NWRegexp
+  module EquipItem
+    SELECTABLE = /<装備選択可>/i
+  end
+end
+class Window_KeyItem < Window_ItemList
+  def include?(item)
+    return super(item) unless $game_message.item_choice_condition
+
+    $game_message.item_choice_condition.call(item)
+  end
+
+  def enable?(item)
+    return super(item) unless $game_message.item_choice_condition
+
+    true
+  end
+end
+
+class RPG::BaseItem
+  def equip_selectable?
+    @data_ex.key?(:equip_selectable)
+  end
+end
+
+class Game_Interpreter
+  def choice_weapon
+    choice_item(proc { |item| item.is_a?(RPG::Weapon) && item.equip_selectable? })
+  end
+
+  def choice_armor
+    choice_item(proc { |item| item.is_a?(RPG::Armor) && item.equip_selectable? })
+  end
+
+  def choice_item(condition = nil)
+    wait_for_message
+    $game_message.item_choice_condition = condition
+    $game_message.item_choice_variable_id = 58
+    Fiber.yield while $game_message.item_choice?
+  end
+end
+
+class Game_Message
+  attr_accessor :item_choice_condition
+
+  alias hima_equip_choice_clear clear
+  def clear
+    hima_equip_choice_clear
+    @item_choice_condition = nil
+  end
+end
+
+class Game_SelfSwitches
+  def delete(map_ids)
+    @data.reject! do |key,|
+      map_ids.include?(key[0])
+    end
+    on_change
+  end
+end
+
+class Game_Interpreter
+  def reset_selfswitch_map(*map_ids)
+    $game_self_switches.delete(map_ids)
+  end
+end

@@ -1,0 +1,19 @@
+module NWRegexp
+  module BaseItem
+    PARAM_NEUTRALIZE = /<無力化\s?((?:\d+(?:,\s?)?)+)/
+  end
+end
+
+class Game_BattlerBase
+  def param_neutralize?(param_id)
+    !features_with_id(FEATURE_PARAM_NEUTRALIZE, param_id).empty?
+  end
+
+  alias h_13_neu_param param
+  def param(param_id)
+    return 1 if param_neutralize?(param_id)
+
+    h_13_neu_param(param_id)
+  end
+end
+

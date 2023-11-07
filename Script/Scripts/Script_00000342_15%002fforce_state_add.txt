@@ -1,0 +1,12 @@
+class Game_Battler
+  def set_trigger_state
+    trigger_state.each do |obj|
+      rate  = { :H => hp_rate, :M => mp_rate, :T => tp_rate }[obj[:point]]
+      check = [rate < obj[:per], obj[:per] <= rate]
+      exec = [:force_add_state, :remove_state]
+      next unless check[obj[:trigger] % 2]
+
+      method(exec[obj[:trigger] / 2]).call(obj[:state_id])
+    end
+  end
+end

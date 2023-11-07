@@ -1,0 +1,88 @@
+
+class RPG::BaseItem
+  def change_features
+    @features_override = _change_features
+  end
+
+  def features
+    @features_override
+  end
+  
+  def _change_features
+    default_features
+  end
+
+  def default_features
+    @features + @add_features
+  end
+end
+class RPG::Enemy < RPG::BaseItem
+  def _change_features
+    hit_features, other_features = super.partition do |feature|
+      feature.code == FEATURE_XPARAM && feature.data_id == 0
+    end
+    hit_value = hit_features.empty? ? 0.8 : hit_features.map(&:value).inject(:+)
+    hit_feature = RPG::BaseItem::Feature.new(
+      FEATURE_XPARAM_EX, 0, hit_value
+    )
+    [hit_feature] + other_features
+  end
+end
+#==============================================================================
+# ■ RPG::Weapon
+#==============================================================================
+class RPG::Weapon < RPG::EquipItem
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_weapon_note_analyze
+    note.each_line do |line|
+      if NWRegexp::Weapon::NOT_DUAL_WIELD.match(line)
+        @data_ex[:not_dual_wield?] = true
+      end
+    end
+  end
+
+  def _change_features
+    hit_features, other_features = super.partition do |feature|
+      feature.code == FEATURE_XPARAM && feature.data_id == 0
+    end
+    hit_value = hit_features.empty? ? 0.8 : hit_features.map(&:value).inject(:+)
+    hit_feature = RPG::BaseItem::Feature.new(
+      FEATURE_XPARAM_EX, 0, hit_value
+    )
+    [hit_feature] + other_features
+  end
+end
+
+class RPG::Class
+  def _change_features
+    super.each do |ft|
+      ft.enchant_id = id
+    end
+    super
+  end
+end
+class Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # ○ 追加能力値の取得
+  #--------------------------------------------------------------------------
+  def xparam(xparam_id)
+    case xparam_id
+    when 0
+      hit_base(xparam_id) + features_sum(FEATURE_XPARAM, xparam_id)
+    when 3
+      features_sum(FEATURE_XPARAM, xparam_id)
+    else
+      features_xparam_rate(FEATURE_XPARAM, xparam_id)
+    end
+  end
+
+  def hit_base(xparam_id)
+    values = features_with_id(FEATURE_XPARAM_EX, xparam_id).map(&:value)
+    return 0.8 if values.empty?
+
+    values.inject(:+) / values.size * 1.0
+  end
+end

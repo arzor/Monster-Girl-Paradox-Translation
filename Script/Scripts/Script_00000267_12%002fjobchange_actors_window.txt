@@ -1,0 +1,7 @@
+class Foo::JobChange::Window_Actors < Window_Command
+  def draw_item(index)
+    color = $game_party.exist_party_actor_id?(@actors[index]) ? system_color : normal_color
+    change_color(color, command_enabled?(index))
+    draw_text(item_rect_for_text(index), command_name(index), alignment)
+  end
+end

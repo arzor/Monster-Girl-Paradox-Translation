@@ -1,0 +1,10 @@
+﻿// EVENT 1384
+Name "Talk: Tamamo"
+
+ChangeVariable(25,25,0,0,0)
+ShowMessageFace("tamamo_fc3",0,0,2,1)
+ShowMessage("\\n<Tamamo>Dialogue is unnecessary...")
+ShowMessageFace("",0,0,2,2)
+ShowMessage("Tamamo rejected your attempt at conversation!")
+EndEventProcessing()
+0()

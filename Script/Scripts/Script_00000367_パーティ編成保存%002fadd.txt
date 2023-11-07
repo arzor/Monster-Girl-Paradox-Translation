@@ -1,0 +1,27 @@
+module Vocab
+  PartySaveMessage = "Which slot do you want to register a party?"
+  PartyLoadMessage = "Which party do you want to call?"
+end
+
+class Game_System
+  def party_form
+    @party_form ||= PartyForm.new
+  end
+end
+
+class PartyForm
+  attr_reader :last_save_index
+  def initialize
+    @data = {}
+    @last_save_index = 0
+  end
+
+  def save(index, members)
+    @data[index] = members
+    @last_save_index = index
+  end
+
+  def load(index)
+    @data[index]
+  end
+end

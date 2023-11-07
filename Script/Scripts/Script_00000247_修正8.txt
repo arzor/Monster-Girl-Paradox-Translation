@@ -1,0 +1,176 @@
+# 反射不可追加
+class Game_BattlerBase
+  def special_element?(id)
+    NWConst::Elem::RATE_FIX_ID.include?(id)
+  end
+end
+class Game_Battler < Game_BattlerBase
+  def element_penetrate?(id)
+    !features_with_id(FEATURE_PENETRATION_ELEMENT, id).empty?
+  end
+
+  def item_element_penetrate?(item)
+    item.element_penetrate? ||
+      item_final_elements(item).any? do |id|
+        element_penetrate?(id)
+      end
+  end
+
+  def item_reflection?(user, item)
+    return false unless alive?
+    return false if user.item_element_penetrate?(item)
+
+    elements = user.item_final_elements(item)
+    ignore_elements = elements.select do |element|
+      special_element?(element)
+    end
+    if ignore_elements.empty?
+      return rand < item_mrf(user, item) || elements.any? { |element| element_reflection(element) }
+    end
+
+    ignore_elements.all? do |element|
+      element_reflection(element)
+    end
+  end
+
+  def item_drain?(user, item)
+    return false if user.item_element_penetrate?(item)
+
+    elements = user.item_final_elements(item)
+    ignore_elements = elements.select do |element|
+      special_element?(element)
+    end
+    if ignore_elements.empty?
+      return elements.any? { |element| element_drain?(element) }
+    end
+
+    ignore_elements.all? do |element|
+      element_drain?(element)
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ スキル／アイテムの属性修正値を取得
+  #--------------------------------------------------------------------------
+  def item_element_rate(user, item)
+    return -1.0 if item_drain?(user, item)
+
+    rate = elements_max_rate(user.item_final_elements(item))
+    user.item_element_penetrate?(item) ? [rate, 1.0].max : rate
+  end
+end
+
+# 時間停止時はカウンターとかしない
+class Scene_Battle < Scene_Base
+  #--------------------------------------------------------------------------
+  # ○ スキル／アイテムの対象への効果適用
+  #--------------------------------------------------------------------------
+  def process_invoke_item(base_action, first_use_items)
+    enable_counter = !BattleManager.giveup?
+    base_item = base_action.item
+    global = true
+    @subject.invoke_repeats(base_item).times do |repeat_time|
+      break unless @subject.current_action
+
+      use_items = (repeat_time == 0 ? first_use_items : base_action.use_items(false))
+      display_item = use_items.size == 1 ? use_items[0] : base_item
+      process_skill_word(display_item, base_action) if repeat_time != 0
+      use_items.each_with_index do |item, item_time|
+        break unless @subject.current_action
+
+        if (repeat_time != 0) || (item_time != 0) # 反撃スキルから戻す
+          display_skill_name(display_item)
+          display_use_item(base_action, display_item)
+        end
+        enable_invoke = true
+        action = Game_Action.new(@subject)
+        action.send(item.is_skill? ? :set_skill : :set_item, item.id)
+        action.target_index = base_action.target_index
+        targets = action.make_targets.compact
+        targets.delete(@subject) if item.target_reject_user?
+        show_animation(targets, item.animation_id)
+        item.add_anime.each { |anime_id| show_animation(targets, anime_id) }
+        if enable_counter # 拡張反撃
+          targets.uniq.each do |target|
+            next unless target.item_counter_ex?(@subject, item)
+
+            invoke_counter_attack(target, item)
+            global = false
+            enable_invoke = false           # スキル発動と通常反撃を無効
+            break                           # 以降の先手反撃を無効
+          end
+        end
+        if enable_invoke # 効果の発動
+          $game_temp.normal_invoke_start
+          e = @subject.item_add_effects(item)
+          unless e.empty?
+            item = Marshal.load(Marshal.dump(item))
+            item.effects += e
+          end
+          targets.each do |target|
+            item.repeats.times { invoke_item(target, item) }
+          end
+          @subject.item_one_use_apply(item, targets, self)
+          $game_temp.normal_invoke_end
+        end
+        if enable_invoke && enable_counter # 通常反撃
+          targets.uniq.each do |target|
+            if target.item_counter?(@subject, item)
+              invoke_counter_attack(target, item)
+            end
+          end
+        end
+        enable_counter = false # 反撃できるのは最初の回の最初のスキルのみ
+        @log_window.clear
+      end # use_items.each
+      @log_window.clear # 2行上のclearはbreakによって無視される可能性がある
+      break if $game_troop.all_dead?
+    end # invoke_repeats.times
+    if global
+      use_item_learning_skill(base_item)
+      @subject.item_global_apply(base_item)
+    end
+  end
+end
+
+class Game_Battler
+  def enable_action?
+    !BattleManager.giveup? && alive? && movable? && od_movable?
+  end
+
+  def item_counter?(user, item)
+    enable_action? && rand < item_cnt(user, item)
+  end
+
+  def item_counter_ex?(user, item)
+    enable_action? && rand < item_cnt_ex(user, item)
+  end
+end
+
+# 全滅変更
+#==============================================================================
+# ■ Game_Party
+#==============================================================================
+class Game_Party < Game_Unit
+  def all_dead?
+    (super || alive_members.all? { |member| member.all_dead_state? }) && !$game_switches[NWConst::Sw::ALL_DEAD_DISABLE]
+  end
+end
+
+class Game_Battler < Game_BattlerBase
+  def all_dead_state?
+    states.any? { |state| state.all_dead? }
+  end
+end
+
+class RPG::State < RPG::BaseItem
+  def all_dead?
+    @data_ex.key?(:all_dead) ? @data_ex[:all_dead] : false
+  end
+end
+
+class Game_Party < Game_Unit
+  def battle_members_id
+    actors[0, max_battle_members]
+  end
+end

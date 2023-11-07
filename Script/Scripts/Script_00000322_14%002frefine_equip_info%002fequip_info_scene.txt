@@ -1,0 +1,259 @@
+module EquipInfoScene
+  #--------------------------------------------------------------------------
+  # ● 開始処理
+  #--------------------------------------------------------------------------
+  def start
+    super
+    @deactivate_windows = []
+    @hide_windows = []
+    create_equip_info_itemname_window
+    create_equip_info_page_window
+    create_equip_info_window
+    @equip_info_current_window_index = 0
+    @equip_info_page = 0
+    @equip_info_isshow = false
+    create_equip_info_windows
+  end
+
+  def create_equip_info_window
+    @compare_ex_window = Window_ShopCompareEx.new
+    @equip_info_window = Window_ShopStatusEx.new(0, 56, 640, 368)
+    @enchant_stone_window = Window_Enchant_Stones.new(0, 56, 640, 368)
+    @set_effect_window = Window_SetEffect.new(0, 56, 640, 368)
+    @compare_ex_window.z = 100
+    @equip_info_window.z = 100
+    @enchant_stone_window.z = 100
+    @set_effect_window.z = 100
+    @compare_ex_window.viewport = @viewport
+    @equip_info_window.viewport = @viewport
+    @enchant_stone_window.viewport = @viewport
+    @enchant_stone_window.viewport = @viewport
+  end
+
+  def equip_info_init
+    equip_info_set_item
+    equip_info_set_actor
+    equip_info_windows.each do |window|
+      window.page_index = 0
+      window.refresh
+    end
+    equip_info_set_page
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 性能差比較ウィンドウのアイテムをセット
+  #--------------------------------------------------------------------------
+  def equip_info_set_item
+    select_item = equip_info_select_item
+    @equip_info_itemname_window.item = select_item
+    @equip_info_windows.each { |window| window.item = select_item }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 性能差比較ウィンドウのページをセット
+  #--------------------------------------------------------------------------
+  def equip_info_set_page
+    @equip_info_page_window.page_index = equip_info_get_all_page_index[@equip_info_current_window_index] + @equip_info_page
+    @equip_info_page_window.page_max = equip_info_all_page_max
+    equip_info_window.page_index = @equip_info_page
+    equip_info_window.refresh if @equip_info_isshow
+  end
+
+  def equip_info_set_actor
+    @equip_info_windows.each { |window| window.actor = equip_info_select_actor }
+  end
+
+  def equip_info_select_item
+    nil
+  end
+
+  def equip_info_select_actor
+    nil
+  end
+
+  def create_equip_info_windows
+    @equip_info_windows = [@equip_info_window, @set_effect_window, @enchant_stone_window, @compare_ex_window]
+  end
+
+  def create_equip_info_itemname_window
+    @equip_info_itemname_window = Window_ItemName.new
+    @equip_info_itemname_window.viewport = @viewport
+  end
+
+  def create_equip_info_page_window
+    @equip_info_page_window = Window_Page.new
+    @equip_info_page_window.viewport = @viewport
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ フレーム更新
+  #--------------------------------------------------------------------------
+  def update
+    super
+    equip_info_change_visible if Input.trigger?(:X)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 簡易操作説明テキスト
+  #--------------------------------------------------------------------------
+  def show_key_text
+    if @equip_info_isshow
+      [Help.equip_info_change,
+       Help.equip_info_next,
+       Help.equip_info_hide]
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 全ページ
+  #--------------------------------------------------------------------------
+  def equip_info_all_page_max
+    equip_info_windows.map(&:page_max).inject(:+)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ウィンドウ毎の全ページから見た初期ページ数
+  #--------------------------------------------------------------------------
+  def equip_info_get_all_page_index
+    equip_info_windows.map(&:page_max).map.with_index  do |_p, index|
+      (equip_info_windows.map(&:page_max)[0, index] || []).inject(1) { |i, v| i + v }
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 全ウィンドウ取得
+  #--------------------------------------------------------------------------
+  def equip_info_windows
+    @equip_info_windows.select { |window| window.page_max > 0 }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 現在の表示状態取得
+  #--------------------------------------------------------------------------
+  def equip_info_window_visible
+    equip_info_windows.map(&:visible)
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ フレーム更新
+  #--------------------------------------------------------------------------
+  def update_all_windows
+    if @equip_info_isshow
+      if Input.trigger?(:B)
+        equip_info_hide
+        Input.update
+      elsif Input.trigger?(:L) || Input.trigger?(:LEFT)
+        equip_info_before_page
+        Input.update
+      elsif Input.trigger?(:R) || Input.trigger?(:RIGHT)
+        equip_info_next_page
+        Input.update
+      end
+    end
+    super
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 性能差比較ウィンドウの表示状態を切り替え
+  #--------------------------------------------------------------------------
+  def equip_info_change_visible
+    equip_info_next_page if @equip_info_isshow
+    equip_info_show if !@equip_info_isshow && !equip_info_hide?
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 次のページへ
+  #--------------------------------------------------------------------------
+  def equip_info_next_page
+    @equip_info_page += 1
+    if @equip_info_page >= equip_info_window.page_max
+      equip_info_window.hide
+      if @equip_info_current_window_index >= equip_info_windows.size - 1
+        @equip_info_current_window_index = 0
+      else
+        @equip_info_current_window_index += 1
+      end
+      @equip_info_page = 0
+      equip_info_window.show
+
+    end
+    equip_info_set_page
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 前のページへ
+  #--------------------------------------------------------------------------
+  def equip_info_before_page
+    @equip_info_page -= 1
+    if @equip_info_page == -1
+      equip_info_window.hide
+      if @equip_info_current_window_index == 0
+        @equip_info_current_window_index = equip_info_windows.size - 1
+      else
+        @equip_info_current_window_index -= 1
+      end
+      @equip_info_page = (equip_info_window.page_max - 1)
+      equip_info_window.show
+    end
+    equip_info_set_page
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 現在起動中のウィンドウ取得
+  #--------------------------------------------------------------------------
+  def equip_info_window
+    equip_info_windows[@equip_info_current_window_index]
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 性能差比較ウィンドウの表示
+  #--------------------------------------------------------------------------
+  def equip_info_show
+    equip_info_init
+    @equip_info_isshow = true
+    @deactivate_windows = []
+    @hide_windows = []
+    instance_variables.each do |varname|
+      ivar = instance_variable_get(varname)
+      if ivar.is_a?(Window)
+        @deactivate_windows << ivar if ivar.active
+        @hide_windows << ivar if ivar.visible
+      end
+    end
+    @deactivate_windows.each(&:deactivate)
+    @hide_windows.each(&:hide)
+    @equip_info_page = 0
+    @equip_info_current_window_index = 0
+    equip_info_window.show
+    @equip_info_itemname_window.show
+    @equip_info_itemname_window.refresh
+    @equip_info_page_window.show
+    equip_info_window.refresh
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 性能差比較ウィンドウの非表示
+  #--------------------------------------------------------------------------
+  def equip_info_hide
+    @equip_info_itemname_window.hide
+    @equip_info_page_window.hide
+    @equip_info_page = 0
+    @equip_info_current_window_index = 0
+    equip_info_windows.each { |window| window.hide }
+    @deactivate_windows.each(&:activate)
+    @hide_windows.each(&:show)
+    @equip_info_isshow = false
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 性能差比較ウィンドウを変更するか
+  #--------------------------------------------------------------------------
+  def equip_info_change?
+    if (equip_info_select_item.nil? || !equip_info_select_item.enchant_item?) && @enchant_stone_window.visible
+      return true
+    end
+    return true if equip_info_select_item.nil? && @equip_info_window.visible
+  end
+
+  def equip_info_refresh; end
+end

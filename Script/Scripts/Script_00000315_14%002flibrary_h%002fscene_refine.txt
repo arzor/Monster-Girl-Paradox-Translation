@@ -1,0 +1,56 @@
+module LibraryH
+  CALL_COMMAND_NAME = "Scene Recollection"
+end
+
+class Window_TitleCommand < Window_Command
+  #--------------------------------------------------------------------------
+  # ● コマンドリストの作成
+  #--------------------------------------------------------------------------
+  def make_command_list
+    add_command(Vocab.new_game, :new_game)
+    add_command(Vocab.continue, :continue, continue_enabled)
+    add_command(SaveData::AutoCommandName, :auto_continue, auto_continue_enabled)
+    add_command(LibraryH::CALL_COMMAND_NAME, :call_library_h, call_library_h_enable?)
+    add_command(Vocab.shutdown, :shutdown)
+  end
+
+  def call_library_h_enable?
+    DataManager.save_file_exists?
+  end
+end
+
+class Scene_Title < Scene_Base
+  def create_command_window
+    @command_window = Window_TitleCommand.new
+    @command_window.set_handler(:new_game, method(:command_new_game))
+    @command_window.set_handler(:continue, method(:command_continue))
+    @command_window.set_handler(:auto_continue, method(:command_auto_continue))
+    @command_window.set_handler(:shutdown, method(:command_shutdown))
+    @command_window.set_handler(:call_library_h, method(:command_call_library_h))
+  end
+
+  def command_call_library_h
+    DataManager.load_game(DataManager.latest_savefile_index)
+    SceneManager.call(Scene_Library_H)
+  end
+end
+
+class Window_Library_MainCommand
+  def make_h_index_command
+    add_command(LibraryH::CALL_COMMAND_NAME, :lib_h, !$game_party.in_battle, [7, 70_000])
+  end
+end
+
+class Scene_Library
+  def on_h_index
+    SceneManager.call(Scene_Library_H)
+  end
+end
+
+class Scene_Novel
+  alias test_start start
+  def start
+    test_start
+    update
+  end
+end

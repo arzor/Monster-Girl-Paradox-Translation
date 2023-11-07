@@ -1,0 +1,119 @@
+module NWConst
+  module Sw
+    ENCHANT_OFF = 502
+    EQUIP_DISABLED = 503
+  end
+end
+
+module NWRegexp
+  module BaseItem
+    EX_CATEGORY_BOOSTER = /<特殊カテゴリー(与ダメージアップ|被ダメージダウン)\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+    WEAPON_RATE_BONUS = /<武器ボーナス取得\s?((?:\d+(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_Actor
+  def enchant_unequip
+    @equips.each do |item|
+      if item.object && item.object.enchant_item?
+        trade_item_with_party(nil, item.object)
+        item.object = nil
+      end
+    end
+  end
+end
+class Game_Party < Game_Unit
+  def enchant_unequip
+    (all_members + stand_members).each do |member|
+      member.enchant_unequip
+    end
+  end
+
+  def encounter_rate
+    return 0.0 if $game_switches[NWConst::Sw::ENCOUNT_NONE]
+
+    array = members.inject([]) { |ary, actor| ary + actor.encounter_rate }
+    if $game_switches[NWConst::Sw::STRICT_ENCOUNT]
+      array.delete_if { |r| r < 1.0 }
+    end
+    if array.empty?
+      1.0
+    else
+      rate = array.inject(1.0) { |result, r| result * r }
+      rate
+    end
+  end
+end
+
+module Audio
+  class << self
+    alias hima_alias_audio_bgm_play bgm_play
+    alias hima_alias_audio_bgs_play bgs_play
+    alias hima_alias_audio_me_play me_play
+    alias hima_alias_audio_se_play se_play
+
+    def alias_file_name(file_name)
+      NWConst::Audio::AUDIO_ALIAS[file_name] || file_name
+    end
+
+    def bgm_play(*args)
+      args[0] = alias_file_name(args[0])
+      hima_alias_audio_bgm_play(*args)
+    end
+
+    def me_play(*args)
+      args[0] = alias_file_name(args[0])
+      hima_alias_audio_me_play(*args)
+    end
+
+    def se_play(*args)
+      args[0] = alias_file_name(args[0])
+      hima_alias_audio_se_play(*args)
+    end
+  end
+end
+
+class Game_BattlerBase
+  def weapon_rate_bonus
+    feature_objects.map { |obj| obj.weapon_rate_bonus }.flatten
+  end
+
+  def booster_ex_category_defence(id)
+    features_pi(FEATURE_EX_CATEGORY_DEFENCE, id)
+  end
+end
+
+
+class Window_ActorCommand < Window_Command
+  # @param actor [Game_Actor]
+  def setup(actor)
+    @actor = actor
+    @succubus = actor.succubus?
+    clear_command_list
+    make_command_list
+    refresh
+    select(0)
+    activate
+    open
+  end
+
+  def stype_usable?(stype_id)
+    @actor.skills.any? { |skill| skill.stype_id == stype_id && !(@succubus && skill.succubus_unavailable?) } &&
+      !($game_system.conf[:bt_stype] && @actor.skill_type_disabled?(stype_id))
+  end
+end
+
+class Game_SelfSwitches
+  def delete(map_ids)
+    @data.reject! do |key,_|
+      map_ids.include?(key[0])
+    end
+    on_change
+  end
+end
+
+class Game_Interpreter
+  def reset_selfswitch_map(*map_ids)
+    $game_self_switches.delete(map_ids)
+  end
+end

@@ -1,0 +1,121 @@
+class Window_Base
+  def draw_number_unit(*args)
+    rect_flag = args[0].is_a?(Rect)
+    x = rect_flag ? args[0].x : args[0]
+    y = rect_flag ? args[0].y : args[1]
+    width = rect_flag ? args[0].width : args[2]
+    height = rect_flag ? args[0].height : args[3]
+    number = rect_flag ? args[1] : args[4]
+    align = rect_flag ? args[2] : args[5]
+    digit = drawable_digit(width)
+    if digit < number.digit
+      draw_text(x, y, width, height, number.give_unit_floor(digit), align)
+    else
+      draw_text(*args)
+    end
+  end
+
+  def drawable_digit(width)
+    contents.drawable_digit(width)
+  end
+
+  def draw_actor_tp_vga(actor, x, y, width = 124)
+    draw_gauge(x, y, width, [actor.tp_rate, 1.0].min, tp_gauge_color1, tp_gauge_color2)
+    draw_current_and_max_values(x, y, width, actor.tp, actor.max_tp, tp_color(actor), normal_color, Vocab.tp_a)
+  end
+
+  def draw_actor_hp_vga(actor, x, y, width = 124)
+    draw_gauge(x, y, width, [actor.hp_rate, 1.0].min, hp_gauge_color1, hp_gauge_color2)
+    draw_current_and_max_values(x, y, width, actor.hp, actor.mhp, hp_color(actor), normal_color, Vocab.hp_a)
+  end
+
+  def draw_actor_mp_vga(actor, x, y, width = 124)
+    draw_gauge(x, y, width, [actor.mp_rate, 1.0].min, mp_gauge_color1, mp_gauge_color2)
+    draw_current_and_max_values(x, y, width, actor.mp, actor.mmp, mp_color(actor), normal_color, Vocab.mp_a)
+  end
+
+  def draw_current_and_max_values(x, y, width, current, max, color1, color2, name = nil)
+    tw = width
+    if name
+      change_color(system_color)
+      draw_text(x, y, 30, line_height, name)
+      text_width = [text_size(name).width, 30].min
+      x += text_width
+      tw -= text_width
+    end
+    change_color(color1)
+    if width < 96
+      draw_number_unit(x, y, tw, line_height, current, 2)
+    else
+      size = (tw - 12) / 2
+      draw_number_unit(x, y, size, line_height, current, 2)
+      change_color(color2)
+      draw_text(x + size, y, 12, line_height, "/", 2)
+      draw_number_unit(x + size + 12, y, size, line_height, max, 2)
+    end
+  end
+end
+
+
+
+class Bitmap
+  def drawable_digit(width)
+    h = [font, width]
+    self.cache_digit ||= {}
+    return cache_digit[h] if cache_digit[h]
+
+    i = 1
+    loop do
+      if text_size(i).width * 0.6 >= width
+        self.cache_digit[h] = i.digit - 1
+        break
+      end
+
+      i *= 10
+    end
+    cache_digit[h]
+  end
+
+  def cache_digit
+    self.class.cache_digit
+  end
+
+  def cache_digit=(other)
+    self.class.cache_digit = other
+  end
+  class << self
+    attr_accessor :cache_digit
+  end
+end
+
+class Font
+  def hash
+    name.hash ^ size.hash
+  end
+
+  def eql?(other)
+    self.class == other.class && name == other.name && size == other.size
+  end
+end
+
+class Foo::Status::Window_MainStatus
+  def basic_param_refresh(x, y)
+    param_symbols = [:mhp, :mmp, :atk, :def, :mat, :mdf, :agi, :luk,
+                     :hit, :cri, :eva, :mev, :cnt, :magical_counter]
+    rect = Rect.new(0, 0, 220, line_height)
+    param_symbols.each_with_index do |sym, i|
+      change_color(system_color)
+      rect.x = x + (235 * (i % 2))
+      rect.y = y + (line_height * (i / 2))
+      draw_text(rect, NWConst::Status::BASIC_PARAM_VOCAB[i], 0)
+      change_color(normal_color)
+      param = @actor.method(sym).call
+      if i > 7
+        param = "#{Integer(param * 100)}%"
+      else
+        param = param.give_unit_floor(12) if param >= 10_000_000
+      end
+      draw_text(rect, param, 2)
+    end
+  end
+end

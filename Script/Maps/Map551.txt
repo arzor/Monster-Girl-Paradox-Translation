@@ -1,0 +1,658 @@
+﻿
+
+
+EVENT   1
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,54,8,2,0)
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,30,8,2,0)
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,11,56,2,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,25,56,2,0)
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,12,24,2,0)
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,24,24,2,0)
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,18,48,0,0)
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,18,48,0,0)
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,18,48,0,0)
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,18,16,0,0)
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,18,16,0,0)
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,551,18,16,0,0)
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  281(0)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,188,12,13,0,0)
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  281(0)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,188,12,13,0,0)
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  281(0)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,188,12,13,0,0)
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Edina>Ah, Heinrich...\nHe will come to this land any moment...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Edina>...How impolite of me.\nI am Edina, Princess of Remina.")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Edina>Your eyes are the same color as Heinrich's...\nThey're very mysterious, like a deep lake...")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Edina>But, I wonder why...\nEven though you're such a wonderful young man, my heart remains unstirred.")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Edina>Ah, forgive me...!\nI spoke carelessly and said something cruel...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,6)
+   ShowMessage("\\n<Alice>...In some respects, Luka does have a similar scent to hers. Maybe he's a relative?")
+   ShowMessageFace("alice_fc5",3,0,2,7)
+   ShowMessage("\\n<Alice>That would mean Luka is a descendant of Remina's royal family. But that can't be right.")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",0,0,2,8)
+   ShowMessage("\\n<Ilias>That would be quite natural... In order to prevent incest, living organisms instinctively avoid sexualizing those whose genes are close to their own.")
+   ShowMessageFace("iriasu_fc4",0,0,2,9)
+   ShowMessage("\\n<Ilias>The offspring created from Hero Heinrich and Princess Edina's union are Luka's ancestors.\nLuka was the 25th generation that followed if I'm remembering correctly.")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc3",2,0,2,10)
+    ShowMessage("\\n<Sonya>Eh?! Then Luka is descended from the Remina royal family?!")
+    ShowMessageFace("ruka_fc1",0,0,2,11)
+    ShowMessage("\\n<Luka>R-really?!")
+    ShowMessageFace("iriasu_fc4",0,0,2,12)
+    ShowMessage("\\n<Ilias>Yes... You are the only surviving descendant of the Remina royal family on this earth.\nThose who are aware of that are no longer alive.")
+    ShowMessageFace("sonia_fc2",0,0,2,13)
+    ShowMessage("\\n<Sonya>The paternal side of his family is descended from a fallen royal family and a legendary hero...\nHis maternal side includes one of the highest-ranking angels...")
+    ShowMessageFace("sonia_fc1",7,0,2,14)
+    ShowMessage("\\n<Sonya>...Is Luka born from the highest pedigree?")
+    ShowMessageFace("iriasu_fc4",1,0,2,15)
+    ShowMessage("\\n<Ilias>Yes, of course.")
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(2,"A",1)
+   If(0,5,0)
+    ChangeSelfSwitch("A",0)
+    ShowMessageFace("heinrich_fc1",7,0,2,16)
+    ShowMessage("\\n<Heinrich>...I see you're in a good mood, Princess.")
+    ShowMessageFace("",0,0,2,17)
+    ShowMessage("\\n<Edina>H-Heinrich...?!\nI'm so glad you're safe...")
+    ShowMessageFace("heinrich_fc1",7,0,2,18)
+    ShowMessage("\\n<Heinrich>Yes, I'm unharmed as you can see.")
+    If(0,6,0)
+     ShowMessageFace("sonia_fc2",2,0,2,19)
+     ShowMessage("\\n<Sonya>He could say a little more...\nBut I think it has something to do with his way of speaking.")
+     0()
+    EndIf()
+    ShowMessageFace("",0,0,2,20)
+    ShowMessage("\\n<Edina>I shall bestow you with this blue crystal and pray for your safety, Heinrich. This gem has been passed down within the royal family for generations...")
+    ShowMessageFace("heinrich_fc1",7,0,2,21)
+    ShowMessage("\\n<Heinrich>I can't accept something as precious as this.\nI'm a hero, I don't even know when or where I might meet my end.")
+    If(0,6,0)
+     ShowMessageFace("sonia_fc2",3,0,2,22)
+     ShowMessage("\\n<Sonya>Wow, he's dense...")
+     0()
+    EndIf()
+    ShowMessageFace("",0,0,2,23)
+    ShowMessage("\\n<Edina>That is why I wish for you to bring it back to me when once you have returned.")
+    ShowMessageFace("heinrich_fc1",1,0,2,24)
+    ShowMessage("\\n<Heinrich>If that's the case, then you shouldn't have given it to me to begin with. Please keep that blue crystal close at hand, Princess...")
+    If(0,6,0)
+     ShowMessageFace("sonia_fc4",0,0,2,25)
+     ShowMessage("\\n<Sonya>And the lovey-dovey rays of light have been defused... Luka also has this ability.")
+     0()
+    EndIf()
+    ShowMessageFace("",0,0,2,26)
+    ShowMessage("\\n<Edina>Please take the blue crystal, Hero Heinrich!\nIf you don't return with it someday, I'll chase you to the depths of hell!")
+    ShowMessageFace("heinrich_fc1",2,0,2,27)
+    ShowMessage("\\n<Heinrich>A-all right, I understand...")
+    If(0,6,0)
+     ShowMessageFace("sonia_fc3",2,0,2,28)
+     ShowMessage("\\n<Sonya>The princess sure is pushy!")
+     0()
+    EndIf()
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<King Remina>Hero... How admirable of you to arrive at the Monster Continent. Are you planning to embark for the Monster Lord's Castle from here on?")
+  ShowChoices(strings("Yes","No"),2)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<King Remina>All heroes answer so, however...\nMost of them have already given up on progressing any further.")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<King Remina>Most lose their will to continue fighting when confronted by the powerful monsters of this continent. But you appear different from the other heroes... Your eyes are filled with a determination to keep fighting.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<King Remina>Moreover...\nSeeing your eyes reminds me of my own daughter.")
+   If(2,"B",1)
+    ChangeSelfSwitch("B",0)
+    ShowMessageFace("",0,0,2,5)
+    ShowMessage("\\n<King Remina>............")
+    ShowMessageFace("",0,0,2,6)
+    ShowMessage("\\n<King Remina>Hero, I present you with this.\nI'm certain you will find it useful on your journey.")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventory_Item(622,0,0,1)
+    ChangeSwitch(2311,2311,0)
+    If(0,4,0)
+     ShowMessageFace("alice_fc5",1,0,2,7)
+     ShowMessage("\\n<Alice>This is one of the items handed down within the royal families which can allow one to change to advanced jobs... We should be able to take up advanced warrior jobs with this.")
+     0()
+    EndIf()
+    If(0,5,0)
+     ShowMessageFace("iriasu_fc4",1,0,2,8)
+     ShowMessage("\\n<Ilias>This is one of the items handed down within the royal families which can allow one to change to advanced jobs... We should be able to take up advanced warrior jobs with this.")
+     0()
+    EndIf()
+    ShowMessageFace("ruka_fc1",0,0,2,9)
+    ShowMessage("\\n<Luka>But is this really okay?\nYou should be giving it to Heinrich instead of me...")
+    ShowMessageFace("",0,0,2,10)
+    ShowMessage("\\n<King Remina>This is merely a premonition of mine, but...\nI feel as if you are carrying a much heavier fate on your shoulders than Heinrich.")
+    ShowMessageFace("",0,0,2,11)
+    ShowMessage("\\n<King Remina>Now go, hero whose eyes are like my daughter's.\nMay Ilias watch over you.")
+    0()
+   EndIf()
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("",0,0,2,12)
+   ShowMessage("\\n<King Remina>Is that so... I respect your honesty.\nThere is no need to humble yourself, it is quite the feat indeed to have made it this far.")
+   ShowMessageFace("",0,0,2,13)
+   ShowMessage("\\n<King Remina>You may lay down your sword here and live out your remaining days in peace...\n...Yet it's strange, because your eyes tell me otherwise.")
+   0()
+  404()
+  If(2,"A",1)
+   If(0,5,0)
+    ChangeSelfSwitch("A",0)
+    ShowMessageFace("heinrich_fc1",7,0,2,14)
+    ShowMessage("\\n<Heinrich>...I see you are doing well, Your Majesty.")
+    ShowMessageFace("",0,0,2,15)
+    ShowMessage("\\n<King Remina>Oh, welcome Heinrich!\nYour adventure seems to be going quite well.")
+    ShowMessageFace("heinrich_fc1",7,0,2,16)
+    ShowMessage("\\n<Heinrich>Yes, thanks...\nI'm one step closer to reaching the Monster Lord's Castle.")
+    ShowMessageFace("",0,0,2,17)
+    ShowMessage("\\n<King Remina>Once you've defeated the Monster Lord...\nI shall welcome you as my daughter Edina's husband!")
+    ShowMessageFace("heinrich_fc1",0,0,2,18)
+    ShowMessage("\\n<Heinrich>You shouldn't, Your Majesty.\nYou're ignoring Princess Edina's feelings to advance this discussion...")
+    ShowMessageFace("",0,0,2,19)
+    ShowMessage("\\n<King Remina>Hm-hrmm...")
+    ShowMessageFace("heinrich_fc1",0,0,2,20)
+    ShowMessage("\\n<Heinrich>Princess Edina shouldn't be a prize.\nI believe she should be bound to the first man she falls in love with.")
+    ShowMessageFace("",0,0,2,21)
+    ShowMessage("\\n<King Remina>M-my apologies...\nI'm sorry, Edina... This hero appears to be unbelievably dense...")
+    If(0,6,0)
+     ShowMessageFace("sonia_fc1",2,0,2,22)
+     ShowMessage("\\n<Sonya>He'd be useless even if he plugged up the moat.")
+     0()
+    EndIf()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>If you wish to have an audience with the king, please go upstairs.")
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>The king is always open for audience with traveling heroes.\nThough, most lay down their swords in commemoration after meeting with him.")
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Soldier Chief>This may seem rude of me to ask, but... Do you still have the will to continue fighting? Or are you a retired team?")
+  ShowChoices(strings("Still fighting","Retired team"),0)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Soldier Chief>I see... Your eyes are definitely brimming with fighting spirit. They remind me of Heinrich's eyes.")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Soldier Chief>To tell the truth, I met Heinrich in San Ilia while I was visiting the world summit as my king's attendant.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Soldier Chief>It was attacked by Black Dahlia, one of the Three Nobles of Black. Heinrich, an unknown hero who happened to be there, confronted her.")
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Soldier Chief>The rest goes without saying.\nAfter that fight, Heinrich's name resonated throughout the world.")
+   ShowMessageFace("",0,0,2,6)
+   ShowMessage("\\n<Soldier Chief>Now, what was I talking about...?\nAh yes, your eyes look exactly like Heinrich's did at that time.")
+   355("actor_label_jump")
+   EndEventProcessing()
+   DefineLabel("538")
+   ShowMessageFace("heinrich_fc1",7,0,2,7)
+   ShowMessage("\\n<Heinrich>Kind of hard for me to butt in here...")
+   ShowMessageFace("",0,0,2,8)
+   ShowMessage("\\n<Soldier Chief>My, this is embarrassing...\nYou were accompanying him as well.")
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("",0,0,2,9)
+   ShowMessage("\\n<Soldier Chief>Is that so... There's no need to be ashamed if you've fought hard over a long journey. That being the case, do you have any plans for the future?")
+   ShowMessageFace("",0,0,2,10)
+   ShowMessage("\\n<Soldier Chief>We're always recruiting soldiers at our castle. More than half of Remina's army is made up of adventurers who had retired from their journeys.")
+   ShowMessageFace("",0,0,2,11)
+   ShowMessage("\\n<Soldier Chief>If you have a home to return to, then that's wonderful...\nbut many travelers find themselves without a purpose. If in doubt, you're always welcome in Remina.")
+   0()
+  404()
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>Princess Edina, our country's goddess, is obsessed with Heinrich. Well, there's no helping it when he displays such great feats.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Guard>During the attack on the world summit, even I was swooning at Heinrich's amazing style. If he was okay with my ass, I'd let him use it.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("538")
+  ShowMessageFace("heinrich_fc1",7,0,2,3)
+  ShowMessage("\\n<Heinrich>Your ass...?\nCan't say I particularly want to borrow it...")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Guard>I-it's you in the flesh! My apologies!")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Guard>...*Blush*")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>Princess Edina... Ah Princess Edina, Princess Edina...")
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>This town is peaceful for now, but it never hurts to be prepared. I can't forget that the nations of this world are still under threat from the Monster Lord's forces.")
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>There are many monsters who live in this town, but none of them seem eager to become soldiers. They're quite a free-spirited bunch, so I guess they don't like the rules and discipline...")
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>King Remina also provides financial support for retired heroes. If by some chance you happen to run into any problems, please feel free to drop by our office.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("538")
+  ShowMessageFace("heinrich_fc1",7,0,2,2)
+  ShowMessage("\\n<Heinrich>This topic isn't relevant to me.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>Princess Edina is the king's only daughter, and the only candidate who can inherit the throne. She has a sweet and gentle personality, and is very popular among the public.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Minister>I would like to know what sort of man can win over her heart... He would have to be an outstanding fellow, or the citizenry would simply not approve.")
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>With many monsters in the city come many problems as well. It's nothing too serious, but there's no end to the trivial quarrels.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("529")
+  ShowMessageFace("sara_fc1",0,0,2,2)
+  ShowMessage("\\n<Sara>As long as humans and monsters are living together, it can't be helped. What's truly important is that it does not lead to antagonism.")
+  EndEventProcessing()
+  DefineLabel("530")
+  ShowMessageFace("sara_fc4",0,0,2,3)
+  ShowMessage("\\n<Sara>As long as humans and monsters are living together, it can't be helped... What's truly important is that it does not lead to antagonism.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>This is the prison.\nYou're free to talk to the prisoners, but there's nothing really worth seeing here.")
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>It wouldn't be surprising if the Monster Lord's army were to stage a large-scale assault at the very next moment. We have fully prepared for that scenario, including evacuation plans for the city.")
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Queen Remina>Those eyes...and the way you hold yourself...\nAre you Remina royalty by any chance?")
+  ShowChoices(strings("That's right","You're mistaken"),2)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Queen Remina>No, that can't be.\nOnly a few people bear the blood of Remina's royal family, therefore I would be aware of any of them.")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Queen Remina>Perhaps a forgotten descendant was born at some point...\nNo, I mustn't pry. I'll leave it at that.")
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Queen Remina>You're right, of course.\nI'm making too much of this.")
+   0()
+  404()
+  If(2,"A",1)
+   If(0,5,0)
+    ChangeSelfSwitch("A",0)
+    ShowMessageFace("heinrich_fc1",7,0,2,5)
+    ShowMessage("\\n<Heinrich>...We're pleased to meet you, Queen.\nIt has been a while since we've last seen each other at the summit.")
+    ShowMessageFace("",0,0,2,6)
+    ShowMessage("\\n<Queen Remina>Oh, Hero Heinrich...\nYou should be paying a visit to my daughter, not me.")
+    ShowMessageFace("heinrich_fc1",7,0,2,7)
+    ShowMessage("\\n<Heinrich>If you insist...\nThough I'd rather not feed into the rumors that she's interested in me.")
+    ShowMessageFace("",0,0,2,8)
+    ShowMessage("\\n<Queen Remina>You truly are quite the blockhead...\nThis will be a struggle for Edina as well.")
+    0()
+   EndIf()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Prison Guard>This is the prison.\nThey've only committed minor offenses, so they'll be out in a few days.")
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Traveling Hero>I got drunk and caused a ruckus. I'm so ashamed of myself...")
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Panty Thief>I reached the end of my luck as I was trying to steal a succubus' panties. I accidentally caught a whiff of their scent and got arrested while I was lost in a trance.")
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  ShowMessageFace("succubuses_fc2",2,0,2,1)
+  ShowMessage("\\n<Succubus>I just raped someone a little and took their wallet. Why are these ungrateful brutes locking me up in here?!")
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>Princess Edina is the king's only daughter, and the only candidate who can inherit the throne. She has a sweet and gentle personality, and is very popular among the public.")
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>This is the audience room, so mind your manners.")
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>This is the audience room, so mind your manners.")
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>There are four royal families in this world.\nThe Gold royal family, the Noah royal family, the Sabasa royal family and the Remina royal family.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Minister>The king who governs San Ilia is the leader of the faith. He's not from a particular royal family.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("531")
+  ShowMessageFace("saniria_fc2",0,0,2,3)
+  ShowMessage("\\n<King of San Ilia>Indeed...\nThe King of San Ilia is elected from among the archbishops.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>It appears Black Alice has a younger sister.\nShe's been opposing her older sister's ambitions to dominate the world.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("45")
+  ShowMessageFace("alicetromeria_fc1",4,0,2,2)
+  ShowMessage("\\n<Alicetroemeria>Ufufu...")
+  EndEventProcessing()
+  DefineLabel("538")
+  ShowMessageFace("heinrich_fc1",7,0,2,3)
+  ShowMessage("\\n<Heinrich>I've heard that story as well.\nThe monsters who support her sister have helped me several times.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>There hasn't been a single hero who has returned from the Monster Lord's Castle. We've been unable to get any information out of the local monsters, either, so the situation inside the castle remains shrouded in mystery.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("538")
+  ShowMessageFace("heinrich_fc1",7,0,2,2)
+  ShowMessage("\\n<Heinrich>We must stay motivated....")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>Princess Edina smells so good...")
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>Nothing out of the ordinary here!")
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventoryArmor(168,0,0,1,false)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(4,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()

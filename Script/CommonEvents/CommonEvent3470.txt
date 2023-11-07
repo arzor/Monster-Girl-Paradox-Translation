@@ -1,0 +1,5 @@
+﻿// EVENT 3470
+Name "Bell"
+
+RunCommonEvent(3483)
+0()

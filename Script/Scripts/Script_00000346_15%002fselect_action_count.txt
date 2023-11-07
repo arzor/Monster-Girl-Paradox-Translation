@@ -1,0 +1,39 @@
+class Game_Battler
+  attr_accessor :action_count
+
+  def on_turn_start
+    @action_count = 0
+    @random_action_count = @actions.count - min_action_times
+  end
+
+  def max_action_times
+    action_plus_set.map(&:ceil).inject(1, :+)
+  end
+
+  def min_action_times
+    action_plus_set.map(&:floor).inject(1, :+)
+  end
+
+  def valid_select_action?
+    return true unless current_action.symbol == :count
+    return false if @action_count >= max_action_times
+
+    @action_count < (min_action_times + @random_action_count)
+  end
+
+  def make_actions
+    clear_actions
+    return if !movable? || cant_move?
+
+    @actions = Array.new(make_action_times) { Game_Action.new(self) }.each { |act| act.set_symbol(:count) }
+  end
+end
+
+class Scene_Battle
+  alias hima_action_count_use_item use_item
+  def use_item
+    count = true if @subject.current_action && @subject.current_action.symbol == :count
+    hima_action_count_use_item
+    @subject.action_count += 1 if count
+  end
+end

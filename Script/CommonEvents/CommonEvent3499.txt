@@ -1,0 +1,5 @@
+﻿// EVENT 3499
+Name "Chrome Doll Mk.I"
+
+RunCommonEvent(3000)
+0()

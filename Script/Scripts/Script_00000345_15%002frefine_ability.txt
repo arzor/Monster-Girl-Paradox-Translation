@@ -1,0 +1,53 @@
+class Game_Actor
+  def change_ability(index, ability_id)
+    stype_id = $data_skills[ability_id].stype_id
+    @equip_abilities[stype_id][index] = ability_id
+    @equip_abilities[stype_id].delete_if do |equip_id|
+      $data_skills[ability_id].not_jumble_memorize.include?(equip_id)
+    end
+    refresh
+  end
+end
+
+class Foo::Ability::Window_StandAbility < Window_Command
+  def make_command_list
+    return if @stype_id == 0
+
+    @ap = @actor.ap(@stype_id)
+    @max_ap = @actor.max_ap(@stype_id)
+
+    @actor.abilities(@stype_id).each do |stand_id|
+      next if hide_command?(stand_id)
+
+      add_command(stand_id, :ok, enable_command?(stand_id), $data_skills[stand_id].memorize_cost)
+    end
+  end
+
+  def hide_command?(id)
+    @actor.equip_abilities[@stype_id].include?(id)
+  end
+
+  def enable_command?(id)
+    ap_cost = $data_skills[id].memorize_cost - not_jumble_ability_cost(id)
+    ap_cost -= $data_skills[@select_equip_id].memorize_cost if @select_equip_id != 0
+    @max_ap - @ap >= ap_cost
+  end
+
+  def not_jumble_ability_cost(id)
+    minus_ap_costs = @actor.equip_abilities[@stype_id].map do |equip_id|
+      if $data_skills[id].not_jumble_memorize.include?(equip_id) && equip_id != @select_equip_id
+        $data_skills[equip_id].memorize_cost
+      else
+        0
+      end
+    end
+    minus_ap_costs.inject(0, :+)
+  end
+end
+
+class Foo::Ability::Window_EquipAbility
+  def refresh
+    super
+    select([index, item_max - 1].min)
+  end
+end

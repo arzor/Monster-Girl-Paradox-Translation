@@ -1,0 +1,28 @@
+module NWRegexp
+  module BaseItem
+    BATTLE_START_STATE = /<開始時限ステート\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def auto_state_set_turn
+    features(FEATURE_BATTLE_START_STATE).map(&:value)
+  end
+
+  def set_state_turn(state_id, turn)
+    return unless state?(state_id)
+
+    @state_turns[state_id] = turn
+  end
+end
+
+class Game_Battler
+  alias hima_bss13_on_battle_start on_battle_start
+  def on_battle_start
+    hima_bss13_on_battle_start
+    auto_state_set_turn.each do |state_id, turn|
+      add_state(state_id)
+      set_state_turn(state_id, turn)
+    end
+  end
+end

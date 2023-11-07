@@ -1,0 +1,33 @@
+module BattleManager
+  class << self
+    def set_battle_start_skill
+      set_auto_skill(&:battle_start_skill)
+    end
+
+    def set_turn_start_skill
+      set_auto_skill(&:turn_start_skill)
+    end
+
+    def set_turn_end_skill
+      set_auto_skill(&:turn_end_skill)
+    end
+
+    def set_auto_skill
+      @action_game_masters = []
+      return if giveup? || !$game_party.in_battle || $game_troop.interpreter.running?
+
+      members = ($game_troop.alive_members + $game_party.alive_members).select(&:enable_action?).reject(&:cant_move?)
+      members.each do |member|
+        skills = yield member
+        skills.select! do |obj|
+          rand < obj[:per]
+        end
+        next if skills.empty?
+
+        max_per = skills.max_by { |skill| skill[:per] }.fetch(:per)
+        skill = skills.select { |skill| skill[:per] == max_per }.sample.fetch(:id)
+        skill_interrupt(member, skill)
+      end
+    end
+  end
+end

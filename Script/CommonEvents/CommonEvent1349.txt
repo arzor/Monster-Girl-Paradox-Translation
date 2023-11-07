@@ -1,0 +1,10 @@
+﻿// EVENT 1349
+Name "Talk: Black Alice (2)"
+
+ChangeVariable(25,25,0,0,0)
+ShowMessageFace("alice8th_fc1",5,0,2,1)
+ShowMessage("\\n<Black Alice>Rather than talking, let's enjoy this fighting...")
+ShowMessageFace("",0,0,2,2)
+ShowMessage("Black Alice rejected your attempt at conversation!")
+EndEventProcessing()
+0()

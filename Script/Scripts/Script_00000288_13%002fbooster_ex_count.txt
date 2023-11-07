@@ -1,0 +1,80 @@
+module NWRegexp
+  EX_VALUES = [:戦闘回数, :倒した数, :イかせた数, :倒された数, :イかされた回数, :盗んだ回数]
+  module BaseItem
+    EX_VALUE_BOOSTER = /<(#{NWRegexp::EX_VALUES.join("|")})ダメージアップ\s?(#{NWRegexp::VALUE})>/i
+  end
+end
+
+class Game_BattlerBase
+  def boost_ex_count
+    value = 1.0
+    value *= booster_battle_count
+    value *= booster_actor_carry
+    value *= booster_actor_down
+    value *= booster_actor_orgasm
+    value *= booster_actor_defeat
+    value *= booster_actor_carry
+    value *= booster_actor_steal
+    value
+  end
+
+  def booster_battle_count
+    1.0
+  end
+
+  def booster_actor_carry
+    1.0
+  end
+
+  def booster_actor_defeat
+    1.0
+  end
+
+  def booster_actor_down
+    1.0
+  end
+
+  def booster_actor_orgasm
+    1.0
+  end
+
+  def booster_actor_steal
+    1.0
+  end
+end
+
+class Game_Actor
+  def booster_battle_count
+    booster_ex_count(Booster::BATTLE_COUNT, $game_system.battle_count)
+  end
+
+  def booster_actor_carry
+    booster_ex_count(Booster::ACTOR_CARRY, $game_library.actor_carry(id))
+  end
+
+  def booster_actor_defeat
+    booster_ex_count(Booster::ACTOR_DEFEAT, $game_library.actor_defeat(id))
+  end
+
+  def booster_actor_down
+    booster_ex_count(Booster::ACTOR_DOWN, $game_library.actor_down(id))
+  end
+
+  def booster_actor_orgasm
+    booster_ex_count(Booster::ACTOR_ORGASM, $game_library.actor_orgasm(id))
+  end
+
+  def booster_actor_steal
+    booster_ex_count(Booster::ACTOR_STEAL, $game_library.actor_steal(id))
+  end
+
+  private
+
+  def booster_ex_count(id, count)
+    fts = features_with_id(FEATURE_MULTI_BOOSTER, id)
+    return 1.0 if fts.empty?
+
+    rate = fts.map(&:value).min
+    1.0 + count / (rate * 10_000.0)
+  end
+end

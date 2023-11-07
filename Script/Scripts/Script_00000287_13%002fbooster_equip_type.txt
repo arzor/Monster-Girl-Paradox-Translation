@@ -1,0 +1,30 @@
+module NWRegexp
+  module BaseItem
+    WTYPE_ATTACK_BOOSTER = /<武器装備ダメージアップ\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+    ATYPE_DEFENCE_BOOSTER = /<防具装備ダメージダウン\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def atypes
+    []
+  end
+
+  # @param [Game_Battler] target
+  def boost_equip_type_damage_rate(target)
+    rate = 1.0
+    rate *= wtypes.inject(1.0) { |r, id| r * booster_weapon_type_attack(id) }
+    rate *= target.atypes.inject(1.0) { |r, id| r * target.booster_armor_type_defence(id) }
+    rate
+  end
+
+  def booster_weapon_type_attack(wtype_id)
+    1.0 + features_sum(FEATURE_WEAPON_TYPE_ATTACK_BOOST, wtype_id)
+  end
+
+  def booster_armor_type_defence(atype_id)
+    features_pi(FEATURE_ARMOR_TYPE_DEFENCE_BOOST, atype_id)
+  end
+end
+
+

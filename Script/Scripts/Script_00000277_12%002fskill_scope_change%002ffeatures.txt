@@ -1,0 +1,104 @@
+module NWRegexp
+  module BaseItem
+    SKILL_PLUS_ATTACK_ONE = /<スキル(タイプ|)単体攻撃回数アップ\s?(((?:\d+\-\d+)(?:\,\s?)?)+)>/i
+    SKILL_PLUS_ATTACK_ONE_RANDOM = /<スキル(タイプ|)単体攻撃回数アップランダム\s?(((?:\d+\-\d+)(?:\,\s?)?)+)>/i
+    SKILL_SCOPE_ALL = /<スキル(タイプ|)全体化\s((?:\d+(?:\,\s?)?)+)?>/i
+    SKILL_SCOPE_ONE = /<スキル(タイプ|)単体化\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def skill_plus_attack_one_count(skill)
+    skill_plus_attack_one(skill) + skill_plus_attack_one_random(skill)
+  end
+
+  def skill_plus_attack_one_random?(skill)
+    return false unless skill.is_a?(RPG::Skill)
+
+    !features_with_id(FEATURE_SKILL_PLUS_ATTACK_ONE_RANDOM, skill.id).empty? ||
+      skill.stypes.any? do |stype|
+        !features_with_id(FEATURE_SKILL_TYPE_PLUS_ATTACK_ONE_RANDOM, stype).empty?
+      end
+  end
+
+  def skill_scope_all?(skill)
+    skill_id_scope_all?(skill.id) ||
+      skill.stypes.any? do |stype|
+        skill_type_scope_all?(stype)
+      end
+  end
+
+  def skill_scope_one_rate(skill)
+    1.0 + skill_id_scope_one(skill.id) +
+      skill.stypes.inject(0.0) do |r, stype|
+        r + skill_type_scope_one(stype)
+      end
+  end
+
+  def skill_scope_one?(skill)
+    skill_id_scope_one?(skill.id) ||
+      skill.stypes.any? do |stype|
+        skill_type_scope_one?(stype)
+      end
+  end
+  
+  private
+
+  def skill_id_scope_all?(skill_id)
+    !features_with_id(FEATURE_SKILL_SCOPE_ALL, skill_id).empty?
+  end
+
+  def skill_type_scope_all?(skill_type)
+    !features_with_id(FEATURE_SKILL_TYPE_SCOPE_ALL, skill_type).empty?
+  end
+
+  def skill_id_scope_one(skill_id)
+    features_sum(FEATURE_SKILL_SCOPE_ONE, skill_id)
+  end
+
+  def skill_type_scope_one(skill_type)
+    features_sum(FEATURE_SKILL_TYPE_SCOPE_ONE, skill_type)
+  end
+
+  def skill_id_scope_one?(skill_id)
+    !features_with_id(FEATURE_SKILL_SCOPE_ONE, skill_id).empty?
+  end
+
+  def skill_type_scope_one?(skill_type)
+    !features_with_id(FEATURE_SKILL_TYPE_SCOPE_ONE, skill_type).empty?
+  end
+
+  def skill_plus_attack_one(skill)
+    return 0 unless skill.is_a?(RPG::Skill)
+
+    skill_id_plus_attack_one(skill.id) +
+      skill.stypes.inject(0) do |i, stype|
+        i + skill_type_plus_attack_one(stype)
+      end
+  end
+
+  def skill_plus_attack_one_random(skill)
+    return 0 unless skill.is_a?(RPG::Skill)
+
+    skill_id_plus_attack_one_random(skill.id) +
+      skill.stypes.inject(0) do |i, stype|
+        i + skill_type_plus_attack_one_random(stype)
+      end
+  end
+
+  def skill_id_plus_attack_one_random(skill_type)
+    features_sum(FEATURE_SKILL_PLUS_ATTACK_ONE_RANDOM, skill_type).to_i
+  end
+
+  def skill_type_plus_attack_one_random(skill_type)
+    features_sum(FEATURE_SKILL_TYPE_PLUS_ATTACK_ONE_RANDOM, skill_type).to_i
+  end
+
+  def skill_id_plus_attack_one(skill_id)
+    features_sum(FEATURE_SKILL_PLUS_ATTACK_ONE, skill_id).to_i
+  end
+
+  def skill_type_plus_attack_one(skill_type)
+    features_sum(FEATURE_SKILL_TYPE_PLUS_ATTACK_ONE, skill_type).to_i
+  end
+end

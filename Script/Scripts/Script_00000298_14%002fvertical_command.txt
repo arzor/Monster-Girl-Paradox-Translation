@@ -1,0 +1,108 @@
+class Window_Vertical_Command < Window_Command
+  def row_max
+    page_row_max
+  end
+
+  def page_col_max
+    2
+  end
+
+  def col_max
+    [(item_max + row_max - 1) / row_max, 1].max
+  end
+
+  def draw_page
+    index = top_col * row_max
+    max = [(index + page_item_max + 1), item_max].min
+    return if (max - index) <= 0
+
+    (max - index).times do |i|
+      next if @draw[i + index]
+
+      @draw[i + index] = true
+      draw_item(i + index)
+    end
+  end
+
+  def page_item_max
+    page_row_max * page_col_max
+  end
+
+  def col
+    index / row_max
+  end
+
+  def item_rect(index)
+    rect = Rect.new
+    rect.width = item_width
+    rect.height = item_height
+    rect.x = index / row_max * (item_width + spacing)
+    rect.y = index % row_max * item_height
+    rect
+  end
+
+  def contents_height
+    height - standard_padding * 2
+  end
+
+  def contents_width
+    [super - super % item_width, (item_width + spacing) * col_max - spacing].max
+  end
+
+  def cursor_pagedown
+    if top_col + page_col_max < col_max
+      self.top_col += page_col_max
+      select([@index + page_item_max, item_max - 1].min)
+    end
+  end
+
+  def cursor_pageup
+    if top_col > 0
+      self.top_col -= page_col_max
+      select([@index - page_item_max, 0].max)
+    end
+  end
+
+  def ensure_cursor_visible
+    self.top_col = col if col < top_col
+    self.bottom_col = col if col > bottom_col
+  end
+
+  def top_col
+    ox / (item_width + spacing)
+  end
+
+  def top_col=(col)
+    col = 0 if col < 0
+    col = col_max - 1 if col > col_max - 1
+    self.ox = col * (item_width + spacing)
+  end
+
+  def bottom_col
+    top_col + page_col_max - 1
+  end
+
+  def bottom_col=(col)
+    self.top_col = col - (page_col_max - 1)
+  end
+
+  def cursor_down(wrap = false)
+    select((index + 1) % item_max) if col_max >= 1 && (index < item_max - 1 || (wrap && horizontal?))
+  end
+
+  def cursor_up(wrap = false)
+    select((index - 1 + item_max) % item_max) if col_max >= 1 && (index > 0 || (wrap && horizontal?))
+  end
+
+  def cursor_right(wrap = false)
+    select([index + page_row_max, item_max - 1].min) if col + 1 < col_max
+  end
+
+  def cursor_left(wrap = false)
+    select((index - page_row_max + item_max) % item_max) if index >= page_row_max
+  end
+
+  def item_width
+    (width - standard_padding * 2 + spacing) / page_col_max - spacing
+  end
+end

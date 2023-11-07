@@ -1,0 +1,25 @@
+class Game_Actor
+  alias h_14_max_tp max_tp
+
+  def init_tp
+    self.tp = init_tp_value
+  end
+
+  def init_tp_value
+    (max_tp * start_tp_rate).ceil
+  end
+
+  alias h_14_on_battle_end on_battle_end
+  alias h_14_on_battle_start on_battle_start
+
+  def on_battle_start
+    @temp_max_tp = init_tp_value
+    h_14_on_battle_start
+  end
+
+  def on_battle_end
+    h_14_on_battle_end
+    @temp_max_tp = nil
+    self.tp = tp
+  end
+end

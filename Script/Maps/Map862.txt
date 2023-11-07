@@ -1,0 +1,242 @@
+﻿
+DisplayName "Grand Noah Palace 2F"
+
+
+
+EVENT   1
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,382,39,12,0,0)
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,382,39,12,0,0)
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,382,39,12,0,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>This is the meeting room.")
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>It is the duty of the royal guards to protect Her Majesty.")
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  // condition: switch 31 is ON
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  // condition: switch 32 is ON
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  PictureDisplay(5,"80_grandnoa_st03",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("rest_fc1",0,0,2,1)
+  ShowMessage("\\n<Lest>Your Majesty... I am honored to meet you.\nMy name is Lest. I am a swordsman.")
+  ShowMessageFace("tarsa_fc1",0,0,2,2)
+  ShowMessage("\\n<Tarsa>I am Tarsa, a priestess from Comodo.\nUm... Good day to you.")
+  ShowMessageFace("grandnoa_fc1",2,0,2,3)
+  ShowMessage("\\n<Queen of Grand Noah>Thank you for coming from so far away.\nThe situation is urgent, no need for awe-inspiring courtesy.")
+  ShowMessageFace("rest_fc1",0,0,2,4)
+  ShowMessage("\\n<Lest>Now, let me explain what we know about those parallel worlds-")
+  ShowMessageFace("grandnoa_fc1",2,0,2,5)
+  ShowMessage("\\n<Queen of Grand Noah>No, there is no need for that.\nI already know everything about the current situation...")
+  ShowMessageFace("rest_fc1",0,0,2,6)
+  ShowMessage("\\n<Lest>I see. You've already heard everything about that.\nYou're looking for the seven heroes, aren't you?")
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x6b,0x69,0x6b,0x69,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  ShowMessageFace("grandnoa_fc1",2,0,2,7)
+  ShowMessage("\\n<Queen of Grand Noah>...We don't need them.")
+  ShowMessageFace("rest_fc1",0,0,2,8)
+  ShowMessage("\\n<Lest>Huh...?")
+  ShowMessageFace("grandnoa_fc1",2,0,2,9)
+  ShowMessage("\\n<Queen of Grand Noah>Tarsa, priestess from Comodo...\nYou are the one we've been looking for.")
+  ShowMessageFace("tarsa_fc1",0,0,2,10)
+  ShowMessage("\\n<Tarsa>Me...?")
+  ShowMessageFace("rest_fc1",0,0,2,11)
+  ShowMessage("\\n<Lest>What do you mean, Your Majesty?")
+  ShowMessageFace("grandnoa_fc1",2,0,2,12)
+  ShowMessage("\\n<Queen of Grand Noah>...")
+  ShowMessageFace("",0,0,2,13)
+  ShowMessage("The queen of Grand Noah's eyes emit a mysterious glow.\nI've seen eyes like that before.")
+  ShowMessageFace("",0,0,2,14)
+  ShowMessage("The eyes of those who have been robbed of their will and are being used as puppets.\nThere is no doubt about it, the queen of Grand Noah has been brainwashed!")
+  PictureClear(5)
+  ShowMessageFace("rest_fc1",0,0,2,15)
+  ShowMessage("\\n<Lest>You're there, aren't you...\nCome out, Musette!")
+  212(5,501,false)
+  Wait(30)
+  ChangeSwitch(31,31,0)
+  Wait(90)
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x62,0x6f,0x73,0x73,0x30,0x2d,0x33,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  PictureDisplay(5,"80_muzet_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,60,true)
+  ShowMessageFace("muzet_fc1",0,0,2,16)
+  ShowMessage("\\n<Musette>Fufufu, you found out very quickly.\nI was going to play with you some more...")
+  PictureClear(5)
+  Wait(30)
+  212(7,501,false)
+  Wait(30)
+  ChangeSwitch(32,32,0)
+  Wait(30)
+  212(6,501,false)
+  Wait(30)
+  ChangeSwitch(33,33,0)
+  Wait(90)
+  PictureDisplay(7,"80_lira_st01",0,0,-200,0,100,100,0,0)
+  PictureDisplay(6,"80_bell_st01",0,0,200,0,100,100,0,0)
+  PictureDisplay(5,"80_muzet_st01",0,0,0,0,100,100,0,0)
+  PictureMove(7,null,0,0,-200,0,100,100,255,0,30,false)
+  PictureMove(6,null,0,0,200,0,100,100,255,0,30,false)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("bell_fc1",0,0,2,17)
+  ShowMessage("\\n<Bell>You jumped right into our trap.\nI'm glad it went well, Almighty Swordsman.")
+  ShowMessageFace("lira_fc1",0,0,2,18)
+  ShowMessage("\\n<Lyla>When I said we couldn't let you go to Grand Noah...\nSince it's you, I knew you would definitely do the opposite.")
+  ShowMessageFace("rest_fc1",0,0,2,19)
+  ShowMessage("\\n<Lest>No way, the queen had already been brainwashed back then...\nThat's your way of doing things, huh?")
+  ShowMessageFace("muzet_fc1",0,0,2,20)
+  ShowMessage("\\n<Musette>Indeed... This powerful nation is mine now.\nThat was the condition of our alliance with the Queen of Dreams.")
+  ShowMessageFace("muzet_fc1",0,0,2,21)
+  ShowMessage("\\n<Musette>Now, we only need the power of a priestess...\nThis world will sink into the Land of Night in one go.")
+  ShowMessageFace("rest_fc1",0,0,2,22)
+  ShowMessage("\\n<Lest>Tarsa, I don't understand why, but you're the one they want!\nDon't leave my side-")
+  ShowMessageFace("tarsa_fc1",1,0,2,23)
+  ShowMessage("\\n<Tarsa>I know, ufufu...♥")
+  PictureClear(5)
+  PictureClear(6)
+  PictureClear(7)
+  Wait(30)
+  205(8,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x15,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("",0,0,2,24)
+  ShowMessage("Tarsa leans in close to me...\nThen, she hugs me tightly!")
+  ShowMessageFace("rest_fc1",0,0,2,25)
+  ShowMessage("\\n<Lest>W-What are you doing...!?")
+  ShowMessageFace("tarsa_fc1",1,0,2,26)
+  ShowMessage("\\n<Tarsa>Ufufu, what do you think I'm doing...?")
+  ShowMessageFace("",0,0,2,27)
+  ShowMessage("Tarsa's hand slips into my pants.\nAnd then she softly grabbed my thing.")
+  ShowMessageFace("",0,0,2,28)
+  ShowMessage("On top of that, Tarsa's appearance...")
+  PictureDisplay(5,"80_tarsa_st12",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,60,true)
+  ShowMessageFace("rest_fc1",0,0,2,29)
+  ShowMessage("\\n<Lest>No way... A succubus...!?")
+  ShowMessageFace("muzet_fc1",0,0,2,30)
+  ShowMessage("\\n<Musette>This girl... It seems she had a succubus factor in her for some reason.\nIt was very easy to brainwash her.")
+  ShowMessageFace("rest_fc1",0,0,2,31)
+  ShowMessage("\\n<Lest>Musette...! So this is also your doing...!")
+  ShowMessageFace("muzet_fc1",0,0,2,32)
+  ShowMessage("\\n<Musette>Come on, Tarsa...\nWeaken the Almighty Swordsman.")
+  ShowMessageFace("tarsa_fc2",1,0,2,33)
+  ShowMessage("\\n<Tarsa>...You heard her, Lest.\nTime to tease you...♥")
+  ShowMessageFace("rest_fc1",0,0,2,34)
+  ShowMessage("\\n<Lest>S-Stop... Auuuuh...!")
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x65,0x72,0x6f,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x12,0x6d,0x6f,0x6e,0x5f,0x65,0x72,0x6f,0x5f,0x6b,0x6f,0x6b,0x69,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+  ShowMessageFace("",0,0,2,35)
+  ShowMessage("Tarsa's soft palm skillfully stroked my penis.\nThe pleasure is so sweet that I immediately lose my strength...")
+  ShowMessageFace("rest_fc1",0,0,2,36)
+  ShowMessage("\\n<Lest>Don't, Tarsa... Auuuuh!")
+  RunCommonEvent(104)
+  RunCommonEvent(105)
+  ShowMessageFace("",0,0,2,37)
+  ShowMessage("Sadly, Tarsa's palm made me come.\nI lose my strength and collapse on the spot...")
+  ShowMessageFace("muzet_fc1",0,0,2,38)
+  ShowMessage("\\n<Musette>Fighting you directly would be hard...\nBut this, however, can render the Almighty Swordsman weak and frail.")
+  ShowMessageFace("rest_fc1",0,0,2,39)
+  ShowMessage("\\n<Lest>This... Uuuuh...")
+  ShowMessageFace("tarsa_fc2",1,0,2,40)
+  ShowMessage("\\n<Tarsa>I have to make you weaker than that, Lest.\nWe're not done yet...♥")
+  ShowMessageFace("rest_fc1",0,0,2,41)
+  ShowMessage("\\n<Lest>Please, stop...!")
+  ShowMessageFace("",0,0,2,42)
+  ShowMessage("Tarsa straddles me.\nThen, she leads my penis into her honey pot...")
+  ShowMessageFace("rest_fc1",0,0,2,43)
+  ShowMessage("\\n<Lest>Ah, ahhhhh...")
+  221()
+  ShowMessageFace("",0,0,2,44)
+  ShowMessage("Thus, I was raped by Tarsa in front of Musette and the others.")
+  RunCommonEvent(104)
+  RunCommonEvent(105)
+  ShowMessageFace("",0,0,2,45)
+  ShowMessage("She sucked my semen out and thoroughly humiliated me...\nI lost the power to resist...")
+  RunCommonEvent(104)
+  RunCommonEvent(105)
+  ShowMessageFace("muzet_fc1",0,0,2,46)
+  ShowMessage("\\n<Musette>And that's the end of the Almighty Swordsman.\nAnd the priestess is mine... Fufufu.")
+  ShowMessageFace("muzet_fc1",0,0,2,47)
+  ShowMessage("\\n<Musette>With the power of a priestess, we can hold the ceremony to summon the Demonic Castle. If we succeed, my plan...")
+  ShowMessageFace("rest_fc1",0,0,2,48)
+  ShowMessage("\\n<Lest>u...uu...")
+  RunCommonEvent(104)
+  RunCommonEvent(105)
+  ShowMessageFace("",0,0,2,49)
+  ShowMessage("I was captured by Musette and the others.\nAnd Tarsa has fallen into their hands as well...")
+  ChangeVariable(1203,1203,0,0,11)
+  Wait(60)
+  242(2)
+  221()
+  Wait(120)
+  PictureDisplay(5,"iv_chapter04",0,0,0,0,100,100,255,0)
+  222()
+  Wait(180)
+  221()
+  PictureClear(5)
+  Wait(120)
+  TeleportPlayer(0,938,0,0,2,2)
+  0()

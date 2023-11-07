@@ -1,0 +1,31 @@
+module NWRegexp
+  module Enemy
+    DEFEAT_MESSAGE = /<撃破時メッセージ\s?(\S+)>/i
+  end
+end
+
+class RPG::Enemy < RPG::BaseItem
+  def defeat_message
+    @data_ex.key?(:defeat_message) ? @data_ex[:defeat_message] : ""
+  end
+end
+
+class Window_BattleLog < Window_Selectable
+  def display_added_states(target)
+    target.result.added_state_objects.each do |state|
+      state_msg = target.actor? ? state.message1 : state.message2
+      if target.result.pleasure && (state.id == target.death_state_id)
+        state_msg = Vocab::PleasureFinished
+      end
+      if target.enemy? && (state.id == target.death_state_id) && !target.enemy.defeat_message.empty?
+        state_msg = target.enemy.defeat_message
+      end
+      target.perform_collapse_effect if state.death?
+      next if state_msg.empty?
+
+      replace_text(target.name + state_msg)
+      wait
+      wait_for_effect
+    end
+  end
+end

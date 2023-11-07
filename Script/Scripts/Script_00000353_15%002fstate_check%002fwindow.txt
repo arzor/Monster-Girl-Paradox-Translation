@@ -1,0 +1,111 @@
+module Vocab
+  BATTLE_STATES = "Status"
+end
+
+class Game_Battler
+  attr_reader :state_turns
+end
+
+class Window_BattlerStates < Window_Selectable
+  class Draw < BasicObject
+    def set(obj)
+      @obj = obj
+    end
+
+    def name
+      @obj.display_name
+    end
+
+    def method_missing(name, *args)
+      @obj.send(name, *args)
+    end
+
+    def enchant_item?
+      true
+    end
+  end
+  attr_reader :page
+
+  def initialize
+    super(0, 0, Graphics.width, Graphics.height)
+    @obj = Draw.new
+  end
+
+  def page=(page)
+    page = page.clamp(0, page_max)
+    if @page != page
+      @page = page
+      refresh
+    end
+  end
+
+  def draw_battler(battler, x, y)
+    reset_font_settings
+    change_color(normal_color)
+    draw_text(x + 12, y, item_width, line_height, battler.name)
+    y += line_height + 2
+    draw_status_list(battler, x, y)
+  end
+
+  def draw_status_list(battler, x, y)
+    if battler.states.empty?
+      change_color(normal_color)
+      draw_text(x, y, item_width, line_height, "None")
+      return
+    end
+
+    battler.states.select(&:display?).each do |state|
+      str = ":#{battler.state_turns[state.id]}"
+      @obj.set(state)
+      draw_item_name(@obj, x, y, true, item_width - text_size(str).width)
+
+      unless state.auto_removal_timing == 0
+        draw_text(x, y, item_width, line_height, str, 2)
+      end
+      y += line_height
+    end
+  end
+
+  def item_width
+    (contents.width + spacing) / 4 - spacing
+  end
+
+  def spacing
+    4
+  end
+
+  def page_max
+    1
+  end
+
+  def update
+    super
+    return unless open? && active
+
+    self.page += 1 if Input.trigger?(:RIGHT)
+    self.page -= 1 if Input.trigger?(:LEFT)
+  end
+
+  def draw_all_items
+    draw_battlers
+  end
+
+  def show_key_text
+    case page
+    when 0
+      ["→ View enemy status"]
+    when 1
+      ["← View party status"]
+    end
+  end
+
+  def draw_battlers
+    x = 0
+    y = 0
+    m = @page == 0 ? $game_party.battle_members : $game_troop.alive_members
+    m.each do |battler|
+      draw_battler(battler, x, y)
+      x += item_width + spacing
+    end
+  end
+end

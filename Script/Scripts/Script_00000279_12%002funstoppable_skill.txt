@@ -1,0 +1,51 @@
+module NWRegexp
+  module BaseItem
+    SKILL_UNSTOPPABLE = /<頑強スキル(タイプ|)\s((?:\d+(?:\,\s?)?)+)?>/i
+  end
+end
+
+class Game_BattlerBase
+  def skill_unstoppable?(skill)
+    return unless skill.is_a?(RPG::Skill)
+    skill_id_unstoppable(skill) || skill_type_unstoppable(skill)
+  end
+
+  def skill_id_unstoppable(skill)
+    features_with_id(FEATURE_BATTLER_ABILITY, SKILL_UNSTOPPABLE).any? do |ft|
+      ft.value == skill.id
+    end
+  end
+
+  def skill_type_unstoppable(skill)
+    fts = features_with_id(FEATURE_BATTLER_ABILITY, SKILL_TYPE_UNSTOPPABLE)
+    skill.stypes.any? do |stype|
+      fts.any? { |ft| ft.value == stype }
+    end
+  end
+end
+
+class Game_Battler < Game_BattlerBase
+  def on_restrict
+    clear_stoppable_actions
+    states.each do |state|
+      remove_state(state.id) if state.remove_by_restriction
+    end
+  end
+
+  def clear_stoppable_actions
+    @actions.select! { |action| skill_unstoppable?(action.item) }
+  end
+end
+
+class Scene_Battle < Scene_Base
+  def invoke_item(target, item)
+    return unless @subject.alive? || @subject.skill_unstoppable?(item)
+
+    if target.item_reflection?(@subject, item)
+      invoke_magic_reflection(target, item)
+    else
+      apply_item_effects(apply_substitute(target, item), item)
+    end
+    @subject.last_target_index = target.index
+  end
+end

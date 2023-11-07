@@ -1,0 +1,10 @@
+﻿// EVENT 0601
+Name "Event: White Rabbit"
+
+ChangeSwitch(73,73,0)
+ShowMessageFace("sirousagi_fc1",0,0,2,1)
+ShowMessage("\\n<White Rabbit>Oho, fancy meeting you here.\nNeed anything?")
+RunCommonEvent(912)
+ChangeSwitch(73,73,1)
+EndEventProcessing()
+0()

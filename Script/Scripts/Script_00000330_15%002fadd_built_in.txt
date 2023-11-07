@@ -1,0 +1,112 @@
+class String
+  def width
+    length + chars.reject(&:ascii_only?).length
+  end
+end
+
+class Array
+  def include_any?(array)
+    i = 0
+    while i < size
+      return true if array.include?(self[i])
+
+      i += 1
+    end
+    false
+  end
+
+  def include_all?(array)
+    i = 0
+    while i < size
+      return false unless array.include?(self[i])
+
+      i += 1
+    end
+    true
+  end
+end
+
+class Class
+  def subclasses_deep
+    ObjectSpace.each_object(Class).select { |klass| klass < self }
+  end
+
+  def subclasses
+    ObjectSpace.each_object(Class).select { |klass| klass.superclass == self }
+  end
+end
+
+class Integer
+  UNIT = ["Mil", "Bil", "Trl", "Qdr", "Qnt", "Sxt", "Spt", "Oct", "Nnl", "Dcl", ",", ",", ",", ",", ",", ",", ",", ","]
+  UNIT_LAST_WIDTH = UNIT.last.width
+    def give_unit
+      give_unit_floor(6)
+    end
+
+    def give_unit_floor(digit)
+      value = self
+      result = value
+      if value.is_a? Numeric
+        value = value / 1.0 #Just so there are no surprises
+        if value >= 1e6 
+          i = 0
+          value /= 1e6
+          while value > 1e3 do
+            value /= 1e3
+            i+=1
+          end
+        
+          result = (((value*1e3).round)/1e3).to_s.slice(0,7)
+          if i<=UNIT.size-1
+            result += UNIT[i]
+          else
+            i-=UNIT.size.to_f
+            i+=1
+            enm = ""
+            begin
+              enm = (97+(i%26-1).round).chr + enm
+              i -= i%26
+              i /= 26
+            end while i>=1
+            result += enm
+          end
+        end
+      end
+      return result.to_s.strip
+    end
+
+    def digit
+      Math.log10(abs)
+    end
+  end
+
+class Object
+  def to_a
+    [self]
+  end
+
+  def instance_variable_set_in_hash(hash)
+    hash.each do |key, value|
+      instance_variable_set("@#{key}", value)
+    end
+    self
+  end
+
+  def itself
+    self
+  end
+end
+
+class Hash
+  def transform_values
+    return to_enum(:transform_values) { size } unless block_given?
+
+    h = {}
+    each do |key, value|
+      h[key] = yield value
+    end
+    h
+  end
+end
+
+p (10**72).give_unit

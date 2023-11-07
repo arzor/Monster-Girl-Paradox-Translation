@@ -1,0 +1,28 @@
+module Enchant_Item
+  def refine?; end
+
+  def equip_actor
+    return nil if $game_party.item_number(self) > 0
+
+    $game_actors.find do |actor|
+      actor.equips.include?(self)
+    end
+  end
+end
+
+module RPG
+  class EquipItem
+    def equip_actor
+      $game_actors.find do |actor|
+        actor.equips.include?(self)
+      end
+    end
+  end
+end
+
+class Game_Actors
+  include Enumerable
+  def each(&block)
+    @data.compact.each(&block)
+  end
+end

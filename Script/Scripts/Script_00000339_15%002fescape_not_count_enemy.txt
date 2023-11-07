@@ -1,0 +1,37 @@
+module NWRegexp
+  module Enemy
+    ESCAPE_NOT_COUNT = /<逃走カウントなし>/i
+  end
+end
+
+module RPG
+  class Enemy
+    def escape_not_count?
+      @data_ex.key?(:escape_not_count?)
+    end
+  end
+end
+
+class Game_BattlerBase
+  def escape_not_count?
+    false
+  end
+end
+
+class Game_Enemy
+  def escape_not_count?
+    enemy.escape_not_count?
+  end
+end
+
+module BattleManager
+  class << self
+    def process_abort
+      $game_library.enemy.set_discovery($game_troop.members.compact.map(&:id))
+      if !$game_temp.event_abort && !$game_troop.members.compact.any?(&:escape_not_count?) && !$game_troop.challenge_battle?
+        $game_library.count_up_party_escape
+      end
+      nw_count_process_abort
+    end
+  end
+end

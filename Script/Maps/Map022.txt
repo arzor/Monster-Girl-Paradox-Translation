@@ -1,0 +1,1692 @@
+﻿
+
+
+EVENT   1
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,15,9,0,0)
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  If(1,1054,0,1,0)
+   ShowMessageFace("kerberos_fc1",0,0,2,1)
+   ShowMessage("\\n<Caesar>Can you give us information about the bunch of minotauros that have gone missing?")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Informant>Ah, that incident...\nI don't have much information on it, so I won't charge.")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Informant>From what I've heard, more than 40 minotauros have disappeared. Since monsters regularly enter and leave town, few people noticed anything out of the ordinary, though.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Informant>As a result, there isn't a lot known. However, the minotauros did receive a letter before they vanished.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,5)
+    ShowMessage("\\n<Alice>They got a letter?\nIt's really strange that they would be contacted beforehand.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,6)
+    ShowMessage("\\n<Ilias>A letter?\nThat is quite peculiar, don't you think...?")
+    0()
+   EndIf()
+   ShowMessageFace("kerberos_fc1",0,0,2,7)
+   ShowMessage("\\n<Caesar>Do you know what the content of the letters was?")
+   ShowMessageFace("",0,0,2,8)
+   ShowMessage("\\n<Informant>Rather than hearing it from me, just have a look at the letter for yourself. You shouldn't have much trouble finding a minotaur who got one around here.")
+   ShowMessageFace("",0,0,2,9)
+   ShowMessage("\\n<Informant>Say, there's a minotaur that works at the blacksmith's shop. She probably still has the letter.")
+   ShowMessageFace("kerberos_fc1",0,0,2,10)
+   ShowMessage("\\n<Caesar>Okay, let's go to the blacksmith's shop posthaste!")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,11)
+    ShowMessage("\\n<Alice>Suspicious letters sent to minotauros...\nIt feels as though this has nothing to do with the disappearances in Rubiana and Esta.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,12)
+    ShowMessage("\\n<Ilias>The disappearing cows that received letters...\nI do not believe this is connected to the disappearances in Rubiana and Esta.")
+    0()
+   EndIf()
+   If(4,75,0)
+    ShowMessageFace("hituzi_fc1",7,0,2,13)
+    ShowMessage("\\n<Mary>Another round, Pops!")
+    If(4,74,0)
+     ShowMessageFace("usagi_fc1",2,0,2,14)
+     ShowMessage("\\n<Barbun>I don't think this is an appropriate time to drink...")
+     0()
+    EndIf()
+    0()
+   EndIf()
+   ChangeVariable(1054,1054,0,0,2)
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1054,0,2,0)
+   ShowMessageFace("",0,0,2,15)
+   ShowMessage("\\n<Informant>From what I've heard, more than 40 minotauros have disappeared. Since monsters regularly enter and leave town, few people noticed anything out of the ordinary, though.")
+   ShowMessageFace("",0,0,2,16)
+   ShowMessage("\\n<Informant>As a result, there isn't a lot known. However, the minotauros did receive a letter before they vanished.")
+   ShowMessageFace("",0,0,2,17)
+   ShowMessage("\\n<Informant>The minotaur that is at the blacksmith's shop is sure to have the letter. Go take a look at it if you're interested.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,18)
+   ShowMessage("\\n<Informant>Regarding information obtained by the investigation team about the disappearances in Esta... It seems that there were no signs of a struggle in the town.")
+   ShowMessageFace("",0,0,2,19)
+   ShowMessage("\\n<Informant>In fact, they say that the rooms were left in order.\nIt's as if they left suddenly out of their own free will.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc6",0,0,2,20)
+    ShowMessage("\\n<Alice>Isn't this just like what happened in Rubiana...?")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,21)
+    ShowMessage("\\n<Ilias>The situation is nearly identical to the one in Rubiana, it seems...")
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,22)
+    ShowMessage("\\n<Informant>It seems that the hero Luka, the greatest asset to Grand Noah's victory, is very young. He's a brave young man only about your age.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,23)
+   ShowMessage("\\n<Informant>This is just a rumor, but...\nIt seems that crops with abnormalities are sprouting up all over the world recently.")
+   ShowMessageFace("",0,0,2,24)
+   ShowMessage("\\n<Informant>Even though many of those harvested are malformed, they're still processed and distributed. Whether or not they're safe to eat... Well, no one knows.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,32,46,0,0)
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,22,32,5,0,0)
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,22,33,5,0,0)
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,22,32,30,0,0)
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,22,33,30,0,0)
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,31,24,0,0)
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,51,25,0,0)
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,45,25,0,0)
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,27,25,0,0)
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,46,47,0,0)
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,22,75,75,0,0)
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,22,75,58,0,0)
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,65,41,0,0)
+  216(0)
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,62,25,0,0)
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Weapon Vendor>If the weapons you're handling are inferior, your life will be endangered and you will fail in your adventure. Don't let that happen, please buy our weapons!")
+  Shop(1,20,0,0,false)
+  605(1,98,0,0)
+  605(1,200,0,0)
+  605(1,379,0,0)
+  605(1,451,0,0)
+  605(1,488,0,0)
+  605(1,602,0,0)
+  605(1,736,0,0)
+  605(1,876,0,0)
+  605(1,901,0,0)
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Armor Vendor>Are you safe with that equipment?\nIf you're heading to the Colosseum, don't forget to prepare your armor here!")
+  Shop(2,7,0,0,false)
+  605(2,24,0,0)
+  605(2,64,0,0)
+  605(2,80,0,0)
+  605(2,135,0,0)
+  605(2,210,0,0)
+  605(2,306,0,0)
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Smith>Our arms are always of use to Colosseum participants!\nNow, what are you ordering?")
+  ShowChoices(strings("Synthesis","Make Dragon Scale equipment","Talk"),5)
+  IfPlayerPicksChoice(0,null)
+   355("call_synthesize(14)")
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   If(8,155)
+    Shop(1,21,0,0,false)
+    605(1,99,0,0)
+    605(1,157,0,0)
+    605(1,220,0,0)
+    605(1,311,0,0)
+    605(1,346,0,0)
+    605(1,380,0,0)
+    605(1,420,0,0)
+    605(1,453,0,0)
+    605(1,489,0,0)
+    605(1,526,0,0)
+    605(1,567,0,0)
+    605(1,603,0,0)
+    605(1,638,0,0)
+    605(1,678,0,0)
+    605(1,711,0,0)
+    605(1,738,0,0)
+    605(1,762,0,0)
+    605(1,784,0,0)
+    605(1,807,0,0)
+    605(1,831,0,0)
+    605(1,853,0,0)
+    605(2,42,0,0)
+    605(2,81,0,0)
+    605(2,112,0,0)
+    605(2,211,0,0)
+    605(2,247,0,0)
+    605(2,307,0,0)
+    605(0,104,0,0)
+    EndEventProcessing()
+    0()
+   Else()
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Smith>I'm sorry, but without a dragon scale fossil, I cannot make dragon scale equipment. If you really want some, you'll have to get the scales yourself.")
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Smith>There is a mine just southeast from here where dragon fossils remain. There are strong monsters wandering around inside, so do your best to gather them.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  IfPlayerPicksChoice(2,null)
+   If(8,155)
+    If(1,1007,0,3,0)
+     If(4,68,0)
+      If(2,"A",1)
+       ShowMessageFace("dragonp_fc1",0,0,2,4)
+       ShowMessage("\\n<Papi>I have a request. I would like you to teach me how to work with dragon scales!")
+       If(1,1052,0,5,2)
+        ShowMessageFace("",0,0,2,5)
+        ShowMessage("\\n<Smith>I'm sorry, but I'm not in the mood to teach anyone now for a little bit. I'm looking forward to the Queen's Cup, so I'm too distracted to concentrate anyways.")
+        ShowMessageFace("dragonp_fc1",0,0,2,6)
+        ShowMessage("\\n<Papi>If that's so, then it can't be helped!")
+        ShowMessageFace("",0,0,2,7)
+        ShowMessage("It would probably be best to come back after the Queen's Cup is over...")
+        EndEventProcessing()
+        0()
+       EndIf()
+       ChangeSelfSwitch("A",0)
+       ShowMessageFace("",0,0,2,8)
+       ShowMessage("\\n<Smith>Isn't it a bit too soon for this young girl to work with dragon scales...?")
+       ShowMessageFace("dragonp_fc1",0,0,2,9)
+       ShowMessage("\\n<Papi>I can work with crystal.\nDespite my looks, I definitely have skill.")
+       ShowMessageFace("",0,0,2,10)
+       ShowMessage("\\n<Smith>Oh, I see... You don't appear to be lying.\nBut, I already have a disciple back home...")
+       ShowMessageFace("",0,0,2,11)
+       ShowMessage("\\n<Smith>All right, I'll do it.\nCould you bring me a \\C[3]Fighter's Badge\\C[0] from the Colosseum?")
+       ShowMessageFace("",0,0,2,12)
+       ShowMessage("\\n<Smith>In exchange, I'll teach you how to work with dragon scales.")
+       ShowMessageFace("",0,0,2,13)
+       ShowMessage("\\n<Smith>Why do I want the \\C[3]Fighter's Badge\\C[0]?\nLook, I'm a fighter for the time being too... But I'm utterly weak...")
+       ShowMessageFace("dragonp_fc1",0,0,2,14)
+       ShowMessage("\\n<Papi>I understand!\nWe'll bring you the \\C[3]Fighter's Badge\\C[0]!")
+       If(0,4,0)
+        ShowMessageFace("alice_fc5",0,0,2,15)
+        ShowMessage("\\n<Alice>The \\C[3]Fighter's Badge\\C[0] is the prize for the Beginner Class matches. If we could win the Queen's Cup, we should be able to do this easily.")
+        0()
+       EndIf()
+       If(0,5,0)
+        ShowMessageFace("iriasu_fc4",0,0,2,16)
+        ShowMessage("\\n<Ilias>The \\C[3]Fighter's Badge\\C[0] is the prize for the Beginner Class matches. If we could win the Queen's Cup, we should be able to obtain it easily.")
+        0()
+       EndIf()
+       EndEventProcessing()
+       0()
+      Else()
+       If(8,551)
+        ChangeInventory_Item(551,1,0,1)
+        ShowMessageFace("",0,0,2,17)
+        ShowMessage("\\n<Smith>Ah! You definitely have the \\C[3]Fighter's Badge\\C[0]!\nAs promised, I'll teach you how to work with dragon scales!")
+        ShowMessageFace("dragonp_fc1",0,0,2,18)
+        ShowMessage("\\n<Papi>I look forward to working with you!")
+        221()
+        Wait(60)
+        250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0d,0x6d,0x6f,0x6e,0x5f,0x6b,0x61,0x7a,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+        Wait(60)
+        250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0d,0x6d,0x6f,0x6e,0x5f,0x6b,0x61,0x7a,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+        Wait(60)
+        222()
+        ShowMessageFace("dragonp_fc1",0,0,2,19)
+        ShowMessage("\\n<Papi>...When you're a scaly dragon, you're familiar with these every day! I understand the general secrets!")
+        ShowMessageFace("",0,0,2,20)
+        ShowMessage("\\n<Smith>I must say I'm surprised, you truly are from the dragon race...\nThey also have the strength to resist fire...")
+        ShowMessageFace("dragonp_fc1",3,0,2,21)
+        ShowMessage("\\n<Papi>It's all thanks to my master!\nThank you very much, my skills have improved again!")
+        ShowMessageFace("",0,0,2,22)
+        ShowMessage("\\n<Smith>Aye, do your best!\nYou've already surpassed your master's abilities, young lady!")
+        249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+        ShowMessageFace("",0,0,2,23)
+        ShowMessage("Papi is now able to craft dragon scale equipment!")
+        ChangeVariable(1007,1007,0,0,4)
+        Wait(60)
+        EndEventProcessing()
+        0()
+       Else()
+        ShowMessageFace("",0,0,2,24)
+        ShowMessage("\\n<Smith>All right, I'll do it.\nCould you bring me a \\C[3]Fighter's Badge\\C[0] from the Colosseum?")
+        ShowMessageFace("",0,0,2,25)
+        ShowMessage("\\n<Smith>In exchange, I'll teach you how to work with dragon scales.")
+        ShowMessageFace("",0,0,2,26)
+        ShowMessage("\\n<Smith>Why do I want the \\C[3]Fighter's Badge\\C[0]?\nLook, I'm a fighter for the time being too... But I'm utterly weak...")
+        EndEventProcessing()
+        0()
+       EndIf()
+       0()
+      EndIf()
+      0()
+     EndIf()
+     0()
+    EndIf()
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,27)
+   ShowMessage("\\n<Smith>Generally, the money I earn gets spent at the Colosseum.\nIs spectating my hobby? Don't be ridiculous, I participate as a warrior!")
+   ShowMessageFace("",0,0,2,28)
+   ShowMessage("\\n<Smith>Well... I lose in the first round ninety-percent of the time. Losing can be its own reward, you know...")
+   ShowMessageFace("",0,0,2,29)
+   ShowMessage("\\n<Smith>But nothing pisses me off more than losing to another dude!\nI just want to scream \"give me back my entry fee!\"")
+   EndEventProcessing()
+   0()
+  IfPlayerCancelsChoice()
+   EndEventProcessing()
+   0()
+  404()
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Elf>Welcome to the Elven Tool Shop.")
+  Shop(0,2,0,0,false)
+  605(0,7,0,0)
+  605(0,11,0,0)
+  605(0,13,0,0)
+  605(0,14,0,0)
+  605(0,15,0,0)
+  605(0,16,0,0)
+  605(0,17,0,0)
+  605(0,18,0,0)
+  605(0,19,0,0)
+  605(0,20,0,0)
+  605(0,23,0,0)
+  605(0,35,0,0)
+  605(0,102,0,0)
+  605(0,109,0,0)
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Accessory Vendor>How about some accessories?\nWe have products that are especially useful!")
+  Shop(2,1101,0,0,false)
+  605(2,1114,0,0)
+  605(2,1116,0,0)
+  605(2,1261,0,0)
+  605(2,1264,0,0)
+  605(2,1273,0,0)
+  605(2,1279,0,0)
+  605(2,1719,0,0)
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Waitress>Welcome!\nWhat would you like from the menu?")
+  Shop(0,361,0,0,false)
+  605(0,375,0,0)
+  605(0,376,0,0)
+  605(0,383,0,0)
+  605(0,389,0,0)
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  If(1,1052,0,5,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Warrior>If we're talking about the best equipment in this area, that would be dragon scale equipment. However, you'll need a dragon scale fossil in order to manufacture it.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Warrior>You can obtain the dragon scale fossil from the mines just southeast of here. The tournament is drawing closer, so I'm sure many adventurers are diving into the mines.")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Warrior>...Me? As for me, I...\nJust fight it out with this iron sword!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1052,0,6,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Warrior>If we're talking about the best equipment in this area, that would be dragon scale equipment. However, you'll need a dragon scale fossil in order to manufacture it.")
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Warrior>You can obtain the dragon scale fossil from the mines just southeast of here. The tournament is drawing closer, so I'm sure many adventurers are diving into the mines.")
+   ShowMessageFace("",0,0,2,6)
+   ShowMessage("\\n<Warrior>...Me? As for me, I...\nJust fight it out with this iron sword!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Soldier>If you want to compete in the Colosseum, I'd recommend forging some dragon scale equipment... However, it cannot be made without a dragon scale fossil.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Soldier>Naturally, you'll have to gather a dragon scale fossil yourself. But the southeastern mines where they can be found are crawling with monsters...")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Soldier>So you'll need strong equipment in order to gather a dragon scale fossil...\n...My thoughts are going in circles.")
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  If(1,824,0,2,1)
+   If(0,1573,1)
+    ShowMessageFace("mob_sensi1_fc1",0,0,2,1)
+    ShowMessage("\\n<Julia>I'd like to travel and get a little martial training. Will you bring me along?")
+    ShowChoices(strings("Let her join","Decline for now"),0)
+    IfPlayerPicksChoice(0,null)
+     ShowMessageFace("mob_sensi1_fc1",0,0,2,2)
+     ShowMessage("\\n<Julia>Thank you! I'll work hard for our success!")
+     PictureClear(5)
+     205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+     355("add_actor_ex(573)")
+     249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+     ShowMessageFace("",0,0,2,3)
+     ShowMessage("Julia joined the party!")
+     Wait(60)
+     EndEventProcessing()
+     0()
+    IfPlayerPicksChoice(1,null)
+     ShowMessageFace("mob_sensi1_fc1",0,0,2,4)
+     ShowMessage("\\n<Julia>Really... I wonder if I'm lacking in ability?")
+     0()
+    404()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  RunCommonEvent(7231)
+  0()
+ PAGE   2
+  // condition: party contains actor #573
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  ShowMessageFace("mino_fc1",0,0,2,1)
+  ShowMessage("\\n<Minori>I am a minotaur blacksmith apprentice. I help out around here in exchange for learning the craft from the boss!")
+  If(1,1054,0,2,0)
+   ShowMessageFace("mino_fc1",0,0,2,2)
+   ShowMessage("\\n<Minori>Hmm? Are you investigating the case of the disappearance of the minotauros?\nAh, you want to see the letter... Here you go!")
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   ChangeInventory_Item(531,0,0,1)
+   ChangeVariable(1054,1054,0,0,3)
+   ShowMessageFace("ruka_fc1",0,0,2,3)
+   ShowMessage("\\n<Luka>Let's see here...")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage(" \"An Invitation to a Sukiyaki Party\n It's time for sukiyaki you won't forget!\n It awaits you at the place just beyond the west cave.\"")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc4",0,0,2,5)
+    ShowMessage("\\n<Sonya>What the hell is this...?")
+    0()
+   Else()
+    ShowMessageFace("ruka_fc1",0,0,2,6)
+    ShowMessage("\\n<Luka>What is this...?")
+    0()
+   EndIf()
+   ShowMessageFace("mino_fc1",2,0,2,7)
+   ShowMessage("\\n<Minori>I didn't go because I'm busy with work.\nBut all of my friends were really excited about it.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",3,0,2,8)
+    ShowMessage("\\n<Alice>...\nCould someone have lured the minotauros out to abduct them?")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",1,0,2,9)
+    ShowMessage("\\n<Ilias>So, could someone have abducted them?\nIt seems like the cows are rather dim-witted.")
+    0()
+   EndIf()
+   ShowMessageFace("mino_fc1",0,0,2,10)
+   ShowMessage("\\n<Minori>I beg you, please help my friends!")
+   ShowMessageFace("kerberos_fc1",0,0,2,11)
+   ShowMessage("\\n<Caesar>A place just beyond the western cave...\nWell, there definitely is a cave in the mountain range west of here.")
+   ShowMessageFace("kerberos_fc1",1,0,2,12)
+   ShowMessage("\\n<Caesar>Sukiyaki, huh... Now I'm getting hungry.")
+   ShowMessageFace("",0,0,2,13)
+   ShowMessage("Anyway, I guess all we can do is go there.\nI wonder what lies beyond the west cave.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1054,0,3,0)
+   ShowMessageFace("mino_fc1",0,0,2,14)
+   ShowMessage("\\n<Minori>I beg you, please help my friends!\nAccording to the letter, they seem to have passed through the cave to the west.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("68")
+  ShowMessageFace("dragonp_fc1",0,0,2,15)
+  ShowMessage("\\n<Papi>Let's both do our best!")
+  EndEventProcessing()
+  DefineLabel("141")
+  ShowMessageFace("mino_fc1",0,0,2,16)
+  ShowMessage("\\n<Mina>Let's do our best, sister!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  ShowMessageFace("suzumebati_fc1",0,0,2,1)
+  ShowMessage("\\n<Hornet Girl>PLANT TRIBE, ENEMIES...\nWHAT ARE YOU DOING IN THIS PLACE?")
+  ShowMessageFace("a_alm_fc1",0,0,2,2)
+  ShowMessage("\\n<Alra Arum>What is the insect tribe buying in a place like this...? If there were no decree prohibiting us from battling outside the village, I would punish you right here...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,3)
+   ShowMessage("\\n<Alice>The Plant and Insect Tribes from Plansect Village? It was rumored that Alice the 17th forcibly ended that war...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,4)
+   ShowMessage("\\n<Ilias>They appear to be from the Plant and Insect Tribes of Plansect Village. It was rumored that Alice the 17th brought an end to that conflict...")
+   0()
+  EndIf()
+  0()
+ PAGE   2
+  // condition: variable 1056 >= 2
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  ShowMessageFace("suzumebati_fc1",0,0,2,1)
+  ShowMessage("\\n<Hornet Girl>PLANT TRIBE, ENEMIES...\nWHAT ARE YOU DOING IN THIS PLACE?")
+  ShowMessageFace("a_alm_fc1",0,0,2,2)
+  ShowMessage("\\n<Alra Arum>What is the insect tribe buying in a place like this...? If there were no decree prohibiting us from battling outside the village, I would punish you right here...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,3)
+   ShowMessage("\\n<Alice>The Plant and Insect Tribes from Plansect Village? It was rumored that Alice the 17th forcibly ended that war...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,4)
+   ShowMessage("\\n<Ilias>They appear to be from the Plant and Insect Tribes of Plansect Village. It was rumored that Alice the 17th brought an end to that conflict...")
+   0()
+  EndIf()
+  0()
+ PAGE   2
+  // condition: variable 1056 >= 2
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Warrior>In order to take up an advanced job, you need to master an intermediate job. In addition to this, a job change item is also required...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Warrior>It appears the royalty of each country manage these job change items for the advanced jobs. In other words, your feats must be recognized by a king in order to attain an advanced job...")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Warrior>Incidentally, the Queen of Grand Noah manages the \\ii[637] job change item. If you have it, it seems you will be able to attain the advanced jobs for cooks and doctors.")
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Traveling Warrior>An accessory called a \\C[3]Guard's Charm\\C[0] can strengthen your combat abilities in towns. This strengthening is also applied to the battles at the Colosseum. Can you keep this a secret between you and me?")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("529")
+  ShowMessageFace("sara_fc1",0,0,2,2)
+  ShowMessage("\\n<Sara>I'll definitely want it once I'm regularly participating in the Colosseum...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Traveler>Normal attacks become slightly stronger if you're equipped with the \\C[3]Attack Scroll\\C[0]. Even though it is still a plain attack, it can become surprisingly reliable.")
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Innkeeper>Welcome!\nIt will be 15G for a night, would you like to stay?\\$")
+  ShowChoices(strings("Yes","No"),2)
+  IfPlayerPicksChoice(0,null)
+   If(7,15,0)
+    125(1,0,15)
+    221()
+    249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x49,0x6e,0x6e,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+    Wait(150)
+    314(0,0)
+    222()
+    0()
+   Else()
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Innkeeper>I'm sorry, but you don't have enough money.")
+    0()
+   EndIf()
+   0()
+  IfPlayerPicksChoice(1,null)
+   0()
+  404()
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Middle-aged Man>Her Majesty the Queen is just a figurehead now.\nIt is actually her Magic Advisor, Mephisto, who runs this country.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Middle-aged Man>In any event, this country has been taken over...\nNo no, you didn't hear anything.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Middle-aged Man>Almost everyone who had been advocating anti-Mephisto theories quickly changed their attitude following Grand Noah's victory. Many people thought she was a spy for Grangold...")
+    If(12,"exist_party_persona_id?(233)")
+     ShowMessageFace("mefist_fc1",0,0,2,4)
+     ShowMessage("\\n<Mephisto>It is rude to assume I am a spy for Grangold...")
+     If(0,6,0)
+      ShowMessageFace("sonia_fc4",0,0,2,5)
+      ShowMessage("\\n<Sonya>She is a spy for the Monster Lord, however.")
+      0()
+     EndIf()
+     0()
+    EndIf()
+    If(12,"exist_party_persona_id?(391)")
+     ShowMessageFace("mefist_fc2",0,0,2,6)
+     ShowMessage("\\n<Mephisto>It is rude to assume I am a spy for Grangold...")
+     If(0,6,0)
+      ShowMessageFace("sonia_fc4",0,0,2,7)
+      ShowMessage("\\n<Sonya>She is a spy for the Monster Lord, however.")
+      0()
+     EndIf()
+     0()
+    EndIf()
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,8)
+   ShowMessage("\\n<Middle-aged Man>I'm sure Mephisto is working out a strategy to subdue the Monster Lord right now. The hero Luka might already be entering the Monster Lord's Castle.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Traveling Poet>There is a cave in the mountains west of here.\nIf you make it through, you'll arrive at some ruins.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Traveling Poet>I've forgotten the name of these ruins...\nIf you were a scholar from the palace, I think you would know.")
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Soldier>Rumor has it that Grangold is being ruled by the queen of the ants. Rather, their king is pussy-whipped by her.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Soldier>Well, I don't know if it's true or not...\nHowever, I heard the Queen of Sabasa was also being manipulated by a monster, so doesn't it seem likely?")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Soldier>The King of Grangold was being manipulated by the Monster Lord... To be honest, I think he's only saying that to avoid being held responsible.")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Man>No, I believe it.\nIt happened with the Queen of Sabasa too, it was all a conspiracy of the Monster Lord.")
+    ShowMessageFace("",0,0,2,5)
+    ShowMessage("\\n<Soldier>But does that mean they weren't responsible for being manipulated? Would the families that have suffered from the war be convinced?")
+    ShowMessageFace("",0,0,2,6)
+    ShowMessage("\\n<Man>Don't ask me...\nSomething like that is resolved by more important people.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,7)
+   ShowMessage("\\n<Soldier>Even the elf raids have been somehow subdued by the hero Luka. What an extraordinary guy...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Old Man>I failed the enlistment exam again!\nThis is the eighth time already!")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Old Man>But I won't give up yet!\nI'll do whatever it takes to join the army and fight against Grangold's invasion!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Old Man>I failed the enlistment exam again!\nThis is the ninth time already!")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Old Man>But I won't give up yet!\nI'll do whatever it takes to join the army and fight against the Monster Lord's invasion!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Youth>They say I have such a weak body, nobody really knows if I'll be dead tomorrow. I can hardly stand the strict training of the military...")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Youth>I'm proud of my compositional abilities, so I'm currently composing a brave march. Even someone like myself has to help this country somehow.")
+   If(0,1041,0)
+    ShowMessageFace("stein_fc2",1,0,2,3)
+    ShowMessage("\\n<Promestein>I wonder if you would like to try this serum I invented? Once administered, you will quickly develop a muscular body.")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Youth>Umm... I think I'll pass...")
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace(binary"",0,0,2,5)
+   ShowMessage("\\n<Youth>The march I composed was officially adopted by some troops. If I can give some courage to those who fight on the front lines, then I couldn't be any happier.")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Woman>My older brother was born with a weak body.\nThat's why he didn't volunteer for military service...")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Woman>That's why some people are saying things about him.\nI have no choice but to pray the war will end soon...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Woman>My brother's march composition was adopted by the 12th regiment of the Grand Noah Army. Many people who had been treating my older brother like an unpatriotic person have changed their attitudes around.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Woman>He is now honored as a regiment's pride.\nThese selfish people previously betrayed him as being spy...")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Middle-aged Woman>I take offense to the stories that my son is unpatriotic! There was even a guy who branded him a spy and informed the military police!")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Middle-aged Woman>Of course, since the army knows that he failed the aptitude test, he's never actually been charged with spying.")
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Middle-aged Woman>Still... I'm angry they even said that!\nMy gentle son hasn't troubled anyone!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Middle-aged Woman>The song my son composed was adopted by the army...\nHonestly, I have mixed feelings.")
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Middle-aged Woman>I feel like my son's talents should be used for more peaceful things... It shouldn't be a tool of war.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Middle-aged Man>My son is clearly unfit to be a soldier...\nSo what's the problem?")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Middle-aged Man>He has a talent for musical composition. He has the power to sway people's emotions through song.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Middle-aged Man>My wife seems dissatisfied with my son composing military songs. I understand what she's saying, but we're in the middle of a war now...")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Middle-aged Man>Even the guys who treated him like he was unpatriotic have disappeared, so it's a blessing for us. What are they up to now? They're probably looking for some other unpatriotic person.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Traveling Warrior>The tournament is drawing near, so you'll see strong warriors everywhere in the city. I'm also staying here to participate in the tournament.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Traveling Warrior>I lost in the first match of the Queen's Cup...\nI guess I should return to my hometown soon.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Traveling Warrior>The winner of the Queen's Cup just single-handedly rushed into Grangold Palace... That story sounds like a complete lie.")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Traveling Warrior>If a monster like that appeared, I wouldn't be able to win against it.\nI suppose I'll return to my hometown immediately.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Traveling Warrior>It's dangerous to go through the city, there are monsters attacking everywhere... I wonder if I should return to my hometown now.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   48
+ PAGE   1
+  If(1,1052,0,5,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Wizard>As a general rule, you must have a party to participate in the Queen's Cup. There are many contestants who are gathering party members in this city.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1052,0,6,1)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Wizard>The Colosseum matches are now just about party competition. The accident rate was too high when they were one-on-one, so they aren't held anymore.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   49
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Warrior>It appears the Queen of Sabasa has suddenly become decent.\nI heard that she was being manipulated by suspicious monsters...")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Warrior>The truth of the matter is unknown, but it seems it would be safe to say Sabasa has returned to our alliance. Sabasa will be making another expedition to the front lines soon.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Warrior>Battle after battle, I'd like to get some rest soon...\nThat said, there currently hasn't been any movement at all from the enemy.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Warrior>For the time being, I'm fighting in the city...\nThis hard fighting in itself should earn me a medal.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   50
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Swordsman>Cerberus, the commander of the second regiment, seems like a pretty formidable opponent... I'd better prepare my equipment and abilities for fighting beasts.")
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Swordsman>Focus on countermeasures against physical attacks by reinforcing my equipment... I bet the Hunter's [Beast Killer] will be helpful, too.")
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Swordsman>In addition, pleasure attacks are invaluable against beasts. All right, change your job to Prostitute quick!")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Female Hunter>No way!")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,5)
+    ShowMessage("\\n<Swordsman>We ended up being defeated by the seahorse team...\nThose girls aren't just dragons in name only.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,6)
+    ShowMessage("\\n<Swordsman>I'd like to help defeat the Monster Lord...\n...but we're not skilled enough. I'll leave it to the hero Luka.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,7)
+   ShowMessage("\\n<Swordsman>My hunter partner isn't speaking to me now...\nAfter I was raped by an elf, she seems to have become disillusioned.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   51
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Female Hunter>We're also participating in the Queen's Cup.\nI've considered it after gathering lots of information...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Female Hunter>I thought the seahorses were the mascots of the marines... What's up with them spewing breath like that...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Female Hunter>We can't challenge the Monster Lord if we're at the level where we're being defeated by seahorses. It'd be best if we just do what we can...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Female Hunter>............")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   52
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Knight>I'm a knight of the Grand Noah army...\nI came back here from the front lines to participate in the tournament.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Knight>There are quite a few people like that besides myself.\nI hope the front line won't be full of holes...")
+  0()
+ PAGE   2
+  // condition: variable 1052 >= 6
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Knight>I got addicted to the Colosseum...\nI'll be staying in this city for a while.")
+  0()
+
+
+
+EVENT   53
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Female Wizard>We're an impromptu party that just met today.\nHave you heard that the tournament will be a team battle?")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Female Wizard>You guys don't appear to be in need of any more members.\nI'm envious that you have lots of traveling companions...")
+  0()
+ PAGE   2
+  // condition: variable 1052 >= 6
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Female Wizard>I want to be a Sage, but...\nIt doesn't suit my nature to accumulate experience as a Priest.")
+  0()
+
+
+
+EVENT   54
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Harpy>Although we're an impromptu team, we've got our eyes on the championship!")
+  0()
+ PAGE   2
+  // condition: variable 1052 >= 6
+  0()
+
+
+
+EVENT   55
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Mermaid>If you need recovery, leave it to me! If I'm among your members, we're sure to win the championship.")
+  0()
+ PAGE   2
+  // condition: variable 1052 >= 6
+  0()
+
+
+
+EVENT   56
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Slug Girl>I want a Reflect Ring, but I don't have enough money...")
+  0()
+
+
+
+EVENT   57
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Mermaid>There are a lot of strong, manly customers during the tournament period. I'll find myself a tough-looking hunk, and then...ufufu♪")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Mermaid>The tournament is over, but the rush of fighters will continue for a while. When the Colosseum thrives, there are lots of men to entice...♪")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Mermaid>The Monster Lord is horrible...\nI just want to live an honest life without any disturbance.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Mermaid>Even though I wasn't in the Colosseum, I had to fight against elves. The Monster Lord is horrible, someone needs to stop her...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   58
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Man>I can't fight at all, but spectating at the Colosseum is my hobby. I come all the way from Sabasa at this time of year.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Man>My departure was delayed a bit due to being caught up in the naval blockade... It was a good thing I left Sabasa earlier this time just in case.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Man>Every day, I'm spectating at the Colosseum and being hired for part-time work in this city. At any rate, there are plenty of construction jobs during wartime.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Man>This town was saved by the hero Luka, but...\nWhat happened to Sabasa? Is my hometown okay?")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   59
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Owner>Welcome, your order please.")
+  Shop(0,428,0,0,false)
+  605(0,429,0,0)
+  605(0,431,0,0)
+  0()
+
+
+
+EVENT   60
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Youth>To defend my country, I volunteered for the front lines... and lost my right hand.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Youth>How can I keep on living after such a thing...?\nEvery time I look at this artificial hand, I lose hope for the future.")
+  0()
+
+
+
+EVENT   61
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Man>These days, I often look at the wounded soldiers who returned from the front lines. I must thank them for dedicating their lives to this country's defense.")
+  0()
+
+
+
+EVENT   62
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Bunny Girl>Welcome!\nSince it's wartime, people are relaxing here to get into good spirits.")
+  0()
+
+
+
+EVENT   63
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Rowdy Man>One drink, and I'm all fired up...\nNow then, I'll be going to apply at the Colosseum!")
+  0()
+
+
+
+EVENT   64
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Soldier>The residents of Lima Village were annihilated by the Grangold Army... Besides the combatants, even the women and children weren't spared.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Soldier>The ant girls are heartless insects, and the magic dolls carry no emotions... They're just like killing machines.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Soldier>Now we're fighting against the Monster Lord's army... There doesn't appear to be any movement from the enemy, but there's no telling what will happen.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Soldier>I felt a little guilty having to attack fairies...\nI had no time to think about that once I was blown away by a flash flood.")
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Soldier>Fairies...are scary...")
+   355("actor_label_jump")
+   EndEventProcessing()
+   DefineLabel("315")
+   ShowMessageFace("queenfairy_fc1",2,0,2,6)
+   ShowMessage("\\n<Airy>You've established a bad image...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   65
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Man>It seems that the price of alcohol will increase next month. It mostly flows into the front lines, so there is a shortage within the borders...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Soldier>In a conversation I overheard, alcohol falls under \"fuel\" in military ledgers.")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Man>Is that supposed to be a military joke...? I'm not laughing.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("75")
+  ShowMessageFace("hituzi_fc1",3,0,2,4)
+  ShowMessage("\\n<Mary>This sheep is running on fuel.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   66
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Soldier>Magic Advisor Mephisto intervenes too much in military affairs and national politics. Some of the guys speaking behind the Queen's back say she is Mephisto's puppet.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Soldier>Incidentally, are you aware of the story that the Queen of Sabasa was being controlled by a monster? The same could even be happening in Grand Noah...or not.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Soldier>It seems that the King of Grangold was being manipulated by the Monster Lord. In the end, it was the Monster Lord that had been pulling the strings behind his back.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Soldier>Rumors of the hero Luka's great triumphs have been spreading again. There are stories that he knocked down a giant with his bare hands, and that he defeated the queen of the fairies in a single blow.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   67
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Maid>As the tournament approaches, the number of long-term guests will continue to increase. I'll be even busier from now on.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Maid>Even if the Queen's Cup is over, Colosseum fever will continue for a while. I'll still be busy...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Maid>If there is an economic recession or political instability, the Colosseum will thrive. The more difficult the suffering, the more people will seek recreation...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Maid>This inn is serving as a temporary hospital in the midst of the war. I was very excited while I was treating everyone's wounds.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   68
+ PAGE   1
+  ShowMessageFace("ustrel_fc1",0,0,2,1)
+  ShowMessage("\\n<Ustrel>I'd like to go out and see the Colosseum.\nI'm going to spend all of my time in this city...")
+  0()
+
+
+
+EVENT   69
+ PAGE   1
+  ShowMessageFace("tatunoko_k_fc1",2,0,2,1)
+  ShowMessage("\\n<Seahorse Marine>*munch* *munch*...")
+  0()
+
+
+
+EVENT   70
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Rowdy Man>I have to eat whenever I can.\nThe carefree pleasure of eating doesn't last forever in these times.")
+  0()
+
+
+
+EVENT   71
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Man>There's still no shortage of food here.\nBut if the war keeps going on, that might stop being the case.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Man>I have to eat as much as I can now...\n*munch*...*chew*...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("70")
+  ShowMessageFace("nezumi_fc1",0,0,2,3)
+  ShowMessage("\\n<Ratty>I need to stuff myself too...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   72
+ PAGE   1
+  ShowMessageFace("lizardthief_fc1",0,0,2,1)
+  ShowMessage("\\n<Lizard Thief>I came here looking to make quick cash, but...\nEveryone's going through hard times since they're in the middle of a war.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("169")
+  ShowMessageFace("lizardthief_fc1",0,0,2,2)
+  ShowMessage("\\n<Liru>Yo, business hasn't been very good.")
+  ShowMessageFace("lizardthief_fc1",1,0,2,3)
+  ShowMessage("\\n<Lizard Thief>Ah, my comrade. I've been getting by little-by-little.")
+  EndEventProcessing()
+  DefineLabel("170")
+  ShowMessageFace("lizardthief_fc2",0,0,2,4)
+  ShowMessage("\\n<Len>It wasn't worth going on this trip. I guess you could take some time off and relax?")
+  ShowMessageFace("lizardthief_fc1",1,0,2,5)
+  ShowMessage("\\n<Lizard Thief>Ah, my comrade. I've been getting by little-by-little.")
+  EndEventProcessing()
+  DefineLabel("171")
+  ShowMessageFace("lizardboss_fc1",0,0,2,6)
+  ShowMessage("\\n<Miranda>Let's not relax now.")
+  ShowMessageFace("lizardthief_fc1",0,0,2,7)
+  ShowMessage("\\n<Lizard Thief>Hey, Boss!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   73
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Soldier>The hospital near the front lines is already full.\nInjured soldiers are going to be sent back here soon.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Soldier>We might not be able to win... We should keep eating while we're still alive.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Soldier>We have no idea where the Monster Lord's army will attack from. Right now, the entire country is on alert.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Soldier>No way, they're invading the capital...\nIf the attacks continue like this, our army won't last.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   74
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Merchant>\"I Surrender\" in the ants' language is \"sanihi tana\"...\n\"Please don't kill me\" is \"nirani, naenae\"...")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Merchant>...No no, don't mind me.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Merchant>I can't do business with the Monster Lord...\nIt's impossible after all...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Merchant>I can't do business with elves and fairies... Ah, the mermaid merchant appears to be seizing that market.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   75
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Slime Girl>Eat fish, they're full of energy! ♪")
+  0()
+
+
+
+EVENT   76
+ PAGE   1
+  If(1,1052,0,5,2)
+   ShowMessageFace("orc_fc1",0,0,2,1)
+   ShowMessage("\\n<Orc Girl>I'm going to eat a lot to increase my power before the tournament!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1052,0,6,1)
+   ShowMessageFace("orc_fc1",2,0,2,2)
+   ShowMessage("\\n<Orc Girl>I lost at the games again... Now I'm eating to relieve stress!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   77
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Lady>The female novelist, Arumaru, has compiled a series called \"The Days of Love and Misfortune\"... Currently, seven volumes have been released.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Young Lady>People around the world are waiting for the publication of her next volume... I hear Arumaru is a wanderer, so sequels don't come out very often.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("121")
+  ShowMessageFace("page65537_fc1",1,0,2,3)
+  ShowMessage("\\n<Cornelia>I am looking forward to the seventh volume as well.\nArumaru is an anonymous author, so her identity is unknown...")
+  EndEventProcessing()
+  DefineLabel("19")
+  ShowMessageFace("arumaeruma_fc2",0,0,2,4)
+  ShowMessage("\\n<Alma Elma>(That reminds me, I should write another sequel soon...)")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   78
+ PAGE   1
+  If(1,1055,0,3,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Warrior>Through the tunnel east from here, there exists a small village called Yamatai. It's very quiet, and a great place to relax...")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Warrior>I've heard talk that some trouble has hit the place.\nThe village chief made an appeal to the Queen of Grand Noah.")
+   355("actor_label_jump")
+   EndEventProcessing()
+   DefineLabel("62")
+   ShowMessageFace("gob_fc1",3,0,2,3)
+   ShowMessage("\\n<Gob>What happened in my hometown...?")
+   EndEventProcessing()
+   DefineLabel("164")
+   ShowMessageFace("kooni_fc1",2,0,2,4)
+   ShowMessage("\\n<Shizuku>I wonder what happened in Yamatai...?")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1055,0,4,1)
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Warrior>I stayed in Yamatai Village for a little bit once.\nI'd like to take a longer vacation and relax there more...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   79
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(32,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   80
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(429,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   81
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(30,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   82
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(11,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   83
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(23,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   84
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(208,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()

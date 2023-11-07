@@ -1,0 +1,14 @@
+﻿// EVENT 0832
+Name "Legendary Speed Weapon Event"
+
+If(1,150,0,9999,2)
+ RunCommonEvent(805)
+ EndEventProcessing()
+ 0()
+EndIf()
+If(1,150,0,10000,1)
+ RunCommonEvent(806)
+ EndEventProcessing()
+ 0()
+EndIf()
+0()

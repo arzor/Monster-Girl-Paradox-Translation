@@ -1,0 +1,29 @@
+module NWConst
+  module Actor
+    AWAKEN_BASE_ID = 5000
+  end
+end
+
+class Game_Actor < Game_Battler
+  def awakening?
+    $game_switches[awaken_id]
+  end
+
+  def ability_id
+    awakening? ? awaken_id : id
+  end
+
+  alias h_13_feature_objects feature_objects
+  def feature_objects
+    h_13_feature_objects + awaken_add_features
+  end
+
+
+  def awaken_id
+    NWConst::Actor::AWAKEN_BASE_ID + id
+  end
+
+  def awaken_add_features
+    awakening? ? [$data_armors[awaken_id]] : []
+  end
+end

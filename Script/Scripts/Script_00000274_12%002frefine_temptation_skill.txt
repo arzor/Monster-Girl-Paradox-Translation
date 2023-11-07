@@ -1,0 +1,17 @@
+module NWConst
+  module Skill
+    NO_LUCA_TEMPTATION = 3284
+  end
+end
+
+class Game_Party
+  def in_member_luca?
+    all_members.any?(&:luca?)
+  end
+end
+
+module NWConst
+  module Sw
+    NO_DISPLAY_KEY_ITEM = 504
+  end
+end

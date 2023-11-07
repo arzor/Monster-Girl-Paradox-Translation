@@ -1,0 +1,31 @@
+module BattleManager
+  class << self
+    alias hima_14_ch_can_escape? can_escape?
+    def can_escape?
+      hima_14_ch_can_escape? && !$game_troop.challenge_battle?
+    end
+
+    def can_giveup?
+      return false if $game_switches[NWConst::Sw::INVALID_GIVEUP]
+      return false if $game_troop.challenge_battle?
+
+      $game_party.all_members.any? { |member| member.luca? } && $game_actors[NWConst::Actor::LUCA].exist?
+    end
+  end
+end
+
+module NWConst
+  module Sw
+    INVALID_GIVEUP = 505
+  end
+end
+
+class Window_PartyCommand
+  #--------------------------------------------------------------------------
+  # ○ 入れ替えコマンドの可否
+  #--------------------------------------------------------------------------
+  alias hima_14_ch_can_shift_change? can_shift_change?
+  def can_shift_change?
+    hima_14_ch_can_shift_change? && !$game_troop.challenge_battle?
+  end
+end

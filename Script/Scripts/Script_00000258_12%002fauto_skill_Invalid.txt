@@ -1,0 +1,60 @@
+module NWRegexp
+  module BaseItem
+    module AutoSkillInvalid
+      INVALID_ARRAY = %w[死亡時スキル 戦闘開始時発動 ターン開始時発動 ターン終了時発動 反撃スキル 最終反撃]
+      ID_ARRAY = [
+        NWFeature::Battler::DEAD_SKILL,
+        NWFeature::Battler::BATTLE_START_SKILL,
+        NWFeature::Battler::TURN_START_SKILL,
+        NWFeature::Battler::TURN_END_SKILL,
+        NWFeature::Battler::COUNTER_SKILL,
+        NWFeature::Battler::FINAL_INVOKE
+      ]
+    end
+
+    AUTO_SKILL_INVALID = /(#{AutoSkillInvalid::INVALID_ARRAY.join("|")})無効\s?((?:\d+(?:\,\s?)?)+)/i
+  end
+end
+
+class Game_BattlerBase
+  def dead_skill
+    auto_skill(DEAD_SKILL)
+  end
+
+  def counter_skill
+    auto_skill(COUNTER_SKILL).sample
+  end
+
+  def final_invoke
+    auto_skill(FINAL_INVOKE)
+  end
+
+  def battle_start_skill
+    auto_skill_parcent(BATTLE_START_SKILL)
+  end
+
+  def turn_start_skill
+    auto_skill_parcent(TURN_START_SKILL)
+  end
+
+  def turn_end_skill
+    auto_skill_parcent(TURN_END_SKILL)
+  end
+
+  private
+
+  def auto_skill_parcent(type_id)
+    invalid = auto_skill_invalid(type_id)
+    features_with_id(FEATURE_BATTLER_ABILITY, type_id).map(&:value).reject do |v|
+      invalid.include?(v[:id])
+    end
+  end
+
+  def auto_skill(type_id)
+    features_with_id(FEATURE_BATTLER_ABILITY, type_id).map(&:value).flatten - auto_skill_invalid(type_id)
+  end
+
+  def auto_skill_invalid(type_id)
+    features_with_id(FEATURE_AUTO_SKILL_INVALID, type_id).map(&:value)
+  end
+end

@@ -1,0 +1,186 @@
+module Comparable
+  def clamp(min, max)
+    return min if (self <=> min) < 0
+    return max if (self <=> max) > 0
+
+    self
+  end
+
+  def reverse_clamp(min, max)
+    return max if (self <=> min) < 0
+    return min if (self <=> max) > 0
+
+    self
+  end
+end
+
+module Vocab
+  AUTOBATTLE = "Auto"
+
+  module AutoBattle
+    NORMAL = "Random"
+    NOT_MP_SKILL = "Conserve MP"
+    REPEAT = "Repeat"
+    ATTACK_ONLY = "Normal Attack"
+  end
+end
+
+class RPG::Skill < RPG::UsableItem
+  def use_normal?
+    @data_ex.key?(:use_normal)
+  end
+end
+
+module NWRegexp
+  module Skill
+    AUTO_BATTLE_NORMAL_USEBLE = /<通常戦闘使用可>/i
+  end
+end
+
+class << BattleManager
+  def turn_start
+    @phase = :turn
+    $game_party.set_action_history
+    $game_party.check_change_action
+    $game_troop.increase_turn
+    make_action_orders
+  end
+end
+
+class Game_Party
+  def set_action_history
+    members.each do |m|
+      m.set_action_history
+    end
+  end
+end
+
+class Game_Actor
+  def repeat_action
+    @actions.map.with_index do |_, i|
+      action = action_history[i]
+      unless action && action.valid? && !bind?
+        auto ||= auto_battle_actions(actions.size, :normal)
+        next auto[i]
+      end
+      action
+    end
+  end
+
+  def on_battle_end
+    super
+    action_history.clear
+  end
+
+  def action_history
+    @action_history ||= []
+  end
+
+  def set_action_history
+    @action_history = @actions.select(&:item)
+  end
+end
+
+class Scene_Battle < Scene_Base
+  def create_all_windows
+    create_message_window
+    create_scroll_text_window
+    create_log_window
+    create_status_window
+    create_bench_window
+    create_info_viewport
+    create_party_command_window
+    create_actor_command_window
+    create_help_window
+    create_skill_window
+    create_item_window
+    create_actor_window
+    create_enemy_window
+    create_simple_status_window
+    create_skillname_window
+    create_auto_battle_command_window
+    create_battle_status_window
+  end
+
+  def create_party_command_window
+    @party_command_window = Window_PartyCommand.new
+    @party_command_window.viewport = @info_viewport
+    @party_command_window.set_handler(:fight,  method(:command_fight))
+    @party_command_window.set_handler(:escape, method(:command_escape))
+    @party_command_window.set_handler(:auto_battle, method(:command_auto_battle))
+    @party_command_window.set_handler(:battle_states, method(:command_battle_states))
+    @party_command_window.set_handler(:shift_change, method(:command_shift_change))
+    @party_command_window.set_handler(:giveup, method(:command_giveup))
+    @party_command_window.set_handler(:library, method(:command_library))
+    @party_command_window.set_handler(:config, method(:command_config))
+    @party_command_window.unselect
+  end
+
+  def create_auto_battle_command_window
+    @auto_battle_command_window = Window_AutoBattleCommand.new
+    @auto_battle_command_window.x = 0
+    @auto_battle_command_window.viewport = @info_viewport
+    @auto_battle_command_window.set_handler(:normal, proc { auto_battle :normal })
+    @auto_battle_command_window.set_handler(:not_mp_skill, proc { auto_battle :not_mp_skill })
+    @auto_battle_command_window.set_handler(:repeat, proc { auto_battle :repeat })
+    @auto_battle_command_window.set_handler(:attack_only, proc { auto_battle :attack_only })
+    @auto_battle_command_window.set_handler(:cancel, method(:auto_battle_cancel))
+  end
+
+  def command_auto_battle
+    @party_command_window.close
+    @auto_battle_command_window.open
+    @auto_battle_command_window.activate
+  end
+
+  def auto_battle(type)
+    $game_party.members.each do |actor|
+      actor.make_auto_battle_actions(type) if actor.inputable?
+    end
+    @info_viewport.visible = false
+    @auto_battle_command_window.close
+    @party_command_window.setup
+    turn_start
+  end
+
+  def auto_battle_cancel
+    @auto_battle_command_window.close
+    @party_command_window.setup
+  end
+end
+
+class Window_PartyCommand < Window_Command
+  def make_command_list
+    add_command(Vocab.fight, :fight)
+    add_command(Vocab.shift_change, :shift_change, can_shift_change?)
+    add_command(Vocab::AUTOBATTLE, :auto_battle)
+    add_command(Vocab.giveup,      :giveup, BattleManager.can_giveup?)
+    add_command(Vocab.escape,      :escape, BattleManager.can_escape?)
+    add_command(Vocab::BATTLE_STATES, :battle_states)
+    add_command(Vocab.library,     :library)
+    add_command(Vocab.config,      :config)
+  end
+end
+
+class Window_AutoBattleCommand < Window_Command
+  def initialize
+    super(0, 0)
+    self.openness = 0
+    deactivate
+  end
+
+  def window_width
+    200
+  end
+
+  def visible_line_number
+    4
+  end
+
+  def make_command_list
+    add_command(Vocab::AutoBattle::NORMAL, :normal)
+    add_command(Vocab::AutoBattle::NOT_MP_SKILL, :not_mp_skill)
+    add_command(Vocab::AutoBattle::REPEAT, :repeat)
+    add_command(Vocab::AutoBattle::ATTACK_ONLY, :attack_only)
+  end
+end

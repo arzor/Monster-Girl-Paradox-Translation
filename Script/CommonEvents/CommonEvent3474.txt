@@ -1,0 +1,5 @@
+﻿// EVENT 3474
+Name "Daji"
+
+RunCommonEvent(3490)
+0()

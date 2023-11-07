@@ -1,0 +1,33 @@
+class Scene_Battle
+  include ShowKey_HelpWindow
+  def create_battle_status_window
+    @states_window = Window_BattlerStates.new
+    @states_window.hide
+    @states_window.set_handler(:cancel, method(:command_battle_status_cancel))
+    create_show_key_sprite
+  end
+
+  def show_key_sprite_window
+    @states_window
+  end
+
+  def show_key_text
+    active_windows.map(&:show_key_text).inject([], :+)
+  end
+
+  def command_battle_states
+    @party_command_window.deactivate
+    @info_viewport.visible = false
+    @log_window.hide
+    @states_window.page = 0
+    @states_window.refresh
+    @states_window.activate.show
+  end
+
+  def command_battle_status_cancel
+    @info_viewport.visible = true
+    @log_window.show
+    @states_window.deactivate.hide
+    @party_command_window.activate.show
+  end
+end

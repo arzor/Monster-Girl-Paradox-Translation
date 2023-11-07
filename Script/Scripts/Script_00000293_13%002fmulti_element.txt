@@ -1,0 +1,31 @@
+module NWRegexp
+  module BaseItem
+    MULTI_ELEMENT = /<複合属性\s?((?:\d+(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_Battler
+  def multi_elements(item)
+    skill_elements_raw = item_final_elements_raw(item)
+    skill_elements = skill_elements_raw.flatten.uniq
+    skill_elements_raw + (item.features_with_code(FEATURE_MULTI_ELEMENT) + features(FEATURE_MULTI_ELEMENT)).map(&:value).select do |elements|
+      c = 0
+      elements.any? do |element_id|
+        c += 1 if skill_elements.include?(element_id)
+        c == 2
+      end
+    end.uniq
+  end
+
+  def item_booster_element(item)
+    index = {}
+    multi = multi_elements(item)
+    multi.inject(1.0) do |max, elements|
+      rate = elements.inject(1.0) do |r, element_id|
+        index[element_id] ||= booster_element(element_id)
+        r * index[element_id]
+      end
+      [rate, max].max
+    end
+  end
+end

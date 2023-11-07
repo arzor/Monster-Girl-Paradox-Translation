@@ -1,0 +1,13 @@
+class Game_Battler
+  def use_item(item)
+    pay_skill_cost(item) if item.is_a?(RPG::Skill)
+    consume_item(item)   if item.is_a?(RPG::Item)
+    item_global_apply(item) unless $game_party.in_battle
+  end
+
+  def item_global_apply(item)
+    item.effects.each do |effect|
+      item_global_effect_apply(effect)
+    end
+  end
+end

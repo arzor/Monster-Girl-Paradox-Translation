@@ -1,0 +1,13 @@
+module NWConst
+  module Elem
+    class << self
+      def pleasure?(elements)
+        Array(elements).include_any?([PLEASURE, NIGHTMARE])
+      end
+
+      def nightmare?(elements)
+        Array(elements).include?(NIGHTMARE)
+      end
+    end
+  end
+end

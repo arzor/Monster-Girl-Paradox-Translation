@@ -1,0 +1,14 @@
+﻿// EVENT 0837
+Name "Legendary Accessory Event"
+
+If(1,150,0,9999,2)
+ RunCommonEvent(820)
+ EndEventProcessing()
+ 0()
+EndIf()
+If(1,150,0,10000,1)
+ RunCommonEvent(821)
+ EndEventProcessing()
+ 0()
+EndIf()
+0()

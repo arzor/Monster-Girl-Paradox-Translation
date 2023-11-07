@@ -1,0 +1,110 @@
+module RPG
+  class BaseItem
+    def set_effects
+      []
+    end
+  end
+
+  class Class
+    def set_effect
+      @data_ex.fetch(:set_effect, nil)
+    end
+  end
+end
+
+module NWRegexp
+  module Class
+    SET_EFFECT = /<揃い効果\s?((?:\d+(?:,\s?)?)*)>/i
+  end
+end
+
+module Enchant_Item
+  def set_effects
+    @set_effects
+  end
+
+  alias h_14_reset_data reset_data
+  def reset_data
+    h_14_reset_data
+    set_set_effects
+  end
+
+  alias h_14_set_data set_data
+  def set_data
+    h_14_set_data
+    set_set_effects
+  end
+
+  def set_set_effects
+    @set_effects = enchants.map do |e|
+      e.set_effect
+    end.compact
+  end
+end
+
+module RPG
+  class SetEffect
+    attr_reader :id
+    attr_reader :name
+    attr_reader :effect_ids
+
+    def initialize(id, name, effect_ids)
+      @id = id
+      @name = name
+      @effect_ids = effect_ids
+    end
+
+    def [](index)
+      effects[index - 1]
+    end
+
+    def each(&block)
+      effects.each(&block)
+    end
+
+    def size
+      @effect_ids.size
+    end
+
+    def effects(set_count = 0)
+      @effect_ids[0..(set_count - 1)].map do |id|
+        $data_classes[id]
+      end
+    end
+
+    def hash
+      id.hash
+    end
+
+    def eql?(other)
+      id == other.id
+    end
+  end
+end
+
+class Game_Actor
+  def set_effect_count
+    equips.compact.map(&:set_effects).flatten.group_by(&:itself).transform_values(&:count)
+  end
+
+  def set_effect
+    set_effect_count.map { |effect, count| effect.effects(count) }.flatten.compact
+  end
+
+  alias h_14_feature_objects feature_objects
+  def feature_objects
+    h_14_feature_objects + set_effect
+  end
+end
+
+class Scene_Equip
+  def equip_info_select_actor
+    @actor
+  end
+end
+
+class Scene_Status
+  def equip_info_select_actor
+    @actor
+  end
+end

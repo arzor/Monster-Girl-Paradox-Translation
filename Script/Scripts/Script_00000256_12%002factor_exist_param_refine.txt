@@ -1,0 +1,18 @@
+class Game_BattlerBase
+  def booster_actor_exist_param(param_id)
+    1.0
+  end
+end
+
+class Game_Actor < Game_Battler
+  def booster_actor_exist_param(param_id)
+    return 1.0 unless (2..7).include?(param_id)
+    $game_party.battle_members_id.map do |id|
+      $game_actors.original_id(id)
+    end.select do |id|
+      $game_actors.exist?(id) && $game_actors[id].exist?
+    end.inject(1.0) do |rate, id|
+      rate + features_sum_booster(ACTOR_EXIST_PARAM, id)
+    end
+  end
+end

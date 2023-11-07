@@ -1,0 +1,51 @@
+module NWRegexp
+  module BaseItem
+    ELEMENT_RATE_FIX = /<属性耐性固定\s?((?:\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+    STATE_RATE_FIX = /<ステート耐性固定\s?((?:\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def element_rate_fix(element_id)
+    fts = features_with_id(FEATURE_ELEMENT_RATE_FIX, element_id)
+    return nil if fts.empty?
+
+    fts.map(&:value).inject(1.0, :*)
+  end
+
+  def state_rate_fix(state_id)
+    fts = features_with_id(FEATURE_STATE_RATE_FIX, state_id)
+    return nil if fts.empty?
+
+    fts.map(&:value).inject(1.0, :*)
+  end
+
+  def state_rate(state_id)
+    fix_rate = state_rate_fix(state_id)
+    return fix_rate if fix_rate
+
+    features_pi(FEATURE_STATE_RATE, state_id)
+  end
+
+  def element_rate(element_id)
+    fix_rate = element_rate_fix(element_id)
+    return fix_rate if fix_rate
+
+    rate = features_pi(FEATURE_ELEMENT_RATE, element_id)
+    return [1.0, rate].max if special_element?(element_id)
+
+    rate
+  end
+
+  def element_reflection(element_id)
+    return false if element_rate_fix(element_id)
+
+    features_with_id(FEATURE_BATTLER_ABILITY, ELEMENT_REFLECTION).inject([]) { |a, ft| a << ft.value }.include?(element_id)
+  end
+
+  def element_drain?(element_id)
+    return false if element_rate_fix(element_id)
+
+    features_with_id(FEATURE_BATTLER_ABILITY, ELEMENT_DRAIN).inject([]) { |r, ft| r | ft.value }.include?(element_id)
+  end
+end

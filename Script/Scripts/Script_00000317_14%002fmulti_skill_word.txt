@@ -1,0 +1,40 @@
+class Window_Base
+  def process_character(c, text, pos)
+    case c
+    when "\n"   # 改行
+      process_new_line(text, pos)
+    when "\f"   # 改ページ
+      process_new_page(text, pos)
+    when "\e"   # 制御文字
+      process_escape_character(obtain_escape_code(text), text, pos)
+    else        # 普通の文字
+      process_normal_character(c, pos)
+    end
+  end
+end
+
+class Game_Battler
+  def skill_word(skill_id)
+    skill_words = skill_words(skill_id)
+    words = (1..10).collect { |i| "word_#{i}".to_sym }.collect do |key|
+      skill_words[key]
+    end.compact.collect do |w|
+      Word.new(w[0], w[1], w[2])
+    end
+    if skill_words.key?(:word_1x)
+      word_data = skill_words.fetch(:word_1x).clone
+      index = 2
+      loop do
+        key = "word_#{index}x".to_sym
+        break unless skill_words.key?(key)
+
+        w = skill_words.fetch(key)
+        word_data[0] += "\g[\"#{w[1]}\",#{w[2]}]\f#{w[0]}"
+        index += 1
+      end
+      words << Word.new(word_data[0], word_data[1], word_data[2])
+    end
+
+    words.sample
+  end
+end

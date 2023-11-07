@@ -1,0 +1,31 @@
+class Game_Actor < Game_Battler
+  def bugfix_class_lv
+    return if $game_temp.bugfixed?([:class_lv, id])
+
+    @level_list = @level_list.inject({}) do |h, (id, lv)|
+      h[id] = [[lv, 1].max, max_level($data_classes[id].kind)].min
+      h
+    end
+  end
+
+  def init_level
+    actor.init_class_level.each do |obj|
+      @level_list[obj[:id]] = [[obj[:lv], 1].max, max_level($data_classes[obj[:id]].kind)].min
+    end
+    @level_list[@class_id] = 1 unless @level_list.key?(@class_id)
+    @level_list[@tribe_id] = 1 unless @level_list.key?(@tribe_id)
+    @level = { base: actor.initial_level, class: @level_list[@class_id], tribe: @level_list[@tribe_id] }
+  end
+end
+
+class RPG::Class
+  def kind
+    if job?
+      :job
+    elsif tribe?
+      :tribe
+    else
+      :none
+    end
+  end
+end

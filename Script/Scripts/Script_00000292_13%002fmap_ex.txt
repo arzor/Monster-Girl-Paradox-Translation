@@ -1,0 +1,65 @@
+
+class MapInfos
+  def initialize
+    @data = [load_data("Data/MapInfos.rvdata2")]
+    @data << load_data("Data/Map1/Data/MapInfos.rvdata2") if NWFileTest.file_exist?("Data/Map1/Data/MapInfos.rvdata2")
+  end
+
+  def [](index)
+    div, mod = index.divmod(1000)
+    @data[div][mod]
+  end
+end
+class Game_Map
+  #--------------------------------------------------------------------------
+  # ● セットアップ
+  #--------------------------------------------------------------------------
+  def setup(map_id)
+    @map_id = map_id
+    @map = load_data(file)
+    @tileset_id = @map.tileset_id
+    @display_x = 0
+    @display_y = 0
+    referesh_vehicles
+    setup_events
+    setup_scroll
+    setup_parallax
+    setup_battleback
+    @need_refresh = false
+  end
+
+  def file
+    div, mod = @map_id.divmod(1000)
+    return format("Data/Map%03d.rvdata2", mod) if div == 0
+
+    format("Data/Map#{div}/Data/Map%03d.rvdata2", mod)
+  end
+end
+class Game_Interpreter
+  #--------------------------------------------------------------------------
+  # ● 場所移動
+  #--------------------------------------------------------------------------
+  def command_201
+    return if $game_party.in_battle
+
+    Fiber.yield while $game_player.transfer? || $game_message.visible
+    if @params[0] == 0                      # 直接指定
+      if $game_variables[NWConst::Var::MAP_TRANSFER] > 0
+        map_id = $game_variables[NWConst::Var::MAP_TRANSFER]
+        $game_variables[NWConst::Var::MAP_TRANSFER] = 0
+      else
+        map_id = @params[1]
+        map_id += @map_id / 1000 * 1000 if @map_id >= 1000 && @event_id > 0
+      end
+      x = @params[2]
+      y = @params[3]
+    else                                    # 変数で指定
+      map_id = $game_variables[@params[1]]
+      x = $game_variables[@params[2]]
+      y = $game_variables[@params[3]]
+    end
+    $game_player.reserve_transfer(map_id, x, y, @params[4])
+    $game_temp.fade_type = @params[5]
+    Fiber.yield while $game_player.transfer?
+  end
+end

@@ -1,0 +1,19 @@
+﻿// EVENT 0918
+Name "Rare Point Rank Up"
+
+If(1,150,0,0,2)
+ ChangeVariable(150,150,0,0,1)
+ 0()
+EndIf()
+If(1,150,0,20000,1)
+ ChangeVariable(14,14,0,1,150)
+ ChangeVariable(14,14,2,0,20000)
+ If(1,123,0,10,0)
+  ChangeVariable(14,14,3,1,157)
+  0()
+ EndIf()
+ ChangeVariable(910,910,1,1,14)
+ ChangeVariable(150,150,0,0,20000)
+ 0()
+EndIf()
+0()

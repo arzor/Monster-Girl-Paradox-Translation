@@ -1,0 +1,227 @@
+﻿
+
+
+EVENT   2
+ PAGE   1
+  0()
+
+
+
+EVENT   1
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  205(2,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x0b,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x09,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("eden_fc1",1,0,2,1)
+  ShowMessage("\\n<Eden>A horde of monsters...!\nWe will be utterly annihilated if they come after us.")
+  ShowMessageFace("eden_fc1",1,0,2,2)
+  ShowMessage("\\n<Eden>But as long as I'm standing--")
+  ShowMessageFace("shirokuma_fc1",0,0,2,3)
+  ShowMessage("\\n<Polar Bear Girl A>So many people injured...\n...We've brought some medicine.")
+  ShowMessageFace("shirokuma_fc1",0,0,2,4)
+  ShowMessage("\\n<Polar Bear Girl B>Are you hungry?\nWe brought some food...")
+  ShowMessageFace("eden_fc1",1,0,2,5)
+  ShowMessage("\\n<Eden>Unbelievable, they've offering us aid supplies...?! But...")
+  ShowMessageFace("eden_fc1",1,0,2,6)
+  ShowMessage("\\n<Eden>(Ilias' Five Prohibitions forbid us from associating with monsters... If we accept their aid now, it would be an act of association...)")
+  ShowMessageFace("eden_fc1",1,0,2,7)
+  ShowMessage("\\n<Eden>(And then I would be violating the Five Prohibitions--)")
+  ShowMessageFace("cupid_fc1",2,0,2,8)
+  ShowMessage("\\n<Cupid>My leg huuuurts! It won't stop bleediiiing!!")
+  ShowMessageFace("trinity_fc1",2,0,2,9)
+  ShowMessage("\\n<Trinity A>This one's breathing is getting weak too...!\nOh, at this rate...!")
+  ShowMessageFace("shirokuma_fc1",0,0,2,10)
+  ShowMessage("\\n<Polar Bear Girl A>How terrible...\nUse this, quickly...")
+  ShowMessageFace("eden_fc1",2,0,2,11)
+  ShowMessage("\\n<Eden>Ilias, I...")
+  ShowMessageFace("eden_fc1",2,0,2,12)
+  ShowMessage("\\n<Eden>............")
+  205(2,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x15,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("eden_fc1",1,0,2,13)
+  ShowMessage("\\n<Eden>Everyone, accept the monsters' aid!\nHurry up and distribute the supplies!!")
+  ShowMessageFace("eden_fc1",1,0,2,14)
+  ShowMessage("\\n<Eden>(Forgive me, Ilias...\nI've violated the prohibition...)")
+  242(1)
+  221()
+  Wait(60)
+  211(1)
+  TeleportPlayer(0,42,60,9,8,2)
+  222()
+  ShowMessageFace("iriasu_fc4",2,0,2,15)
+  ShowMessage("\\n<Ilias>Eden...")
+  ShowMessageFace("eden_fc1",1,0,2,16)
+  ShowMessage("\\n<Eden>And thus, I broke the prohibition.\nI accepted the aid of the polar bear girls and violated the five prohibitions.")
+  ShowMessageFace("eden_fc1",0,0,2,17)
+  ShowMessage("\\n<Eden>...That is what I was thinking at the moment.")
+  ShowMessageFace("eden_fc1",0,0,2,18)
+  ShowMessage("\\n<Eden>But protecting the angels under my command...\nThat was also an important duty entrusted to me by Ilias.")
+  ShowMessageFace("eden_fc1",0,0,2,19)
+  ShowMessage("\\n<Eden>Were I to have rejected the polar bear girls' relief then... Even if I abided by the Five Prohibitions, I would not have been able to uphold my sworn duty.")
+  ShowMessageFace("eden_fc1",0,0,2,20)
+  ShowMessage("\\n<Eden>I would've betrayed Ilias no matter what decision I made. In which case I thought it would be more sensible to choose the option that could save lives.")
+  ShowMessageFace("iriasu_fc4",2,0,2,21)
+  ShowMessage("\\n<Ilias>Eden...")
+  ShowMessageFace("iriasu_fc4",1,0,2,22)
+  ShowMessage("\\n<Ilias>You truly have done everything you possibly could for the past thirty years. I am proud of you.")
+  ShowMessageFace("eden_fc1",0,0,2,23)
+  ShowMessage("\\n<Eden>Ilias...\nI am not worthy of such praise...")
+  ShowMessageFace("eden_fc1",0,0,2,24)
+  ShowMessage("\\n<Eden>Ever since then, we've maintained good relations with the polar bear girls. At first, we were content with the free assistance they gave us...")
+  ShowMessageFace("eden_fc1",0,0,2,25)
+  ShowMessage("\\n<Eden>After the reconstruction, we started to trade and barter with them. We exchanged magic stones, angel feathers, and various treasures of Heaven...")
+  ShowMessageFace("eden_fc1",0,0,2,26)
+  ShowMessage("\\n<Eden>We gave these things to the Polar Bear Village through exchanges. The Psycho Shard was also among those items we traded.")
+  ShowMessageFace("sonia_fc1",0,0,2,27)
+  ShowMessage("\\n<Sonya>The Polar Bear Village was in the middle of the Snow Caves, right? I'm pretty sure it's just north from this town.")
+  ShowMessageFace("ruka_fc1",0,0,2,28)
+  ShowMessage("\\n<Luka>All right, let's go!\nWe'll see if we can get the polar bear girls to give us the job change item.")
+  EndEventProcessing()
+  0()

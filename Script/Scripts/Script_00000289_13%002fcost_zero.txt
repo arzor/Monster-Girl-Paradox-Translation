@@ -1,0 +1,55 @@
+class RPG::Skill < RPG::UsableItem
+  def hp_cost
+    0
+  end
+end
+
+module NWRegexp
+  module BaseItem
+    SKILL_TYPE_COST_ZERO = /<(HP|MP|TP)タイプ消費なし\s((?:\d+(?:\,\s?)?)+)?>/i
+    SKILL_COST_ZERO = /<(HP|MP|TP)スキル消費なし\s((?:\d+(?:\,\s?)?)+)?>/i
+    COST_ZERO = /<(HP|MP|TP)消費なし>/i
+  end
+end
+class Game_BattlerBase
+  alias h_13_skill_mp_cost skill_mp_cost
+  alias h_13_skill_tp_cost skill_tp_cost
+  alias h_13_skill_hp_cost skill_hp_cost
+  def skill_mp_cost(skill)
+    return 0 if skill_cost_zero?(skill, :MP)
+
+    h_13_skill_mp_cost(skill)
+  end
+
+  def skill_tp_cost(skill)
+    return 0 if skill_cost_zero?(skill, :TP)
+
+    h_13_skill_tp_cost(skill)
+  end
+
+  def skill_hp_cost(skill)
+    return 0 if skill_cost_zero?(skill, :HP)
+
+    h_13_skill_hp_cost(skill)
+  end
+
+  def cost_zero?(type)
+    !features_with_id(FEATURE_COST_ZERO, type).empty?
+  end
+
+  def skill_cost_zero?(skill, type)
+    return unless skill.is_a?(RPG::Skill)
+
+    cost_zero?(type) || skill_id_cost_zero?(skill, type) || skill_type_cost_zero?(skill, type)
+  end
+
+  def skill_id_cost_zero?(skill, type)
+    !features_with_id(FEATURE_SKILL_COST_ZERO, [type, skill.id]).empty?
+  end
+
+  def skill_type_cost_zero?(skill, type)
+    skill.stypes.any? do |stype|
+      !features_with_id(FEATURE_SKILL_TYPE_COST_ZERO, [type, stype]).empty?
+    end
+  end
+end

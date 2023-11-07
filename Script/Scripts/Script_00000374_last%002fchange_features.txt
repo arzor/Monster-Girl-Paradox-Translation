@@ -1,0 +1,23 @@
+class << DataManager
+  def nw_analyze_database
+    $data_actors.compact.each { |a| a.note_analyze }
+    $data_classes.compact.each { |c| c.note_analyze; c.learnings.each { |l| l.nw_note_analyze } }
+    $data_skills.compact.each { |s| s.note_analyze }
+    $data_items.compact.each { |i| i.note_analyze }
+    $data_weapons.compact.each { |w| w.note_analyze }
+    $data_armors.compact.each { |a| a.note_analyze }
+    $data_enemies.compact.each { |e| e.note_analyze }
+    $data_states.compact.each { |s| s.note_analyze }
+    $data_tilesets.compact.each { |t| t.nw_note_analyze }
+    # スクリプト素材の関係でnote消しはNG
+  end
+end
+
+module RPG
+  class BaseItem
+    def note_analyze
+      nw_note_analyze
+      change_features
+    end
+  end
+end

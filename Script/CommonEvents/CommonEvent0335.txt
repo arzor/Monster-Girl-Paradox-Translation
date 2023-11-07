@@ -1,0 +1,14 @@
+// EVENT 0335
+Name "Red Mountain Battle Blockade"
+
+If(0,4,0)
+ ShowMessageFace("alice_fc5",2,0,2,1)
+ ShowMessage("\\n<Alice>If we approach this fight carelessly, we'll get dragged into it. It's useless for us to stick around, Luka.")
+ 0()
+EndIf()
+If(0,5,0)
+ ShowMessageFace("iriasu_fc4",2,0,2,2)
+ ShowMessage("\\n<Ilias>There is a skirmish between monsters in a place like this... We'd best not get involved, Luka.")
+ 0()
+EndIf()
+0()

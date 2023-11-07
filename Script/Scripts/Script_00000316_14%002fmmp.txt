@@ -1,0 +1,8 @@
+class Game_Enemy
+  def mmp
+    return super if enemy.no_difficulty?
+    return super unless 0 < $game_variables[NWConst::Var::MMP]
+
+    (super * $game_variables[NWConst::Var::MMP] * 0.01).to_i
+  end
+end

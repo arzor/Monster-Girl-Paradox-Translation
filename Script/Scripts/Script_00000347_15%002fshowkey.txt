@@ -1,0 +1,20 @@
+class Scene_Base
+  def all_windows
+    ivers = instance_variables.map do |varname|
+      instance_variable_get(varname)
+    end
+    ivers.select do |iver|
+      iver.is_a?(Window)
+    end
+  end
+
+  def active_windows
+    all_windows.select(&:active)
+  end
+end
+
+class Window_Base
+  def show_key_text
+    []
+  end
+end

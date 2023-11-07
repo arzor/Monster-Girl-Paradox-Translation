@@ -1,0 +1,59 @@
+module BattleManager
+  class << self
+    def skill_interrupt(battler, skill_id, symbol = nil)
+      return unless battler.skill_race_ok?($data_skills[skill_id])
+
+      battler = Game_Master.new(battler)
+      action = battler.skill_interrupt(skill_id, symbol)
+      @action_game_masters.unshift(action)
+    end
+
+    def make_action_orders
+      ab = []
+      ab += $game_troop.members unless @preemptive
+      ab += $game_party.members unless @surprise
+      ab.each(&:make_speed)
+      i = 0
+      @action_battlers = ab.map(&:actions).flatten.compact.sort_by { |v| [v, i += 1] }
+      @action_battlers += ab.select { |m| m.actions.empty? }.shuffle
+    end
+
+    def delete_action(subject)
+      @action_battlers.reject! { |ab| battler(ab) == subject }
+    end
+
+    def nw_od_next_subject
+      if gm_exist?
+        subject = @action_game_masters.shift
+        return battler(subject)
+      end
+
+      loop do
+        subject = @action_battlers.shift
+        return nil unless subject
+
+        battler = battler(subject)
+        next unless battler.index
+
+        return battler
+      end
+    end
+
+    def battler(obj)
+      return nil unless obj
+
+      if obj.action?
+        obj.subject.current_action_index = obj
+        obj.subject
+      else
+        obj.current_action_index = nil
+        obj
+      end
+    end
+
+    def force_action(battler)
+      @action_forced = battler
+      delete_action(battler)
+    end
+  end
+end

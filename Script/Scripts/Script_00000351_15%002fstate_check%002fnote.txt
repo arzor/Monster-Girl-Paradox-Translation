@@ -1,0 +1,18 @@
+module NWRegexp
+  module State
+    DISPLAY_NAME = /<表示(?::|：)(\S+)>/
+  end
+end
+
+
+module RPG
+  class State
+    def display_name
+      @data_ex.fetch(:display_name, name)
+    end
+
+    def display?
+      @data_ex.fetch(:display?, true)
+    end
+  end
+end

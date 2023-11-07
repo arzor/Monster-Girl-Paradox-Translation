@@ -1,0 +1,1462 @@
+﻿
+DisplayName "Grand Noah Palace 1F"
+
+
+
+EVENT   1
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,38,5,0,0)
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>The unit I'm a part of will be moving to the front line next month. I've written a will to my family...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>With the end of the Grangold war, the front lines have been discontinued. But now we're fighting a war against the Monster Lord...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,38,5,0,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,38,5,0,0)
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,38,5,0,0)
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,21,38,5,0,0)
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  // condition: variable 1052 >= 6
+  PictureDisplay(5,"80_durahan_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("durahan_fc1",0,0,2,1)
+  ShowMessage("\\n<Arthur>Got a minute, hero?\nAfter seeing your prowess, I'd like to ask your help...")
+  ShowMessageFace("durahan_fc1",0,0,2,2)
+  ShowMessage("\\n<Arthur>There have been a few issues at the shrines of Yamatai Village. Supposedly, odd things have happened to the monsters revered at each of the shrines.")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,3)
+   ShowMessage("\\n<Alice>Yamatai has shrines to the kitsune, tanuki, cat, and snake, I believe.")
+   ShowMessageFace("alice_fc5",0,0,2,4)
+   ShowMessage("\\n<Alice>Other than Shirohebi who defends the snake shrine, none of the monsters there are noteworthy. What could have happened?")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,5)
+   ShowMessage("\\n<Ilias>The culture there worships certain monsters as gods. Their four major shrines are to the kitsune, tanuki, cat, and snake.")
+   ShowMessageFace("iriasu_fc4",2,0,2,6)
+   ShowMessage("\\n<Ilias>Other than Shirohebi who defends the snake shrine, the monsters there are of little significance. So what in the world is going on in Yamatai?")
+   0()
+  EndIf()
+  ShowMessageFace("durahan_fc1",0,0,2,7)
+  ShowMessage("\\n<Arthur>According to reports, there are even monsters baring their fangs and harming the villagers. Would you be willing to travel to Yamatai with me and help solve this mystery?")
+  ShowChoices(strings("Offer Help","Not Right Now"),2)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("durahan_fc1",1,0,2,8)
+   ShowMessage("\\n<Arthur>I'm in your debt. Shall we head there now?")
+   PictureClear(5)
+   205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+   355("add_actor_ex(212)")
+   249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+   ShowMessageFace("",0,0,2,9)
+   ShowMessage("Arthur has joined the party!")
+   ChangeVariable(1055,1055,0,0,1)
+   Wait(60)
+   ShowMessageFace("durahan_fc1",0,0,2,10)
+   ShowMessage("\\n<Arthur>Do you know the way to Yamatai?")
+   ShowMessageFace("durahan_fc1",0,0,2,11)
+   ShowMessage("\\n<Arthur>Heading east from the castle towards Finoa, there's a cave to Yamatai.")
+   ShowMessageFace("durahan_fc1",0,0,2,12)
+   ShowMessage("\\n<Arthur>The path through the cave itself is long, but Yamatai is right on the other side. Once there, we should ask the village elder for more details.")
+   If(1,1052,0,7,2)
+    If(0,4,0)
+     ShowMessageFace("alice_fc5",0,0,2,13)
+     ShowMessage("\\n<Alice>I'd prefer to take care of this request before we infiltrate the Magical Academy, but that's up to you...")
+     0()
+    EndIf()
+    If(0,5,0)
+     ShowMessageFace("iriasu_fc4",2,0,2,14)
+     ShowMessage("\\n<Ilias>Let's wrap this up quickly prior to infiltrating the Magical Academy. Well, that is what I would do. I suppose it's your choice...")
+     0()
+    EndIf()
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   PictureDisplay(5,"80_durahan_st03",0,0,0,0,100,100,255,0)
+   ShowMessageFace("durahan_fc1",2,0,2,15)
+   ShowMessage("\\n<Arthur>So you're busy, too?\nWell, if you get some free time, I'd appreciate the backup.")
+   PictureClear(5)
+   EndEventProcessing()
+   0()
+  404()
+  0()
+ PAGE   2
+  // condition: variable 1055 >= 1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  // condition: variable 1052 >= 6
+  PictureDisplay(5,"80_kerberos_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("kerberos_fc1",0,0,2,1)
+  ShowMessage("\\n<Caesar>Hey, hold up!\nCould you give me a second!?")
+  ShowMessageFace("kerberos_fc1",0,0,2,2)
+  ShowMessage("\\n<Caesar>So this all started when a few Minotauros friends of mine disappeared. After a little digging, I discovered a shocking bit of information.")
+  ShowMessageFace("kerberos_fc1",0,0,2,3)
+  ShowMessage("\\n<Caesar>It turns out that over forty minotauros have disappeared recently. I'd appreciate your help in investigating this matter...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc6",0,0,2,4)
+   ShowMessage("\\n<Alice>Over forty missing minotauros?\nTheir disappearance could possibly be related to the missing residents of Esta...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,5)
+   ShowMessage("\\n<Ilias>Over forty missing minotauros?\nIt is possible this is related to the disappearance of the residents of Esta...")
+   0()
+  EndIf()
+  ShowMessageFace("kerberos_fc1",0,0,2,6)
+  ShowMessage("\\n<Caesar>It should go without saying, but I'll accompany you on the investigation. So will you help me?")
+  ShowChoices(strings("Offer Help","Not Right Now"),2)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("kerberos_fc1",1,0,2,7)
+   ShowMessage("\\n<Caesar>I'm in your debt! Let's get started at once!")
+   PictureClear(5)
+   205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+   355("add_actor_ex(213)")
+   249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+   ShowMessageFace("",0,0,2,8)
+   ShowMessage("Caesar has joined the party!")
+   Wait(60)
+   ChangeVariable(1054,1054,0,0,1)
+   ShowMessageFace("kerberos_fc1",1,0,2,9)
+   ShowMessage("\\n<Caesar>Should we head to the bar first? Bars are the best place to get information!")
+   ShowMessageFace("kerberos_fc1",0,0,2,10)
+   ShowMessage("\\n<Caesar>...It's not like I'm a drunk or anything.")
+   If(4,75,0)
+    ShowMessageFace("hituzi_fc1",1,0,2,11)
+    ShowMessage("\\n<Mary>...suuuure.")
+    0()
+   EndIf()
+   If(1,1052,0,7,2)
+    If(0,4,0)
+     ShowMessageFace("alice_fc5",0,0,2,12)
+     ShowMessage("\\n<Alice>I'd prefer to take care of this request before we infiltrate the Magical Academy, but that's up to you...")
+     0()
+    EndIf()
+    If(0,5,0)
+     ShowMessageFace("iriasu_fc4",2,0,2,13)
+     ShowMessage("\\n<Ilias>Let's wrap this up quickly prior to infiltrating the Magical Academy. Well, that is what I would do. I suppose it's your choice...")
+     0()
+    EndIf()
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   PictureDisplay(5,"80_kerberos_st03",0,0,0,0,100,100,255,0)
+   ShowMessageFace("kerberos_fc1",2,0,2,14)
+   ShowMessage("\\n<Caesar>Oh...\nIf you change your mind, let me know. I'll be hanging around here.")
+   PictureClear(5)
+   EndEventProcessing()
+   0()
+  404()
+  0()
+ PAGE   2
+  // condition: variable 1054 >= 1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  // condition: variable 1052 >= 6
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x10,0x73,0x63,0x65,0x6e,0x65,0x5f,0x63,0x6f,0x6d,0x69,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  ChangeVariable(1052,1052,0,0,7)
+  ChangeSelfSwitch("A",0)
+  ChangeSwitch(100,100,1)
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x17,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("kerberos_fc1",0,0,2,1)
+  ShowMessage("\\n<Caesar>Hey, hold up!\nCould you give me a second!?")
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("durahan_fc1",0,0,2,2)
+  ShowMessage("\\n<Arthur>Got a minute, hero?\nAfter seeing your prowess, I'd like to ask your help...")
+  PictureDisplay(5,"80_kerberos_st01",0,0,-150,0,100,100,0,0)
+  PictureDisplay(6,"80_durahan_st01",0,0,150,0,100,100,0,0)
+  PictureMove(5,null,0,0,-150,0,100,100,255,0,30,false)
+  PictureMove(6,null,0,0,150,0,100,100,255,0,30,true)
+  ShowMessageFace("kerberos_fc1",0,0,2,3)
+  ShowMessage("\\n<Caesar>............")
+  ShowMessageFace("durahan_fc1",0,0,2,4)
+  ShowMessage("\\n<Arthur>............")
+  ShowMessageFace("kerberos_fc1",2,0,2,5)
+  ShowMessage("\\n<Caesar>Come on, Arthur, wait your turn...")
+  ShowMessageFace("durahan_fc1",2,0,2,6)
+  ShowMessage("\\n<Arthur>Why don't you wait?\nI've got urgent business to discuss.")
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x17,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("kerberos_fc1",0,0,2,7)
+  ShowMessage("\\n<Caesar>So this all started when a few minotauros friends of mine disappeared. After a little digging, I discovered a shocking bit of information.")
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("durahan_fc1",0,0,2,8)
+  ShowMessage("\\n<Arthur>There have been a few issues at the shrines of Yamatai Village. Supposedly, odd things have happened to the monsters revered at each of the shrines.")
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x17,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("kerberos_fc1",0,0,2,9)
+  ShowMessage("\\n<Caesar>It turns out that over forty minotauros have disappeared in all. I'd appreciate your help in investigating this matter...")
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("durahan_fc1",0,0,2,10)
+  ShowMessage("\\n<Arthur>Supposedly at least one of the goddesses has been threatening and even harming the villagers. Would you be willing to travel to Yamatai with me?")
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x15,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  If(0,6,0)
+   ShowMessageFace("sonia_fc3",2,0,2,11)
+   ShowMessage("\\n<Sonya>What the hell is going on!")
+   0()
+  Else()
+   ShowMessageFace("ruka_fc1",0,0,2,12)
+   ShowMessage("\\n<Luka>Hold on, one at a time!")
+   0()
+  EndIf()
+  If(0,4,0)
+   ShowMessageFace("alice_fc6",1,0,2,13)
+   ShowMessage("\\n<Alice>Gah, one of you shut up!")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc5",0,0,2,14)
+   ShowMessage("\\n<Ilias>There's only one of me to listen to you two! Speak one at a time!")
+   0()
+  EndIf()
+  ShowMessageFace("kerberos_fc1",0,0,2,15)
+  ShowMessage("\\n<Caesar>Ummm, then...")
+  ShowMessageFace("durahan_fc1",0,0,2,16)
+  ShowMessage("\\n<Arthur>I'll go first.")
+  ShowMessageFace("kerberos_fc1",2,0,2,17)
+  ShowMessage("\\n<Caesar>.........")
+  ShowMessageFace("durahan_fc1",2,0,2,18)
+  ShowMessage("\\n<Arthur>.........")
+  PictureClear(5)
+  PictureClear(6)
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x63,0x61,0x73,0x74,0x6c,0x65,0x33,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,383,22,34,0,0)
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,383,22,34,0,0)
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,383,22,34,0,0)
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Scholar>There are ruins to the northwest from here, on the other side of the mountain range... According to some old documents, they're called the \\C[17]Minotauros' Labyrinth\\C[0].")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Scholar>It is said that ferocious cow monsters roam about the place... That's just according to legend; in truth, it's really just an old tower.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("141")
+  ShowMessageFace("mino_fc1",0,0,2,3)
+  ShowMessage("\\n<Mina>Are my fellow minotaurs there?\nWell, it's not like we have anything better to do.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Mermaid>I'm a combat medic for Grand Noah's Fifth Regiment. Even now, I'm accepted as if I was born in Grand Noah.")
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Knight>I'm a glorious knight of Grand Noah's First Regiment!\nUnder the noble and beautiful Regiment Commander Arthur, I give everything I've got!")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Knight>The people in the Second Regiment amount to nothing but savages! Our regiment is Grand Noah's strongest!")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("212")
+  ShowMessageFace("durahan_fc1",1,0,2,3)
+  ShowMessage("\\n<Arthur>Hmm, I'll rely on you from now on.")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Knight>Ha!")
+  EndEventProcessing()
+  DefineLabel("213")
+  ShowMessageFace("kerberos_fc1",2,0,2,5)
+  ShowMessage("\\n<Caesar>Hmph...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  ShowMessageFace("grizzly_fc1",0,0,2,1)
+  ShowMessage("\\n<Grizzly Girl>I'm from the Second Regiment!\nI hate how the First Regiment acts so high-and-mighty!")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("212")
+  ShowMessageFace("durahan_fc1",0,0,2,2)
+  ShowMessage("\\n<Arthur>Good grief...")
+  EndEventProcessing()
+  DefineLabel("213")
+  ShowMessageFace("kerberos_fc1",0,0,2,3)
+  ShowMessage("\\n<Caesar>Oh, I'll get you fired up!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>Both the First Regiment and Second Regiment of our army are key divisions of our army, but... The two are also rivals, and it's worrisome they don't get along well.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Minister>They cooperate with each other just fine on the battlefield, but... They never stop arguing at strategy meetings.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("212")
+  ShowMessageFace("durahan_fc1",0,0,2,3)
+  ShowMessage("\\n<Arthur>I'm performing normally.\nCaesar is the one who snarls at me...")
+  EndEventProcessing()
+  DefineLabel("213")
+  ShowMessageFace("kerberos_fc1",0,0,2,4)
+  ShowMessage("\\n<Caesar>Arthur is the one who keeps attacking me with false accusations. I guess she's jealous of our great efforts...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  ShowMessageFace("orc_fc1",0,0,2,1)
+  ShowMessage("\\n<Orc Girl>The Second Regiment is savage...? Please call us brave! They just have to admit they're jealous of Regiment Commander Caesar!")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("212")
+  ShowMessageFace("durahan_fc1",0,0,2,2)
+  ShowMessage("\\n<Arthur>You need a little more character...")
+  EndEventProcessing()
+  DefineLabel("213")
+  ShowMessageFace("kerberos_fc1",0,0,2,3)
+  ShowMessage("\\n<Caesar>Oh, we'll go crazy!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  ShowMessageFace("durahan_fc1",0,0,2,1)
+  ShowMessage("\\n<Arthur>I am Arthur, Commander of Grand Noah's First Regiment. I was on the front lines for a long time, but the war council wanted me to return to the palace immediately.")
+  If(4,201,0)
+   ShowMessageFace("ashel_fc1",0,0,2,2)
+   ShowMessage("\\n<Ashel>As expected, you appear to be considerably skilled...")
+   0()
+  EndIf()
+  If(4,203,0)
+   ShowMessageFace("tatunoko_k_fc1",0,0,2,3)
+   ShowMessage("\\n<Tatsuko>You look so strong!")
+   0()
+  EndIf()
+  ShowMessageFace("durahan_fc1",0,0,2,4)
+  ShowMessage("\\n<Arthur>Naturally, I'm planning to participate in the Queen's Cup. I must inspire the troubled citizens with my swordsmanship.")
+  205(20,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x17,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("kerberos_fc1",0,0,2,5)
+  ShowMessage("\\n<Caesar>Acting all heroic now, huh Arthur?\nI can't wait to break that sword and snobby attitude of yours.")
+  ShowMessageFace("durahan_fc1",0,0,2,6)
+  ShowMessage("\\n<Arthur>Hmph, full of hot air as usual...")
+  205(20,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("durahan_fc1",0,0,2,7)
+  ShowMessage("\\n<Arthur>Are you also competing in the tournament?\nYou seem to have some considerable ability judging from your appearance.")
+  ShowMessageFace("durahan_fc1",1,0,2,8)
+  ShowMessage("\\n<Arthur>I'll be looking forward to when we battle in the tournament... We shall fight each other bravely.")
+  0()
+ PAGE   2
+  // condition: variable 1052 >= 6
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  ShowMessageFace("kerberos_fc1",0,0,2,1)
+  ShowMessage("\\n<Caesar>I'm the Second Regiment's Commander, Caesar.\nI lead the bravest unit in Grand Noah.")
+  If(4,202,0)
+   ShowMessageFace("bonny_fc1",1,0,2,2)
+   ShowMessage("\\n<Bonnie>Mmm, you sound pretty strong...")
+   0()
+  EndIf()
+  If(4,204,0)
+   ShowMessageFace("umiusi_k_fc1",0,0,2,3)
+   ShowMessage("\\n<Stacy>Grand Noah's Second Regiment Commander Caesar...\nHer courageous reputation is known among marines.")
+   0()
+  EndIf()
+  ShowMessageFace("kerberos_fc1",0,0,2,4)
+  ShowMessage("\\n<Caesar>I can't remain silent while Arthur is participating in the Queen's Cup! I'll be participating as well to show the whole world which of us is superior.")
+  205(19,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x16,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("durahan_fc1",0,0,2,5)
+  ShowMessage("\\n<Arthur>Getting a little too competitive, aren't we...?\nAt best, you'll lose before you can even touch me.")
+  ShowMessageFace("kerberos_fc1",0,0,2,6)
+  ShowMessage("\\n<Caesar>Don't waste your breath, I'll throw all those words back at you!")
+  205(19,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x15,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("kerberos_fc1",0,0,2,7)
+  ShowMessage("\\n<Caesar>...that's not to say I'm on particularly bad terms with the First Regiment. Our differences in character give us many opportunities to clash in one way or another.")
+  ShowMessageFace("kerberos_fc1",1,0,2,8)
+  ShowMessage("\\n<Caesar>Besides, I can't fight an ally on the front lines. This tournament is just right for settling our dispute.")
+  0()
+ PAGE   2
+  // condition: variable 1052 >= 6
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("mino_fc1",0,0,2,1)
+    ShowMessage("\\n<Minotauros>Our commander is sure to win the tournament! Regiment Commander Arthur is going down!")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("mino_fc1",0,0,2,2)
+    ShowMessage("\\n<Minotauros>You were amazing!\nConsider joining our regiment!")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("mino_fc1",2,0,2,3)
+    ShowMessage("\\n<Minotauros>The Monster Lord is seriously starting a war...\nEven relations between monsters are being split into two camps...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("mino_fc1",2,0,2,4)
+   ShowMessage("\\n<Minotauros>Those elves and fairies have held resentment towards humans all this time... I've heard this region was an elven territory a long time ago.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Knight>I'd consider the odds of Regiment Commander Arthur losing to Regiment Commander Caesar to be one in a million. The Queen's Cup will end with Arthur winning the championship.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Knight>Oh, hero Luka.\nYou're truly skilled to have defeated Regiment Commander Arthur...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Knight>Since the Monster Lord's declaration of war, I've felt a sense of inferiority from the monsters. While it has not turned into contempt and discrimination, it's likely to affect the balance of power in this army.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Knight>I'm a human, but I've fought alongside the First Regiment with many monsters for a long time. I feel indignation towards these recent developments.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("delh_a_fc1",1,0,2,1)
+    ShowMessage("\\n<Dark Elf>Regiment Commander Arthur is Grand Noah's strongest swordsman. She'll become the champion of the Queen's Cup.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("delh_a_fc1",2,0,2,2)
+    ShowMessage("\\n<Dark Elf>To have defeated Regiment Commander Arthur...\nYour skills are great indeed.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("delh_a_fc1",2,0,2,3)
+    ShowMessage("\\n<Dark Elf>The Monster Lord hasn't only declared war...\nIndeed, she was likely pulling the strings behind the war with Grangold as well...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("delh_a_fc1",2,0,2,4)
+   ShowMessage("\\n<Dark Elf>Elves cannot live in this city anymore.\nOur reputation has diminished and everyone stares coldly at us.")
+   ShowMessageFace("delh_a_fc1",2,0,2,5)
+   ShowMessage("\\n<Dark Elf>I'm also resigning from the military, and have considered migrating to another land. After this war has ended, of course.")
+   355("actor_label_jump")
+   EndEventProcessing()
+   DefineLabel("316")
+   ShowMessageFace("queenelf_fc1",0,0,2,6)
+   ShowMessage("\\n<Freya>A bond that has broken once does not recover easily...\nWhat have I done...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("okami_fc1",0,0,2,1)
+    ShowMessage("\\n<Wolf Girl>Caesar is going to win the Queen's Cup in the end! Preparations for a congratulatory toast are already done!")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("okami_fc1",2,0,2,2)
+    ShowMessage("\\n<Wolf Girl>I was betting on Caesar to win, but I lost big...\nBe sure to take responsibility...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("okami_fc1",1,0,2,3)
+    ShowMessage("\\n<Wolf Girl>I don't care about the little details surrounding the Monster Lord! I'll only fight the enemies of Grand Noah!")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("okami_fc1",1,0,2,4)
+   ShowMessage("\\n<Wolf Girl>I don't care about what those elves are saying!\nIt's my job to protect the people of Grand Noah!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>Please go up the stairs ahead to have an audience with Her Majesty the Queen.")
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>Grand Noah is a country that coexists with nature.\nWe have more monster soldiers than any other country.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>Although we don't compare to Grangold as of now....\nThe soldiers of that country consist of only ant girls and automatic dolls.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Guard>Grand Noah is a country that coexists with nature.\nWe have more monster soldiers than any other country.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Guard>Since the Monster Lord's declaration of war however, unrest has spread amongst the monsters in our army. Naturally, I believe they will fight for Grand Noah...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Scholar>We knew that Grangold excelled at magic science and have been sending autonomous dolls at us. But why on earth are ant girls also integrated into their forces...?")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Scholar>Controlling ant girls should be impossible without their Queen. Perhaps Grangold has devised a method for controlling the Queen Ant.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",3,0,2,3)
+    ShowMessage("\\n<Alice>Or rather, Queen Ant is manipulating the King of Grangold...")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,4)
+    ShowMessage("\\n<Ilias>Perhaps it is the opposite...\nThe King of Grangold is being manipulated by the Queen Ant...")
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Scholar>Grangold was in the hands of the Monster Lord...\nIt is reassuring that we can join forces from now on.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Scholar>According to a spy's report...\nThere are research institutes equipped with sophisticated makina underneath Grangold.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Scholar>How did they acquire that technology?\nPerhaps the technology flowed in from the ruins of Remina...")
+   If(4,41,0)
+    ShowMessageFace("stein_fc2",1,0,2,3)
+    ShowMessage("\\n<Promestein>I would love to see it!")
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Scholar>Grangold's makina technology still remains outstanding.\nBut at one time, Remina's surpassed them.")
+   If(4,41,0)
+    ShowMessageFace("stein_fc2",0,0,2,5)
+    ShowMessage("\\n<Promestein>Remina's advanced technology...\nAs I thought, I was involved in this world as well...")
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Priest>Even among the citizens, war anxiety is spreading.\nThe number of people attending church has increased in recent years.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Priest>This is the first time since the Great Disaster that the church has been bustling, but... In this context of war panic, I'm not exactly pleased to be honest.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Priest>Ever since the Monster Lord's declaration of war, the number of churchgoers has continued to increase. This is an indication of public anxiety, and is definitely nothing to congratulate.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>The war with Grangold is still unfolding on the front lines. I'll be defending Her Majesty the Queen at her side.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>...If Grangold's soldiers march all the way here, it will mean the final days of Grand Noah. I'll make sure the pillow this castle dies on is one of battle.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Guard>Currently, a state of high alert has been imposed across the entire territory. It pains me to say this, but we don't know where the next attack will come from...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Guard>Right now, small-scale battles with the Monster Lord's army are sporadically taking place throughout the territory. There hasn't been a large-scale offensive on the capital since the last time...")
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Guard>We don't know what will happen from now on.\nWe can't afford to relax at any moment.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>There are those among us who believe we're going to lose this great war, but... Now that Sabasa has returned to the alliance, we can turn this situation around.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>In addition, we also have Mephisto on our country's side.\nHer ingenuity will surely bring victory to Grand Noah!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Guard>Mephisto's strategy and the hero Luka's strength have brought victory to our country. But now we're facing war with the Monster Lord's army...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Guard>My left arm was injured in the previous battle.\nI can't fight adequately like this...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>A custom has been made out of playing with defeated combatants at the Colosseum. I'm totally envious...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Guard>No no, it's deplorable...")
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>In here, we look after our weapons...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Guard>...How impolite of me, Mr. Hero.\nPlease come on in.")
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>The general public is currently prohibited from entering the royal palace... Only believers who have a definite background with the church may be permitted entry.")
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>You'll be among scholars in here.\nYou may enter, but please remain quiet...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("41")
+  ShowMessageFace("stein_fc2",1,0,2,2)
+  ShowMessage("\\n<Promestein>I'm getting excited about what kind of research they're doing...")
+  EndEventProcessing()
+  DefineLabel("202")
+  ShowMessageFace("bonny_fc1",0,0,2,3)
+  ShowMessage("\\n<Bonnie>This doesn't look very fun!\nI want to go to the Colosseum!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Minister>Magic Advisor Mephisto... I don't trust her at all...")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Minister>...Excuse me. Please forget whatever you may have heard just now.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Minister>The day the Monster Lord wages war on us has arrived...\nIt feels as if we've gone back to the era of the hero Heinrich.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Minister>The opinions that monsters shouldn't be appointed to positions of military leadership have been on the rise. The pressure from the masses has been relentless these days...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  If(1,1052,0,5,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>This is the soldiers' lounge.\nThe First and Second Regiment Commanders have just returned.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1052,0,6,1)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>This is the soldiers' lounge.\nIt's not a particularly fun place.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>I was fighting on the front lines up until last month...\nNow, I'm working in the castle.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>Ant girl and automated doll soldiers...\nOh, how horrible it was...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Guard>Just when I returned from the front lines, the situation changed completely... The future can be so unpredictable.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Guard>Just when I returned from the front lines, there's a massive raid on the capital... I don't have any time to rest my body.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Scholar>During the battle of Lima Bridge, a golem from the enemy nation appeared. An opponent that huge is impossible to oppose with ordinary soldiers.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Scholar>I've been reading through ancient books of magic to devise countermeasures. Since it's a creation of magic, it must have some weak point...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Scholar>I've picked out books from the era of the hero Heinrich. There may be hints to the Monster Lord's behavioral principles that will help us find countermeasures.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Scholar>Industries and academia are being mobilized to meet the demands for this war. I specialize in pharmaceutics, but was ordered to study in the medical field.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Scholar>Some scholars are opposed to this situation...\nI'm trying to do the best I can for the sake of my younger brother serving in the military.")
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>A seahorse marine unit was dispatched as reinforcements from the Navy. Their cute appearance soothes us.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("203")
+  ShowMessageFace("tatunoko_k_fc1",2,0,2,2)
+  ShowMessage("\\n<Tatsuko>I'd hoped you needed us for our fighting abilities...")
+  EndEventProcessing()
+  DefineLabel("204")
+  ShowMessageFace("umiusi_k_fc1",0,0,2,3)
+  ShowMessage("\\n<Stacy>We'll help you unwind♪")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  ShowMessageFace("tatunoko_k_fc1",1,0,2,1)
+  ShowMessage("\\n<Sea Horse Marine>This castle is really big!\nDoing patrols here is hard work!")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("203")
+  ShowMessageFace("tatunoko_k_fc1",0,0,2,2)
+  ShowMessage("\\n<Tatsuko>We must each do our best for the Navy!")
+  EndEventProcessing()
+  DefineLabel("204")
+  ShowMessageFace("umiusi_k_fc1",0,0,2,3)
+  ShowMessage("\\n<Stacy>Do your best! ♪")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  ShowMessageFace("tatunoko_k_fc1",2,0,2,1)
+  ShowMessage("\\n<Sea Horse Marine>ZZZ...")
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Noblewoman>Goddess, please lead our country to victory...\nAnd let my husband who was sent to the front lines return safely...")
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Man>Once the Grangold army floods into this castle...\nI think I'll be spending more time praying to the Goddess.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Man>Once the Monster Lord's army floods into this castle...\nI think I'll be spending more time praying to the Goddess.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Man>My prayers have not reached the Goddess...\nAn army of elves has overrun the city...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Man>My grandchild who went off to war got sent to heaven before me... How cruel the Goddess can be...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("86")
+  ShowMessageFace("name_s_fc1",0,0,2,2)
+  ShowMessage("\\n<Rosary>Goddess, grant this brave warrior a peaceful rest...")
+  EndEventProcessing()
+  DefineLabel("122")
+  ShowMessageFace("sisterlamia_fc1",2,0,2,3)
+  ShowMessage("\\n<Sofia>How unfortunate...\nI pray he finds happiness in the next world.")
+  EndEventProcessing()
+  DefineLabel("123")
+  ShowMessageFace("sisccubus_fc1",0,0,2,4)
+  ShowMessage("\\n<Christie>Please find peace in heaven...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Old Woman>I will never forget the atrocities that occurred in Lima Village... Goddess, cast your divine judgment upon Grangold...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Old Woman>Should we really let the king off just because he was being manipulated...? I cannot forget what those Grangold brutes did to Lima Village...")
+   355("actor_label_jump")
+   EndEventProcessing()
+   DefineLabel("535")
+   ShowMessageFace("grangold_fc2",0,0,2,3)
+   ShowMessage("\\n<King of Grangold>I understand the onus lies with me...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   48
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>I'll be heading to the front lines next month.\nGoddess, grant me your protection...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>I've been guarding the castle for quite some time, but...\nI can't help but feel uneasy for what will happen next.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   49
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Guard>We're going to lose this war anyhow.\nWe're all going to get captured by the ant girls and sexually violated.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Guard>Oh, I can't take it anymore...\n...Ulp!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Guard>We're going to lose this war anyhow.\nWe're all going to get captured by the Monster Lord's army and sexually violated.")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Guard>Oh, I can't take it anymore...\n...Ulp!")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Guard>We're going to lose this war anyhow.\nWe're all going to get captured by the elves and sexually violated.")
+   ShowMessageFace("",0,0,2,6)
+   ShowMessage("\\n<Guard>Oh, I can't take it anymore...\n...Ulp!")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   50
+ PAGE   1
+  If(1,1001,0,25,2)
+   If(1,1052,0,5,2)
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Guard>There are some people opposed to holding a fighting tournament under these circumstances... On the other hand, wouldn't the masses erupt with disgruntlement if we discontinued it?")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,1052,0,6,1)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Guard>The fighting tournament was a great success.\nEven during wartime, entertainment is necessary.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Guard>Anxiety is also spreading amongst the citizens.\nWhat could the Monster Lord be plotting...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("\\n<Guard>Prejudice against monsters has been gradually spreading, even in Grand Noah. Our soldiers understand that their comrades are monsters...")
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Guard>It appears this isn't necessarily the case among politicians and the general public. The other day, a bill to reduce the number of monster officers was proposed.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   51
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Scholar>We cannot let the tragedy of Lima Village repeat itself...\nIn that respect, our thoughts are in agreement.")
+  0()
+
+
+
+EVENT   52
+ PAGE   1
+  If(1,1061,0,0,0)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Scholar>A battle between monsters has been confirmed at Plansect Village. Until just a little while ago, that place was in a state of calm... What happened there?")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1061,0,1,1)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Scholar>It appears that the feud in Plansect Village has ended.\nThere are all sorts of disputes, even among monsters...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   53
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Scholar>There are sprawling caverns beneath Undine's Spring.\nThey appear to be the home of the Slime race.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("53")
+  ShowMessageFace("slime_fc1",0,0,2,2)
+  ShowMessage("\\n<Lime>I have lots of friends♪")
+  EndEventProcessing()
+  DefineLabel("54")
+  ShowMessageFace("bunnyslime_fc1",2,0,2,3)
+  ShowMessage("\\n<Bunni>I'm a rabbit, so it doesn't matter to me.")
+  EndEventProcessing()
+  DefineLabel("110")
+  ShowMessageFace("slimelord_fc1",0,0,2,4)
+  ShowMessage("\\n<Bess>Yaaay, let's go and visit!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   54
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Minister>I managed to preserve the front near Lima Village somehow, but... Human casualties have increased exponentially, and we're in dire straits.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Minister>Even with the reinforcements from Sabasa and San Ilia, we cannot turn this situation around. In the event of a war of attrition, this country will not hold out...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Minister>Since I'm a civil official and not a soldier, I've been thinking about how to finally bring an end to war. However, the Monster Lord has openly called for the extermination of humans...")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Minister>What kind of negotiations would even be feasible with such opponents? Sometimes, politics can be powerless...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Minister>War should be one of the means of politics.\nBut this situation has demonstrated that we're now in a struggle for our survival.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   55
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Knight>We must wage a decisive battle while we still have enough resources in this country. With the relentless exhaustion of soldiers, it will become more disadvantageous as time passes by.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Knight>However, it's unlikely we'll come out victorious if we face the enemy head-on. We need to come up with a strategy that could turn this hopeless situation around...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Knight>We blitzkrieged the enemy capital with the military strength of our elite troops... You and Mephisto are both truly magnificent to have been this successful.")
+    ShowMessageFace("",0,0,2,4)
+    ShowMessage("\\n<Knight>However, our next opponent is the Monster Lord...\nIt's just like the return of the crisis from 500 years ago.")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Knight>The capital somehow managed to weather the assault this time. But the damage here was tremendous, and the situation still remains bad.")
+   ShowMessageFace("",0,0,2,6)
+   ShowMessage("\\n<Knight>I guess you're the one the higher-ups in the military are placing their hopes in. While I'd like to see a hero subdue the Monster Lord similar to the legends, it seems like wishful thinking.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   56
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("datyou_fc1",3,0,2,1)
+   ShowMessage("\\n<Ostrich Girl>With my ostrich kick, I'll fight Grangold's army!")
+   355("actor_label_jump")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   ShowMessageFace("datyou_fc1",3,0,2,2)
+   ShowMessage("\\n<Ostrich Girl>With my ostrich kick, I'll fight the Monster Lord's army!")
+   355("actor_label_jump")
+   EndEventProcessing()
+   0()
+  EndIf()
+  DefineLabel("148")
+  ShowMessageFace("datyou_fc1",3,0,2,3)
+  ShowMessage("\\n<Miu>Let's do our best, ostrich comrades!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   57
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Nobleman>The most famous work of the mysterious artist Fir'almo, \"Smiling Lady\"...Oh, it's so magnificent...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Nobleman>Although I've heard rumors of other works in the series, known as \"Angry Lady\" and \"Shy Lady\"... They have yet to appear in public.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("19")
+  ShowMessageFace("arumaeruma_fc2",0,0,2,3)
+  ShowMessage("\\n<Alma Elma>(I wasn't satisfied with \"Shy Lady\"...\nI wonder if I should paint it once more from the beginning?)")
+  EndEventProcessing()
+  DefineLabel("181")
+  ShowMessageFace("gaistvine_fc1",0,0,2,4)
+  ShowMessage("\\n<Lisa>It is indeed a wonderful painting...\nThe lasciviousness lurking behind the nobility is just like a spice...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   58
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>Luv Manitã's signature song \"Night\"... It's absolutely wonderful. They're apparently a female composer, but nobody knows her true identity. I'm eagerly awaiting news of her next composition.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("19")
+  ShowMessageFace("arumaeruma_fc2",0,0,2,2)
+  ShowMessage("\\n<Alma Elma>(My next composition... I don't have any inspiration these days.)")
+  EndEventProcessing()
+  DefineLabel("59")
+  ShowMessageFace("mdg_fc1",0,0,2,3)
+  ShowMessage("\\n<Ragora>A really good song... I wonder if I should try singing it a little.")
+  EndEventProcessing()
+  DefineLabel("155")
+  ShowMessageFace("saki_fc1",0,0,2,4)
+  ShowMessage("\\n<Saki>Classical music is outside my comfort zone, but...\nI can feel an amazing pathos from this song♪")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   59
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Scholar>Are you familiar with the legend of the \\C[17]royal family's blood\\C[0]? Within the blood of the royal family sleeps a mighty power inherited from ancient times.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Scholar>It has yet to be proven true by magic science, but...\nOnce we became aware of the King of Grangold's superhuman strength, we've been investigating this legend more thoroughly.")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Scholar>Particularly among the Gold royal family, their founder, the \\C[17]Magic King\\C[0], was incredibly famous. There have been rumors and gossip that the current King of Grangold is the second coming of the Magic King.")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Scholar>It is my responsibility as a scholar to refute these rumors with justifiable logic. It's not going very well, and I've become keenly aware of my own powerlessness.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("535")
+  ShowMessageFace("grangold_fc2",0,0,2,5)
+  ShowMessage("\\n<King of Grangold>Is there any research on a way to return me back to normal...?")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   60
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Old Man>Be quiet, calm your mind, and pray to the Goddess...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Old Man>The war against the Monster Lord has begun...\nIlias, save us...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Old Man>Oh, Grand Noah is under attack...\nIlias, please save us...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   61
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minstrel>If the melodies I play can soothe people even a little...")
+  0()
+
+
+
+EVENT   62
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Youth>Old people can't help turning to the Goddess for help...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Youth>If you pray to the Goddess in some way, the church will become more prosperous...")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Youth>I want to pray to the Goddess too...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   63
+ PAGE   1
+  If(1,1001,0,25,2)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Noble Girl>I hope this war will end soon...")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1001,0,26,1)
+   If(1,1001,0,28,2)
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Noble Girl>Why is the Monster Lord challenging humans to a fight? Shouldn't humans and monsters should be coexisting...?")
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1001,0,29,1)
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Noble Girl>Elves and fairies have a deep hatred towards us.\nWhat on earth are they mad at us for...?")
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   64
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Scholar>There are six kinds of status abnormalities that can be cured with white magic: Poison, blind, confusion, silence, sleep, and paralysis.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Scholar>Therefore, Cure will not work for minimum, petrified, zombie, and so forth. Similarly, it will have no effect on pleasure-based status abnormalities such as trance and seduction.")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Scholar>If you have a mermaid or plant-based monster who is skilled at healing however... They will learn skills that can even cure those status abnormalities as they grow.")
+  0()
+
+
+
+EVENT   65
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Minister>This red carpet was purchased at \\C[17]Sheep's Forest\\C[0].\nIt is among the highest quality items in the royal palace.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Minister>Where is \\C[17]Sheep's Forest\\C[0]?\nIt is located on a small island west of the Navy Headquarters, but there's no point in going there except when you need a carpet.")
+  0()

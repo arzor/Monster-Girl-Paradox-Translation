@@ -1,0 +1,181 @@
+﻿
+DisplayName "Izumo Village"
+
+
+
+EVENT   1
+ PAGE   1
+  222()
+  Wait(60)
+  ShowMessageFace("ruka_fc1",0,0,2,1)
+  ShowMessage("\\n<Luka>This is Izumo Village, where that incident happened...")
+  ShowMessageFace("sonia_fc2",2,0,2,2)
+  ShowMessage("\\n<Sonya>This is only the first of the villages we've arrived in. And yet, I can't believe this is happening...")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("There are sleeping villagers everywhere.\nIt was protected by some people who came to the rescue from nearby.")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("We arrived here after the situation had already concluded.\nWe've gotten to a completely late start...")
+  If(0,4,0)
+   PictureDisplay(5,"80_alice_st71",0,0,0,0,100,100,0,0)
+   PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+   ShowMessageFace("alice_fc5",0,0,2,5)
+   ShowMessage("\\n<Alice>I heard that three yoma had attacked this place. And then the women of this village became succubi...")
+   PictureDisplay(5,"80_alice_st73",0,0,0,0,100,100,255,0)
+   ShowMessageFace("alice_fc5",2,0,2,6)
+   ShowMessage("\\n<Alice>There's no doubt the Queen of Dreams had a hand in this. This was probably the work of her alliance.")
+   ShowMessageFace("sonia_fc1",5,0,2,7)
+   ShowMessage("\\n<Sonya>What they're doing is awful.\nWe need to send them packing to their own world...!")
+   PictureDisplay(5,"80_alice_st71",0,0,0,0,100,100,255,0)
+   ShowMessageFace("alice_fc5",0,0,2,8)
+   ShowMessage("\\n<Alice>However, I'm worried about the three people who fended off the attackers. A red-haired swordsman, a little girl, and a strange exorcist...")
+   0()
+  EndIf()
+  If(0,5,0)
+   PictureDisplay(5,"80_iriasu_st33",0,0,0,0,100,100,0,0)
+   PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+   ShowMessageFace("iriasu_fc4",2,0,2,9)
+   ShowMessage("\\n<Ilias>We heard that three yoma had attacked this place. And then the women of this village were transformed into succubi...")
+   ShowMessageFace("iriasu_fc4",7,0,2,10)
+   ShowMessage("\\n<Ilias>This is undoubtedly the work of the Queen of Dreams. Those three yoma are probably her allies.")
+   ShowMessageFace("sonia_fc1",5,0,2,11)
+   ShowMessage("\\n<Sonya>What they're doing is awful.\nWe need to send them packing to their own world...!")
+   ShowMessageFace("iriasu_fc4",2,0,2,12)
+   ShowMessage("\\n<Ilias>However, I'm also concerned about those three who drove back the attackers. A red-haired swordsman, a little girl, and a strange exorcist...")
+   0()
+  EndIf()
+  ShowMessageFace("ruka_fc1",0,0,2,13)
+  ShowMessage("\\n<Luka>If those three weren't here, the damage would've spread much further. I wonder who they were...")
+  ShowMessageFace("",0,0,2,14)
+  ShowMessage("Did three powerful, nameless people just so happen to be there? Or maybe--")
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x6b,0x69,0x6b,0x69,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  ShowMessageFace("mefist_fc1",2,0,2,15)
+  ShowMessage("\\n<Mephisto>We've got a serious problem...!\nIt appears the village of Finoa was taken over by mysterious succubi!")
+  If(0,4,0)
+   PictureDisplay(5,"80_alice_st81",0,0,0,0,100,100,255,0)
+   ShowMessageFace("alice_fc6",0,0,2,16)
+   ShowMessage("\\n<Alice>Finoa...has been taken over?!")
+   0()
+  EndIf()
+  If(0,5,0)
+   PictureDisplay(5,"80_iriasu_st36",0,0,0,0,100,100,255,0)
+   ShowMessageFace("iriasu_fc4",5,0,2,17)
+   ShowMessage("\\n<Ilias>Finoa was taken over...?")
+   0()
+  EndIf()
+  ShowMessageFace("mefist_fc1",2,0,2,18)
+  ShowMessage("\\n<Mephisto>It has been sealed off by a magical barrier, forbidding anyone from entering or leaving. Most of the residents have been trapped inside...")
+  ShowMessageFace("mefist_fc1",2,0,2,19)
+  ShowMessage("\\n<Mephisto>I've also received information that there have been several casualties among them. We need to deal with this as soon as possible...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc6",0,0,2,20)
+   ShowMessage("\\n<Alice>Let's hurry to Finoa, Luka!")
+   0()
+  EndIf()
+  If(0,5,0)
+   PictureDisplay(5,"80_iriasu_st38",0,0,0,0,100,100,255,0)
+   ShowMessageFace("iriasu_fc4",7,0,2,21)
+   ShowMessage("\\n<Ilias>Luka, we must make haste to Finoa!")
+   0()
+  EndIf()
+  ShowMessageFace("ruka_fc1",0,0,2,22)
+  ShowMessage("\\n<Luka>Right, let's head there quickly!!")
+  PictureClear(5)
+  ShowMessageFace("",0,0,2,23)
+  ShowMessage("She said some mysterious succubi had taken over Finoa Village. Throughout the world, a series of unusual events have been spreading one after another...")
+  ShowMessageFace("",0,0,2,24)
+  ShowMessage("Could this also be because of the Queen of Dreams?\nWe quickly made our way towards Finoa...")
+  Wait(60)
+  242(2)
+  221()
+  211(1)
+  Wait(120)
+  PictureDisplay(5,"iv_chapter05",0,0,0,0,100,100,255,0)
+  222()
+  Wait(180)
+  221()
+  PictureClear(5)
+  Wait(120)
+  TeleportPlayer(0,920,20,16,2,2)
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  // condition: switch 4 is ON
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  0()

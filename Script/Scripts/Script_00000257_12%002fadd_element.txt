@@ -1,0 +1,22 @@
+module NWRegexp
+  module BaseItem
+    ADD_ELEMENT = /<属性追加\s?(\d+),(\d+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def add_elements(element)
+    features_with_id(FEATURE_ADD_ELEMENT, element).map(&:value)
+  end
+end
+
+class Game_Battler
+  def item_elements(item)
+    if item == $data_skills[attack_skill_id] && normal_attack_force_element
+      [1]
+    else
+      item.elements.map { |id| id < 0 ? atk_elements : id }.flatten
+    end
+  end
+end
+

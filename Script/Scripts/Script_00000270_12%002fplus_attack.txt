@@ -1,0 +1,88 @@
+module NWRegexp
+  module BaseItem
+    SKILL_PLUS_ATTACK = /<スキル(タイプ|)攻撃回数アップ\s?(((?:\d+-\d+)(?:,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def skill_plus_attack(skill)
+    return 0 unless skill.is_a?(RPG::Skill)
+
+    skill_id_plus_attack(skill.id) + skill.stypes.inject(0) { |i, stype| i + skill_type_plus_attack(stype) }
+  end
+
+  def skill_id_plus_attack(skill_id)
+    features_sum(FEATURE_SKILL_PLUS_ATTACK, skill_id).to_i
+  end
+
+  def skill_type_plus_attack(skill_type)
+    features_sum(FEATURE_SKILL_TYPE_PLUS_ATTACK, skill_type).to_i
+  end
+end
+
+class RPG::UsableItem < RPG::BaseItem
+  def overlap_limit
+    0
+  end
+end
+
+class Game_Action
+  def make_exp_targets
+    arr = []
+    exp = item.exp_target
+    exp_id = exp[0][0]
+    num = exp[0][1]
+    ram = exp[1] ? rand(exp[1]) : 0
+    ex_remove = friends_unit.members.size == 1
+    case exp_id
+    when 1
+      num += @subject.skill_plus_attack(item)
+      arr << opponents_unit.smooth_target(@target_index)
+      arr *= (num + ram)
+    when 2
+      arr = opponents_unit.alive_members
+      arr *= (num + ram)
+    when 3
+      num += @subject.skill_plus_attack(item)
+      (num + ram).times { arr << opponents_unit.random_target }
+    when 4
+      arr << friends_unit.smooth_target(@target_index)
+      arr *= (num + ram)
+    when 5
+      arr = item.for_dead_friend? ? friends_unit.dead_members : friends_unit.alive_members
+      arr *= (num + ram)
+    when 6
+      if exp[2] == 1
+        (num + ram).times { arr << friends_unit.exp_ram_target(@subject.master_observer) }
+      else
+        (num + ram).times { arr << friends_unit.random_target }
+      end
+    when 7
+      arr << opponents_unit.random_target
+      arr *= (num + ram)
+    when 8
+      arr << friends_unit.random_target
+      arr *= (num + ram)
+    when 9
+      arr = opponents_unit.alive_members + friends_unit.alive_members
+      arr *= (1 + ram)
+    when 10
+      if ex_remove
+        (num + ram).times { arr << opponents_unit.random_target }
+      else
+        (num + ram).times do
+          arr << if rand(2).zero?
+                   opponents_unit.random_target
+                 elsif exp[2] == 1
+                   friends_unit.exp_ram_target(@subject.master_observer)
+                 else
+                   friends_unit.random_target
+                 end
+        end
+      end
+    end
+    arr.delete(@subject.master_observer) if exp[2].zero?
+    arr.compact!
+    arr
+  end
+end

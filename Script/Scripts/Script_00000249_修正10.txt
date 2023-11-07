@@ -1,0 +1,209 @@
+class Window_Base
+  # draw_textの制御文字の事前変換するver
+  # \cは仕様上最後に設定された色で全て描画
+  # \Iは\wとかで勝手に付与されるので削除
+  def draw_text_plus(*args)
+    text = if args[0].is_a?(Rect)
+             1
+           else
+             4
+           end
+    oc = Color.new
+    oc.set(contents.font.color)
+    args[text] = convert_escape_characters(args[text])
+    args[text].gsub!(/\eC\[(\d+)\]/i) do
+      alpha = contents.font.color.alpha
+      change_color(text_color(Regexp.last_match(1).to_i))
+      contents.font.color.alpha = alpha
+      ""
+    end
+    args[text].gsub!(/\eI\[(\d+)\]/i) do
+      ""
+    end
+    draw_text(*args)
+    change_color(oc)
+  end
+end
+
+module NWConst
+  module Sw
+    ENCOUNT_NONE = 89
+  end
+end
+
+class Game_Party
+  alias hima_library_update update
+  def update
+    hima_library_update
+    set_library
+  end
+
+  def set_library
+    all_items.map { |item| $game_library.get_item(item) }
+  end
+end
+
+class IO
+  alias hima_write write
+  def write(*a)
+    hima_write(*a)
+  rescue SystemCallError => e
+  end
+end
+
+class Game_Party
+  #--------------------------------------------------------------------------
+  # ● 一時メンバーのセット
+  #--------------------------------------------------------------------------
+  def set_temp_actors(ary)
+    ary.uniq!
+    @temp_actors = ary[0, party_member_max].select { |member| check_temp_actor(member) }
+    $game_player.refresh
+    $game_map.need_refresh = true
+  end
+
+  def check_temp_actor(actor_id)
+    true
+  end
+
+  def add_temp_actors(ary)
+    @temp_actors += ary.select { |member| check_temp_actor(member) }
+    @temp_actors.uniq!
+    @temp_actprs = @temp_actors[0, party_member_max]
+    $game_player.refresh
+    $game_map.need_refresh = true
+  end
+
+  def remove_temp_actors(ary)
+    @temp_actors.reject! do |temp_actor|
+      ary.include?(temp_actor)
+    end
+    $game_player.refresh
+    $game_map.need_refresh = true
+  end
+end
+
+class Game_Party
+  def actors
+    if temp_actors_use?
+      @temp_actors
+    else
+      @actors
+    end
+  end
+
+  def exists
+    !actors.empty?
+  end
+
+  def swap_order(index1, index2)
+    actors[index1], actors[index2] = actors[index2], actors[index1]
+    $game_player.refresh
+  end
+end
+
+class Spriteset_Battle
+  def update_pictures
+    $game_troop.screen.pictures.each do |pic|
+      @picture_sprites[pic.number] ||= Sprite_Picture.new(@viewport1, pic)
+      @picture_sprites[pic.number].update
+    end
+  end
+end
+
+class Spriteset_Map
+  def update_pictures
+    $game_map.screen.pictures.each do |pic|
+      @picture_sprites[pic.number] ||= Sprite_Picture.new(@viewport1, pic)
+      @picture_sprites[pic.number].update
+    end
+  end
+end
+
+class Sprite_Picture
+  def update_position
+    self.x = @picture.x
+    self.y = @picture.y
+    self.z = 250 + @picture.number
+  end
+end
+
+class Spriteset_Novel
+  def erase_background
+    @background.visible = false
+    update
+  end
+end
+
+class Scene_Novel
+  def erase_background
+    @spriteset.erase_background
+  end
+end
+
+class Game_Action
+  def temptation_targets
+    if item.scope == 0
+      []
+    else
+      [$game_actors[NWConst::Actor::LUCA]]
+    end
+  end
+end
+
+class Game_Actor
+  def make_auto_battle_actions(type = :auto)
+    @actions = auto_battle_actions(@actions.size, type).each { |act| act.set_symbol(:count) }
+  end
+
+  def auto_battle_actions(size, type = :auto)
+    return repeat_action if type == :repeat
+
+    skill_list = skills
+    secondary_skill_list = []
+    usable_skilltypes = added_skill_types
+    skill_list.select! do |skill|
+      next if skill.ability?
+      next if skill.stypes.all? { |type| !usable_skilltypes.include?(type) }
+      next true unless $game_system.conf[:bt_stype]
+
+      skill.stypes.none? { |type| skill_type_disabled?(type) }
+    end
+    result = []
+    size.times do |_i|
+      result << make_auto_battle_action(skill_list, secondary_skill_list, type)
+    end
+    result
+  end
+
+  def make_auto_battle_action(skill_list, secondary_skill_list, type = :auto)
+    member = opponents_unit.alive_members.size
+    return Game_Action.new(self).set_bind_resist if bind?
+    return Game_Action.new(self).set_attack if type == :attack_only
+
+    until skill_list.empty?
+      base_skill = skill_list.sample
+      skill = base_skill.change(self)
+      next skill_list.delete(base_skill) if skill.no_auto_battle?(type)
+
+      if [:auto, :normal].include?(type) && ((member == 1 && skill.for_all?) || (member > 1 && !skill.for_all?))
+        secondary_skill_list.push(skill)
+        next skill_list.delete(base_skill)
+      end
+
+      next skill_list.delete(base_skill) if type == :not_mp_skill && skill_mp_cost(skill) != 0
+
+      next skill_list.delete(base_skill) unless usable?(skill)
+
+      return Game_Action.new(self).set_skill(skill.id)
+    end
+    until secondary_skill_list.empty?
+      skill = secondary_skill_list.sample
+      next secondary_skill_list.delete(skill) unless usable?(skill)
+
+      return Game_Action.new(self).set_skill(skill.id)
+    end
+    Game_Action.new(self).set_attack
+  end
+end
+STDOUT.sync = true

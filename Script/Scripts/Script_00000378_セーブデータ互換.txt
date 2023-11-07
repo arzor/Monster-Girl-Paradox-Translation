@@ -1,0 +1,3551 @@
+﻿module DataManager
+
+  #--------------------------------------------------------------------------
+  # ● ロードの実行（例外処理なし）
+  #--------------------------------------------------------------------------
+  def self.load_game_without_rescue(index)
+    File.open(make_filename(index), "rb") do |file|
+      Marshal.load(file)
+      extract_save_contents(Marshal.load(file))
+      update
+      
+      reload_map_if_updated
+      @last_savefile_index = index.is_a?(Integer) ? index : 0 
+    end
+    return true
+  end
+  
+  def self.update
+    $game_party.update
+  end
+end
+
+
+## Add help key for skills
+class << ShowKey_Help
+  def lr_skilldesc
+    "#{Vocab.key_x}:Detailed Info"
+  end
+end
+
+class Scene_Skill < Scene_ItemBase
+  def show_key_text
+    case
+    when @command_window.active
+      [ShowKey_Help.stype_move, ShowKey_Help.stype_disable, ShowKey_Help.lr_actor]
+    when @item_window.active
+      if $game_system.conf[:mod_skills] == 1
+        [ShowKey_Help.lr_scroll, ShowKey_Help.lr_skilldesc]
+      else
+        [ShowKey_Help.lr_scroll]
+      end
+    end
+  end
+end
+
+
+
+## Правка Лога сообщение в Х-Сценах
+class Window_NovelMessage < Window_Message
+  def update_all_windows
+    super
+    @backlog_window.update
+    @name_window.visible = !@backlog_window.visible
+  end  
+
+  def update_flip_hide
+    return unless Input.trigger?(:Y) || Input.trigger?(:Z)
+    return if @backlog_window.active
+    Input.update
+    self.active = !active
+    self.visible = !visible
+    @name_window.visible = visible
+  end
+end
+
+## Display Help/Page Change in the Characters Library
+class Window_Library_MainCommand < Window_Command
+  #--------------------------------------------------------------------------
+  # ● ヘルプウィンドウの更新【オーバーライド】
+  #--------------------------------------------------------------------------
+  def update_help
+    ct = current_ext[1] / 10000
+    id = current_ext[1] % 10000
+    
+    str  = Help.library[:btn_column]
+    str += "　" + Help.library[:btn_page] if (id != 0) && (1..6).include?(ct)
+    if (ct == 2) && (@contents_window.page == 4)
+      str += "　" + Help.library[:btn_scroll]
+    else
+      str += "　" + Help.library[:btn_jump]
+    end    
+    if (id != 0) &&
+        (
+        (ct == 1 && !actor_had?(id))     ||
+        (ct == 2 && !enemy_had?(id))     ||
+        (ct == 3 && !weapon_had?(id))    ||
+        (ct == 4 && !armor_had?(id))     ||
+        (ct == 5 && !accessory_had?(id)) ||
+        (ct == 6 && !item_had?(id))
+        )
+      str = Help.library[:discovery]
+    end
+    if @category > 0 and [3, 4, 5].include?(ct)
+      str += "　" + Help.library[:btn_equip]
+    end
+    @help_window.set_text(str)
+  end
+end
+
+class Game_Library
+  def presents_get(id)
+    if @presents == nil
+      @presents = []
+    end
+    return @presents[id]
+  end
+
+  def presents_set(actor,id)
+    @presents[actor] = id
+  end
+end
+
+## New Library Page
+class Game_Interpreter
+  def present_start(actor_id)
+    wait_for_message
+    $game_message.present_actor_id = actor_id
+    Fiber.yield while $game_message.present_choice?    
+    # 受け取りセリフ
+    actor = $game_actors[actor_id]
+    actor.present_words($game_temp.choice_present_id).each{|word|
+      word.execute
+      wait_for_message
+    }
+    # 脱出判定
+    if $game_temp.choice_present_id < 1
+      $game_message.present_actor_id = 0
+      return
+    end
+## Add Presents Data
+    if $game_library.presents_get(actor_id) == nil
+      a = []
+    else
+      a = $game_library.presents_get(actor_id)
+    end
+    b = a.size 
+    a[b] = [$game_temp.choice_present_id,actor.present_loveup($game_temp.choice_present_id)]
+    a.sort!.uniq!
+    $game_library.presents_set(actor_id,a)
+##
+    love_result_message(actor_id, actor.present_loveup($game_temp.choice_present_id))
+    present_start(actor_id)
+  end
+end
+
+module PRESDATA
+  NOFEED = [1,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,
+    559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,
+    576,577,578,579,580,581,582,583,584,585,586,801,807,811,815,819,823]
+end
+
+class Window_Library_RightMain < Window_Selectable
+## Character Library Pages
+  def draw_contents_actor
+    @page_max = 7
+    actor = $data_actors[@ext % 10000]
+    return unless actor
+    # 共通項目の描画
+    case @page
+    when 0
+      draw_actor_image(actor)
+      rect = standard_rect
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_stat(rect.y, actor)
+      draw_actor_illustrator(actor)
+    when 1
+      draw_actor_image(actor)
+      rect = standard_rect
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_fix_ability(rect.y, actor)
+      draw_actor_illustrator(actor)
+    when 2
+      if PRESDATA::NOFEED.include?(actor.id)
+        @page = 0
+        self.refresh
+      else
+        draw_actor_image(actor)
+        rect = standard_rect
+        rect.y = draw_common_id(actor)
+        rect.y = draw_actor_present_pool(rect.y, actor, 0)
+      end
+    when 3
+      if PRESDATA::NOFEED.include?(actor.id)
+        @page = 0
+        self.refresh
+      else
+        draw_actor_image(actor)
+        rect = standard_rect
+        rect.y = draw_common_id(actor)
+        rect.y = draw_actor_present_pool(rect.y, actor, 1)
+      end
+    when 4
+      if PRESDATA::NOFEED.include?(actor.id)
+        @page = 0
+        self.refresh
+      else
+        draw_actor_image(actor)
+        rect = standard_rect
+        rect.y = draw_common_id(actor)
+        rect.y = draw_actor_present_pool(rect.y, actor, 2)
+      end
+    when 5
+      if PRESDATA::NOFEED.include?(actor.id)
+        @page = 0
+        self.refresh
+      else
+        draw_actor_image(actor)
+        rect = standard_rect
+        rect.y = draw_common_id(actor)
+        rect.y = draw_actor_present_pool(rect.y, actor, 3)
+      end
+    when 6
+      if PRESDATA::NOFEED.include?(actor.id)
+        @page = 0
+        self.refresh
+      else
+        draw_actor_image(actor)
+        rect = standard_rect
+        rect.y = draw_common_id(actor)
+        rect.y = draw_actor_present_pool(rect.y, actor, 4)
+      end
+    else
+      @page = 0
+      self.refresh
+    end
+  end
+  
+  def draw_actor_present_pool(y,actor,org)
+    rect = standard_rect(y)
+    r1 = Rect.new(rect.x, rect.y, rect.width/2-50, rect.height)
+    r2 = Rect.new(rect.x+rect.width/2-28, rect.y, 28, rect.height)  
+    reset_font_settings
+    change_color(system_color)
+    draw_text(r1, "Gift Preferences")
+    r1.y += r1.height
+    r2.y += r2.height 
+    rr = r1.y
+    change_color(normal_color)
+    n = 0
+    if $game_library.presents_get(actor.id) != nil
+      a = $game_library.presents_get(actor.id).flatten
+    else
+      a = []
+    end
+    while n < 30
+      m = n + 301 + 30 * org
+      if $game_library.item.had?(m)
+        draw_item_name($data_items[m], r1.x, r1.y, true, r1.width)
+      else
+        draw_text(r1, "??????")
+      end
+      change_color(special_color)
+      if a.include?(m)
+        b = a.index(m)+1
+        txt = a[b].to_s
+      else
+        txt = "???"
+      end
+      draw_text(r2, txt)
+      change_color(normal_color)
+      r1.y += r1.height
+      r2.y += r2.height
+      n += 1
+      if n == 15
+        r1.x += r1.width + 50
+        r2.x += r1.width + 50
+        r1.y = rr
+        r2.y = rr
+      end
+    end
+    return r1.y + LINE_HEIGHT
+  end
+
+=begin
+  def draw_actor_present_pool(y,actor)
+    lr = half_left_rect(y)
+    rr = half_right_rect(y)   
+    reset_font_settings
+    change_color(system_color)
+    draw_text(lr, "Presents")
+    lr.y += lr.height
+    rr.y += rr.height 
+    change_color(normal_color)
+    n = 0
+    a = $game_presents[actor.id]
+    while n < a.size
+      m = a[n]
+      b = m[0]
+      draw_item_name($data_items[b], lr.x, lr.y, true, lr.width)
+      b = m[1]
+      txt = b.to_s
+      draw_text(rr, txt)
+      lr.y += lr.height
+      rr.y += rr.height
+      n += 1
+    end
+    return rr.y + LINE_HEIGHT
+  end
+=end
+  def draw_contents_enemy
+    enemy = $data_enemies[@ext % 10_000]
+    return unless enemy
+
+    @page_max = 5 + enemy_skill_page(enemy)
+    if @page >= @page_max
+      @page = 0
+      return refresh
+    end
+    # ページに応じた項目描画
+    rect = standard_rect
+    draw_enemy_image(enemy)
+    draw_common_page(@page_max)
+    rect.y = draw_common_id(enemy)
+    case @page
+    when 0
+      # 1ページ目 基本情報
+      draw_enemy_status(rect.y, enemy)
+    when 1
+      draw_enemy_statresist(rect.y, enemy)
+    when 2
+      draw_enemy_tropy(rect.y, enemy)
+    when 3
+      draw_enemy_stat(rect.y, enemy)
+    when 4
+      draw_chara_description(rect.y, enemy)
+    else
+      draw_enemy_skill(rect.y, enemy, @page - 5)
+    end
+  end
+
+## Enemy Parameters in the Library (Scales with difficulty)
+  def draw_enemy_status(y, enemy)
+    rect = standard_rect(y)
+    # 能力描画
+    # パラメータ文字列の最大の幅を持つものを取得
+    max_width = 0
+    for i in 0..7
+      txt = "#{Vocab::param(i)}"
+      now_w = text_size(txt).width
+      max_width = now_w + 10 if max_width < now_w + 10
+    end
+    # 描画処理
+    for i in 0..7
+      if i % 2 == 0
+        # 能力描画用の矩形作成
+        lr = Rect.new(rect.x, rect.y, max_width, rect.height)
+        rr = Rect.new(rect.x + max_width, rect.y, self.contents.width / 2 - max_width - 24, rect.height)
+      else
+        # 能力描画用の矩形作成
+        lr = Rect.new(self.contents.width / 2, rect.y, max_width, rect.height)
+        rr = Rect.new(self.contents.width / 2 + max_width, rect.y, self.contents.width / 2 - max_width - 24, rect.height)
+        rect.y += rect.height
+      end
+      change_color(system_color)
+      txt = "#{Vocab::param(i)}"
+      draw_text(lr, txt, 2)
+      change_color(normal_color)
+      param_base = enemy.params[i]
+      param_rate = enemy_features_pi(enemy, Game_BattlerBase::FEATURE_PARAM, i)
+      case i
+      when 0;     cel = $game_variables[41]
+      when 1;     cel = $game_variables[48]
+      when 2,4,7;     cel = $game_variables[42]
+      when 3,5;     cel = $game_variables[43]
+      when 6;     cel = $game_variables[44]
+      end
+      cel = 100 if enemy.no_difficulty?
+      txt = "#{(param_base * param_rate * cel).to_i/100}"      
+#      txt = "#{(param_base * param_rate).to_i}"
+      draw_text(rr, txt, 2)
+    end  
+    rect = standard_rect(rect.y + LINE_HEIGHT)
+    change_color(system_color)
+    draw_text(rect, "Resistances")
+    rect.y += rect.height
+    r = []
+    NWConst::Status::ELEMENT_RESIST.size.times{r.push(half_left_rect(rect.y))}
+    r.each_with_index { |elem, i|
+      elem.x += elem.width * (i % 2)
+      elem.y += elem.height * (i / 2)
+      elem.width -= 16
+    }
+    r.each_with_index do |rect, i|
+      element_id = NWConst::Status::ELEMENT_RESIST[i]
+      icon_id = NWConst::Status::ELEMENT_ICONS[i]
+      if i < 12 then
+        draw_element_resist(rect, enemy, element_id, icon_id)
+      end
+    end
+    return r[-1].y + r[-1].height + LINE_HEIGHT
+  end
+  
+## Enemy Elemental Resistance Page in the Library
+  def draw_enemy_resist(y, enemy)
+    rect = standard_rect(y)
+    change_color(system_color)
+    draw_text(rect, "Attribute Resistances")
+    rect.y += rect.height
+    r = []
+    NWConst::Status::ELEMENT_RESIST.size.times{r.push(half_left_rect(rect.y))}
+    r.each_with_index { |elem, i|
+      elem.x += elem.width * (i % 2)
+      elem.y += elem.height * (i / 2)
+      elem.width -= 16
+    }
+    r.each_with_index do |rect, i|
+      element_id = NWConst::Status::ELEMENT_RESIST[i]
+      icon_id = NWConst::Status::ELEMENT_ICONS[i]
+      draw_element_resist(rect, enemy, element_id, icon_id)
+    end
+    return r[-1].y + r[-1].height + LINE_HEIGHT
+  end
+## Enemy Status Resistance Page in the Library
+  def draw_enemy_statresist(y, enemy)
+    rect = standard_rect(y)
+    change_color(system_color)
+    draw_text(rect, "Status Resistances")
+    rect.y += rect.height
+    r = []
+    NWConst::Status::STATE_RESIST.size.times{r.push(half_left_rect(rect.y))}
+    r.each_with_index { |state_id, i|
+      state_id.x += state_id.width * (i % 2)
+      state_id.y += state_id.height * (i / 2)
+      state_id.width -= 16
+    }
+    r.each_with_index do |rect, i|
+      state_id = NWConst::Status::STATE_RESIST[i]
+      icon_id = $data_states[state_id].icon_index
+      draw_state_resist(rect, enemy, state_id, icon_id)
+    end
+    return r[-1].y + r[-1].height + LINE_HEIGHT
+  end
+## Window Element Corrections in the Monsterpedia
+  def draw_element_resist(rect, enemy, element_id, icon_id)
+    draw_icon(icon_id, rect.x, rect.y)
+    rect.x += 24
+    rect.width -= 24
+    r1 = Rect.new(rect.x, rect.y, rect.width/2+4, rect.height)
+    r2 = Rect.new(rect.x+rect.width/2, rect.y, rect.width/2, rect.height)
+    reset_font_settings
+    change_color(system_color)
+    text = "#{$data_system.elements[element_id]}"
+    draw_text(r1, text)
+    reset_font_settings
+    # Game_EnemyではなくRPG::Enemyなので手動でアクセスしています
+    element_rate = 1.00
+    enemy.features.select{|f|
+      f.code == NWFeature::FEATURE_ELEMENT_RATE && f.data_id == element_id
+    }.each{|f|
+      element_rate *= f.value
+    }
+    drain_result = enemy.features.select{|f|
+      f.code == NWFeature::FEATURE_BATTLER_ABILITY && f.data_id == NWFeature::Battler::ELEMENT_DRAIN
+    }.inject([]){|r, ft| r |= [ft.value]}.flatten.include?(element_id)
+    resist = Integer(element_rate * 100)
+    if drain_result
+      color = special_color
+      text = "DRAIN"
+    else
+      if resist == 0
+        color = special_color
+      elsif resist > 100
+        color = bad_color
+      elsif resist < 100
+        color = good_color
+      else
+        color = normal_color
+      end
+      text = resist == 0 ? "NULL" : "#{resist}%"
+    end
+    change_color(color)
+    draw_text(r2, text, 2)
+  end
+## Window Element Corrections in the Monsterpedia 2
+  def draw_state_resist(rect, enemy, state_id, icon_id)
+    draw_icon(icon_id, rect.x, rect.y)
+    rect.x += 24
+    rect.width -= 24
+    r1 = Rect.new(rect.x, rect.y, rect.width/2+16, rect.height)
+    r2 = Rect.new(rect.x+rect.width/2, rect.y, rect.width/2, rect.height)
+    reset_font_settings
+    change_color(system_color)
+    text = "#{$data_states[state_id].name}"
+    draw_text(r1, text)
+    reset_font_settings
+    state_rate = 1.00
+    case state_id
+    when 230..232 then
+      cel = $game_variables[45]
+    else 
+      cel = 100
+    end
+    enemy.features.select{|f|
+      f.code == NWFeature::FEATURE_STATE_RATE && f.data_id == state_id
+    }.each{|f|
+      state_rate *= f.value
+    }
+    resist = Integer(state_rate * cel)
+    if resist == 0
+      color = special_color
+    elsif resist > 100
+      color = bad_color
+    elsif resist < 100
+      color = good_color
+    else
+      color = normal_color
+    end
+    text = resist == 0 ? "NULL" : "#{resist}%"
+    change_color(color)
+    draw_text(r2, text, 2)
+  end
+## Window Element Corrections in the Monsterpedia 3
+  def draw_enemy_tropy_drop_item(y, enemy)
+    rect = standard_rect(y)
+    txt = "Drops"
+    reset_font_settings
+    change_color(system_color)
+    draw_text(rect, txt)
+    rect.y += rect.height
+    reset_font_settings
+    unless enemy.drop_items.all?{|drop|drop.kind == 0}
+      i = 0
+      r = [
+        Rect.new(rect.x, rect.y, rect.width/2-18, rect.height),
+        Rect.new(rect.x+rect.width/2, rect.y, rect.width/2-18, rect.height),
+        Rect.new(rect.x, rect.y+rect.height, rect.width/2-18, rect.height),
+      ]
+      enemy.drop_items.each do |drop|
+
+        num = $game_library.enemy_item_drop_num(enemy.id, drop)
+        if 1 <= num || ($TEST && Input.press?(:CTRL))
+          case drop.kind
+          when 1; item = $data_items[drop.data_id]
+          when 2; item = $data_weapons[drop.data_id]
+          when 3; item = $data_armors[drop.data_id]
+          else; item = nil
+          end
+          draw_item_name(item, r[i].x, r[i].y, true, r[i].width) if item
+        else
+          txt = "?" * 8
+          draw_text(r[i], txt)
+        end
+        i += 1
+      end
+      return r[i-1].y + rect.height + LINE_HEIGHT
+    end
+    
+    draw_text(rect, GET_ITEM_NO_NAME)      
+    return rect.y + rect.height + LINE_HEIGHT
+  end
+## Window Element Corrections in the Monsterpedia 4
+  def draw_enemy_tropy_steal_item(y, enemy)    
+    rect = standard_rect(y)
+    reset_font_settings
+    
+    enemy.steal_list.each{ |list_id, list|
+      next unless steal_item_list_index.key?(list_id)
+      rect = standard_rect(rect.y)
+      txt = steal_item_list_index[list_id]
+      change_color(system_color)
+      draw_text(rect, txt)
+      rect.y += rect.height
+      i = 0
+      r = [
+        Rect.new(rect.x,rect.y,rect.width/2-18,rect.height),
+        Rect.new(rect.x+rect.width/2,rect.y,rect.width/2-18,rect.height)
+      ]
+      change_color(normal_color)
+      list.each { |steal|
+        num = $game_library.enemy_item_steal_num(enemy.id, list_id, steal)
+        if 1 <= num || ($TEST && Input.press?(:CTRL))
+          item = nil
+          case steal[:kind]
+          when 1; item = $data_items[steal[:data_id]]
+          when 2; item = $data_weapons[steal[:data_id]]
+          when 3; item = $data_armors[steal[:data_id]]
+          end
+          draw_item_name(item, r[i].x, r[i].y, true, r[i].width) if item
+        else
+          txt = "?" * 8
+          draw_text(r[i], txt)
+        end
+        break if r.size - 1 <= i
+        i += 1
+      }
+      draw_text(rect, GET_ITEM_NO_NAME) if list.empty?
+      rect.y += rect.height + LINE_HEIGHT
+    }
+    return rect.y + rect.height + LINE_HEIGHT
+  end
+end
+
+## Switch configurations to default if they're not in the game save
+class Window_Config < Window_Selectable
+  def draw_item(index)
+    rect = item_rect(index)
+    rect.x += 20
+    rect.width -= 20
+    draw_text(rect, name(index))
+    return unless sub_exist?(index)
+    value = $game_system.conf[key(index)]
+    $game_system.conf[key(index)] = nil unless DATA_TEXT[key(index)][value]
+    if $game_system.conf[key(index)] == nil
+      $game_system.conf[key(index)] = DEFAULT[key(index)]
+    end
+    value = $game_system.conf[key(index)]
+    draw_text(item_sub_rect(index), DATA_TEXT[key(index)][value][:name])
+  end
+end
+## New options in Game Config
+module NWConst::Config
+  # 大項目のコンテンツ
+  CONTENTS = [
+    {:key => :window_tone,  :name => "Window Color", :sub => false,
+     :help => "Change the Window Color"},  
+    {:key => :sound_volume, :name => "Volume Settings", :sub => false,
+     :help => "Change in-game volume."},
+    {:key => :key_text,     :name => "Button Explanation", :sub => true,
+     :help => "Change display of button help.\r\n←/→ Select"},
+    {:key => :map_dash,     :name => "Auto Dash", :sub => true,
+     :help => "[Map]Change whether you walk or dash by default.\r\n←/→ "},
+    {:key => :map_speed,   :name => "Dash Speed", :sub => true,
+     :help => "[Map]Change dash speed.\r\n←/→ Slower/Faster"},
+    {:key => :bt_skip,      :name => "Speech Cut-ins", :sub => true,
+     :help => "[Battle]Change display of battle speech cut-ins.\r\n←/→ Select"},
+    {:key => :bt_auto,      :name => "Combat Log", :sub => true,
+     :help => "[Battle]Change combat log display setting.\r\n←/→ Select"},
+    {:key => :bt_wait,      :name => "Battle Wait", :sub => true,
+     :help => "[Battle]Change battle wait settings.\r\n←/→ Select"},
+    {:key => :bt_result,    :name => "Battle Result Speed", :sub => true,
+     :help => "[Battle]Change battle result speed when using button eval<Vocab.key_x>.\r\n←/→Select"},   
+    {:key => :bt_stype,     :name => "Display Skill Types", :sub => true,
+     :help => "[Battle]Change whether to display skill types in battle.\r\n←/→ Select"},
+    {:key => :ls_auto,      :name => "Auto Advance Mode", :sub => true,
+     :help => "[Defeat Event]Enable/Disable Auto Mode in H-Scenes.\r\n←/→ On/Off"},
+    {:key => :ls_wait,      :name => "Auto Wait", :sub => true,
+     :help => "[Defeat Event]Change Auto Text Speed.\r\n←/→ Slower/Faster"},
+    {:key => :ls_predation, :name => "Skip Vore Scenes", :sub => true,
+     :help => "[Defeat Event]Choose whether to hide vore scenes.\r\n←/→ On/Off"},     
+    {:key => :ls_skip,      :name => "Loss Events Skip", :sub => true,
+     :help => "Change settings for loss events\r\n←/→ Select"},
+    {:key => :mod_hpgauge,      :name => "Enemy HP Gauge", :sub => true,
+     :help => "[Моd]Change display setting for enemy HP gauges.\r\n←/→ Select"},
+#    {:key => :mod_states,      :name => "Detailed Combat Status", :sub => true,
+#     :help => "[Мod]Change settings for combat status viewer.\r\n←/→ Select"},
+    {:key => :mod_skills,      :name => "Skill Descriptions+", :sub => true,
+     :help => "[Mod]Enable/Disable detailed skill descriptions. ([A] Key).\r\n←/→ Select"},
+    {:key => :mod_log,      :name => "Combat Log", :sub => true,
+     :help => "[Mod]Enable/Disable combat log feature in battle.\r\n←/→ Select"},
+    {:key => :mod_library_traits,      :name => "Expanded Library", :sub => true,
+     :help => "[Mod]Enable/Disable additional Character/Job/Race pages.\r\n←/→ Select"},
+    {:key => :default,      :name => "Defaults", :sub => false,
+     :help => "Reset all settings to the default."},
+    {:key => :return, :name => "Return", :sub => false,
+     :help => "Return to Main Menu"},
+  ]
+  # 小項目のコンテンツ
+  DATA = {
+    :map_dash => [false, true],
+    :map_speed => [0, 1, 2],
+    :key_text => [:gamepad, :keyboard],
+    :bt_skip => [false, true],
+    :bt_auto => [false, true],
+    :bt_wait => [100, 50, 25],
+    :bt_result => [0, 1, 2, nil],
+    :bt_stype => [false, true],
+    :ls_auto => [false, true],
+    :ls_wait => [10, 5, 3],
+    :ls_predation => [false, true],
+    :ls_skip => [0, 1, 2],
+    :mod_hpgauge => [0, 1, 2],
+#    :mod_states => [0, 1],
+    :mod_skills => [0, 1],
+    :mod_log => [0, 1],
+    :mod_library_traits => [0, 1],
+  }
+  # 色調ゲージ用の色データ
+  TONE_COLOR = {
+    :tone_r => Color.new(255, 0, 0),
+    :tone_g => Color.new(0, 255, 0),
+    :tone_b => Color.new(0, 0, 255),
+  }
+  # 音量ゲージ用データ
+  SOUND_GAUGE = {
+    :volume_bgm => {:name => "BGM", :color => Color.new(255, 32, 32)},
+    :volume_bgs => {:name => "BGS", :color => Color.new(255,192,  0)},
+    :volume_me  => {:name => " ME", :color => Color.new(0, 192, 255)},
+    :volume_se  => {:name => " SE", :color => Color.new(32, 32, 255)},
+  }
+  # 小項目のコンテンツ文章
+  DATA_TEXT = {
+    :key_text => {
+      :gamepad => {:name => "Gamepad", :help => "Display help using gamepad keys"},
+      :keyboard => {:name => "Keyboard", :help => "Display help using keyboard keys"},
+    },
+    :map_dash => {
+      false => {:name => "Walk", :help => "Walk by default"},
+      true  => {:name => "Dash", :help => "Dash by default"},
+    },
+    :map_speed => {
+      0 => {:name => "Normal", :help => "Normal dash speed"},
+      1 => {:name => "Fast", :help => "Fast dash speed"},
+      2 => {:name => "Fastest", :help => "Fastest dash speed"},      
+    },
+    :bt_skip => {
+      false => {:name => "Display", :help => "Display battle lines and cut-ins"},
+      true  => {:name => "Omit", :help => "Skip battle lines and cut-ins"},
+    },
+    :bt_auto => {
+      false => {:name => "Manual", :help => "Manual advance for battle messages"},
+      true  => {:name => "Auto", :help => "Automatic advance for battle messages"},
+    },
+    :bt_wait => {
+      100 => {:name => "Normal", :help => "Default wait times in battle"},
+      50 =>  {:name => "Fast", :help => "Half wait times in battle"},
+      25 =>  {:name => "Fastest", :help => "Quarter wait times in battle"},       
+    },
+    :bt_result => {
+      0   => {:name => "No Skip", :help => "Do not skip"},
+      1   => {:name => "Slow", :help => "Wait on each character"},
+      2   => {:name => "Fast", :help => "Wait on each line or page"},
+      nil => {:name => "Instant", :help => "Skip all at once"},
+    },
+    :bt_stype => {
+      true => {:name => "Hide", :help => "Hide selected skill types in battle"},
+      false  => {:name => "Show all", :help => "Display all skill types in battle"},
+    },
+    :ls_auto => {
+      false => {:name => "Off", :help => "Do not use auto mode during scenes"},
+      true  => {:name => "On", :help => "Use auto mode during scenes"},
+    },
+    :ls_wait => {
+      10 => {:name => "Slow", :help => "Pause twice as long during scenes"},
+      5 =>  {:name => "Normal", :help => "Use default timings during scenes"},
+      3 =>  {:name => "Fast", :help => "Pause half as long during scenes"},      
+    },
+    :ls_predation => {
+      false => {:name => "Watch", :help => "Display vore scenes"},
+      true  => {:name => "Skip", :help => "Skip vore scenes"},
+    },
+    :ls_skip => {
+      0 => {:name => "Always View", :help => "Always show loss scenes"},
+      1 => {:name => "Skip Already Seen", :help => "Only show new loss scenes"},
+      2 => {:name => "Always Ask", :help => "Ask whether to show each loss scene"},
+    },
+    :mod_hpgauge => {
+      0 => {:name => "Off", :help => "Do not display enemy HP gauges."},
+      1 => {:name => "Above", :help => "Display HP gauges above enemy sprites."},
+      2 => {:name => "Below", :help => "Display HP gauges below enemy sprites."},
+    },
+#    :mod_states => {
+#      0 => {:name => "Off", :help => "Normal combat status display--no additional details."},
+#      1 => {:name => "On", :help => "Detailed combat status--select to view details."},
+#    },
+    :mod_skills => {
+      0 => {:name => "Off", :help => "Disable detailed skill descriptions."},
+      1 => {:name => "On", :help => "Enable detailed skill descriptions."},
+    },
+    :mod_log => {
+      0 => {:name => "Off", :help => "Disable Log feature."},
+      1 => {:name => "On", :help => "Enable Log+ feature."},
+    },
+    :mod_library_traits => {
+      0 => {:name => "Off", :help => "Disable expanded library features."},
+      1 => {:name => "On", :help => "Enable expanded library features."},
+    },
+  }
+  # 規定値
+  DEFAULT = {
+    :tone_r => -34,
+    :tone_g =>   0,
+    :tone_b =>  68,
+    :volume_bgm => 70,
+    :volume_bgs => 70,
+    :volume_se => 70,
+    :volume_me => 70,
+    :key_text => :keyboard,
+    :map_dash => false,
+    :map_speed => 0,
+    :bt_skip => false,
+    :bt_auto => false,
+    :bt_wait => 100,
+    :bt_result => nil,
+    :bt_stype => true,
+    :ls_auto => false,
+    :ls_wait => 5,
+    :ls_predation => false,
+    :ls_skip => 0,
+    :mod_hpgauge => 0,
+#   :mod_states => 0,
+    :mod_skills => 1,
+    :mod_log => 0,
+    :mod_library_traits => 0,
+  }
+end   
+
+#===============================================================================
+#   Attack Attributes (ID icons, names)
+#===============================================================================
+module Skill_Data
+  TARG = ["None", "Foe", "All Foes", "Random Foes", "Random Allies", "Everyone", "Random Foes and Allies", "Ally", "All Allies", "Fallen Ally", "All Fallen Allies", "Self"]
+  EX_TAR = [/<敵単体連続:(\d+)>/, /<敵全体連続:(\d+)>/, /<敵ランダム:(\d+)>/,
+            /<味方ランダム:(\d+)>/, /<敵味方全体>/ ,/<敵味方ランダム:(\d+)>/]
+  ATK_TYPE = ["•Auto-Hit ", "•Physical Attack ", "•Magical Attack "]
+  STEAL_TYPE = ["Nothing", "Item", "Food", "Material", "Panties"]
+end
+#===============================================================================
+#   Display/Hide Window
+#===============================================================================
+
+class Scene_Skill < Scene_ItemBase
+  
+  alias description_extension_start start
+  def start
+    description_extension_start
+    create_description_window if $game_system.conf[:mod_skills] == 1
+    create_descstatus_window if $game_system.conf[:mod_skills] == 1
+  end
+
+  def create_description_window
+    @description_window = Window_Item_Description.new
+    @description_window.z = 300
+    @description_window.back_opacity = 192
+    @description_window.hide
+  end
+  
+  def unexpand
+    @description_window.hide
+    @item_window.activate
+    @item_window.show
+    @status_window.show
+    @command_window.show
+    @item_window.cursor_fix = false
+  end
+  
+  alias description_extension_create_item_window create_item_window
+  def create_item_window
+    description_extension_create_item_window
+    @item_window.set_handler(:expand,     method(:on_item_expand))
+    @item_window.set_handler(:statuspack,     method(:on_statuspack))
+  end
+
+  def on_item_ok
+    @actor.set_last_skill(@command_window.current_ext, item)
+    if $game_system.conf[:mod_skills] == 1
+      if @selstate_window.active
+        @selstate_window.hide
+        @selstate_window.active = false
+        @description_window.visible = true
+        @help_window.show
+      end
+      if @description_window.visible
+        @description_window.hide
+        @item_window.show
+        @status_window.show
+        @command_window.show
+        @item_window.cursor_fix = false
+      end
+    end
+    determine_item
+  end
+
+  def on_item_cancel
+    if $game_system.conf[:mod_skills] == 1
+      if @selstate_window.active
+        @selstate_window.hide
+        @selstate_window.active = false
+        @description_window.visible = true
+        @help_window.show
+      end
+      if @description_window.visible
+        @description_window.hide
+        @item_window.activate
+        @item_window.show
+        @status_window.show
+        @command_window.show
+        @item_window.cursor_fix = false
+      else
+        @item_window.unselect
+        @command_window.activate
+      end
+    else
+      @item_window.unselect
+      @command_window.activate
+      @key_help_window.show
+    end
+  end
+  
+  def on_item_expand
+    if @selstate_window.active
+      @selstate_window.hide
+      @selstate_window.active = false
+      @description_window.visible = true
+      @help_window.show
+    end
+    if @description_window.visible
+        if @description_window.close_page?
+          @description_window.hide
+          @item_window.activate
+          @item_window.show
+          @status_window.show
+          @command_window.show
+          @item_window.cursor_fix = false
+        else
+          @description_window.next_page
+          @description_window.show_description(item,@actor)
+        end
+    else
+      @description_window.show
+      @item_window.hide
+      @status_window.hide
+      @command_window.hide
+      @item_window.cursor_fix = true
+      @description_window.nul_page
+      @description_window.show_description(item,@actor)
+    end
+  end
+
+#
+# For states window from skills
+#
+  def create_descstatus_window
+    @selstate_window = Window_States_Select.new
+  end
+
+  def on_statuspack
+    if @description_window.get_state_pack_full(@item_window.item,@actor) != []
+      if @description_window.visible && @selstate_window.visible == false
+        temp = @description_window.get_state_pack_full(@item_window.item,@actor)
+        @selstate_window.show.activate
+        @selstate_window.get_selection_l(temp)
+        @description_window.visible = false
+        @description_window.active = false
+        @help_window.hide
+      elsif @selstate_window.visible == true
+        @selstate_window.hide
+        @selstate_window.active = false
+        @description_window.active = true
+        @description_window.visible = true
+        @help_window.show
+      end
+    end
+  end
+end
+
+class Window_Item_Description < Window_Base
+  
+  def initialize
+    super(0,120,Graphics.width,360)
+    @page    = 0
+    @maxpage = 0
+  end
+
+#===============================================================================
+#   Display Parameters
+#===============================================================================  
+  
+  def close_page?
+    return @page >= @maxpage
+  end
+
+  def next_page
+    @page += 1
+  end
+
+  def nul_page
+    @page = 0
+    @maxpage = 0
+  end
+  
+  def skill_name(item)
+    temp = item.icon_index
+    temp = temp.to_s
+    temp = "\\*\\C[1]Name:\\C[0] " + "\\*\\i[" + temp + "]" + item.name + "\n"
+    return temp
+  end
+
+  def skill_target(item)
+    temp = [item.scope,1]
+    temp2 = item.note
+    temp2.each_line{|line|
+    case line
+    when Skill_Data::EX_TAR[0] ; temp = [1,$1.to_i]
+    when Skill_Data::EX_TAR[1] ; temp = [2,$1.to_i]
+    when Skill_Data::EX_TAR[2] ; temp = [3,$1.to_i]
+    when Skill_Data::EX_TAR[3] ; temp = [4,$1.to_i]
+    when Skill_Data::EX_TAR[4] ; temp = [5, 1]
+    when Skill_Data::EX_TAR[5] ; temp = [6,$1.to_i]
+    end
+    }
+    if temp[1] != 1
+      temp[1] = temp[1].to_s
+      temp[1] = "×" + temp[1]
+    else
+      temp[1] = ""
+    end
+    temp = "\\*\\C[1]Target:\\C[0] " + Skill_Data::TARG[temp[0]] + temp[1] + "\n"
+    return temp
+  end
+
+  def skill_atk_type(item)
+    temp = Skill_Data::ATK_TYPE[item.hit_type]
+    return temp
+  end
+  
+  def skill_speed(item)
+    temp = item.speed
+    if temp != 0
+      temp = temp.to_s
+      temp = "•Speed +" + temp +" "
+    else
+      temp = ""
+    end
+    return temp
+  end
+
+  def skill_accuracy(item)
+    if item.data_ex[:skill_hit] != nil
+      temp = item.data_ex[:skill_hit] * 100
+      temp = temp.to_i
+      temp = temp.to_s
+      temp = "•Accuracy=" + temp + "% "
+    elsif item.data_ex[:skill_hit_factor] != nil
+      temp = item.data_ex[:skill_hit_factor] * 100
+      temp = temp.to_i
+      if temp < 0
+        temp = -temp
+        temp = temp.to_s
+        temp = "•Accuracy -" + temp + "% "
+      else
+        temp = temp.to_s
+        temp = "•Accuracy +" + temp + "% "
+      end
+    else
+      temp = ""
+    end
+    return temp
+  end
+  
+  def skill_critical(item)
+    if item.damage.type != 0
+      if item.damage.critical
+        if item.data_ex[:critical_ex] != nil
+          temp = item.data_ex[:critical_ex]
+          temp = temp.to_s
+          temp = "•" + temp +"% Critical Rate"
+        else
+          temp = ""
+        end
+      else
+        temp = "•No Critical"
+      end
+    else
+      temp = ""
+    end
+    return temp
+  end
+  
+  def skill_dformula(item)
+    if item.damage.type != 0    
+      temp = item.damage.formula
+      temp = temp.gsub("b.mhp", "Max HP")
+      temp = temp.gsub("b.hp", "Current HP")
+      temp = temp.gsub("(b.def + b.mdef)/2", "(Defense+Willpower)/2")
+      temp = temp.gsub("b.mdf", "Willpower")
+      temp = temp.gsub("b.def", "Defense")
+      temp = temp.gsub("[a.atk, a.def, a.mat, a.mdf, a.agi, a.luk].max", "Highest Stat")
+      temp = temp.gsub("v[108]", "Level")
+      temp = temp.gsub("v[102]", "Steps Taken")
+      temp = temp.gsub("$game_library.actor_down(a.id)", "Character Deaths")
+      temp = temp.gsub("[", "Highest of (")
+      temp = temp.gsub("].max", ")")
+      temp = temp.gsub("a.atk", "Attack")
+      temp = temp.gsub("a.def", "Defense")
+      temp = temp.gsub("a.mat", "Magic")
+      temp = temp.gsub("a.mdf", "Willpower")
+      temp = temp.gsub("a.agi", "Agility")
+      temp = temp.gsub("a.luk", "Dexterity")
+      temp = temp.gsub("a.hp", "Current HP")
+      temp = temp.gsub("a.mhp", "Max HP")
+      temp = temp.gsub("a.mmp", "Max MP")
+      temp = temp.gsub("a.wp_atk", "Normal Attack")
+      temp = temp.gsub("*", "×")
+      temp = "\\*\\C[1]Formula: \\C[0](" + temp + ")"
+      temp2 = item.damage.variance
+      if temp2 != 0
+        temp2 = temp2.to_s
+        temp = temp + " ± " + temp2 + "%"
+      end
+      temp = temp + "\n"
+    else
+      temp = ""
+    end
+    return temp
+  end
+  
+  def skill_attribute(item)
+    if item.damage.type != 0
+      temp = ""
+      if item.damage.element_id == -1
+        temp = temp + "of Normal Attack"
+      else
+        temp = temp + $data_system.elements[item.damage.element_id]
+      end
+      if item.data_ex[:element_ex] != nil
+        temp2 = 0
+        while temp2 < item.data_ex[:element_ex].size
+          if item.data_ex[:element_ex][temp2] != item.damage.element_id
+            temp = temp + ", " + $data_system.elements[item.data_ex[:element_ex][temp2]]
+          end
+          temp2 += 1
+        end
+      end
+      if temp != ""
+        temp = "\\*\\C[1]Attribute: \\C[0]" + temp + "\n"
+      end
+    else
+      temp = ""
+    end
+    return temp
+  end
+
+  def skill_slayer(item)
+    if item.data_ex[:booster_ex_category_attack] != nil
+      temp = item.data_ex[:booster_ex_category_attack]
+      temp2 = ""
+      temp.each{|key, val|
+      temp3 = val * 100
+      temp3 = temp3.to_i
+      temp3 = temp3.to_s
+      if key-10 < State_Data::SLAYER.size
+        temp2 = temp2 + State_Data::SLAYER[key-10] + " + " + temp3 + "%, "
+#      else
+#        temp2 = temp2 + "??? + " + temp3 + "%, "
+      end
+      }
+      if temp2 != ""
+      temp = "\\*\\C[1]Increased damage to: \\C[0]" + temp2.chop.chop + "\n"
+      else
+        temp = ""
+      end
+    else
+      temp = ""
+    end
+    return temp
+  end
+
+  def skill_wrate(item)
+    if item.data_ex[:weapon_rate] != nil
+      temp = item.data_ex[:weapon_rate]
+      temp3 = ""
+      temp.each{|key, val|
+      temp2 = val * 100
+      temp2 = temp2.to_i
+      temp2 = temp2.to_s
+      if key == 0 
+        temp2 = "" + "No Weapon" + " +" + temp2 + "%,"
+      elsif key >= $data_system.weapon_types.size
+        temp2 = "Shields" + " +" + temp2 + "%,"
+      else
+        temp2 = $data_system.weapon_types[key] + " +" + temp2 + "%,"
+      end
+      temp2 = temp2.gsub(" ", " ")
+      temp3 = temp3 + temp2 + " "
+      }
+      temp = "\\*\\C[1]Weapon Compatibility: \\C[0]" + temp3.chop.chop + "\n"
+    else
+      temp = ""
+    end
+    return temp
+  end
+  
+  def skill_sboost(item)
+    if item.data_ex[:state_boost] != nil
+      temp = item.data_ex[:state_boost]
+      temp2 = ""
+      temp.each{|key, val|
+      temp3 = val * 100
+      temp3 = temp3.to_i
+      temp3 = temp3.to_s
+      if !(key >= 271 && key <= 276)
+        temp2 = temp2 + "" + $data_states[key].name + " +" + temp3 + "%, "
+      end
+      }
+      temp = "\\*\\C[1]Amplified Damage Condition: \\C[0]" + temp2.chop.chop + "\n"
+    else
+      temp = ""
+    end
+    return temp
+  end
+  
+  def skill_addstate(item)
+    temp = ""
+    item.effects.each{|effect|
+    if effect.code == 21
+      temp2 = effect.value1 * 100
+      temp2 = temp2.to_i
+      temp2 = temp2.to_s
+      if effect.data_id == 0
+        temp = temp + temp2 + "% " + "of Equipped Effect Chance, "
+      else
+        temp = temp + $data_states[effect.data_id].name + "(" + temp2 + "%), "
+      end
+    end
+    }
+    if temp != ""
+      temp = "\\*\\C[1]Adds Status: \\C[0]" + temp.chop.chop + "\n"
+    end
+    return temp
+  end
+  
+  def skill_remstate(item)
+    temp = ""
+    item.effects.each{|effect| 
+    if effect.code == 22
+      temp = temp + $data_states[effect.data_id].name + ", "
+    end
+    }
+    if temp.size > 1000
+      temp = "•Multiple states (Over 100), "
+    end
+    if temp != ""
+      temp = "\\*\\C[1]Removes Status: \\C[0]" + temp.chop.chop + "\n"
+    end
+    return temp
+  end
+  
+  def skill_selfstate(item)
+    temp = ""
+    item.effects.each{|effect| 
+    if effect.code == 53
+      temp = temp + $data_states[effect.data_id].name + ", "
+    end
+    }
+    if temp != ""
+      temp = "\\*\\C[1]Sets Status: \\C[0]" + temp.chop.chop + "\n"
+    end
+    return temp
+  end
+  
+  def skill_predstate(item)
+    temp = ""
+    item.effects.each{|effect| 
+    if effect.code == 52
+      effect.value1.each{|val| temp = temp + $data_states[val].name + ", "}
+    end
+    }
+    if temp != ""
+      temp = "\\*\\C[1]Predation Condition: \\C[0]" + temp.chop.chop + "\n"
+    end
+    return temp
+  end
+  
+  def skill_deadstate(item)
+    temp = ""
+    item.effects.each{|effect| 
+    if effect.code == 51
+      temp = temp + $data_states[effect.value2[:id]].name + ", "
+    end
+    }
+    if temp != ""
+      temp = "\\*\\C[1]Instant KO Condition: \\C[0]" + temp.chop.chop + "\n"
+    end
+    return temp
+  end
+  
+  def skill_effects(item)
+    temp = ""
+    item.effects.each{|effect|
+    case effect.code
+    when 11
+      temp2 = effect.value1 * 100
+      temp2 = temp2.to_i
+      temp2 = temp2.to_s
+      temp = temp + "Recover " + temp2 +"% HP, "
+    when 12
+      if effect.value1 != 0
+        temp2 = effect.value1 * 100
+        temp2 = temp2.to_i
+        temp2 = temp2.to_s
+        temp = temp + "Recover " + temp2 +"% MP, "
+      else
+        temp2 = effect.value2
+        temp2 = temp2.to_i
+        temp2 = temp2.to_s
+        temp = temp + "Recover " + temp2 +" MP, "        
+      end
+    when 13
+      temp2 = effect.value1
+      temp2 = temp2.to_i
+      temp2 = temp2.to_s
+      temp = temp + "Recover " + temp2 +"% SP, "
+    when 54
+      temp2 = effect.value1 * 100
+      temp2 = temp2.to_i
+      temp2 = temp2.to_s
+      if effect.data_id == :HP
+        temp = temp + "Drain " + temp2 +"% HP, "
+      elsif effect.data_id == :MP
+        temp = temp + "Drain " + temp2 +"% MP, "
+      end
+    when 41
+      temp = temp + "Guaranteed Escape, "
+    when 44
+      temp2 = $data_common_events[effect.data_id].name
+      temp = temp + temp2 + ", "
+    when 45
+      temp = temp + "Steal " + Skill_Data::STEAL_TYPE[effect.data_id] + ", "
+    when 46
+      temp2 = effect.value2[0]
+      temp2 = temp2.to_s
+      temp3 = $data_items[effect.value1[0]].name
+      temp = temp + "Acquire " + temp2 + "×" + temp3 + ", "
+    when 47
+      temp2 = effect.data_id.to_s
+      temp = temp + "Nullify Attack ×" + temp2 + ", "
+    when 48
+      temp2 = effect.data_id.to_s
+      temp = temp + "Freeze Time for " + temp2 + " Turn(s), "
+    end
+    }
+    if item.data_ex[:pinchi_boost] != nil
+      temp2 = item.data_ex[:pinchi_boost]
+      temp2 = temp2.to_s
+      temp = temp + temp2 +"% Damage per % of Missing HP, "
+    end
+    if item.data_ex[:warp_item?]
+      temp = temp + "Overworld Warp, "
+    end
+    if item.data_ex[:apply_pharmacology?]
+      temp = temp + "Boosted by Medicine Lore, "
+    end
+    temp2 = ""
+    item.features.each{|effect|
+    if effect.code == 105
+      temp2 = effect.value * 100
+      temp2 = temp2.to_i.to_s
+    end
+    }
+    if temp2 != ""
+      temp = temp + "+" + temp2 +"% Damage Amplification, "
+    end
+#    if item.data_ex[:use_slot?]
+#      temp = temp + "Play Slots, "
+#    end
+#    if item.data_ex[:use_poker?]
+#      temp = temp + "Play Poker, "
+#    end
+    if temp != ""
+      temp = "\\*\\C[1]Other Effects: \\C[0]" + temp.chop.chop + "\n"
+    end
+    return temp
+  end
+  
+  def get_description(item)
+    tempx = skill_name(item)
+    tempx = tempx + skill_target(item)
+    tempx = tempx + skill_atk_type(item) + skill_speed(item) + skill_accuracy(item) + skill_critical(item) + "\n"
+    tempx = tempx + skill_dformula(item)
+    tempx = tempx + skill_attribute(item)
+    tempx = tempx + skill_slayer(item)
+    tempx = tempx + skill_wrate(item)
+    tempx = tempx + skill_sboost(item)
+    tempx = tempx + skill_addstate(item)
+    tempx = tempx + skill_remstate(item)
+    tempx = tempx + skill_selfstate(item)
+    tempx = tempx + skill_predstate(item)
+    tempx = tempx + skill_deadstate(item)
+    tempx = tempx + skill_effects(item)
+    return tempx
+  end
+  
+  
+  def skill_get_state_pack(item)
+    tempx = []
+    if item.data_ex[:state_boost] != nil
+      temp = item.data_ex[:state_boost]
+      temp.each{|key, val|
+      if !(key >= 271 && key <= 276)
+        tempx[tempx.size] = key
+      end
+      }
+    end
+    item.effects.each{|effect|
+    if effect.code == 21
+      if effect.data_id != 0
+        tempx[tempx.size] = effect.data_id
+      end
+    end
+    if effect.code == 22
+      tempx[tempx.size] = effect.data_id
+    end
+    if effect.code == 53
+      tempx[tempx.size] = effect.data_id
+    end
+    if effect.code == 52
+      effect.value1.each{|val| tempx[tempx.size] = val}
+    end
+    if effect.code == 51
+      tempx[tempx.size] = effect.value2[:id]
+    end
+    }
+    return tempx.uniq
+  end
+
+  def get_state_pack_full(item,actor)
+    ntemp = []
+    if item.data_ex[:multi_invoke] != nil
+      ntemp[ntemp.size] = skill_get_state_pack($data_skills[item.data_ex[:multi_invoke][0]])
+      ntemp[ntemp.size] = skill_get_state_pack($data_skills[item.data_ex[:multi_invoke][1]])
+    elsif item.id == 3147
+      ntemp[ntemp.size] = skill_get_state_pack($data_skills[actor.change_skill(item.id)])
+    elsif item.id == 1996
+      @maxpage = 10
+      ntemp[ntemp.size] = skill_get_state_pack($data_skills[3247 + @page])
+    elsif item.id == 1995
+      @maxpage = 6
+      ntemp[ntemp.size] = skill_get_state_pack($data_skills[3270 + @page])
+    elsif item.data_ex[:random_invoke] != nil
+      @maxpage = item.data_ex[:random_invoke].size - 1
+      temp2 = $data_skills[item.data_ex[:random_invoke][@page]]
+      if temp2.data_ex[:multi_invoke] != nil
+        ntemp[ntemp.size] = skill_get_state_pack($data_skills[temp2.data_ex[:multi_invoke][0]])
+        ntemp[ntemp.size] = skill_get_state_pack($data_skills[temp2.data_ex[:multi_invoke][1]])
+      else
+        ntemp[ntemp.size] = skill_get_state_pack(temp2)
+      end
+    else
+      ntemp[ntemp.size] = skill_get_state_pack(item)
+    end
+    ntemp.flatten!.uniq!
+    return ntemp
+  end
+  def show_description(item,actor)
+#    msgbox_p(item)
+    contents.clear
+    temp = ""
+    if item.data_ex[:multi_invoke] != nil
+      temp = temp + get_description($data_skills[item.data_ex[:multi_invoke][0]])
+      temp = temp + get_description($data_skills[item.data_ex[:multi_invoke][1]])
+    elsif item.id == 3147
+      temp = temp + get_description($data_skills[actor.change_skill(item.id)])
+    elsif item.id == 1996
+      @maxpage = 10
+      temp = temp + get_description($data_skills[3247 + @page])
+    elsif item.id == 1995
+      @maxpage = 6
+      temp = temp + get_description($data_skills[3270 + @page])
+    elsif item.data_ex[:random_invoke] != nil
+      @maxpage = item.data_ex[:random_invoke].size - 1
+      temp2 = $data_skills[item.data_ex[:random_invoke][@page]]
+      if temp2.data_ex[:multi_invoke] != nil
+        temp = temp + get_description($data_skills[temp2.data_ex[:multi_invoke][0]])
+        temp = temp + get_description($data_skills[temp2.data_ex[:multi_invoke][1]])
+      else
+        temp = temp + get_description(temp2)
+      end
+    else
+      temp = temp + get_description(item)
+    end
+    draw_text_ex(0, 0, temp)
+#    if item.succubus_unavailable? && actor.succubus?
+#      draw_text_ex(300,24,"[\\c[10]Unavailable to Nightmares\\c[0]]")
+#    elsif item.succubus_unavailable?
+#      draw_text_ex(300,24,"[\\c[8]Unavailable to Nightmares\\c[0]]")
+#    end
+    if @page != @maxpage
+      draw_text(436,145,600,308,"A:More Results")
+    end
+    if get_state_pack_full(item,actor) != []
+      draw_text(436,195,600,260,"S:View State Info")
+    end
+  end
+end
+
+class Window_SkillList < Window_Selectable
+
+  def process_handling
+    return unless open? && active
+    return process_ok       if ok_enabled?        && Input.trigger?(:C)
+    return process_cancel   if cancel_enabled?    && Input.trigger?(:B)
+    return process_pagedown if handle?(:pagedown) && Input.trigger?(:R)
+    return process_pageup   if handle?(:pageup)   && Input.trigger?(:L)
+    return process_alt      if Input.trigger?(:X) && $game_system.conf[:mod_skills] == 1
+    return process_sta      if Input.trigger?(:Y) && $game_system.conf[:mod_skills] == 1
+  end
+
+  def process_alt
+    call_handler(:expand)
+  end
+
+  def process_sta
+    call_handler(:statuspack)
+  end
+end
+
+#===============================================================================
+# End
+#===============================================================================
+module State_Data
+  RES_TYPE = ["•None", "•Attack Foes", "•Attack Random Foes or Allies", "•Attack Luka", "•Cannot Act"]
+  SEAL_TYPE = ["[None]", "[None]", "[None]", "[None]", "[None]","[None]",
+  "Dagger","Sword","Rapier",
+  "Katana","Spear","Axe",
+  "Club","Scythe","Bow",
+  "Whip","Throwing","Flail",
+  "Fan","Gun","Multiweapon",
+  "Unarmed","White Magic","Black Magic",
+  "Time Magic","Summoning","Holy",
+  "Dark","Spellblade","Taoism",
+  "Thievery","Ninjutsu","Piracy",
+  "Justice","Mercantile","EX-Item",
+  "Oracle","Dancing","Singing","Talk",
+  "Magic Science","Alchemy","Grimoire",
+  "Makina","Cooking","Medicine",
+  "Service","Ruling","Heroism",
+  "Sexcraft","Demon Arts","Ocean",
+  "Slime","Beast","Snake",
+  "Tentacle","Wing","Insect",
+  "Plant","Corpse","Artificial",
+  "Nature","Breath","Special",
+  "Weapon","[None]","[None]"]
+  SLAYER = ["Bosses", "Humans", "Yoma", "Demi-Humans", "Succubi", 
+            "Vampires", "Mermaids", "Elves", "Fairies", 
+            "Slimes", "Beasts", "Kitsune", "Lamias", 
+            "Scylla", "Harpies", "Dragons", "Land-Dwellers",
+            "Sea-Dwellers", "Insects", "Plants", "Zombies",
+            "Ghosts", "Dolls", "Chimeras", "Angels", 
+            "Apoptosis", "???", "Giants", "Roids",
+            "Nightmares", "Flying"]
+  FEATURE_TYPE = ["•Auto-Fight","•Guard","•Cover","•Conserve SP"]
+end
+
+
+#===============================================================================
+# Status Timer
+#===============================================================================
+class Game_BattlerBase
+  def st_states(state_id)
+    return @state_turns[state_id]
+  end
+  
+  def def_wall
+    case @cnt[:defense_wall].size
+    when 0 
+      return "\\c[7]□□"
+    when 1 
+      return "\\c[3]■\\c[7]□"
+    else
+      return "\\c[3]■■"
+    end
+  end
+
+  def d_skill
+    if @cnt[:dead_skill_flag] && (dead_skill.size + final_invoke.size) != 0
+      return "○"
+    else
+      return "×"
+    end
+  end
+
+  def a_stand
+    if @cnt[:auto_stand] && auto_stand != 1
+      return "○"
+    else
+      return "×"
+    end
+  end
+end
+
+#===============================================================================
+# Status Window
+#===============================================================================
+
+
+class Window_States_Description < Window_Base
+  def initialize
+    super(0,48,Graphics.width,384)
+    self.z = 400
+    self.visible = false
+    @yy = 0
+  end  
+
+  def state_name(state)
+    draw_icon(state.icon_index == 0 ? 299 : state.icon_index,0,@yy)
+    draw_text(24,@yy,516,24,state.name)
+  end
+
+  def state_timer(item,state)
+    if state.auto_removal_timing != 0
+      temp = (item.st_states(state.id)).to_s
+    else
+      temp = "∞"
+    end
+    temp = "Turns:#{temp}"
+    draw_text(540,@yy,70,24,temp)
+  end
+  
+  def state_restrict(state)
+    draw_text(0,@yy,389,24,State_Data::RES_TYPE[state.restriction])
+    @yy +=24
+  end
+
+  def state_effect(effect)
+    tempar = []
+    case effect.code
+    when 11
+      temp = effect.value * 100
+      if temp != 0
+       temp = temp.to_i - 100
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•#{$data_system.elements[effect.data_id]} Resistance +#{temp}%"
+        else
+          temp = temp.to_s
+          temp = "•#{$data_system.elements[effect.data_id]} Resistance -#{temp}%"
+        end
+      else
+        temp = "•Nullify #{$data_system.elements[effect.data_id]}"
+      end
+    when 13
+      temp = effect.value * 100
+      if temp != 0
+       temp = temp.to_i - 100
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•#{$data_states[effect.data_id].name} Resistance +#{temp}%"
+        else
+          temp = temp.to_s
+          temp = "•#{$data_states[effect.data_id].name} Resistance -#{temp}%"
+        end
+      else
+        temp = "•Nullify #{$data_states[effect.data_id].name}"
+      end
+      if effect.data_id >= 271 && effect.data_id <=276
+        temp = nil
+      end
+    when 14
+      temp = "•Nullify #{$data_states[effect.data_id].name}"
+    when 22
+      case effect.data_id
+      when 0
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Accuracy -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Accuracy +" + temp + "%"
+        end
+      when 1
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Evasion -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Evasion +" + temp + "%"
+        end
+      when 2
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Critical Rate -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Critical Rate +" + temp + "%"
+        end
+      when 3
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Critical Avoid -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Critical Avoid +" + temp + "%"
+        end
+      when 4
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Magic Evasion -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Magic Evasion +" + temp + "%"
+        end
+      when 5
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Magic Reflection -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Magic Reflection +" + temp + "%"
+        end
+      when 6
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Counter Rate -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Counter Rate +" + temp + "%"
+        end
+      when 7
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•-" + temp + "% HP Per Turn"
+        else
+          temp = temp.to_s
+          temp = "•+" + temp + "% HP Per Turn"
+        end
+      when 8
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•-" + temp + "% MP Per Turn"
+        else
+          temp = temp.to_s
+          temp = "•+" + temp + "% MP Per Turn"
+        end
+      when 9
+        temp = effect.value * 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•-" + temp + "% SP Per Turn"
+        else
+          temp = temp.to_s
+          temp = "•+" + temp + "% SP Per Turn"
+        end
+      end
+    when 23
+      case effect.data_id
+      when 0
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Chance to be hit=" + temp + "%"
+      when 4
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•MP Cost=" + temp + "%"
+      when 5
+        temp = (effect.value).to_i.to_s
+        temp = "•Attack SP Charge ×" + temp + ""
+      when 6
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Physical Damage Taken=" + temp + "%"
+      when 7
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Magical Damage Taken=" + temp + "%"
+      end
+    when 31
+      temp = "•" + $data_system.elements[effect.data_id] + " Strike"
+    when 32
+      temp = (effect.value * 100).to_i.to_s
+      temp = "•#{$data_states[effect.data_id].name} Strike +#{temp}%"
+    when 34
+      temp = (effect.value).to_i.to_s
+      temp = "•+#{temp} Normal Attacks"
+      temp = effect.value == 1 ? temp + "" : temp
+      temp = effect.value > 1 && effect.value < 1 ? temp + "and" : temp
+      temp = temp + ""
+    when 41
+      temp = "•Enable " + State_Data::SEAL_TYPE[effect.data_id] + ""
+    when 42
+      temp = "•Seal " + State_Data::SEAL_TYPE[effect.data_id] + ""
+    when 43
+      temp = "•Unlock " + $data_skills[effect.data_id].name + ""
+    when 61
+      temp = effect.value
+      if temp == temp.to_i
+        temp = temp.to_i.to_s
+        temp = "•Actions +" + temp + ""
+      else
+        temp = (temp * 100).to_i.to_s
+        temp = "•" + temp + "% Extra Action Chance"
+      end
+    when 62
+      temp = State_Data::FEATURE_TYPE[effect.data_id]
+    when 67
+      case effect.data_id
+      when 10
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Gold Drop Rate=" + temp + "%"
+      when 11
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Item Drop Rate=" + temp + "%"
+      when 13
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Recruit Rate=" + temp + "%"
+      end
+    when 68
+      case effect.data_id
+      when 1
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Revive #{temp}% HP"
+      when 2
+        temp = "•Heal Reversal"
+      when 7
+        temp = effect.value.to_s
+        temp = "•Nullify Damage Less Than #{temp}"
+      when 8
+        temp = "•Convert 100% of Damage Taken into MP"
+      when 9
+        temp = "•Convert 100% of Damage Taken into Gold"
+      when 10
+        temp = "•Convert 10% of Damage Dealt into MP"
+      when 11
+        temp = "•Substitute 100% of Damage Taken with Gold"
+      when 12
+        temp = "•On Death: #{$data_skills[effect.value].name}"
+      when 14
+        temp = (effect.value[:per] * 100).to_i.to_s
+        temp = "•Turn Start: #{temp}% #{$data_skills[effect.value[:id]].name}"
+      when 15
+        temp = (effect.value[:per] * 100).to_i.to_s
+        temp = "•End of Turn: #{temp}% #{$data_skills[effect.value[:id]].name}"
+      when 19
+        temp = (effect.value * 100).to_i.to_s
+        temp = "SP Cost " + temp + "%"
+      when 26
+        temp = "•Normal Attack: #{$data_skills[effect.value].name}"
+      when 27
+        temp = "•Counter with #{$data_skills[effect.value[0]].name}"
+      when 29
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Dodge Counter Rate +#{temp}%"
+      when 30
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Magic Counter Rate +#{temp}%"
+      when 31
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Parry Chance +#{temp}%"
+      when 32
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Magic Parry Chance +#{temp}%"
+      when 33
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Perfect Parry Chance +#{temp}%"
+      when 37
+        i = 0
+        effect.value.each{|att,val|
+        temp = val.to_s
+        temp = "•" + $data_system.skill_types[att] + " Skill ×" + temp + ""
+        tempar[i] = temp
+        i += 1
+        }
+      when 40
+        i = 0
+        effect.value.each{|val|
+        temp = "•Absorb " + $data_system.elements[val] + ""
+        tempar[i] = temp
+        i += 1
+        }
+      when 42
+        temp = "•Full Recovery from Death"
+      when 46
+        temp = (effect.value * 100).to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Physical Reflection -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Physical Reflection +" + temp + "%"
+        end
+      when 51
+        temp = "•#{State_Data::SEAL_TYPE[effect.value]} Priority Up"
+      when 53
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Perfect Evasion +#{temp}%"
+      when 54
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•All Damage Taken=" + temp + "%"
+      when 55
+        temp = "•Reflect " + $data_system.elements[effect.value] + ""
+      when 64
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Experience Gained=" + temp + "%"
+      when 65
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Job Experience Gained=" + temp + "%"
+      end
+    when 69
+      case effect.data_id
+      when 0
+        i = 0
+        effect.value.each{|att,val|
+        temp = (val * 100).to_i.to_s
+        temp = "•" + $data_system.elements[att] + " Booster +" + temp + "%"
+        tempar[i] = temp
+        i += 1
+        }
+      when 4
+        temp = "•Normal Attack Power +400%"
+      when 7
+        i = 0
+        effect.value.each{|att,val|
+        temp = (val * 100).to_i.to_s
+        temp = "•#{State_Data::SEAL_TYPE[att]} Damage +#{temp}%"
+        tempar[i] = temp
+        i += 1
+        }
+      when 11
+        temp = (effect.value * 100).to_i.to_s
+        temp = "•Counter Damage +#{temp}%"
+      end
+    when 76
+      temp = "•#{$data_system.elements[effect.data_id]} attribute on all attacks"
+    when 78
+      temp = (effect.value * 100).to_i.to_s
+      if effect.data_id-10 < State_Data::SLAYER.size
+        temp = "•Damage to " + State_Data::SLAYER[effect.data_id-10] + " + " + temp + "%"
+#      else	
+#        temp = "•Damage to ??? + " + temp + "%"
+      end
+    when 88
+      temp = (effect.value * 100).to_i.to_s
+      temp = "•#{$data_system.elements[effect.data_id]} Damage Taken = #{temp}%"
+    when 113
+      case effect.data_id
+      when 0
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Max HP -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Max HP +" + temp + "%"
+        end
+      when 1
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Max MP -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Max MP +" + temp + "%"
+        end
+      when 2
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Attack -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Attack +" + temp + "%"
+        end
+      when 3
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Defense -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Defense +" + temp + "%"
+        end
+      when 4
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Magic -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Magic +" + temp + "%"
+        end
+      when 5
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Willpower -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Willpower +" + temp + "%"
+        end
+      when 6
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Agility -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Agility +" + temp + "%"
+        end
+      when 7
+        temp = effect.value * 100 - 100
+        temp = temp.to_i
+        if temp < 0
+          temp = -temp
+          temp = temp.to_s
+          temp = "•Dexterity -" + temp + "%"
+        else
+          temp = temp.to_s
+          temp = "•Dexterity +" + temp + "%"
+        end
+      end
+    end
+    if tempar.size > 1
+      return tempar
+    else
+      return temp
+    end
+  end
+
+  def make_target(item)
+    @item = item
+  end
+
+  def get_description(index)
+    @yy = 0
+    xx = 0
+    xmax = 1
+    contents.clear
+    state_name(index)
+    state_timer(@item,index)
+    @yy += 24
+    xmax = index.features.size
+    if index.restriction != 0
+      xmax += 1
+      state_restrict(index)
+    end
+    xmax = (xmax / 14) + 1
+    if index.features != nil
+      index.features.each{|effect|
+      temp = state_effect(effect)
+      if temp != nil
+      if temp.is_a?( Array )
+        xmax = (index.features.size + temp.size) / 14 + 1
+        for i in 0...temp.size
+          draw_text(xx,@yy,contents_width/xmax,24,temp[i])
+          @yy +=24
+          if @yy >= 360
+            xx += contents_width/xmax
+            @yy = 24
+          end   
+        end
+      else
+        draw_text(xx,@yy,contents_width/xmax,24,temp)
+        @yy +=24
+        if @yy >= 360
+          xx += contents_width/xmax
+          @yy = 24
+          end
+        end
+      end
+      }
+    end
+  end
+
+#
+# For statuses from the skill window
+#
+  def state_timer_l(state)
+    if state.auto_removal_timing != 0
+      temp = state.min_turns.to_s + "~" + state.max_turns.to_s + " Turns"
+    else
+      temp = "∞ Turns"
+    end
+    temp = "#{temp}"
+    draw_text(520,@yy,100,24,temp)
+  end
+
+  def get_description_l(index)
+    @yy = 0
+    xx = 0
+    xmax = 1
+    contents.clear
+    state_name($data_states[index])
+    state_timer_l($data_states[index])
+    @yy += 24
+    xmax = $data_states[index].features.size
+    if $data_states[index].restriction != 0
+      xmax += 1
+      state_restrict($data_states[index])
+    end
+    xmax = (xmax / 14) + 1
+    if $data_states[index].features != nil
+      $data_states[index].features.each{|effect|
+      temp = state_effect(effect)
+      if temp != nil
+      if temp.is_a?( Array )
+        xmax = ($data_states[index].features.size + temp.size) / 14 + 1
+        for i in 0...temp.size
+          draw_text(xx,@yy,contents_width/xmax,24,temp[i])
+          @yy +=24
+          if @yy >= 360
+            xx += contents_width/xmax
+            @yy = 24
+          end   
+        end
+      else
+        draw_text(xx,@yy,contents_width/xmax,24,temp)
+        @yy +=24
+        if @yy >= 360
+          xx += contents_width/xmax
+          @yy = 24
+          end
+        end
+      end
+      }
+    end
+  end
+end
+
+class Window_Wall_Description < Window_Base
+  def initialize
+    super(0,432,640,fitting_height(1))
+    self.z = 400
+    self.visible = false
+  end
+  
+  def make_wall(item)
+    temp = item.def_wall.to_s
+    draw_text_ex(0,0,"\\c[4]Barrier:#{temp}\\c[0]")
+    temp = item.d_skill.to_s
+    draw_text_ex(184,0,"|  \\c[4]Death Skill:#{temp}\\c[0]")
+    temp = item.a_stand.to_s
+    draw_text_ex(416,0,"|  \\c[4]Endure:#{temp}\\c[0]")
+  end
+  
+  def make_wall_l
+    draw_text(436,0,600,24,"S:View State Info")
+  end
+end
+
+class Window_States_Select < Window_Selectable
+  def initialize
+    super(0,0,Graphics.width,fitting_height(1)+1)
+    self.z = 400
+    refresh
+    self.visible = false
+    @itemx = 0
+    @descst_window = Window_States_Description.new
+    @wall_window = Window_Wall_Description.new
+  end  
+
+  def get_selection(item)
+    @descst_window.show.activate
+    @descst_window.make_target(item)
+    @itemx = item
+    @wall_window.show.activate
+    @wall_window.contents.clear
+    @wall_window.make_wall(item)
+    refresh
+    if @itemx.states.size > 0
+      select(0)
+      @descst_window.get_description(@itemx.states[@index])
+    else
+      select(-1)
+      @descst_window.contents.clear
+      draw_text_ex(0,0,"No Status Changes")
+    end
+  end
+
+  def col_max
+    23
+  end
+  
+  def spacing
+    return 0
+  end
+
+  def item_height
+    25
+  end
+  
+  def process_cursor_move
+    return unless cursor_movable?
+    last_index = @index
+    cursor_down (Input.trigger?(:DOWN))  if Input.repeat?(:DOWN)
+    cursor_up   (Input.trigger?(:UP))    if Input.repeat?(:UP)
+    cursor_right(Input.trigger?(:RIGHT)) if Input.repeat?(:RIGHT)
+    cursor_left (Input.trigger?(:LEFT))  if Input.repeat?(:LEFT)
+    cursor_pagedown   if !handle?(:pagedown) && Input.trigger?(:R)
+    cursor_pageup     if !handle?(:pageup)   && Input.trigger?(:L)
+    if @index != last_index
+      Sound.play_cursor
+      if @itemx.kind_of?(Array)
+        @descst_window.get_description_l(@itemx[@index])
+      else
+        @descst_window.get_description(@itemx.states[@index])
+      end
+    end
+  end
+
+  def item_max
+    if @itemx == nil
+      temp = 0
+    elsif @itemx.kind_of?(Array)
+      temp = @itemx.size
+    else
+      temp = @itemx.states.size
+    end
+    return temp
+  end
+  
+  def draw_item(index)
+    rect = item_rect_for_text(index)
+    if @itemx.kind_of?(Array)
+      icon = $data_states[@itemx[index]].icon_index
+    else
+      icon = @itemx.states[index].icon_index
+    end
+    draw_icon(icon == 0 ? 299 : icon, rect.x-3, rect.y)
+  end
+
+  def hide
+    @descst_window.hide
+    @wall_window.hide
+    self.visible = false
+    self
+  end
+
+#
+# For statuses from the skill window 2
+#
+
+  def get_selection_l(item)
+    @descst_window.show.activate
+    @descst_window.make_target(item)
+    @itemx = item
+    @wall_window.show.activate
+    @wall_window.contents.clear
+    @wall_window.make_wall_l
+    refresh
+    select(0)
+    @descst_window.get_description_l(@itemx[@index])
+  end
+end
+
+#
+# Call Log
+#
+$mod_log = []
+
+class Window_BattleLog < Window_Selectable
+
+  def initialize
+    super(0, Graphics.height - window_height, window_width, window_height)
+    self.z = 200
+    @lines = []
+    @num_wait = 0
+#    msgbox_p("done")
+    refresh
+  end
+
+  def add_text(text)
+    @lines.shift if max_line_number <= line_number
+    @lines.push(text)
+    if text != ""
+#      msgbox_p(text)
+      result = text.to_s.clone
+      result.sub!(/\\T\[(\d+)\]/i) {$data_items[$1.to_i].name}
+      result.sub!(/\\A\[(\d+)\]/i) {$data_armors[$1.to_i].name}
+      result.sub!(/\\W\[(\d+)\]/i) {$data_weapons[$1.to_i].name}
+      result.gsub!(/\\c\[(\d+)\]/i,"")
+      result.gsub!(/\\i\[(\d+)\]/i,"")
+      n = $mod_log.size
+      $mod_log[n] = result
+    end
+    refresh
+  end
+
+  def display_added_states(target)
+    target.result.added_state_objects.each do |state|
+      state_msg = target.actor? ? state.message1 : state.message2
+      if target.result.pleasure && (state.id == target.death_state_id)
+        state_msg = Vocab::PleasureFinished
+      end
+      if target.enemy? && (state.id == target.death_state_id) && !target.enemy.defeat_message.empty?
+        state_msg = target.enemy.defeat_message
+      end
+      target.perform_collapse_effect if state.death?
+      next if state_msg.empty?
+      replace_text(target.name + state_msg)
+      n = $mod_log.size
+      $mod_log[n] = target.name + state_msg   
+      wait
+      wait_for_effect
+    end
+  end
+
+  def display_removed_states(target)
+    target.result.removed_state_objects.each do |state|
+      next if state.message4.empty?
+      replace_text(target.name + state.message4)
+      n = $mod_log.size
+      $mod_log[n] = target.name + state.message4  
+      wait
+    end
+  end
+
+  def ctext_clear
+    $mod_log = []
+  end
+end
+
+
+class Window_ModLog < Window_Selectable
+
+  def initialize
+    super(0, 0, Graphics.width, Graphics.height - 120)
+    @text = []
+    self.visible = false
+    select(0)
+    refresh
+  end
+
+  def item_max
+    @text ? @text.size : 999
+  end
+
+  def item
+    @text && index >= 0 ? @text[index] : nil
+  end
+
+  def draw_item(index)
+    item = @text[index]
+    if item
+      draw_text(item_rect_for_text(index), item)
+    end
+  end
+
+  def ctext_show_battlelog(temp)
+    @text = temp
+  end
+
+end
+
+class Scene_Battle < Scene_Base
+  def create_all_windows
+    create_message_window
+    create_scroll_text_window
+    create_log_window
+    create_status_window
+    create_bench_window 
+    create_info_viewport
+    create_party_command_window
+    create_actor_command_window
+    create_help_window
+    create_skill_window
+    create_item_window
+    create_actor_window
+    create_enemy_window
+    create_simple_status_window 
+    create_skillname_window 
+    create_auto_battle_command_window
+    create_descstatus_window
+    create_modlog_window
+    create_description_window
+    create_battle_status_window
+  end
+
+  
+  def create_descstatus_window
+    @selstate_window = Window_States_Select.new
+    @selstate_window.set_handler(:cancel, method(:on_descstat_cancel))
+  end
+
+###NEW###
+  
+  def create_description_window
+    @description_window = Window_Item_Description.new
+    @description_window.z = 300
+    @description_window.back_opacity = 192
+    @description_window.hide
+  end  
+
+  def create_skill_window
+    @skill_window = Window_BattleSkill.new(@help_window, @info_viewport)
+    @skill_window.set_handler(:ok,     method(:on_skill_ok))
+    @skill_window.set_handler(:cancel, method(:on_skill_cancel))
+    @skill_window.set_handler(:expand, method(:on_skill_expand))
+    @skill_window.set_handler(:statuspack,     method(:on_statuspack))
+  end
+  
+  def unexpand
+    @description_window.hide
+    @skill_window.activate
+    @skill_window.visible = true
+    @skill_window.cursor_fix = false
+    @actor_command_window.visible = true
+    @status_window.visible = true
+  end
+
+  def on_skill_cancel
+    if @selstate_window.active
+      @selstate_window.hide
+      @selstate_window.active = false
+      @description_window.visible = true
+      @help_window.show
+    end
+    if @description_window.visible
+      @description_window.hide
+      @skill_window.activate
+      @skill_window.visible = true
+      @skill_window.cursor_fix = false
+      @actor_command_window.visible = true
+      @status_window.visible = true
+    else
+      @skill_window.hide
+      @actor_command_window.activate
+    end
+  end
+
+  def on_skill_ok
+    if @selstate_window.active
+      @selstate_window.hide
+      @selstate_window.active = false
+      @description_window.visible = true
+      @help_window.show
+    end
+    if @description_window.visible
+      @description_window.hide
+      @skill_window.visible = true
+      @skill_window.cursor_fix = false
+      @actor_command_window.visible = true
+      @status_window.visible = true
+    end
+    @skill = @skill_window.item
+    BattleManager.actor.input.set_skill(@skill.id)
+    BattleManager.actor.set_last_skill(@actor_command_window.current_ext, @skill)
+    if !@skill.need_selection?
+      @skill_window.hide
+      next_command
+    elsif @skill.for_opponent?
+      select_enemy_selection
+    else
+      select_actor_selection
+    end
+  end
+
+  def on_skill_expand
+    if @selstate_window.active
+      @selstate_window.hide
+      @selstate_window.active = false
+      @description_window.visible = true
+      @help_window.show
+    end
+    if @description_window.visible
+        if @description_window.close_page?
+          @description_window.hide
+          @skill_window.activate
+          @skill_window.visible = true
+          @skill_window.cursor_fix = false
+          @actor_command_window.visible = true
+          @status_window.visible = true
+        else
+          @description_window.next_page
+          @description_window.show_description(@skill_window.item,BattleManager.actor)
+        end
+    else
+      @description_window.show
+      @skill_window.visible = false
+      @skill_window.cursor_fix = true
+      @actor_command_window.visible = false
+      @status_window.visible = false
+      @description_window.nul_page
+      @description_window.show_description(@skill_window.item,BattleManager.actor)
+    end
+  end
+  
+  def on_statuspack
+    if @description_window.get_state_pack_full(@skill_window.item,BattleManager.actor) != []
+      if @description_window.visible && @selstate_window.visible == false
+        temp = @description_window.get_state_pack_full(@skill_window.item,BattleManager.actor)
+        @selstate_window.show.activate
+        @selstate_window.get_selection_l(temp)
+        @description_window.active = false
+        @description_window.visible = false
+        @help_window.hide
+      elsif @selstate_window.visible == true
+        @selstate_window.hide
+        @selstate_window.active = false
+        @description_window.active = true
+        @description_window.visible = true
+        @help_window.show
+      end
+    end
+  end
+###END###
+
+  def create_modlog_window
+    @modlog_window = Window_ModLog.new
+    @modlog_window.set_handler(:cancel, method(:on_modlog_cancel))
+  end
+
+  def on_modlog_cancel
+    @party_command_window.activate
+    @modlog_window.hide.deactivate
+  end
+  
+  def battle_start
+    BattleManager.battle_start
+    @log_window.ctext_clear
+    process_event
+    BattleManager.set_battle_start_skill
+    process_action while BattleManager.gm_exist?
+    start_party_command_selection
+  end
+
+  def turn_start
+    all_battle_members.each do |m|
+      m.on_turn_start
+    end
+    @info_viewport.visible = false
+    @party_command_window.close
+    @actor_command_window.close
+    @status_window.unselect
+    @subject =  nil
+    BattleManager.turn_start
+    @log_window.ctext_clear
+    @log_window.wait
+    @log_window.clear
+    BattleManager.set_turn_start_skill
+    process_action while BattleManager.gm_exist?
+  end
+
+  def command_battlelog
+    @modlog_window.ctext_show_battlelog($mod_log)
+    @modlog_window.show.activate
+    @modlog_window.refresh
+  end
+
+  def create_party_command_window
+    @party_command_window = Window_PartyCommand.new
+    @party_command_window.viewport = @info_viewport
+    @party_command_window.set_handler(:fight,  method(:command_fight))
+    @party_command_window.set_handler(:escape, method(:command_escape))
+    @party_command_window.set_handler(:auto_battle, method(:command_auto_battle))
+    @party_command_window.set_handler(:xlog, method(:command_battlelog))
+    @party_command_window.set_handler(:all_attack, method(:command_all_attack))
+    @party_command_window.set_handler(:battle_states, method(:command_battle_states))
+    @party_command_window.set_handler(:shift_change, method(:command_shift_change))
+    @party_command_window.set_handler(:giveup, method(:command_giveup))
+    @party_command_window.set_handler(:library, method(:command_library))
+    @party_command_window.set_handler(:config, method(:command_config))
+    @party_command_window.unselect    
+  end
+end
+
+class Window_PartyCommand < Window_Command
+  def make_command_list
+    add_command(Vocab.fight, :fight)
+    add_command(Vocab.shift_change, :shift_change, can_shift_change?)
+    add_command(Vocab::AUTOBATTLE, :auto_battle)
+    if $game_system.conf[:mod_log] == 1 
+      add_command("Log",        :xlog)
+    end
+    add_command(Vocab.giveup,      :giveup, BattleManager.can_giveup?)
+    add_command(Vocab.escape,      :escape, BattleManager.can_escape?)
+    add_command(Vocab::BATTLE_STATES, :battle_states)
+    add_command(Vocab.library,     :library)
+    add_command(Vocab.config,      :config)
+  end
+end
+
+#===========================================
+#Integration of new status window with TTR's
+#===========================================
+class Scene_Battle
+  def create_battle_status_window
+    @states_window = Window_BattlerStates.new
+    @states_window.hide
+    @states_window.set_handler(:ok, method(:command_battle_status_ok))
+    @states_window.set_handler(:cancel, method(:command_battle_status_cancel))
+    create_show_key_sprite
+  end
+
+  def command_battle_status_ok
+    @states_window.hide
+    @selstate_window.show.activate
+    @selstate_window.get_selection(@states_window.ret_index)
+  end
+
+  def on_descstat_cancel
+    @states_window.activate.show
+    @selstate_window.hide.deactivate
+  end
+end
+
+class Window_BattlerStates < Window_Selectable
+  def initialize
+    super(0, 0, Graphics.width, Graphics.height)
+    @obj = Draw.new
+    @index = 0
+  end
+
+  def draw_battler(battler, x, y)
+    reset_font_settings
+    change_color(special_color)
+    draw_text(x + 12, y, item_width, line_height, battler.name)
+    y += line_height + 2
+    draw_status_list(battler, x, y)
+  end
+
+  def item_max
+    return @bat
+  end
+
+  def col_max
+    return @bat
+  end
+
+  def row_max
+    return 1
+  end
+
+  def page_max
+    1
+  end
+
+  def ret_index
+    m = @page == 0 ? $game_party.battle_members : $game_troop.alive_members
+    return m[@index]
+  end
+  
+  def cursor_right(wrap = false)
+    if index < item_max - 1 || (wrap && horizontal?)
+      select(index + 1)
+    elsif self.page == 0
+      self.page += 1
+      select(0)
+    end
+  end
+
+  def cursor_left(wrap = false)
+    if index > 0 || (wrap && horizontal?)
+      select(index - 1)
+    elsif self.page == 1
+      self.page -= 1
+      select(item_max - 1)
+    end
+  end
+
+  def cursor_pagedown
+    self.page += 1
+    select(0)
+  end
+
+  def cursor_pageup
+    self.page -= 1
+    select(0)
+  end
+
+  def update
+    super
+    return unless open? && active
+  end
+
+  def show_key_text
+    case page
+    when 0
+      [" W:Enemy List, ←→:Select Combatant, Z:Details, X:Exit"]
+    when 1
+      [" Q:Ally List, ←→:Select Combatant, Z:Details, X:Exit"]
+    end
+  end
+
+  def draw_battlers
+    x = 0
+    y = 0
+    @bat = 0
+    m = @page == 0 ? $game_party.battle_members : $game_troop.alive_members
+    m.each do |battler|
+      draw_battler(battler, x, y)
+      @bat += 1
+      x += item_width + spacing
+    end
+  end
+end
+
+#==============================================================================
+# Character Book+
+#
+# Adds an additional page to the Character Book which provides a more
+# accurate and detailed analysis of a party member's trait. It works
+# similarly to the Skill Descriptions+ plug-in, by reading script lines
+# ascribed to each actor and rendering out the commands in a readable form.
+# 
+# Plug-in by steveju
+#==============================================================================
+
+class Window_Library_RightMain < Window_Selectable
+  def draw_contents_actor
+    actor = $data_actors[@ext % 10000]
+    return unless actor
+    passive_text = []
+    actor.features.each do |feat|
+      text = get_passive_description(feat)
+      unless text == ""
+        text.split("\n").each{|line|
+          if line.include?("***ダミー")
+            passive_text.push("(SEALED)")
+          else
+            passive_text.push(line)
+          end
+        }
+      end
+    end
+    passive_text.push("None") if passive_text.empty?
+    passive_pages = (passive_text.count / 14).to_i
+    passive_pages += 1 unless passive_text.count % 14 == 0
+    passive_pages = 0 unless $game_system.conf[:mod_library_traits] == 1
+    @page_max = 2
+    @page_max += passive_pages
+    @page_max += 5 unless PRESDATA::NOFEED.include?(actor.id)
+    reset_font_settings
+    draw_common_page(@page_max)
+    # 共通項目の描画
+    rect = standard_rect
+    case @page
+    when 0
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_stat(rect.y, actor)
+      draw_actor_illustrator(actor)
+    when 1
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_fix_ability(rect.y, actor)
+      draw_actor_illustrator(actor)
+    when 2..@page_max
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      if @page < passive_pages+2
+        rect.y = draw_actor_passives(rect.y, passive_text, @page-2)
+        draw_actor_illustrator(actor)
+      else 
+        rect.y = draw_actor_present_pool(rect.y, actor, @page-2-passive_pages)
+      end
+=begin
+    when 3
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_passives(rect.y, passive_text, 1)
+      draw_actor_illustrator(actor)
+    when 4
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_passives(rect.y, passive_text, 2)
+      draw_actor_illustrator(actor)
+    when 5
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_passives(rect.y, passive_text, 3)
+      draw_actor_illustrator(actor)
+    when 6
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_passives(rect.y, passive_text, 4)
+      draw_actor_illustrator(actor)
+    when 7
+      draw_actor_image(actor)
+      rect.y = draw_common_id(actor)
+      rect.y = draw_actor_passives(rect.y, passive_text, 5)
+      draw_actor_illustrator(actor)
+=end
+    else
+      @page = 0
+      self.refresh
+    end
+  end
+
+  def draw_actor_passives(y, passive_text, page)
+    rect = standard_rect(y)
+    reset_font_settings
+    change_color(system_color)
+    draw_text(rect, "Innate Abilities:")
+    rect.y += rect.height
+    change_color(normal_color)
+    lines = passive_text.clone
+    (page*14).times { lines.shift }
+    lines.first(14).each do |text|
+      draw_text(rect, "•#{text}")
+      rect.y += rect.height
+    end
+    return rect.y
+  end
+
+  def convert_terrain(name)
+    terrain_names = [["森", "Forest"],
+    ["砂漠", "Desert"],
+    ["海", "Sea"],
+    ["深海", "Deep Sea"],
+    ["洞窟", "Cave"],
+    ["市街", "Town"]]
+    terrain_names.each do |terrain_name|
+      return terrain_name[1] if terrain_name[0].force_encoding('UTF-8').encode == name
+    end
+    return name
+  end
+
+  def get_passive_description(skill)
+    case skill.code
+    when NWFeature::FEATURE_ELEMENT_RATE # 11
+      resist_value = "Resist (#{(skill.value*100).to_i}%)"
+      resist_value = "Nullify" if skill.value == 0.0
+      return "#{resist_value} #{$data_system.elements[skill.data_id]}\n"
+    when NWFeature::FEATURE_STATE_RATE # 13
+      resist_value = "Resist (#{(skill.value*100).to_i}%)"
+      resist_value = "Nullify" if skill.value == 0.0
+      return "#{resist_value} #{$data_states[skill.data_id].name}\n"
+    when NWFeature::FEATURE_PARAM # 21
+      case skill.data_id
+      when 0
+        return "HP +#{(skill.value*100).to_i-100}%\n"
+      when 1
+        return "MP +#{(skill.value*100).to_i-100}%\n"
+      when 2
+        return "Attack +#{(skill.value*100).to_i-100}%\n"
+      when 3
+        return "Defense +#{(skill.value*100).to_i-100}%\n"
+      when 4
+        return "Magic +#{(skill.value*100).to_i-100}%\n"
+      when 6
+        return "Agility +#{(skill.value*100).to_i-100}%\n"
+      when 7
+        return "Dexterity +#{(skill.value*100).to_i-100}%\n"
+      end
+    when NWFeature::FEATURE_XPARAM # 22
+      case skill.data_id
+      when 0
+        return "Hit Rate +#{(skill.value*100).to_i}%\n"
+      when 1
+        return "Evasion +#{(skill.value*100).to_i}%\n" unless skill.value == 0.05
+        return "" # default base evasion
+      when 2
+        return "Critical Hit Rate +#{(skill.value*100).to_i}%\n" unless skill.value == 0.05
+        return "" # default base critical rate
+      when 3
+        return "Critical Evasion #{(skill.value*100).to_i}%\n"
+      when 4
+        return "Magic Evasion #{(skill.value*100).to_i}%\n"
+      when 5
+        return "Magic Reflect #{(skill.value*100).to_i}%\n"
+      when 6
+        return "Counter +#{(skill.value*100).to_i}%\n"
+      when 7
+        return "HP Regen #{(skill.value*100).to_i}%\n"
+      when 8
+        return "MP Regen #{(skill.value*100).to_i}%\n"
+      when 9
+        return "SP Regen #{(skill.value*100).to_i}%\n"
+      end
+    when NWFeature::FEATURE_SPARAM # 23
+      case skill.data_id
+      when 0
+        return "Enemy Target Chance #{(skill.value*100).to_i}%\n" unless skill.value == 1
+        return "" # default aggro rate
+      when 1
+        return "Defending Prevents #{((1-skill.value)*100).to_i}% Damage\n"
+      when 6
+        return "Ignore #{((1-skill.value)*100).to_i}% Physical Damage\n"
+      when 7
+        return "Ignore #{((1-skill.value)*100).to_i}% Magic Damage\n"
+      end
+    when NWFeature::FEATURE_ATK_ELEMENT # 31
+      return "#{$data_system.elements[skill.data_id]} Strike\n"
+    when NWFeature::FEATURE_ATK_STATE # 32
+      return "#{$data_states[skill.data_id].name} Strike #{(skill.value*100).to_i}%\n"
+    when NWFeature::FEATURE_ATK_SPEED # 33
+      skill_type = $data_system.skill_types[skill.data_id]
+      skill_type = "Normal Attack" if skill.data_id == 0
+      return "#{skill_type} Speed +#{skill.value.to_i}\n"
+    when NWFeature::FEATURE_ATK_TIMES # 34
+      skill_type = $data_system.skill_types[skill.data_id]
+      skill_type = "Normal Attack" if skill.data_id == 0
+      return "#{skill_type} Executes #{skill.value.to_i+1} Times\n"
+    when NWFeature::FEATURE_STYPE_ADD # 41
+      return "Skill Use: #{$data_system.skill_types[skill.data_id]} Skills\n" unless skill.data_id == 63
+      return "" # everyone can use Special
+    when NWFeature::FEATURE_EQUIP_WTYPE # 51
+      return "Weapon Use: #{$data_system.weapon_types[skill.data_id]}\n"
+    when NWFeature::FEATURE_EQUIP_ATYPE # 52
+      return "Armor Use: #{$data_system.armor_types[skill.data_id]}\n" unless skill.data_id == 41
+      return "" # everyone can use accessories
+    when NWFeature::FEATURE_ACTION_PLUS # 61
+      return "Double Action Chance #{(skill.value*100).to_i}%\n"
+    when NWFeature::FEATURE_PARTY_EX_ABILITY # 67
+      case skill.data_id
+      when NWFeature::PartyEx::GET_GOLD_RATE
+        return "Gold Drop #{(skill.value*100).to_i}%\n"
+      when NWFeature::PartyEx::GET_ITEM_RATE
+        return "Item Drop #{(skill.value*100).to_i}%\n"
+      when NWFeature::PartyEx::ENCOUNTER_RATE
+        return "Encounter Rate #{(skill.value*100).to_i}%\n"
+      when NWFeature::PartyEx::COLLECT_RATE
+        return "Recruit Rate #{(skill.value*100).to_i}%\n"
+      end
+    when NWFeature::FEATURE_BATTLER_ABILITY # 68
+      case skill.data_id
+      when NWFeature::Battler::STEAL_SUCCESS
+        return "Steal Rate #{(skill.value*100).to_i}%\n"
+      when NWFeature::Battler::AUTO_STAND
+        if skill.value == 0.3
+          return "Endure\n"
+        elsif skill.value == 0.2
+          return "Super Endure\n"
+        else
+          return "Endure lethal damage if above #{(skill.value*100).to_i}% HP\n"
+        end
+      when NWFeature::Battler::AUTO_STATE
+        return_string = ""
+        skill.value.each { |statecode| return_string += "Set #{$data_states[statecode].name} Status on Battle Start\n" }
+        return return_string
+      when NWFeature::Battler::TRIGGER_STATE
+        trigger = ["Above","Remove"]
+        trigger = ["Below","Add"] if skill.value.to_a.flatten[3] == 0
+        return "When #{skill.value.to_a.flatten[1]}P is #{trigger[0]} #{(skill.value.to_a.flatten[5]*100).to_i}% #{trigger[1]} Status #{$data_states[skill.value.to_a.flatten[7]].name}\n"
+      when NWFeature::Battler::START_TP_RATE
+        return "Battle Start SP #{(skill.value*100).to_i}%\n" unless skill.value == 0.5
+        return "" # default SP starting value
+      when NWFeature::Battler::STYPE_COST_RATE
+        unit_type = "#{skill.value.to_a[0][1]}".gsub("TP","SP")
+        return "#{$data_system.skill_types[skill.value.to_a[1][1]]} Skills #{(skill.value.to_a[2][1]*100).to_i}% #{unit_type} Cost\n"
+      when NWFeature::Battler::SKILL_COST_RATE
+        unit_type = "#{skill.value.to_a[0][1]}".gsub("TP","SP")
+        return "#{$data_skills[skill.value.to_a[1][1]].name} #{(skill.value.to_a[2][1]*100).to_i}% #{unit_type} Cost\n"
+      when NWFeature::Battler::INVALIDATE_WALL
+        return "Nullify Damage Less Than #{skill.value}HP\n"
+      when NWFeature::Battler::DAMAGE_MP_DRAIN
+        return "MP Drain Strike #{(skill.value*100).to_i}%\n"
+      when NWFeature::Battler::DAMAGE_GOLD_DRAIN
+        return "Gain Gold Equal to #{(skill.value*100).to_i}% of Damage Taken\n"
+      when NWFeature::Battler::INVOKE_REPEATS_TYPE
+        return_string = ""
+        skill.value.to_a.each { |type| return_string += "#{$data_system.skill_types[type[0]]} Skills Execute #{type[1]} Times\n" }
+        return return_string
+      when NWFeature::Battler::DEAD_SKILL
+        return "Use #{$data_skills[skill.value].name} On Death\n"
+      when NWFeature::Battler::NORMAL_ATTACK
+        return "#{$data_skills[skill.value].name} Instead of Normal Attack\n"
+      when NWFeature::Battler::GOLD_COST_RATE
+        return "Gold Cost Rate #{(skill.value*100).to_i}\n"
+      when NWFeature::Battler::TURN_END_SKILL
+        return "End Turn With #{$data_skills[skill.value.to_a[0][1]].name} #{(skill.value.to_a[1][1]*100).to_i}%\n"
+      when NWFeature::Battler::FAST_MOVE_TYPE
+        return "Haste #{$data_system.skill_types[skill.value]} Skills\n"
+      when NWFeature::Battler::INVOKE_REPEATS_SKILL
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{$data_skills[type[0]].name} Executes #{type[1]} Times\n"
+        end
+        return return_string
+      when NWFeature::Battler::COUNTER_SKILL
+        return "Counter Skill #{$data_skills[skill.value[0]].name}\n"
+      when NWFeature::Battler::MAGICAL_COUNTER
+        return "Magic Counter +#{(skill.value*100).to_i}%\n"
+      when NWFeature::Battler::PHYSICAL_COUNTER_EX
+        return "EX Counter +#{(skill.value*100).to_i}%\n"
+      when NWFeature::Battler::MAGICAL_COUNTER_EX
+        return "EX Magic Counter +#{(skill.value*100).to_i}%\n"
+      when NWFeature::Battler::CHANGE_ACTION
+        return "#{(skill.value[0].to_a[1][1]*100).to_i}% Chance to use #{$data_skills[skill.value[0].to_a[0][1]].name} Instead\n"
+      when NWFeature::Battler::CHANGE_SKILL
+        return "Use #{$data_skills[skill.value.to_a[0][1]].name} Instead of #{$data_skills[skill.value.to_a[0][0]].name}\n" unless skill.value.to_a[0][0] == 3147
+        return "" # puff puff spam
+      when NWFeature::Battler::ELEMENT_REFLECTION
+        return "Reflect #{$data_system.elements[skill.value]} Damage\n"
+      when NWFeature::Battler::ITEM_COST_SCRIMP_TYPE
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{(type[1]*100).to_i}% Chance to Consume No Items with #{$data_system.skill_types[type[0]]} Skills\n"
+        end
+        return return_string
+      when NWFeature::Battler::ITEM_COST_SCRIMP
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "Obtain #{$data_items[type[0]].name} When Using It #{(type[1]*100).to_i}% Chance\n"
+        end
+        return return_string
+      when NWFeature::Battler::NEED_ITEM_IGNORE
+        return_string = ""
+        skill.value.each do |ignored|
+          return_string += "No Item Required for: #{$data_items[ignored].name}\n"
+        end
+        return return_string
+      when NWFeature::Battler::BATTLE_START_SKILL
+        return "#{$data_skills[skill.value.to_a[0][1]].name} On Battle Start #{(skill.value.to_a[1][1]*100).to_i}%\n"
+      when NWFeature::Battler::ELEMENT_DRAIN
+        return "#{$data_system.elements[skill.value[0]]} Damage Absorb\n"
+      end
+    when NWFeature::FEATURE_MULTI_BOOSTER # 69
+      case skill.data_id
+      when NWFeature::Booster::ELEMENT
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{$data_system.elements[type[0]]} Booster #{(type[1]*100).to_i}%\n"
+        end
+        return return_string
+      when NWFeature::Booster::NORMAL_ATTACK
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "When equipped with #{$data_system.weapon_types[type[0]]}, Normal Attack Damage +#{(type[1]*100).to_i}%\n"
+        end
+        return return_string
+      when NWFeature::Booster::STATE_RATIO_TYPE
+        return "#{$data_system.skill_types[skill.value.to_a[0][0]]} Status Chance +#{(skill.value.to_a[0][1]*100).to_i}%\n"
+      when NWFeature::Booster::SKILL_TYPE
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{$data_system.skill_types[type[0]]} Booster #{(type[1]*100).to_i}%\n"
+        end
+        return return_string
+      when NWFeature::Booster::STATE_SKILL_TYPE
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{$data_system.skill_types[type[0][0]]} Damage +#{(type[1]*100).to_i}% to #{$data_states[type[0][1]].name} Afflicted\n"
+        end
+        return return_string
+      when NWFeature::Booster::STATE_RATIO_SKILL
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{$data_skills[type[0]].name} Status Chance +#{(type[1]*100).to_i}%\n"
+        end
+        return return_string
+      when NWFeature::Booster::SKILL
+        return_string = ""
+        skill.value.to_a.each do |type|
+          return_string += "#{$data_skills[type[0]].name} Damage +#{(type[1]*100).to_i}%\n"
+        end
+        return return_string
+      when NWFeature::Booster::COUNTER
+        return "Counter Damage #{(skill.value*100).to_i}%\n"
+      when NWFeature::Booster::CRITICAL
+        return "Critical Damage +#{(skill.value*100).to_i}%\n"
+      when NWFeature::Booster::ACTOR_EXIST_PARAM
+        return_string = ""
+        skill.value.to_a.each do |act|
+          return_string += "All Stats +#{(act[1]*100).to_i}% if #{$data_actors[act[0]].name} is in party\n"
+        end
+        return return_string
+      when NWFeature::Booster::STATE_SKILL
+        return_string = ""
+        skill.value.to_a.each do |val|
+          return_string += "#{$data_skills[val[0][0]].name} Damage +#{(val[1]*100).to_i} to #{$data_states[val[0][1]].name} Afflicted\n"
+        end
+        return return_string
+      when NWFeature::Booster::PINCHI_SKILL
+        return "Crisis Boost: #{$data_skills[skill.value.to_a[0][0]].name} Skill #{(skill.value.to_a[0][1]*100).to_i}%\n"
+      when NWFeature::Booster::PINCHI_SKILL_TYPE
+        return "Crisis Boost: #{$data_system.skill_types[skill.value.to_a[0][0]]} Skills #{(skill.value.to_a[0][1]*100).to_i}%\n"
+      end
+    when NWFeature::FEATURE_TERRAIN_BOOSTER # 71
+      if skill.value == 0.2
+        return "#{convert_terrain("#{skill.data_id}")} Strength\n"
+      elseif skill.value == 0.4
+        return "Super #{convert_terrain("#{skill.data_id}")} Strength\n"
+      else
+        return "+#{(skill.value*100).to_i} To Stats While In A #{convert_terrain("#{skill.data_id}")}\n"
+      end
+    when NWFeature::FEATURE_EQUIP_MASTERY # 72
+      if skill.value == 2.2
+        return "#{$data_system.weapon_types[skill.data_id[1]]} Mastery\n"
+      elsif skill.value == 2.0
+        return "#{$data_system.armor_types[skill.data_id[1]]} Mastery\n"
+      else
+        return "" # unknown mastery
+      end
+    when NWFeature::FEATURE_SKILL_TYPE_STATE_ADD # 74
+      unless skill.value.to_a[0][1].to_a.empty? # opponents
+        return_string = ""
+        skill.value.to_a[0][1].to_a.each do |val|
+          return_string += "#{$data_system.skill_types[skill.data_id]} Skills Set #{$data_states[val[0]].name} Status on Enemies #{(val[1]*100).to_i}%\n"
+        end
+        return return_string
+      end
+      unless skill.value.to_a[1][1].to_a.empty? # friends
+        return_string = ""
+        skill.value.to_a[1][1].to_a.each do |val|
+          return_string += "#{$data_system.skill_types[skill.data_id]} Skills Set #{$data_states[val[0]].name} Status on Allies #{(val[1]*100).to_i}%\n"
+        end
+        return return_string
+      end
+      return_string = ""
+      skill.value.to_a[2][1].to_a.each do |val|
+        return_string += "#{$data_system.skill_types[skill.data_id]} Skills Set #{$data_states[val[0]].name} Status On Self #{(val[1]*100).to_i}%\n"
+      end
+      return return_string
+    when NWFeature::FEATURE_SKILL_STATE_ADD # 73
+      unless skill.value.to_a[0][1].to_a.empty? # self
+        return "#{$data_skills[skill.data_id].name} Sets #{$data_states[skill.value.to_a[0][1].to_a[0][0]].name} Status on Self #{(skill.value.to_a[0][1].to_a[0][1]*100).to_i}%\n"
+      end
+      return "#{$data_skills[skill.data_id].name} Sets #{$data_states[skill.value.to_a[1][1].to_a[0][0]].name} Status on Target #{(skill.value.to_a[1][1].to_a[0][1]*100).to_i}%\n"
+    when NWFeature::FEATURE_SUCCUBUS # 75
+      return "Nightmare Attribute\n"
+    when NWFeature::FEATURE_PENETRATION_ELEMENT # 77
+      return "#{$data_system.elements[skill.data_id]} Skills Auto-Hit\n"
+    when NWFeature::FEATURE_SKILL_TYPE_COMBO # 82
+      return "Use #{$data_skills[skill.value].name} When Using #{$data_system.skill_types[skill.data_id]} Skills\n"
+    when NWFeature::FEATURE_ELEMENT_RATE_FIX # 88
+      return "Take #{(skill.value*100).to_i}% Damage From #{$data_system.elements[skill.data_id]} Skills\n"
+    when NWFeature::FEATURE_AUTO_SKILL_INVALID # 89
+      return "Disable #{$data_skills[skill.value].name} On Death\n"
+    end
+    return "Unknown: #{skill.code} #{skill.data_id} #{skill.value}\n"
+  end
+end
+
+#===============================================================================
+# Job/Race Info+
+#
+# Adds two new pages to the Library, which allow one to view the full learnsets
+# for any jobs and races the player has unlocked.
+#
+# Plug-in by steveju
+#===============================================================================
+
+module NWConst::Library
+  INDEX_STRING = {
+    :lib_top        => "Library",
+    :lib_return     => "Return to Top",
+    :lib_close      => "Close Library",
+    :memory_close   => "End Scene",
+    :lib_actor      => "Character Book",
+    :lib_enemy      => "Monster Book",
+    :lib_weapon     => "Weapon Book",
+    :lib_armor      => "Armor Book",
+    :lib_accessory  => "Accessory Book",
+    :lib_item       => "Item Book",
+    :lib_record     => "Adventure Log",
+    :lib_medal      => "Achievements",
+    :lib_class      => "Job Info",
+    :lib_tribe      => "Race Info",
+    :lib_class_mod  => "Job Info+",
+    :lib_tribe_mod  => "Race Info+",
+  }
+end
+class Window_Library_MainCommand < Window_Command
+  def make_command_list
+    case @category
+    when 1
+      make_actor_main_command
+      make_return_command
+    when 2
+      make_enemy_main_command
+      make_return_command
+    when 3
+      make_weapon_main_command
+      make_return_command
+    when 4
+      make_armor_main_command
+      make_return_command
+    when 5
+      make_accessory_main_command
+      make_return_command
+    when 6
+      make_item_main_command
+      make_return_command
+    when 7
+      make_record_main_command
+      make_return_command
+    when 8
+      make_medal_main_command
+      make_return_command
+    else
+      make_record_index_command
+      make_medal_index_command
+      make_actor_index_command
+      make_enemy_index_command
+      make_weapon_index_command
+      make_armor_index_command
+      make_accessory_index_command
+      make_item_index_command
+      make_class_index_command
+      make_tribe_index_command
+      make_class_mod_index_command if $game_system.conf[:mod_library_traits] == 1
+      make_tribe_mod_index_command if $game_system.conf[:mod_library_traits] == 1
+    end
+    make_close_command
+  end
+  def make_class_mod_index_command
+    enable = !$game_party.temp_actors_use?
+    add_command(INDEX_STRING[:lib_class_mod], :lib_class_mod, enable, [11, 110000])
+  end
+  def make_tribe_mod_index_command
+    enable = !$game_party.temp_actors_use?
+    add_command(INDEX_STRING[:lib_tribe_mod], :lib_tribe_mod, enable, [12, 120000])
+  end
+end
+class Scene_Library < Scene_MenuBase
+  def create_left_column_window
+    @main_command_window = Window_Library_MainCommand.new
+    @main_command_window.set_handler(:lib_record, method(:on_record_index))
+    @main_command_window.set_handler(:lib_medal, method(:on_medal_index))
+    @main_command_window.set_handler(:lib_actor,  method(:on_actor_index))
+    @main_command_window.set_handler(:lib_enemy,  method(:on_enemy_index))
+    @main_command_window.set_handler(:lib_weapon, method(:on_weapon_index))
+    @main_command_window.set_handler(:lib_armor,  method(:on_armor_index))
+    @main_command_window.set_handler(:lib_accessory,  method(:on_accessory_index))
+    @main_command_window.set_handler(:lib_item,   method(:on_item_index))
+    @main_command_window.set_handler(:lib_class,  method(:on_class_index))
+    @main_command_window.set_handler(:lib_tribe,  method(:on_tribe_index))
+    @main_command_window.set_handler(:lib_class_mod,  method(:on_class_mod_index)) if $game_system.conf[:mod_library_traits] == 1
+    @main_command_window.set_handler(:lib_tribe_mod,  method(:on_tribe_mod_index)) if $game_system.conf[:mod_library_traits] == 1
+    @main_command_window.set_handler(:lib_return, method(:return_index))
+    @main_command_window.set_handler(:lib_close,  method(:return_scene))
+    @main_command_window.set_handler(:cancel,     method(:on_command_cancel))
+    @main_command_window.set_handler(:input_right, method(:on_next_page))
+    @main_command_window.set_handler(:input_left,  method(:on_previous_page))
+    @main_command_window.set_handler(:scrolldown,   method(:on_scroll_down))
+    @main_command_window.set_handler(:scrollup,     method(:on_scroll_up))
+    @main_command_window.index_window = @header_nav_window
+    @main_command_window.contents_window = @main_contents_window
+    @main_command_window.help_window  = @footer_help_window
+  end
+  def on_class_mod_index
+    $game_temp.lib_class_type_id = 2
+    SceneManager.call(Scene_JobShow)
+  end
+  def on_tribe_mod_index
+    $game_temp.lib_class_type_id = 3
+    SceneManager.call(Scene_JobShow)
+  end
+end
+class Scene_JobShow < Scene_JobChange
+
+  #--------------------------------------------------------------------------
+  # ● 全ウィンドウの作成
+  #--------------------------------------------------------------------------
+  def create_all_window
+    @change_class_type_id = $game_temp.lib_class_type_id
+    @change_class_type_id -= 2 if @change_class_type_id > 1
+    create_help_window
+    create_class_status_window
+    create_class_name_window
+    create_class_type_window
+    create_result_popup_window
+    
+    class_type_name = ["Job", "Race", "Job", "Race"].at($game_temp.lib_class_type_id)
+    unless $game_temp.lib_class_type_id > 1
+      @help_window.text = "#{class_type_name} Info (Unlock Percentage Not Available)"
+    else
+      @help_window.text = "#{class_type_name} Learnable Skills/Abilities"
+    end
+    @class_status_window.show.activate
+    @class_status_window.actor_id = @change_class_actor_id
+    @class_status_window.original_class_id = $game_temp.lib_class_type_id
+    @class_type_window.show.activate
+    @class_type_window.class_type_id = @change_class_type_id
+    @class_type_window.refresh
+    @class_type_window.select(0)
+    @class_name_window.show.activate
+    @class_name_window.class_type_id = @change_class_type_id
+    @class_name_window.actor_id = @change_class_actor_id
+    @class_name_window.refresh
+    @class_name_window.select(0)
+  end
+end
+class Foo::JobChange::Window_ClassStatus < Window_Base
+  attr_writer :original_class_id
+  def initialize
+    super(160, fitting_height(1) * 2, Graphics.width - 160, Graphics.height - fitting_height(1) * 2)
+    @actor_id = -1
+    @class_id = -1
+    @original_class_id = -1
+    hide.deactivate
+  end
+  def draw_status
+    y = 0
+    unless @original_class_id > 1
+      y = draw_job_name(y)
+      y = draw_horz_line(y)
+    end
+    y = draw_job_desc(y, 0)
+    unless @original_class_id > 1
+      y = draw_horz_line(y)
+      y = draw_job_param(y)
+      y = draw_horz_line(y)
+      y = draw_job_desc(y, 1)
+    end
+  end
+  def draw_text_job_desc(rect, text)
+    reset_font_settings
+    text = convert_escape_characters(text)
+    pos = {:x => rect.x, :y => rect.y, :new_x => rect.x, :height => line_height}
+    contents.font.size -= 6
+    process_character(text.slice!(0, 1), text, pos) until text.empty?
+  end
+  def draw_job_desc(y, num)
+    unless @original_class_id > 1
+      desc_text = NWConst::JobChange::JOB_DESC_TEXT[@class_id]
+      desc = desc_text[num] if desc_text
+    else
+      desc = []
+      temp_desc = Array.new(11) { Array.new() }
+      $data_classes[@class_id].learnings.each do |learn|
+        if $data_skills[learn.skill_id].name.include?("***ダミー".force_encoding('UTF-8').encode)
+          temp_desc[learn.level].push("(SEALED)")
+        else
+          temp_desc[learn.level].push("\\*\\i[#{$data_skills[learn.skill_id].icon_index}]#{$data_skills[learn.skill_id].name}")
+        end
+      end
+      temp_desc.each_with_index {|d,i| desc.push("Lv.#{i} #{d.join(",")}") unless d.empty?}
+      desc.push("None") if desc.empty?
+    desc = [desc.join("\n")]
+    end
+    return y + line_height unless desc
+    
+    rect = standard_rect(y, desc.size)
+    r = Rect.new(rect.x, rect.y, rect.width, line_height)
+    desc.each do |text|
+      draw_text_job_desc(r, text)
+      r.y += line_height
+    end
+    return rect.y + rect.height
+  end
+end
+
+#===============================================================================
+# GRB_LargerChoices
+#===============================================================================
+
+# ------------------------------------[АНГ]-------------------------------------
+# Use larger texts for Show Choice command
+# by Garbata Team
+#
+# To use this plugin, add a comment starting with a line CHOICE TEXT: as the
+# first event command inside a choice branch. Then the text of the comment
+# (rest of it) will be used displayed as the choice text.
+#
+# This script is placed into public domain according to the CC0 public domain
+# dedication. See https://creativecommons.org/publicdomain/zero/1.0/ for more
+# information.
+#
+# Visit http://rpgmaker.ru/forum/issmv/62984-mv-grb-larger-choices#109807 for
+# a RPG Maker MV version.
+#
+# ------------------------------------[РУС]-------------------------------------
+# Использование больших текстов в команде Показать выбор.
+# Авторы: команда Гарбата
+#
+# Чтобы использовать этот плагин, добавьте комментарий с текстом ТЕКСТ ВЫБОРА:
+# в первой строке внутри ветви выбора. Комментарий должен быть первой командой
+# внутри ветви. Тогда текст комментария (кроме первой строки) будет использо-
+# ваться как текст выбора.
+#
+# Этот скрипт передан в общественное достояние согласно CC0. Подробнее см. на
+# странице https://creativecommons.org/publicdomain/zero/1.0/deed.ru
+#
+# Версия для RPG Maker MV доступна по адресу:
+# http://rpgmaker.ru/forum/issmv/62984-mv-grb-larger-choices#109807
+#
+# ------------------------------------[БЕЛ]-------------------------------------
+# Выкарыстанне вялікіх тэкстаў у камандзе Паказаць выбар.
+# Аўтары: каманда Гарбата
+#
+# Каб карыстацца гэтым плагінам, дадайце каментарый з тэкстам ТЭКСТ ВЫБАРУ:
+# у першым радку ўсярэдзіне галіны выбару. Каментарый мусіць быць першай
+# камандай усярэдзіне галіны. Тады тэкст каментарыя (акрамя першага радку) будзе
+# выкарыстоўвацца як тэкст выбару.
+#
+# Гэты скрыпт пярэданы ў грамадскі набытак згодна з CC0. Падрабязней гл. на
+# старонцы https://creativecommons.org/publicdomain/zero/1.0/deed.be
+#
+# Версія для RPG Maker MV даступная па адрасе:
+# http://rpgmaker.ru/forum/issmv/62984-mv-grb-larger-choices#109807
+#
+# ------------------------------------[УКР]-------------------------------------
+# Використання великих текстів в команді Показати вибір
+# Автори: команда Гарбата
+#
+# Щоб користатися цим плагіном, додайте коментар з текстом ТЕКСТ ВИБОРУ:
+# в першому рядку в галину вибору. Коментар мусить бути першої командою
+# в середині галини. Тоді текст коментаря будзе вжито як текст вибору.
+#
+# Цей скрипт передано до суспільного надбання згідно з CC0. Детальніше див.
+# на сторінці https://creativecommons.org/publicdomain/zero/1.0/deed.uk
+#
+# Версія для RPG Maker MV даступна за адресою:
+# http://rpgmaker.ru/forum/issmv/62984-mv-grb-larger-choices#109807
+
+class Game_Interpreter
+  alias grb_largerchoices__setup_choices setup_choices
+  def setup_choices(params)
+    start_cmd = @list[@index]
+    if start_cmd.code != 102 || start_cmd.parameters != params
+      # The command is not called for the current command
+      # I don't really understand how this can happen, probably other plugin's magic
+      # To be safe, let's just bail out
+      grb_largerchoices__setup_choices params
+    end
+
+    choices = grb_find_matching_choices(@index)
+    if !choices
+      choices = params[0]
+    end
+
+    grb_largerchoices__setup_choices(params)
+
+    $game_message.choices.clear
+    choices.each {|s| $game_message.choices.push(s) }
+  end
+
+  def grb_get_choice_text_from_comment(comment_index, indent)
+    start_regexp = /^\s*(ТЕКСТ ВЫБОРА|ТЭКСТ ВЫБАРУ|ТЕКСТ ВИБОРУ|CHOICE TEXT):\s*$/
+  
+    start_cmd = @list[comment_index]
+
+    return nil if start_cmd.code != 108
+    return nil if start_cmd.parameters.size != 1
+    return nil if start_cmd.parameters[0] !~ start_regexp
+    return nil if start_cmd.indent != indent
+  
+    comment_lines = []
+    for i in (comment_index + 1) .. (@list.size)
+      line_cmd = @list[i]
+      break if line_cmd.code != 408
+      break if line_cmd.indent != indent
+      break if line_cmd.parameters.length != 1
+    
+      comment_lines.push(line_cmd.parameters[0])
+    end
+
+    if comment_lines.length > 0
+      return comment_lines.join("\n");
+    else
+      return nil
+    end
+  end
+
+  def grb_find_matching_choices(start_index)
+    start_cmd = @list[start_index]
+    fallback_choices = start_cmd.parameters[0]
+    indent = start_cmd.indent
+
+
+    choices = []
+
+    branch_index = start_index + 1
+    choice_ended = false
+    while branch_index <= @list.size && !choice_ended do
+      current_cmd = @list[branch_index]
+      return nil if current_cmd.code != 402 || current_cmd.indent != indent
+     
+      choice_text = grb_get_choice_text_from_comment(branch_index + 1 , indent + 1)
+      if choice_text
+        choices.push(choice_text)
+      else
+        choices.push(fallback_choices[choices.size])
+      end
+    
+      branch_index += 1
+      next_cmd = (@list)[branch_index]
+      
+      while branch_index <= @list.length do
+        if next_cmd.code === 404 && next_cmd.indent == indent
+          choice_ended = true
+          break
+        elsif next_cmd.code === 402 && next_cmd.indent == indent
+          break
+        end
+        
+        branch_index += 1
+        next_cmd = @list[branch_index]
+      end
+    end
+    
+    #problems with the event command structure:
+    return nil if !choice_ended
+    return nil if choices.size != fallback_choices.size
+
+    return choices
+  end
+end
+
+
+class Window_ChoiceList < Window_Command
+  def grb_item_height(index)
+    text = $game_message.choices[index]
+    return line_height if text.nil?
+    
+    text.split("\n").size * line_height
+  end
+
+  def item_rect(index)
+    rect = Rect.new
+    rect.width = item_width
+    rect.height = grb_item_height(index)
+    rect.x = 0
+    rect.y = 0
+    
+    for i in (0 .. index-1) do
+      h_part = grb_item_height(i)
+      rect.y += h_part if !h_part.nil?
+    end
+    rect
+  end
+
+  def max_choice_width
+    ($game_message.choices.collect do |s|
+      s.split("\n").collect { |l| text_size(l).width }.max
+    end).max
+  end
+  
+  def contents_height
+    h = 0
+    for i in 0 .. $game_message.choices.size-1 do
+      h += grb_item_height(i)
+    end
+    h
+  end
+
+  def update_placement
+    self.width = [max_choice_width + 12, 96].max + padding * 2
+    self.width = [width, Graphics.width].min
+    self.height = [[contents_height+24,fitting_height($game_message.choices.size)].max, fitting_height(14)].min
+    self.x = Graphics.width - width
+    self.y = if @message_window.y >= Graphics.height / 2
+               [@message_window.y - height,0].max
+             else
+               @message_window.y + @message_window.height
+             end
+  end
+end

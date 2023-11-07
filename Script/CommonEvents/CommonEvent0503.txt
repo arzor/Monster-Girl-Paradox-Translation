@@ -1,0 +1,14 @@
+﻿// EVENT 0503
+Name "Collab Chapter 2: Loop Escape"
+
+ChangeVariable(1202,1202,0,0,9)
+If(1,1222,0,0,0)
+ EndEventProcessing()
+ 0()
+EndIf()
+ShowMessageFace("kazuya_fc2",6,0,2,1)
+ShowMessage("\\n<Kazuya>I did it! I've escaped from the loop!")
+ShowMessageFace("",0,0,2,2)
+ShowMessage("That Myusca or whatever thought up a really silly trick.\nAt this rate, I will probably encounter more unpleasant tricks like that one ahead...")
+EndEventProcessing()
+0()

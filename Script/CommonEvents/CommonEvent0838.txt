@@ -1,0 +1,14 @@
+﻿// EVENT 0838
+Name "Gem Event"
+
+If(1,150,0,9999,2)
+ RunCommonEvent(822)
+ EndEventProcessing()
+ 0()
+EndIf()
+If(1,150,0,10000,1)
+ RunCommonEvent(823)
+ EndEventProcessing()
+ 0()
+EndIf()
+0()

@@ -1,0 +1,539 @@
+﻿
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   62
+ PAGE   1
+  0()
+
+
+
+EVENT   63
+ PAGE   1
+  0()
+
+
+
+EVENT   1
+ PAGE   1
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  // condition: switch 4 is ON
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  0()
+
+
+
+EVENT   48
+ PAGE   1
+  0()
+
+
+
+EVENT   49
+ PAGE   1
+  0()
+
+
+
+EVENT   50
+ PAGE   1
+  0()
+
+
+
+EVENT   51
+ PAGE   1
+  0()
+
+
+
+EVENT   52
+ PAGE   1
+  0()
+
+
+
+EVENT   53
+ PAGE   1
+  0()
+
+
+
+EVENT   54
+ PAGE   1
+  0()
+
+
+
+EVENT   55
+ PAGE   1
+  0()
+
+
+
+EVENT   56
+ PAGE   1
+  0()
+
+
+
+EVENT   57
+ PAGE   1
+  0()
+
+
+
+EVENT   58
+ PAGE   1
+  0()
+
+
+
+EVENT   59
+ PAGE   1
+  0()
+
+
+
+EVENT   60
+ PAGE   1
+  0()
+
+
+
+EVENT   61
+ PAGE   1
+  0()
+
+
+
+EVENT   64
+ PAGE   1
+  0()
+
+
+
+EVENT   65
+ PAGE   1
+  0()
+
+
+
+EVENT   66
+ PAGE   1
+  0()
+
+
+
+EVENT   67
+ PAGE   1
+  0()
+
+
+
+EVENT   68
+ PAGE   1
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x6d,0x75,0x72,0x61,0x37,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  Wait(120)
+  PictureDisplay(5,"80_amabie_st13",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("amabie_fc2",0,0,2,1)
+  ShowMessage("\\n<Amabie>Come here, and receive my hug...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("Amabie gently hugged the villager!")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Villager>Ahhh... I'm healing...")
+  ShowMessageFace("sonia_fc4",0,0,2,4)
+  ShowMessage("\\n<Sonya>............")
+  PictureClear(5)
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Villager A>Amabie-samaaa! Over here, quick!")
+  ShowMessageFace("",0,0,2,6)
+  ShowMessage("\\n<Villager B>Hey, where does this line end? The next village?")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,7)
+   ShowMessage("\\n<Alice>Perverts...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,8)
+   ShowMessage("\\n<Ilias>How deplorable...")
+   0()
+  EndIf()
+  ShowMessageFace("",0,0,2,9)
+  ShowMessage("\\n<Villager C>Hey, don't cut in line!\nI was here first!")
+  ShowMessageFace("",0,0,2,10)
+  ShowMessage("\\n<Villager D>You came here a second time!\nGet him out of here after this hug!")
+  ShowMessageFace("amabie_fc2",0,0,2,11)
+  ShowMessage("\\n<Amabie>People, you musn't fight.\nI shall not leave here until everyone is cured...")
+  ShowMessageFace("",0,0,2,12)
+  ShowMessage("Amabie's free hugs are a huge success!")
+  ShowMessageFace("ruka_fc1",0,0,2,13)
+  ShowMessage("\\n<Luka>Looks like we had nothing to worry about...")
+  ShowMessageFace("sonia_fc2",2,0,2,14)
+  ShowMessage("\\n<Sonya>I had prepared fifteen explanations that shouldn'tve hurt Amabie's feelings, but...\nSeems we didn't need them at all.")
+  Wait(30)
+  ShowMessageFace("shirokuma_fc1",0,0,2,15)
+  ShowMessage("\\n<Polar Bear Girl>Hug, hug...")
+  ShowMessageFace("",0,0,2,16)
+  ShowMessage("\\n<Village Girl A>Awww! How cuuuute!")
+  ShowMessageFace("",0,0,2,17)
+  ShowMessage("\\n<Village Girl B>I want a hug toooo!!")
+  205(9,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x17,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,18)
+   ShowMessage("\\n<Alice>I don't get how, but the polar bear is also a huge success...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,19)
+   ShowMessage("\\n<Ilias>I don't understand how, but the polar bear is also a huge success...")
+   0()
+  EndIf()
+  If(0,1143,0)
+   ShowMessageFace("eva_fc1",0,0,2,20)
+   ShowMessage("\\n<Eva>...I just got an idea!\nI'll give out free hugs and make lots of money!")
+   ShowMessageFace("sonia_fc2",2,0,2,21)
+   ShowMessage("\\n<Sonya>They're not free hugs if you're charging money for them...")
+   0()
+  EndIf()
+  205(9,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x15,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  PictureDisplay(5,"80_amabie_st13",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("amabie_fc2",0,0,2,22)
+  ShowMessage("\\n<Amabie>It's your turn next... Now, give me a hug.")
+  ShowMessageFace("",0,0,2,23)
+  ShowMessage("\\n<Villager>Hauuu...")
+  ShowMessageFace("",0,0,2,24)
+  ShowMessage("Amabie's free hugs have healed many people...")
+  242(1)
+  221()
+  Wait(60)
+  TeleportPlayer(0,1,0,0,0,2)
+  PictureClear(5)
+  222()
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x13,0x73,0x63,0x65,0x6e,0x65,0x5f,0x6f,0x64,0x61,0x79,0x61,0x6b,0x61,0x33,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  PictureDisplay(5,"80_amabie_st11",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("amabie_fc2",0,0,2,25)
+  ShowMessage("\\n<Amabie>Thanks to you, I was able to cure the people of Yamatai. However, I am also worried that I will be burdensome to you all if I remain in your care.")
+  ShowMessageFace("amabie_fc2",0,0,2,26)
+  ShowMessage("\\n<Amabie>I will go to other towns and villages on my own when I have time to spare. I won't need escorts anymore...")
+  ShowMessageFace("sonia_fc2",2,0,2,27)
+  ShowMessage("\\n<Sonya>Does that mean you're leaving our party?")
+  ShowMessageFace("amabie_fc2",0,0,2,28)
+  ShowMessage("\\n<Amabie>No, I am still indebted to you.\nMy evolved form should help you now more than ever.")
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0b,0x4d,0x61,0x67,0x69,0x63,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  PictureDisplay(10,"sys_white",0,0,0,0,100,100,0,0)
+  PictureMove(10,null,0,0,0,0,100,100,255,0,30,true)
+  PictureDisplay(5,"80_amabie_st01",0,0,0,0,100,100,255,0)
+  PictureMove(10,null,0,0,0,0,100,100,0,0,30,true)
+  PictureClear(10)
+  ShowMessageFace("amabie_fc1",0,0,2,29)
+  ShowMessage("\\n<Amabie>...Of course, I could go back to the form I used to have.")
+  ShowMessageFace("ruka_fc1",0,0,2,30)
+  ShowMessage("\\n<Luka>That's okay, but anyways... We're thankful for your continued support!")
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0b,0x4d,0x61,0x67,0x69,0x63,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  PictureDisplay(10,"sys_white",0,0,0,0,100,100,0,0)
+  PictureMove(10,null,0,0,0,0,100,100,255,0,30,true)
+  PictureDisplay(5,"80_amabie_st11",0,0,0,0,100,100,255,0)
+  PictureMove(10,null,0,0,0,0,100,100,0,0,30,true)
+  PictureClear(10)
+  ShowMessageFace("amabie_fc2",0,0,2,31)
+  ShowMessage("\\n<Amabie>Then let's go on an adventure.\nTo heal this very world...")
+  Wait(60)
+  242(1)
+  221()
+  PictureClear(5)
+  Wait(30)
+  ShowMessageFace("stein_fc2",1,0,2,32)
+  ShowMessage("\\n<Promestein>On that topic, I have some good news.\nWhen I saw my chance, I was able to secretly collect Miss Amabie's cells.")
+  ShowMessageFace("stein_fc2",1,0,2,33)
+  ShowMessage("\\n<Promestein>And I was also successful in extracting the components connected to her humanoid mutation. With this Amabie Extract, it should be possible to change to a new race!")
+  ChangeSwitch(1932,1932,0)
+  249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x11,0x6d,0x6f,0x6e,0x5f,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+  ShowMessageFace("",0,0,2,34)
+  ShowMessage("You can now change races from Mermaid to Human!")
+  Wait(60)
+  211(1)
+  TeleportPlayer(0,2,372,165,0,2)
+  222()
+  355("gain_medal(2122)")
+  EndEventProcessing()
+  0()

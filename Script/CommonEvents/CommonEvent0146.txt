@@ -1,0 +1,14 @@
+﻿// EVENT 0146
+Name "Reaper: Difficulty Change"
+
+ShowMessageFace("sinigami_fc1",0,0,2,1)
+ShowMessage("\\n<Reaper>You wish to alter the fundamentals of the world? How would you like things to be?")
+ShowMessageFace("",0,0,2,2)
+ShowMessage("Please select a new difficulty level.")
+RunCommonEvent(110)
+ShowMessageFace("sinigami_fc1",0,0,2,3)
+ShowMessage("\\n<Reaper>Off with you now...")
+PictureMove(5,null,0,0,0,0,100,100,0,0,30,true)
+PictureClear(5)
+EndEventProcessing()
+0()

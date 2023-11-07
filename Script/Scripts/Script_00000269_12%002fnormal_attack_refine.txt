@@ -1,0 +1,5 @@
+class RPG::BaseItem
+  def ==(other)
+    self.class == other.class && id == other.id
+  end
+end

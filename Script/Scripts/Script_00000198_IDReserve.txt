@@ -1,0 +1,987 @@
+# -*- encoding: utf-8 -*-
+=begin
+= ID予約
+
+=end
+
+#==============================================================================
+# ■ NWConst::Sw
+#==============================================================================
+module NWConst::Sw
+  # 自動メッセージ利用フラグとして扱うスイッチ（素材：メッセージ制御文字拡張で使用）
+  AUTO_MESSAGE = 2
+  # 仲間加入拒否スイッチ (FOLLOWER_DISABLE_2と同じ)
+  FOLLOWER_DISABLE_1 = 3
+  # ニューゲーム時とロード時にオンにするスイッチ
+  ON_GAME_START = 24
+  # オンの時、<エンカウント半減/無効>の無効化およびスキル/アイテム効果「逃げる」の無効化
+  STRICT_ENCOUNT = 52
+  # 上級職・上級種の解放スイッチ
+  OPEN_CLASS_LANK2 = 90
+  # 最上級職・最上級種の解放スイッチ
+  OPEN_CLASS_LANK3 = 91
+  # 封印職・封印種の解放スイッチ
+  OPEN_CLASS_LANK4 = 92
+  # 捕食シーンカットスイッチ
+  CUT_PREDATION = 95
+  # 全滅不能スイッチ
+  ALL_DEAD_DISABLE = 96
+  # 戦闘勝利時の経験値とドロップアイテム 入手不能スイッチ
+  GET_DISABLE_EXP_DROP = 97
+  # 簡易ステータスを表示するスイッチ
+  SIMPLE_STATUS = 98
+  # 擬似敗北イベント中フラグ
+  LOSE_EVENT = 99  
+  # ワープ禁止スイッチID
+  WARP_BAN = 100
+  # ワープ開放フラグのベース値
+  # 実際にアクセスするのはベース値+NWConst::Warp::Placesのインデックス値になります
+  WARP_OPEN_BASE = 101
+  # 図鑑用地名スイッチ番号ベース値
+  # 実際にアクセスするのはベース値+PLACEのインデックス値
+  PLACE_FLAG_BASE = 201    
+  # 仲間になったアクターIDを格納するベース値
+  # 実際にアクセスするのはベース値+アクターID
+  ADD_ACTOR_BASE = 1000
+  
+  # 戦闘中の「入れ替え」コマンドを禁止するスイッチ
+  FORBID_BATTLE_SHIFT_CHANGE = 27
+  # 仲間加入拒否スイッチID (FOLLOWER_DISABLE_1と同じ)
+  FOLLOWER_DISABLE_2 = 81
+  # 戦闘勝利時の経験値 入手不能スイッチ
+  GET_DISABLE_EXP = 82
+  # 戦闘勝利時のお金 入手不能スイッチ
+  GET_DISABLE_GOLD = 83
+  # 戦闘勝利時のドロップアイテム 入手不能スイッチ
+  GET_DISABLE_DROP = 84
+  # 盗み強制失敗スイッチ
+  STEAL_FAIL = 85
+
+  # Hシーン図鑑の全項目解放フラグに利用するスイッチID
+  LIBRARY_H_OPEN = 442
+  # Hシーン図鑑の回想イベント中にオンになるスイッチ
+  LIBRARY_H_MEMORY = 443
+
+end
+
+#==============================================================================
+# ■ NWConst::Var
+#==============================================================================
+module NWConst::Var
+  # この変数の値が1以上なら、特定イベントコマンド(トリス修正Q参照)の敵番号をその値に強制変換
+  EVENT_ENEMY_ID = 112
+  # 敵のパラメーター補正を与える変数
+  PARAM1 = 41 # MHP
+  PARAM2 = 42 # ATK, MAG, DEX
+  PARAM3 = 43 # DEF, MDF
+  PARAM4 = 44 # AGI
+  PARAM_STATE_RATE = {
+    # ステート有効度  敵のステート有効度に [変数の値]% を乗算する
+    # ただし変数の値が0なら100%（変化なし）、マイナスなら0%とする
+    #   ステートID => 変数ID,
+    230 => 45,
+    231 => 45,
+    232 => 45,
+  }
+  # 戦闘後終了時に上がる好感度を格納する変数の番号
+  BATTLE_END_GAIN_LOVE = 52  
+  # スキル使用者のIDを格納する変数の番号
+  ACTION_USER = 100
+  # スキル対象者のIDを格納する変数の番号
+  ACTION_TARGET = 101
+  # 現在の歩数を格納する変数の番号
+  STEPS = 102
+  # 現在の所持金を格納する変数の番号
+  GOLD = 103
+  # 使用スキルIDを格納する変数の番号
+  USED_SKILL_ID = 104
+  # スキルの成否判定を格納する変数の番号
+  ACTION_HIT = 105
+  # スキル対象者の友好度を格納する変数の番号
+  ACTION_TARGET_FRIEND = 106  
+  # 立ち上がったエネミーのIDを格納する変数の番号
+  GET_UP = 107
+  # スキル使用者のベースレベルを格納する変数の番号
+  ACTION_USER_LEVEL = 108
+  # スキル対象者の逃走レベルを格納する変数の番号
+  ACTION_TARGET_LEVEL = 109  
+  # 現在の所持コインを格納する変数の番号
+  COIN = 110  
+  # 周回数を格納する変数の番号
+  TRACK = 901
+  # 現在の難易度を格納する変数の番号
+  CURRENT_DIFFICULTY = 902
+  # クリア時の最高難易度を格納する変数の番号
+  CLEAR_DIFFICULTY = 903
+  # バトルファッカー撃破数を格納する変数の番号
+  BATTLEFUCKER_DEFEAT = 907
+  # エネミー用友好度を格納する変数の番号ベース値
+  # 実際にアクセスするのはベース値+エネミーID
+  ENEMY_REL_BASE = 2000
+  # アクター用好感度を格納する変数の番号ベース値
+  # 実際にアクセスするのはベース値+アクターID
+  ACTOR_REL_BASE = 3000
+  # 共有変数IDの設定  友好度共有に使う  []内に共有したいIDを指定
+  COMMON_VARIABLE = [
+    [2002, 2003],
+    [2078, 2079, 2080, 2081],
+    [2087, 2088, 2089, 2090, 2091, 2092],
+    [2158, 2159, 2160],
+    [2168, 2169],
+    [2197, 2198, 2199],
+    [2200, 2201, 2202],
+    [2206, 2207],
+    [2208, 2209, 2210, 2211],
+    [2216, 2217, 2218],
+    [2227, 2228, 2229, 2230],
+    [2241, 2242, 2243],
+    [2268, 2269, 2270, 2271],
+    [2312, 2313],
+    [2321, 2322, 2323],
+    [2348, 2349, 2350],
+    [2353, 2354, 2355, 2356, 2357],
+    [2358, 2359, 2360],
+  ]
+  # 拡張選択肢の結果を保存する変数の番号
+  EX_CHOICE_RESULT = 9
+  # 混沌の迷宮の到達階層を保存する変数の番号 値が1以上なら「今回の冒険」に表示
+  EX_DUNGEON_REACH = 122
+  # パーティ人数上限に加算する値を代入する変数の番号
+  PARTY_MAX_PLUS = 56
+  # エンチャント武器の個数を取得する変数の番号
+  ENCHANT_WEAPON_ITEM_NUMBER =200
+  # エンチャント防具の個数を取得する変数の番号
+  ENCHANT_ARMOR_ITEM_NUMBER = 201
+
+  #エンチャントのレア度を指定する変数
+  ENCHANT_RARELITY_ID = 150
+
+  # マップ移動時にこの変数の値が1以上なら、変数の値のマップIDへ移動する
+  MAP_TRANSFER = 57
+
+  # 敵のパラメーター補正を与える変数
+  EXP = 46 # 取得経験値
+  MONEY = 47 # 取得ゴールド
+  MMP = 48 # 最大MP
+
+  # チャレンジバトルモードで戦闘が中断するターン数を設定する変数の番号
+  CHALLENGE_BATTLE_TURN = 84
+  # チャレンジバトルモードで敵に与えたダメージの合計値を格納する変数の番号
+  CHALLENGE_BATTLE_DAMAGE = 85
+
+  # 混沌の迷宮・修羅の到達階層を保存する変数の番号 値が1以上なら「今回の冒険」に表示
+  EX_DUNGEON_REACH2 = 156
+
+end
+
+#==============================================================================
+# ■ NWConst::Actor
+#==============================================================================
+module NWConst::Actor
+  # ルカのアクターID
+  LUCA = 1
+  # 個人レベル最大値
+  MAX_BASE_LEVEL = 70
+  # <習得不可>スキルを習得できないアクターのID
+  NOT_LEARN_ACTORS = [1,2,3,4,518,520,522,531,532,535,538,539,540,541,542,543,563,564,565,566,567,568,569,701,801,807,811,815,819,823]
+
+  # 武器として盾を装備している場合の通常攻撃のアニメーションID
+  DUAL_SHIELD_ANIMATION_ID = 17
+
+end
+
+#==============================================================================
+# ■ NWConst::Class
+#==============================================================================
+module NWConst::Class
+  # 職業・種族範囲
+  JOB_RANGE   = (1..149).to_a + (7001..7009).to_a
+  TRIBE_RANGE = (151..380).to_a + (7401..7410).to_a
+  # アクターの基礎ステータス用職業ベース値
+  # 実際にアクセスするのはベース値+アクターID
+  BASE_PARAM_BASE = 400
+  # 種族「人間」のID
+  HUMANS = [151]
+end
+
+#==============================================================================
+# ■ NWConst::Item
+#==============================================================================
+module NWConst::Item
+  # ポケット魔王城アイテムID
+  POCKET_CASTLE = 501
+  # プレゼントアイテムID範囲
+  PRESENT_RANGE = (301..451)  
+end
+ 
+#==============================================================================
+# ■ NWConst::Skill
+#==============================================================================
+module NWConst::Skill
+  BIND_RESIST = 52        # 「もがく」のスキルID
+  MERCY = 51              # 「なすがまま」のスキルID
+  DEFAULT_TEMPTATION = 31 # 個別スキル未設定時に適用される誘惑時スキル
+  NO_VALID_ACTION  = 4241 # 敵が選択可能な行動がない場合の代用スキル
+end 
+ 
+#==============================================================================
+# ■ NWConst::Common
+#==============================================================================
+module NWConst::Common
+  MAP_DRAW     = 2 # 地図表示用コモンイベント
+  CALL_CASTLE  = 3 # ポケット魔王城の呼び出しコモンイベント
+  BATTLE_START = 4 # 戦闘開始時に予約するコモンイベント
+  BATTLE_END   = 5 # 戦闘終了時に予約するコモンイベント
+  GIVEUP_START = 9 # 降参時に予約するコモンイベント
+  LOSE_EVENT_BASE = 3000 # 敗北時に起動するコモンイベントベース値
+end
+ 
+#==============================================================================
+# ■ NWConst::State
+#==============================================================================
+module NWConst::State
+  UBIND   = 3  # 拘束使用者ステートID
+  TBIND   = 4  # 拘束対象ステートID
+  EUBIND  = 5  # 永久拘束使用者ステートID
+  ETBIND  = 6  # 永久拘束対象ステートID
+  TEMPTATION = 26 # 誘惑ステートID
+  INCONTINENCE = 27 # 失禁ステートID
+
+  # ラーニングが無効化される状態異常
+  LEARNING_INVALID = [10,11,17,20,25,27]
+
+end
+
+#==============================================================================
+# ■ NWConst::WType
+#==============================================================================
+module NWConst::WType
+  # エネミーの基本武器タイプ
+  DEFAULT_ENEMY = 0  
+end
+
+#==============================================================================
+# ■ NWConst::SType
+#==============================================================================
+module NWConst::SType
+  BIND     = 65 # 拘束中スキルタイプID
+  EBIND    = 66 # 永久拘束中スキルタイプID
+end
+
+#==============================================================================
+# ■ NWConst::Elem
+#==============================================================================
+module NWConst::Elem
+  # 快楽属性のID
+  # 台詞・カウントの特殊化に必要
+  PLEASURE = 2
+
+  # 耐性無視・反射吸収無効となる属性ID
+  RATE_FIX_ID = [41, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+
+  # 属性一致ボーナスを適応しないID
+  IGNORE_SAME_ELEMENT_DAMAGE_BONUS = 1, 2
+
+  # 属性一致ボーナスに追加される値 基本値は(100+設定した値)%
+  SAME_ELEMENT_DAMAGE_BONUS_VALUE = 20
+
+end
+
+
+module  NWConst::Actor
+
+  #最大HP上限
+  MAX_MHP = 999999999
+  #その他能力値上限
+  MAX_PARAM = 9999999999
+
+  #最大HPの追加成長値上限
+  MAX_MHP_PLUS = 99999
+  #その他能力値の追加成長値上限
+  MAX_PARAM_PLUS = 9999
+
+end
+
+#==============================================================================
+# ■ NWConst::Party
+#==============================================================================
+module NWConst::Party
+  #所持金上限
+  MAX_MONEY = 999999999
+end
+
+module NWConst::Troop
+  # チャレンジバトルモードで戦闘を行う敵グループID　複数指定は「,」で区切る
+  CHALLENGE_BATTLE = 328
+end
+
+# -*- encoding: utf-8 -*-
+=begin
+=ダメージ計算式
+
+=end
+
+#==============================================================================
+# ■ NWConst::Parameter
+#==============================================================================
+module NWConst::Parameter
+  # 武器タイプに応じた基礎攻撃力の算出計算式テーブル
+  WEAPON_TYPE_DAMAGE = {
+  # ID => "算出式(スキル使用者の能力をa.atkやa.defなどで参照可能)"
+    1 => "(a.atk + a.luk) * 1.2",
+    2 => "a.atk * 2",
+    3 => "a.atk * 2",
+    4 => "a.atk * 2.5",
+    5 => "(a.atk + a.agi) * 1.2",
+    6 => "(a.atk + a.mat) * 1.2",
+    7 => "(a.atk + a.agi) * 1.2",
+    8 => "(a.atk + a.agi) * 1.2",
+    9 => "(a.atk + a.luk) * 1.2",
+    10 => "(a.atk + a.luk) * 1.2",
+    11 => "(a.atk + a.agi) * 1.2",
+    12 => "a.atk * 2",
+    13 => "a.atk * 2",
+    14 => "a.atk * 2",
+    15 => "a.atk * 2",
+    16 => "(a.atk * 3 + a.mat) / 2 * 1.2",
+    17 => "(a.atk * 3 + a.mat) / 2 * 1.2",
+    18 => "(a.atk + a.luk) * 1.2",
+    19 => "(a.atk + a.luk) * 1.2",
+    20 => "a.luk * 2",
+    21 => "(a.atk + a.luk) * 1.2",
+    22 => "a.atk * 2",
+    23 => "(a.luk + a.agi) * 1.2",
+    24 => "(a.atk + a.luk) * 1.2",
+    25 => "a.atk * 2",
+    26 => "(a.atk + a.luk) * 1.2",
+    27 => "(a.atk + a.luk) * 1.2",
+    28 => "(a.atk + a.luk) * 1.2",
+    29 => "a.atk * 2",
+    30 => "a.luk * 2",
+    31 => "a.luk * 2",
+    32 => "a.atk * 2",
+    99 => "a.def * 2",
+  # 0番は素手での基礎攻撃力算出式となります。
+    0 => "a.atk * 2"
+  }
+end
+
+#==============================================================================
+# ■ NWConst::Map
+#==============================================================================
+module NWConst::Map
+  # エラーチェックを省略したので
+  # ダメージ床が存在しない地形タグも全て対応数値を入力してください
+  DAMAGE_FLOOR = {
+    # 地形タグ  => ダメージ量,
+    0           => 2,
+    1           => 10,
+    2           => 2,
+    3           => 2,
+    4           => 2,
+    5           => 2,
+    6           => 2,
+    7           => 2,    
+  }
+end
+
+module NWConst
+  module Audio
+    AUDIO_ALIAS = {
+    "Audio/BGM/cb1" => "System/sys1", "Audio/BGM/cb2" => "System/sys2", "Audio/BGM/cb3" => "System/sys3", "Audio/BGM/cb4" => "System/sys4", "Audio/BGM/cb5" => "System/sys5"
+    }
+  end
+end
+
+# -*- encoding: utf-8 -*-
+=begin
+=図鑑_地名データ設定セクション by Foo
+
+図鑑の地名に関するデータを登録します
+
+==更新履歴
+Date     Version Author Comment
+13/07/24 1.0,0   Foo    新設
+
+
+=end
+
+#==============================================================================
+# ■ NWConst::Library
+#==============================================================================
+module NWConst::Library  
+  # 図鑑用地名
+  # 文字列はシンボルで統一してください
+  PLACE = [
+    :"Iliasville",
+    :"Ilias Temple",
+    :"Iliasburg",
+    :"Nameless Slums",
+    :"Pornof",
+    :"Happiness Village",
+    :"Harpy Village",
+    :"Midas Village",
+    :"Enrika",
+    :"Rostrum Village",
+    :"Iliasport",
+    :"Port Natalia",
+    :"Luddite Village",
+    :"San Ilia",
+    :"Underground Library",
+    :"Monte Carlo",
+    :"Rubiana",
+    :"Sabasa",
+    :"Grandeur",
+    :"Magistea Village",
+    :"Lily's Mansion",
+    :"Saloon",
+    :"Port Marle",
+    :"Navy Headquarters",
+    :"Finoa",
+    :"Grand Noah",
+    :"Yamatai Village",
+    :"Esta",
+    :"Plansect Village",
+    :"Lima Village Ruins",
+    :"Goddard",
+    :"Grangold",
+    :"Gold Port",
+    :"Succubus Village",
+    :"Lady's Village",
+    :"Devastated Plains",
+    :"Elf Village",
+    :"Kitsune Village",
+    :"Tanuki Village",
+    :"Snow Heaven",
+    :"Pocket Castle",
+    :"Sealed Castle Mithra",
+    :"Tartarus （Ilias Continent South）",
+    :"Medal Queen's Castle",
+    :"Tartarus （Ilias Continent East）",
+    :"Haunted Mansion",
+    :"Tartarus （Sabasa Continent North）",
+    :"MS Fish",
+    :"Magical Academy",
+    :"Tartarus （Gold Continent West）",
+    :"Ghost Ship",
+    :"Snow Shrine",
+    :"Hellgondo Shrine",
+    :"Sealed Sinner's Prison",
+    :"Tartarus （Hellgondo Continent West）",
+    :"Drain Lab",
+    :"Biolabs",
+    :"Remina Research Institute",
+    :"Tartarus （Gold Continent Center）",
+    :"Chaos Field",
+    :"Cave of Trials",
+    :"North Ilina Mountains Cave",
+    :"South Ilina Mountains Cave",
+    :"Pornof Mines",
+    :"Harpy Tower",
+    :"Slug Tower",
+    :"Midas Abandoned Mines",
+    :"Rostrum Mountain Caverns",
+    :"Cave of Treasures",
+    :"Southern Undersea Temple",
+    :"Ancient Temple Ruins",
+    :"Seeker's Cave",
+    :"Pyramid",
+    :"Tower of Magic",
+    :"Saloon Abandoned Mines",
+    :"Great Marle Corridor",
+    :"Grand Pirate's Cave",
+    :"Administrator's Tower",
+    :"Fossil Mines",
+    :"Yamatai Cave",
+    :"Orochi's Cave",
+    :"Labyrinth Caverns",
+    :"Minotauros' Labyrinth",
+    :"Undine's Spring",
+    :"Gold Fort",
+    :"Lava Mines",
+    :"Gold Volcano",
+    :"Vampire Castle",
+    :"Northern Undersea Temple",
+    :"Forgotten Tower",
+    :"The World Tree",
+    :"The Secluded Lands",
+    :"Puppeteer's Tower",
+    :"Snow Cave",
+    :"Hall of Creation",
+    :"Hellgondo Cave",
+    :"Monster Lord's Castle",
+    :"Iliasville Mountains",
+    :"Talus Hill",
+    :"Lost Woods",
+    :"Lemuse Beach",
+    :"Natalia Coast",
+    :"Mount Saint Amos",
+    :"Forest of Spirits",
+    :"Carlos Hill",
+    :"Oasis of Blessings",
+    :"Safar Ruins",
+    :"Saloon Hill",
+    :"Red Mountain",
+    :"Lyra Falls",
+    :"Eastern Gold Toxic Swamp",
+    :"Gold Coast",
+    :"March Hills",
+    :"Scenic Hill",
+    :"Nightmare Wastes",
+    :"Fairy's Island",
+    :"Mount Horai",
+    :"Ilias Temple Ruins",
+    :"Succubus Village （Alt）",
+    :"Hellgondo Cave （Alt）",
+    :"Hellgondo Continent （Alt）",
+    :"Monster Lord's Castle （Alt）",
+    :"Collab Scenario",
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :ダミー,
+    :"Around Iliasville",
+    :"Around Iliasburg",
+    :"Around Nameless Slums",
+    :"Around Pornof",
+    :"Around Happiness Village",
+    :"Around Iliasport",
+    :"Eastern Natalia Region",
+    :"Western Natalia Region",
+    :"Southern Sabasa Desert",
+    :"Northern Sabasa Desert",
+    :"Around Magistea Village",
+    :"Around Port Marle",
+    :"Inland Sea",
+    :"Around Grand Noah",
+    :"Around Yamatai",
+    :"Around Esta",
+    :"Around Grangold",
+    :"Around Succubus Village",
+    :"Around Devastated Plains",
+    :"Open Sea",
+    :"Around Fairy‘s Island",
+    :"Hellgondo Continent",
+    :"Around Snow Heaven",
+    :"Field （Heaven）",
+    :"Field （Makai）",
+    :"Various Places",
+    :"Around Iliasville （Alt）",
+    :"Iliasville （Alt）",
+    :"Rostrum Village （Alt）",
+    :"Cooking",
+    :"Casino Prize （Pornof）",
+    :"Casino Prize （Grandeur）",
+    :"Casino Prize （Pocket Castle）",
+    :"Colosseum Prize",
+    :"Battlefuck Prize",
+    :"Remina （Alt）",
+    :"Around Goddard",
+  ]
+end
+
+# -*- encoding: utf-8 -*-
+=begin
+= ワープの設定
+
+スイッチ関係は重複を避ける為にIDReserve.rbで管理しています
+禁止したい場合はWARP_BANの値を
+個別開放したい場合はWARP_FREE_BASE値を設定してください
+
+=end
+
+#==============================================================================
+# ■ NWConst::Warp
+#==============================================================================
+module NWConst::Warp
+  # ワープ先一覧
+  Places = [
+    {:name => "Pocket Castle", :map_id => 126, :x => 15, :y => 13, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 297, 356]},    
+    {:name => "Ilias Temple", :map_id => 5, :x => 24, :y => 11, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 297, 356]},    
+    {:name => "Iliasville", :map_id => 2, :x => 295, :y => 356, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 297, 356]},    
+    {:name => "Iliasburg", :map_id => 2, :x => 300, :y => 326, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 302, 326]},    
+    {:name => "Nameless Slums", :map_id => 2, :x => 236, :y => 341, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 235, 341]},    
+    {:name => "Pornof", :map_id => 2, :x => 349, :y => 377, :category => :地上,
+      :v2location => [[2, 349, 382, "v[1001]>=30"],[2, 284, 274, "true"]], :v3location => [2, 351, 377]},
+    {:name => "Happiness Village", :map_id => 2, :x => 353, :y => 326, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 352, 326]},    
+    {:name => "Midas Village", :map_id => 2, :x => 366, :y => 279, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 367, 279]},    
+    {:name => "Medal Queen's Castle", :map_id => 2, :x => 338, :y => 273, :category => :地上,
+      :v2location => [2, 338, 268], :v3location => [2, 339, 273]},    
+    {:name => "Enrika", :map_id => 2, :x => 241, :y => 368, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 284, 363]},    
+    {:name => "Rostrum Village", :map_id => 2, :x => 385, :y => 354, :category => :地上,
+      :v2location => [[2, 388, 353, "v[1001]>=30"],[2, 284, 274, "true"]], :v3location => [2, 386, 354]},   
+    {:name => "Iliasport", :map_id => 2, :x => 282, :y => 275, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 281, 275]},    
+    {:name => "Port Natalia", :map_id => 2, :x => 282, :y => 260, :category => :地上,
+      :v2location => [2, 284, 261], :v3location => [2, 281, 260]},    
+    {:name => "Luddite Village", :map_id => 2, :x => 257, :y => 250, :category => :地上,
+      :v2location => [2, 284, 261], :v3location => [2, 258, 250]},    
+    {:name => "San Ilia", :map_id => 2, :x => 236, :y => 261, :category => :地上,
+      :v2location => [[2, 234, 268, "v[1001]>=30"],[2, 284, 261, "true"]], :v3location => [2, 238, 261]}, 
+    {:name => "Monte Carlo", :map_id => 2, :x => 200, :y => 273, :category => :地上,
+      :v2location => [2, 284, 261], :v3location => [2, 201, 273]},    
+    {:name => "Rubiana", :map_id => 2, :x => 142, :y => 317, :category => :地上,
+      :v2location => [[2, 141, 318, "v[1001]>=30"],[2, 284, 261, "true"]], :v3location => [2, 143, 317]},
+    {:name => "Sabasa", :map_id => 2, :x => 103, :y => 294, :category => :地上,
+      :v2location => [[2, 104, 296, "v[1001]>=30"],[2, 100, 225 ,"true"]], :v3location => [2, 105, 294]},    
+    {:name => "Grandeur", :map_id => 2, :x => 85, :y => 272, :category => :地上,
+      :v2location => [2, 100, 225], :v3location => [2, 84, 272]},    
+    {:name => "Magistea Village", :map_id => 2, :x => 47, :y => 295, :category => :地上,
+      :v2location => [[2, 37, 292, "v[1001]>=30"],[2, 100, 225, "true"]], :v3location => [2, 46, 295]},  
+    {:name => "Saloon", :map_id => 2, :x => 98, :y => 230, :category => :地上,
+      :v2location => [2, 100, 225], :v3location => [2, 100, 230]},    
+    {:name => "Port Marle", :map_id => 2, :x => 254, :y => 234, :category => :地上,
+      :v2location => [2, 253, 232], :v3location => [2, 253, 234]},    
+    {:name => "Navy Headquarters", :map_id => 2, :x => 335, :y => 240, :category => :地上,
+      :v2location => [2, 334, 240], :v3location => [2, 338, 240]},    
+    {:name => "Finoa", :map_id => 2, :x => 330, :y => 209, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 329, 209]},    
+    {:name => "Grand Noah", :map_id => 2, :x => 328, :y => 187, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 327, 187]},    
+    {:name => "Yamatai Village", :map_id => 2, :x => 372, :y => 166, :category => :地上,
+      :v2location => [[2, 379, 167, "v[1001]>=30"],[2, 322, 227, "true"]], :v3location => [2, 374, 166]},  
+    {:name => "Esta", :map_id => 2, :x => 261, :y => 202, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 263, 202]},    
+    {:name => "Plansect Village", :map_id => 2, :x => 283, :y => 198, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 282, 198]},    
+    {:name => "Lima Ruins", :map_id => 2, :x => 236, :y => 179, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 235, 179]},    
+    {:name => "Goddard", :map_id => 2, :x => 221, :y => 176, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 223, 176]},    
+    {:name => "Grangold", :map_id => 2, :x => 234, :y => 154, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 233, 154]},    
+    {:name => "Gold Port", :map_id => 2, :x => 234, :y => 131, :category => :地上,
+      :v2location => [[2, 233, 130, "v[1001]>=30"],[2, 322, 227, "true"]], :v3location => [2, 236, 131]}, 
+    {:name => "Succubus Village", :map_id => 2, :x => 165, :y => 142, :category => :地上,
+      :v2location => [[2, 168, 121, "v[1001]>=30"],[2, 322, 227, "true"]], :v3location => [2, 167, 142]},  
+    {:name => "Lady's Village", :map_id => 2, :x => 150, :y => 122, :category => :地上,
+      :v2location => [[2, 168, 121, "v[1001]>=30"],[2, 322, 227, "true"]], :v3location => [2, 152, 122]},  
+    {:name => "Holy Wings Shrine", :map_id => 2, :x => 134, :y => 125, :category => :地上,
+      :v2location => [[2, 168, 121, "v[1001]>=30"],[2, 322, 227, "true"]], :v3location => [2, 135, 125]},   
+    {:name => "Fairy's Island", :map_id => 2, :x => 42, :y => 348, :category => :地上,
+      :v2location => [2, 46, 338], :v3location => [2, 43, 346]},    
+    {:name => "Elf Village", :map_id => 384, :x => 23, :y => 49, :category => :地上,
+      :v2location => [2, 365, 157], :v3location => [2, 372, 160]},    
+    {:name => "Kitsune Village", :map_id => 2, :x => 388, :y => 158, :category => :地上,
+      :v2location => [2, 389, 155], :v3location => [2, 389, 158]},    
+    {:name => "Snow Heaven", :map_id => 2, :x => 89, :y => 158, :category => :地上,
+      :v2location => [2, 82, 144], :v3location => [2, 91, 158]},    
+    {:name => "Ilias Temple Ruins", :map_id => 2, :x => 33, :y => 193, :category => :地上,
+      :v2location => [2, 82, 144], :v3location => [2, 35, 193]},    
+    {:name => "Hellgondo Shrine", :map_id => 2, :x => 223, :y => 93, :category => :地上,
+      :v2location => [2, 203, 102], :v3location => [2, 222, 92]},    
+    {:name => "Monster Lord's Castle", :map_id => 2, :x => 164, :y => 55, :category => :地上,
+      :v2location => [2, 203, 102], :v3location => [2, 166, 55]},    
+    {:name => "Iliasburg", :map_id => 193, :x => 300, :y => 326, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Mithra Sealed Castle", :map_id => 193, :x => 235, :y => 354, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Enrika", :map_id => 193, :x => 241, :y => 368, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Port Natalia", :map_id => 193, :x => 282, :y => 260, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Luddite Village", :map_id => 193, :x => 257, :y => 250, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "San Ilia", :map_id => 193, :x => 236, :y => 261, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Rubiana", :map_id => 193, :x => 142, :y => 317, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Sabasa", :map_id => 193, :x => 103, :y => 294, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Saloon", :map_id => 193, :x => 98, :y => 230, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Port Marle", :map_id => 193, :x => 254, :y => 234, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Finoa", :map_id => 193, :x => 330, :y => 209, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Grand Noah", :map_id => 193, :x => 328, :y => 187, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Esta", :map_id => 193, :x => 261, :y => 202, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Goddard", :map_id => 193, :x => 226, :y => 174, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Grangold", :map_id => 193, :x => 234, :y => 154, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Remina", :map_id => 193, :x => 147, :y => 85, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Administrator's Tower", :map_id => 193, :x => 152, :y => 224, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Ilias Temple", :map_id => 193, :x => 295, :y => 356, :category => :天界,
+      :v2location => [2, 258, 204], :v3location => [2, 263, 202]},    
+    {:name => "Aliceville", :map_id => 1, :x => 295, :y => 356, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Aliceburg", :map_id => 1, :x => 300, :y => 326, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Mithra Sealed Castle", :map_id => 1, :x => 235, :y => 354, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Pornof", :map_id => 1, :x => 349, :y => 377, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Harpy Village", :map_id => 1, :x => 355, :y => 326, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Aliceport", :map_id => 1, :x => 282, :y => 275, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Port Natalia", :map_id => 1, :x => 282, :y => 260, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Monte Carlo", :map_id => 1, :x => 200, :y => 273, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Sabasa", :map_id => 1, :x => 103, :y => 294, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Grandeur", :map_id => 1, :x => 85, :y => 272, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Magistea Village", :map_id => 1, :x => 47, :y => 295, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Saloon", :map_id => 1, :x => 98, :y => 230, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Port Marle", :map_id => 1, :x => 254, :y => 234, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Finoa", :map_id => 1, :x => 330, :y => 209, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Grand Noah", :map_id => 1, :x => 328, :y => 187, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Yamatai Village", :map_id => 1, :x => 372, :y => 166, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Plansect Village", :map_id => 1, :x => 283, :y => 198, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Grangold", :map_id => 1, :x => 234, :y => 154, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Gold Port", :map_id => 1, :x => 234, :y => 131, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Succubus Village", :map_id => 1, :x => 165, :y => 142, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Fairy's Island", :map_id => 1, :x => 43, :y => 348, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Hellgondo Shrine", :map_id => 1, :x => 223, :y => 93, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Monster Lord's Castle", :map_id => 1, :x => 164, :y => 55, :category => :魔界,
+      :v2location => [2, 203, 102], :v3location => [2, 153, 89]},    
+    {:name => "Iliasville (Alt)", :map_id => 196, :x => 59, :y => 54, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 300, 390]},    
+    {:name => "Rostrum (Alt)", :map_id => 195, :x => 38, :y => 20, :category => :地上,
+      :v2location => [2, 284, 274], :v3location => [2, 386, 354]},    
+    {:name => "Administrator's Tower (Alt)", :map_id => 197, :x => 58, :y => 12, :category => :地上,
+      :v2location => [2, 100, 225], :v3location => [2, 151, 244]},    
+    {:name => "Succubus Village (Alt)", :map_id => 194, :x => 74, :y => 120, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 117, 138]},    
+    {:name => "Remina (Alt)", :map_id => 194, :x => 55, :y => 63, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 117, 138]},    
+    {:name => "Monster Lord's Castle (Alt)", :map_id => 194, :x => 73, :y => 33, :category => :地上,
+      :v2location => [2, 322, 227], :v3location => [2, 117, 138]},    
+    {:name => "Chaos Field", :map_id => 442, :x => 18, :y => 53, :category => :地上,
+      :v2location => [2, 297, 395], :v3location => [2, 297, 356]},  
+  ]  
+end
+
+# -*- encoding: utf-8 -*-
+=begin
+= フィールド特殊化
+
+=end
+
+#==============================================================================
+# ■ NWConst::Field
+#==============================================================================
+module NWConst::Field
+  # フィールド特殊化マップID
+  # 現在
+  # ・ポケット魔王城呼び出し可能判定
+  # ・マップ表示呼び出し可能判定
+  # ・マップ軽量化
+  # の３つが適用されます
+  FIELD_MAP_ID = [2, 1, 193]
+  # BGMの自動切替適用マップID
+  AUTO_BGM_MAP_ID = [2,194]
+  
+  # フェードアウトに掛けるフレーム数
+  # ※除算にも使っているので絶対に0は指定しないでください
+  FADEOUT_FRAME = 120
+  # フェードインに掛けるフレーム数
+  FADEIN_FRAME  = 60
+  
+  # BGM設定
+  BGM = {
+    # マップID
+    2 => {
+      # 0はリージョンが未設定の状態です。引数はname, volume, pitch
+      0 => RPG::BGM.new("field1", 100, 100),
+      1 => RPG::BGM.new("field1", 100, 100),
+      2 => RPG::BGM.new("field1", 100, 100),
+      3 => RPG::BGM.new("field1", 100, 100),
+      4 => RPG::BGM.new("field1", 100, 100),
+      5 => RPG::BGM.new("field1", 100, 100),
+      6 => RPG::BGM.new("field1", 100, 100),
+      7 => RPG::BGM.new("field2", 100, 100),
+      8 => RPG::BGM.new("field2", 100, 100),
+      9 => RPG::BGM.new("field2", 100, 100),
+      10 => RPG::BGM.new("sabaku", 100, 100),
+      11 => RPG::BGM.new("sabaku", 100, 100),
+      12 => RPG::BGM.new("field2", 100, 100),
+      13 => RPG::BGM.new("field2", 100, 100),
+      14 => RPG::BGM.new("field2", 100, 100),
+      15 => RPG::BGM.new("umi", 100, 100),
+      16 => RPG::BGM.new("field2", 100, 100),
+      17 => RPG::BGM.new("field2", 100, 100),
+      18 => RPG::BGM.new("field2", 100, 100),
+      19 => RPG::BGM.new("field2", 100, 100),
+      20 => RPG::BGM.new("field2", 100, 100),
+      21 => RPG::BGM.new("field2", 100, 100),
+      22 => RPG::BGM.new("umi", 100, 100),
+      23 => RPG::BGM.new("field2", 100, 100),
+      24 => RPG::BGM.new("field3", 100, 100),
+      25 => RPG::BGM.new("field4", 100, 100),
+      26 => RPG::BGM.new("field2", 100, 100),
+    },
+    194 => {
+      0 => RPG::BGM.new("field2", 100, 100),
+      1 => RPG::BGM.new("field2", 100, 100),
+      2 => RPG::BGM.new("field2", 100, 100),
+      3 => RPG::BGM.new("umi", 100, 100),
+      4 => RPG::BGM.new("field4", 100, 100),
+    }
+  }
+  # BGS設定
+  BGS = {
+    2 => {
+      #22 => RPG::BGS.new("Sea", 100, 100),
+    },
+    194 => {
+    
+    }
+  }
+  # 地形定義
+  TERRAIN = {
+    :森 => {
+      :tag => 1,
+      :map_id => [
+        125, 128, 132, 153, 205, 206, 207, 208, 209, 331,
+        332, 333, 415, 416, 417, 443, 668, 670, 674, 767,
+        813, 816, 828, 832,
+      ],
+     },
+    :砂漠 => {
+      :tag => 2,
+      :map_id => [
+        114, 115, 116, 117, 307, 379, 380, 381, 393, 397,
+        404, 405, 407, 408, 409, 410, 411, 412, 413, 414,
+        445, 653, 655, 662, 676, 677, 688, 695, 769, 786,
+      ],    
+    },
+    :海 => {
+      :tag => 3,
+      :map_id => [
+        124, 127, 131, 369, 370, 371, 372, 373, 376, 478,
+        479, 671, 672, 685, 689, 690, 696, 701, 762, 776, 763, 784, 796, 825,
+      ],
+    },
+    :深海 => {
+      :tag => -1,
+      :map_id => [
+        145, 146, 147, 148, 149, 659, 809,
+      ],
+    },
+    :洞窟 => {
+      :tag => -1,
+      :map_id => [
+         17,  18,  62,  63,  64,  65,  66,  67,  68,  69,
+         70,  71,  72,  73,  74,  75,  76,  77,  78,  79,
+         80,  81,  82,  83,  84,  85, 150, 155, 156, 157,
+        158, 160, 161, 163, 165, 166, 175, 192, 198, 204,
+        210, 214, 231, 232, 233, 234, 236, 239, 241, 243,
+        245, 247, 258, 259, 261, 263, 265, 266, 267, 283,
+        284, 285, 286, 287, 288, 289, 290, 328, 330, 364,
+        365, 366, 367, 368, 398, 399, 400, 401, 402, 403,
+        444, 449, 475, 643, 647, 656, 657, 658, 664, 699,
+        700, 704, 795, 796, 798, 799, 801, 805, 806, 807,
+        808, 812, 821, 822,
+      ],      
+    },
+    :市街 => {
+      :tag => -1,
+      :map_id => [
+         23,  29,  33,  45,  46,  55,  56, 164, 176, 177,
+        185, 219, 225, 226, 279, 280, 338, 359, 360, 361,
+        362, 363, 378, 387, 388, 389, 483, 484, 513, 515,
+        616, 624, 667, 679, 680, 681, 682, 683, 684, 686,
+        687, 688, 689, 690, 691, 692, 693, 694, 695, 697,
+        698, 719, 720, 721, 722, 723, 742, 762, 763, 764,
+        765, 766, 768, 770, 771, 776, 777, 778, 779, 783,
+        785, 789, 815, 829,
+      ],
+    },
+  }   
+end
+
+# 視界制限　設定項目
+module TMBLSIGHT
+  # 何番のマップをどれだけ視界制限するか
+  # 例）SIGHT[3] = 128  # ３番のマップの視界を128ドット四方に制限する
+  SIGHT = {}
+  SIGHT[234] = 350
+  SIGHT[236] = 350
+  SIGHT[265] = 350
+  SIGHT[258] = 350
+  SIGHT[259] = 350
+  SIGHT[261] = 350
+  SIGHT[263] = 350
+  SIGHT[239] = 350
+  SIGHT[175] = 350
+  SIGHT[241] = 350
+  SIGHT[243] = 350
+  SIGHT[245] = 350
+  SIGHT[247] = 350
+  SIGHT[94] = 350
+
+  VN_SIGHT = 2    # 視界のサイズ補正に利用するゲーム変数番号
+end
+

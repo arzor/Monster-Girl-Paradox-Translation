@@ -1,0 +1,32 @@
+module NWRegexp
+  module BaseItem
+    FAST_MOVE_ALL = /<全行動速攻>/i
+    SLOW_MOVE_ALL = /<全行動遅攻>/i
+  end
+end
+
+class Game_BattlerBase
+  def fast_move_all?
+    !features(FEATURE_FAST_MOVE_ALL).empty?
+  end
+
+  def slow_move_all?
+    !features(FEATURE_SLOW_MOVE_ALL).empty?
+  end
+
+  def slow_move?(skill)
+    return false if skill.nil? || !skill.is_skill?
+    return true if skill.slow_move? || slow_move_all?
+
+    id_data = features_with_id(FEATURE_BATTLER_ABILITY, SLOW_MOVE_TYPE).map(&:value)
+    skill.stypes.include_any?(id_data)
+  end
+
+  def fast_move?(skill)
+    return false if skill.nil? || !skill.is_skill?
+    return true if skill.fast_move? || fast_move_all?
+
+    id_data = features_with_id(FEATURE_BATTLER_ABILITY, FAST_MOVE_TYPE).map(&:value)
+    skill.stypes.include_any?(id_data)
+  end
+end

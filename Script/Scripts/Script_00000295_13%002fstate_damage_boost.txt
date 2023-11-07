@@ -1,0 +1,19 @@
+module NWRegexp
+  module BaseItem
+    STATE_DAMAGE_BOOSTER = /<ステートダメージアップ\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def booster_states_damage(item)
+    states.inject(1.0) do |rate, state|
+      rate *= booster_state_damage(state.id, item)
+      rate
+    end
+  end
+
+  def booster_state_damage(state_id, item)
+    a = [FEATURE_STATE_DAMAGE_BOOST, state_id]
+    1.0 + features_sum(*a) + item.features_with_id(*a).map(&:value).inject(0.0, &:+)
+  end
+end

@@ -1,0 +1,78 @@
+module RPG
+  class Enemy
+    class Action
+      def skill
+        $data_skills[skill_id]
+      end
+    end
+  end
+end
+
+class Window_Library_RightMain
+  ENEMY_SKILL_PAGE_MAX = 14
+  def draw_contents_enemy
+    enemy = $data_enemies[@ext % 10_000]
+    return unless enemy
+
+    @page_max = 4 + enemy_skill_page(enemy)
+    if @page >= @page_max
+      @page = 0
+      return refresh
+    end
+    # ページに応じた項目描画
+    rect = standard_rect
+    draw_enemy_image(enemy)
+    draw_common_page(@page_max)
+    rect.y = draw_common_id(enemy)
+    case @page
+    when 0
+      # 1ページ目 基本情報
+      draw_enemy_status(rect.y, enemy)
+    when 1
+      draw_enemy_tropy(rect.y, enemy)
+    when 2
+      draw_enemy_stat(rect.y, enemy)
+    when 3
+      draw_chara_description(rect.y, enemy)
+    else
+      draw_enemy_skill(rect.y, enemy, @page - 4)
+    end
+  end
+
+  def enemy_skill_page(enemy)
+    ([enemy_show_skills(enemy).count - 1, 0].max / ENEMY_SKILL_PAGE_MAX) + 1
+  end
+
+  def enemy_show_skills(enemy)
+    enemy.actions.map(&:skill).compact.reject do |skill|
+      skill.lib_name.empty? || skill.lib_exclude?
+    end
+  end
+
+  def draw_enemy_skill(y, enemy, page = 0)
+    lr = standard_rect(y)
+    lr.width *= 0.7
+    rr = standard_rect(y)
+    rr.x += rr.width * 0.7
+    rr.width *= 0.3
+
+    reset_font_settings
+    change_color(system_color)
+    draw_text(lr, "Skill")
+    draw_text(rr, "Times Taken")
+    lr.y += lr.height + LINE_HEIGHT
+    rr.y += rr.height + LINE_HEIGHT
+    start_index = ENEMY_SKILL_PAGE_MAX * page
+
+    enemy_show_skills(enemy)[start_index, ENEMY_SKILL_PAGE_MAX].each do |skill|
+      name = skill.lib_name
+      num  = $game_library.enemy_skill_used_num(enemy.id, skill.id)
+      change_color(normal_color, 0 < num)
+      draw_text(lr, name)
+      draw_text(rr, num)
+      lr.y += lr.height
+      rr.y += rr.height
+    end
+    rr.y
+  end
+end

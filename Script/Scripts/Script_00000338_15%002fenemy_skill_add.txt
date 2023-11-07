@@ -1,0 +1,70 @@
+module NWRegexp
+  module State
+    SEAL_ACTION = /<敵行動削除\s?((?:\d+(?:,\s?)?)+)>/i
+    ADD_ACTION = /<敵行動追加\s?((?:\d+-\d+(?:,\s?)?)+)>/i
+  end
+end
+
+module RPG
+  class State
+    def add_action
+      @data_ex.fetch(:add_action, [])
+    end
+
+    def seal_action
+      @data_ex.fetch(:seal_action, [])
+    end
+  end
+end
+
+class Game_Enemy
+  #--------------------------------------------------------------------------
+  # ● 拘束中行動の作成
+  #--------------------------------------------------------------------------
+  def make_bind_actions
+    all_actions.select do |action|
+      skill = action.skill
+      result = skill.bind?
+      result &&= !(skill.binding_start? && BattleManager.bind? && (BattleManager.bind_user_index != index))
+      result
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 永久拘束中行動の作成
+  #--------------------------------------------------------------------------
+  def make_eternal_bind_actions
+    all_actions.select do |action|
+      action.skill.eternal_bind?
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 通常行動の作成
+  #--------------------------------------------------------------------------
+  def make_normal_actions
+    all_actions.select do |action|
+      skill    = action.skill
+      result   = !skill.bind?
+      result &&= !skill.eternal_bind?
+      result &&= !(skill.binding_start? && BattleManager.bind? && (BattleManager.bind_user_index != index))
+      result &&= usable_item_sex_ok?(skill)
+      result
+    end
+  end
+
+  def all_actions
+    sa = seal_actions
+    (enemy.actions + add_actions).reject do |action|
+      sa.include?(action.skill_id)
+    end
+  end
+
+  def add_actions
+    states.map(&:add_action).inject([], :+)
+  end
+
+  def seal_actions
+    states.map(&:seal_action).inject([], :+)
+  end
+end

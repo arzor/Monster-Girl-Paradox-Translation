@@ -1,0 +1,5 @@
+class Game_Battler
+  def state_boost_plus
+    features_sum_all(FEATURE_STATE_BOOST_PLUS)
+  end
+end

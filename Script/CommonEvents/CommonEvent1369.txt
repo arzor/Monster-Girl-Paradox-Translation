@@ -1,0 +1,10 @@
+﻿// EVENT 1369
+Name "Talk: Sonya Mainyu"
+
+ChangeVariable(25,25,0,0,0)
+ShowMessageFace("soniamanyu_fc1",0,0,2,1)
+ShowMessage("\\n<Sonya Mainyu>■■■■■■■■■■■■■■■■...")
+ShowMessageFace("",0,0,2,2)
+ShowMessage("Sonya Mainyu rejected your attempt at conversation!")
+EndEventProcessing()
+0()

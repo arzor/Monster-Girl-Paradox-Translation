@@ -1,0 +1,19 @@
+// EVENT 0345
+Name "Nightmare Wastes Exit"
+
+ChangeSwitch(2214,2214,0)
+If(0,4,0)
+ ShowMessageFace("alice_fc5",0,0,2,1)
+ ShowMessage("\\n<Alice>Looks like we're finally through the nightmare wastes and into the desert. If we head west from here, we should reach the Tartarus rift.")
+ ShowMessageFace("alice_fc5",0,0,2,2)
+ ShowMessage("\\n<Alice>Before going there, maybe we should go northwest to the Holy Wings Shrine? I'd like to check it out, and it would be a good place to rest up.")
+ 0()
+EndIf()
+If(0,5,0)
+ ShowMessageFace("iriasu_fc4",0,0,2,3)
+ ShowMessage("\\n<Ilias>Looks like we are finally through the nightmare wastes and into the desert. If we head west from here, we should reach the Tartarus rift.")
+ ShowMessageFace("iriasu_fc4",0,0,2,4)
+ ShowMessage("\\n<Ilias>Before going there, maybe we should go northwest to that weird bird shrine? I would like to check on it myself, and it would make a fine place to rest.")
+ 0()
+EndIf()
+0()

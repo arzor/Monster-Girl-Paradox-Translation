@@ -1,0 +1,59 @@
+module NWRegexp
+  module BaseItem
+    ENEMY_NUMBER_SKILL_BOOSTER = /<敵(複数|単体)時スキル(タイプ|)強化\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+    ENEMY_NUMBER_BOOSTER = /<敵(複数|単体)時強化\s?(#{NWRegexp::VALUE})>/i
+  end
+end
+
+class Game_BattlerBase
+  def boost_enemy_number_rate(item)
+    return 1.0 unless item.is_a?(RPG::Skill)
+
+    size = opponents_unit.alive_members.size
+    if size == 1
+      booster_enemy_single_rate(item)
+    elsif size > 1
+      booster_enemy_multi_rate(item)
+    else
+      1.0
+    end
+  end
+
+  def booster_enemy_single_rate(skill)
+    booster_enemy_single * booster_enemy_single_skill(skill) * booster_enemy_single_skill_type(skill)
+  end
+
+  def booster_enemy_multi_rate(skill)
+    booster_enemy_multi * booster_enemy_multi_skill(skill) * booster_enemy_multi_skill_type(skill)
+  end
+
+  private
+
+  def booster_enemy_single
+    1.0 + features_sum(FEATURE_MULTI_BOOSTER, Booster::ENEMY_SIGNLE)
+  end
+
+  def booster_enemy_multi
+    1.0 + features_sum(FEATURE_MULTI_BOOSTER, Booster::ENEMY_MULTI)
+  end
+
+  def booster_enemy_single_skill(skill)
+    1.0 + features_sum(FEATURE_ENEMY_SINGLE_SKILL_BOOST, skill.id)
+  end
+
+  def booster_enemy_multi_skill(skill)
+    1.0 + features_sum(FEATURE_ENEMY_MULTI_SKILL_BOOST, skill.id)
+  end
+
+  def booster_enemy_single_skill_type(skill)
+    skill.stypes.inject(1.0) do |r, stype|
+      r * (1.0 + features_sum(FEATURE_ENEMY_SINGLE_SKILL_TYPE_BOOST, stype))
+    end
+  end
+
+  def booster_enemy_multi_skill_type(skill)
+    skill.stypes.inject(1.0) do |r, stype|
+      r * (1.0 + features_sum(FEATURE_ENEMY_MULTI_SKILL_TYPE_BOOST, stype))
+    end
+  end
+end

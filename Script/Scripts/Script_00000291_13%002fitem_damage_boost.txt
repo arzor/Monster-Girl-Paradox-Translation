@@ -1,0 +1,13 @@
+module NWRegexp
+  module BaseItem
+    ITEM_DAMAGE_BOOSTER = /<アイテムダメージアップ\s?(#{NWRegexp::VALUE})%?>/
+  end
+end
+
+class Game_BattlerBase
+  def booster_item_damage(item)
+    return 1.0 unless item.is_a?(RPG::Item)
+
+    1.0 + features_sum(FEATURE_MULTI_BOOSTER, Booster::ITEM_DAMAGE)
+  end
+end

@@ -1,0 +1,55 @@
+module NWRegexp
+  module BaseItem
+    SKILL_TYPE_DEFENCE_PENETRATION = /<防御無効化スキルタイプ\s?((?:\d+(?:,\s?)?)+)>/i
+  end
+end
+
+module RPG
+  class UsableItem
+    class Damage
+      attr_writer :def_penetration_flag
+
+      def def_penetration?
+        @def_penetration_flag
+      end
+
+      alias hima_15_dp_eval eval
+      def eval(a, b, v)
+        set_def_penetration(b)
+        result = hima_15_dp_eval(a, b, v)
+        clear_def_penetration(b)
+        result
+      end
+
+      def set_def_penetration(target)
+        return unless def_penetration?
+
+        def target.def
+          0
+        end
+
+        def target.mdf
+          0
+        end
+      end
+
+      def clear_def_penetration(target)
+        return unless def_penetration?
+
+        class << target
+          remove_method :def, :mdf
+        end
+      end
+    end
+  end
+end
+
+class Game_Battler
+  def skill_def_penetration?(skill)
+    return false unless skill && skill.is_a?(RPG::Skill)
+
+    skill.stypes.any? do |stype|
+      !features_with_id(FEATURE_SKILL_TYPE_DEFENCE_PENETRATION, stype).empty?
+    end
+  end
+end

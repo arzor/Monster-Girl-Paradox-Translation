@@ -1,0 +1,89 @@
+module NWRegexp
+  module BaseItem
+    SKILL_COMBO = /<スキル(タイプ|)コンボ\s?(((?:\d+-\d+)(?:,\s?)?)+)>/i
+  end
+end
+
+class RPG::UsableItem
+  def stypes
+    []
+  end
+end
+
+class Game_BattlerBase
+  def skill_combo(skill)
+    return [] unless skill.is_a?(RPG::Skill)
+
+    skill_id_combo(skill) + skill_type_combo(skill)
+  end
+
+  def skill_id_combo(skill)
+    features_with_id(FEATURE_SKILL_COMBO, skill.id).map(&:value)
+  end
+
+  def skill_type_combo(skill)
+    skill.stypes.map do |stype|
+      features_with_id(FEATURE_SKILL_TYPE_COMBO, stype).map(&:value)
+    end.flatten
+  end
+end
+
+class Scene_Battle < Scene_Base
+  alias hima_skill_combo_use_item use_item
+  def use_item
+    skill_combo
+    hima_skill_combo_use_item
+  end
+
+  def skill_combo
+    return unless @subject.current_action.item
+    return if @subject.game_master?
+
+    base_action = @subject.current_action
+    base_action.combo_history ||= []
+    @subject.skill_combo(base_action.item).each do |skill_id|
+      action = Game_Action.new(@subject)
+      action.set_skill(skill_id)
+      BattleManager.skill_combo(@subject, action, base_action)
+    end
+  end
+end
+
+class << BattleManager
+  def skill_combo(battler, action, base_action)
+    action.set_symbol(:skill_combo)
+    return unless action.valid?
+    return unless base_action.skill_combo_enable?(action)
+
+    action.combo_setting(base_action)
+    battler.actions << action
+    @action_battlers.unshift(action)
+  end
+end
+
+class Game_Action
+  attr_accessor :combo_history
+
+  def combo_setting(base_action)
+    combo_target_setting(base_action)
+    combo_history_setting(base_action)
+  end
+
+  def combo_target_setting(base_action)
+    return unless item.scope == base_action.item.scope
+    return unless item.scope == 1 || item.scope == 7
+
+    @target_index = base_action.target_index
+  end
+
+  def combo_history_setting(base_action)
+    @combo_history = base_action.combo_history
+    @combo_history << item.id
+  end
+  
+  def skill_combo_enable?(action)
+    return false if @subject.game_master?
+    return true if @symbol != :skill_combo
+    !@combo_history.include?(action.item.id)
+  end
+end

@@ -1,0 +1,9 @@
+﻿// EVENT 0632
+Name "Event: Dragon Pup"
+
+ChangeSwitch(73,73,0)
+ShowMessageFace("dragonp_fc1",0,0,2,1)
+ShowMessage("\\n<Dragon Pup>Uga! I'm Papi the blacksmith!")
+RunCommonEvent(107)
+ChangeSwitch(73,73,1)
+0()

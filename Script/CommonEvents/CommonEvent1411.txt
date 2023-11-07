@@ -1,0 +1,8 @@
+﻿// EVENT 1411
+Name "Talk: Collab"
+
+ChangeVariable(25,25,0,0,0)
+ShowMessageFace("",0,0,2,1)
+ShowMessage("The enemy rejected your attempt at conversation!")
+EndEventProcessing()
+0()

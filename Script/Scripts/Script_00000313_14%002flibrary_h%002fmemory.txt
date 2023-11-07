@@ -1,0 +1,27 @@
+class Game_Interpreter
+  def return_map
+    return unless @return_flag
+
+    $game_switches[NWConst::Sw::LIBRARY_H_MEMORY] = false
+    
+    SceneManager.scene.fadeout_all(500)
+    SceneManager.call(Scene_Library_H)
+    @return_flag = false
+  end
+  alias hima_library_h_run run
+  alias hima_library_h_setup setup
+
+  def setup(list, event_id = 0)
+    hima_library_h_setup(list, event_id)
+    if LibraryH::Manager.return_flag
+      @return_flag = true
+      LibraryH::Manager.return_flag = false
+    end
+  end
+
+  def run
+    hima_library_h_run
+    return_map
+  end
+  
+end

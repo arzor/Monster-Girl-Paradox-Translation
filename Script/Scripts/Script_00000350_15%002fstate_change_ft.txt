@@ -1,0 +1,63 @@
+module RPG
+  class State
+    def _change_features
+      is_expr = ->(ft) { ft.code == FEATURE_BATTLER_ABILITY && ft.data_id == GET_EXP_RATE }
+      is_cexpr = ->(ft) { ft.code == FEATURE_BATTLER_ABILITY && ft.data_id == GET_CLASSEXP_RATE }
+      is_party_ex = lambda do |ft|
+        ft.code == FEATURE_PARTY_EX_ABILITY && (ft.data_id == GET_GOLD_RATE || ft.data_id == GET_ITEM_RATE || ft.data_id == COLLECT_RATE)
+      end
+
+      is_state_boost = ->(ft) { ft.code == FEATURE_PARAM }
+      super.map do |ft|
+        case ft
+        when is_expr
+          RPG::BaseItem::Feature.new(FEATURE_BATTLER_ABILITY, GET_EXP_RATE_STATE, ft.value)
+        when is_cexpr
+          RPG::BaseItem::Feature.new(FEATURE_BATTLER_ABILITY, GET_CLASSEXP_RATE_STATE, ft.value)
+        when is_party_ex
+          RPG::BaseItem::Feature.new(FEATURE_PARTY_EX_ABILITY, ft.data_id + 10, ft.value)
+        when is_state_boost
+          ft = RPG::BaseItem::Feature.new(FEATURE_PARAM_STATE, ft.data_id, ft.value)
+          ft.obj_id = id
+          ft
+        else
+          ft
+        end
+      end
+    end
+  end
+end
+
+class Game_BattlerBase
+  def exr
+    max = features_max(FEATURE_BATTLER_ABILITY, GET_EXP_RATE)
+    min = features_min(FEATURE_BATTLER_ABILITY, GET_EXP_RATE)
+    state = features_sum(FEATURE_BATTLER_ABILITY, GET_EXP_RATE_STATE)
+    [max, 1.0].max - (1.0 - min) + state
+  end
+
+  def cexr
+    max = features_max(FEATURE_BATTLER_ABILITY, GET_CLASSEXP_RATE)
+    min = features_min(FEATURE_BATTLER_ABILITY, GET_CLASSEXP_RATE)
+    state = features_sum(FEATURE_BATTLER_ABILITY, GET_CLASSEXP_RATE_STATE)
+    [max, 1.0].max - (1.0 - min) + state
+  end
+
+  def get_gold_rate
+    [1.0,
+     features_max(FEATURE_PARTY_EX_ABILITY,
+                  GET_GOLD_RATE)].max + features_sum(FEATURE_PARTY_EX_ABILITY, GET_GOLD_RATE_STATE)
+  end
+
+  def get_item_rate
+    [1.0,
+     features_max(FEATURE_PARTY_EX_ABILITY,
+                  GET_ITEM_RATE)].max + features_sum(FEATURE_PARTY_EX_ABILITY, GET_ITEM_RATE_STATE)
+  end
+
+  def collect_rate
+    [1.0,
+     features_max(FEATURE_PARTY_EX_ABILITY,
+                  COLLECT_RATE)].max + features_sum(FEATURE_PARTY_EX_ABILITY, COLLECT_RATE_STATE)
+  end
+end

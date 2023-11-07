@@ -1,0 +1,10 @@
+﻿// EVENT 1370
+Name "Talk: Sonya Chaos"
+
+ChangeVariable(25,25,0,0,0)
+ShowMessageFace("soniachaos_fc1",0,0,2,1)
+ShowMessage("\\n<Sonya Chaos>■■■■■■■■■■■■■■■■...")
+ShowMessageFace("",0,0,2,2)
+ShowMessage("Sonya Chaos rejected your attempt at conversation!")
+EndEventProcessing()
+0()

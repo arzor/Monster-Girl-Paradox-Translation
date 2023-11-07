@@ -1,0 +1,48 @@
+class Game_Action
+  def action?
+    true
+  end
+
+  def obj=(obj)
+    @item.object = obj
+  end
+
+  def <=>(other)
+    return other.speed <=> speed if force_move == other.force_move
+
+    if force_move == :fast_move || other.force_move == :slow_move
+      -1
+    else
+      1
+    end
+  end
+
+  def speed
+    @speed ||= make_speed
+  end
+
+  def force_move
+    @force_move ||= make_force_move
+  end
+
+  def make_force_move
+    if subject.slow_move?(item)
+      :slow_move
+    elsif subject.fast_move?(item)
+      :fast_move
+    else
+      :normal_move
+    end
+  end
+
+  def make_speed
+    speed = subject.speed
+    speed += item.speed if item
+    speed += subject.atk_speed if attack?
+    speed
+  end
+
+  def valid?
+    (forcing && item) || (subject.enable_action? && subject.usable?(item))
+  end
+end

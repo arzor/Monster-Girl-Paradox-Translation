@@ -1,0 +1,18 @@
+module NWRegexp
+  module BaseItem
+    SKILL_ADD_PARAM = /<能力値加算\s?(\d+),\s?(\d+),\s?(\d+),\s?(#{NWRegexp::VALUE})>/i
+  end
+end
+
+class Game_Battler < Game_BattlerBase
+  def skill_add_param_data(skill)
+    skill.stypes.inject({}) do |h, stype|
+      features_with_id(FEATURE_STYPE_ADD_PARAM, stype).map(&:value).each do |param, add_param, rate|
+        h[param] ||= {}
+        h[param][add_param] ||= rate
+        h[param][add_param] = [rate, h[param][add_param]].max
+      end
+      h
+    end
+  end
+end

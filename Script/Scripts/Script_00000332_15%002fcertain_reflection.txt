@@ -1,0 +1,23 @@
+module NWRegexp
+  module BaseItem
+    CERTAIN_REFLECTION = /<必中反射率 (#{NWRegexp::VALUE})%>/
+  end
+end
+
+
+class Game_Battler
+  #--------------------------------------------------------------------------
+  # ● スキル／アイテムの反射率計算
+  #--------------------------------------------------------------------------
+  def item_mrf(user, item)
+    return physical_reflection_rate if item.physical? # 物理攻撃なら物理反射率
+    return mrf if item.magical?             # 魔法攻撃なら魔法反射率を返す
+    return certain_reflection_rate if item.certain? && opposite?(user)
+
+    0
+  end
+
+  def certain_reflection_rate
+    features_sum(FEATURE_BATTLER_ABILITY, CERTAIN_REFLECTION)
+  end
+end

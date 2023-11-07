@@ -1,0 +1,75 @@
+﻿
+
+
+EVENT   1
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,910,29,15,0,0)
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  ShowMessageFace("mimic_fc1",1,0,2,1)
+  ShowMessage("\\n<Mimic>")
+  ShowMessage("I was called here within my dreams, but...\nIt seems I'm a shut-in here, too.")
+  ShowMessageFace("mimic_fc1",1,0,2,2)
+  ShowMessage("\\n<Mimic>")
+  ShowMessage("There are all kinds of items in this box...\nIf you want them, I'm fine with selling them to you.")
+  Shop(0,2,0,0,false)
+  605(0,11,0,0)
+  605(0,13,0,0)
+  605(0,14,0,0)
+  605(0,15,0,0)
+  605(0,16,0,0)
+  605(0,17,0,0)
+  605(0,18,0,0)
+  605(0,19,0,0)
+  605(0,20,0,0)
+  605(0,21,0,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  ShowMessageFace("s_mermaid_fc1",1,0,2,1)
+  ShowMessage("\\n<Mermaid Merchant>")
+  ShowMessage("What a great room I've found! I'll be setting up shop here.")
+  Shop(1,74,0,0,false)
+  605(1,276,0,0)
+  605(1,316,0,0)
+  605(1,427,0,0)
+  605(1,534,0,0)
+  605(1,609,0,0)
+  605(1,644,0,0)
+  605(1,743,0,0)
+  605(2,12,0,0)
+  605(2,25,0,0)
+  605(2,90,0,0)
+  605(2,137,0,0)
+  605(2,219,0,0)
+  605(2,251,0,0)
+  605(2,268,0,0)
+  605(2,274,0,0)
+  605(2,314,0,0)
+  0()

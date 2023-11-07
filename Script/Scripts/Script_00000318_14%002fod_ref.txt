@@ -1,0 +1,11 @@
+class Game_BattlerBase
+  def od_movable?
+    !($game_party.in_over_drive? && $game_party.od_user.master_observer != master_observer && !ignore_over_drive?)
+  end
+end
+
+class Game_Master
+  def od_movable?
+    true
+  end
+end

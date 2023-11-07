@@ -1,0 +1,11 @@
+module NWRegexp
+  module BaseItem
+    EX_CATEGORY = /<特殊カテゴリー\s?((?:\d+(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def ex_category
+    features_set(FEATURE_EX_CATEGORY)
+  end
+end

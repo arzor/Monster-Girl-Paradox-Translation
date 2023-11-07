@@ -1,0 +1,17 @@
+class RPG::BaseItem
+  def weapon_rate_bonus
+    @data_ex.key?(:weapon_rate_bonus) ? @data_ex[:weapon_rate_bonus] : []
+  end
+end
+
+class Game_BattlerBase
+  def weapon_mastery_bonus
+    []
+  end
+end
+
+class Game_Actor < Game_Battler
+  def weapon_mastery_bonus
+    weapons.map { |weapon| weapon.weapon_rate_bonus }.flatten
+  end
+end

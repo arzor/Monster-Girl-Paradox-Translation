@@ -1,0 +1,10 @@
+class Window_BattleLog < Window_Selectable
+  def display_miss(target, item)
+    return unless item
+
+    fmt = target.actor? ? Vocab::ActorNoHit : Vocab::EnemyNoHit
+    Sound.play_miss
+    add_text(format(fmt, target.name))
+    wait
+  end
+end

@@ -1,0 +1,8 @@
+class Game_Action
+  alias hima_12_use_items use_items
+  def use_items(can_failure)
+    hima_12_use_items(can_failure).map do |item|
+      item.respond_to?(:change) ? item.change(subject) : item
+    end
+  end
+end

@@ -1,0 +1,54 @@
+class Game_BattlerBase
+  def action?
+    false
+  end
+end
+
+class Game_Battler < Game_BattlerBase
+  attr_reader :speed
+  def make_speed
+    @speed = agi + rand(5 + agi / 4)
+  end
+
+  alias speed_on_battle_end on_battle_end
+  def on_battle_end
+    speed_on_battle_end
+    @current_action_index = nil
+  end
+
+  def current_action_index
+    @current_action_index || 0
+  end
+
+  def current_action_index=(value)
+    @current_action_index = value.is_a?(Game_Action) ? @actions.index(value) : value
+  end
+
+  def current_action
+    @actions[current_action_index]
+  end
+
+  def remove_current_action
+    @actions.delete_at(current_action_index)
+  end
+
+  def action_end?
+    @actions.empty?
+  end
+
+  def skill_interrupt(skill_id, symbol = nil)
+    return unless skill_race_ok?($data_skills[skill_id])
+
+    action = action_set(skill_id, symbol)
+    self.current_action_index = action
+    action
+  end
+
+  def action_set(skill_id, symbol = nil)
+    action = Game_Action.new(self)
+    action.set_skill(skill_id)
+    action.set_symbol(symbol)
+    @actions << action
+    action
+  end
+end

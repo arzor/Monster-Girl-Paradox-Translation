@@ -1,0 +1,47 @@
+module NWRegexp
+  module BaseItem
+    SAME_ELEMENT_DAMAGE_BONUS = /<スキル属性一致ボーナス強化\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_Battler
+  def final_elements_raw(elements)
+    (all_add_elements + elements).uniq.map do |element_id|
+      [element_id, add_elements(element_id)].flatten
+    end
+  end
+
+  def final_elements(elements)
+    final_elements_raw(elements).flatten.uniq
+  end
+
+  def item_final_elements(item)
+    final_elements(item_elements(item))
+  end
+
+  def item_final_elements_raw(item)
+    final_elements_raw(item_elements(item))
+  end
+
+  def booster_same_element_damage(item)
+    item_same_elements(item).inject(1.0) do |rate, element|
+      rate *= same_element_damage_rate(element)
+      rate
+    end
+  end
+
+  def item_same_elements(item)
+    (final_elements(item.elements.reject { |id| id < 0 }) & atk_elements).reject do |element|
+      NWConst::Elem::IGNORE_SAME_ELEMENT_DAMAGE_BONUS.include?(element)
+    end
+  end
+
+  def same_element_damage_rate(element_id)
+    1.0 + (NWConst::Elem::SAME_ELEMENT_DAMAGE_BONUS_VALUE / 100.0) + same_element_damage_rate_bonus(element_id)
+  end
+
+  def same_element_damage_rate_bonus(element_id)
+    features_sum(FEATURE_SAME_ELEMENT_DAMAGE_BOOST, element_id)
+  end
+end
+

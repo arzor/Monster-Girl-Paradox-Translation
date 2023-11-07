@@ -1,0 +1,52 @@
+class Scene_Battle < Scene_Base
+  def process_action
+    return if scene_changing?
+    gm_exist = BattleManager.gm_exist?
+    @subject = BattleManager.next_subject
+    return gm_exist ? nil : turn_end unless @subject
+
+    if @subject.current_action
+      @subject.current_action.prepare
+      execute_action if @subject.valid_select_action?
+      @subject.remove_current_action
+    end
+    if @subject.action_end?
+      process_action_end
+      BattleManager.delete_action(@subject)
+    end
+  end
+
+  def invoke_counter_attack(target, item)
+    @log_window.clear
+    @subject, target = target, @subject
+    base_item = $data_skills[@subject.counter_skill || @subject.attack_skill_id]
+    action = @subject.skill_interrupt(base_item.id)
+    t = target
+    @subject.invoke_repeats(base_item).times do |_repeat_time|
+      if t.alive? && @subject.current_action
+        use_items = @subject.current_action.use_items(false)
+        display_item = use_items.size == 1 ? use_items[0] : base_item
+        process_skill_word(display_item)
+        display_skill_name(display_item)
+        @log_window.display_counter(@subject, display_item)
+        use_items.each do |attack_skill|
+          target = base_item.for_user? ? @subject : t
+          action = Game_Action.new(@subject, true)
+          action.obj = attack_skill
+          action.target_index = target.index
+          targets = action.make_targets.compact
+          show_animation(targets, attack_skill.animation_id)
+          targets.each do |target|
+            apply_item_effects(apply_substitute(target, attack_skill), attack_skill, true)
+            @subject.item_one_use_apply(attack_skill, [target], self)
+          end
+        end
+      end
+      @log_window.clear
+    end
+    target = t
+    refresh_status
+    @subject.remove_current_action
+    @subject, target = target, @subject
+  end
+end

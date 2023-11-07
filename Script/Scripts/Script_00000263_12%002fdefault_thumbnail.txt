@@ -1,0 +1,25 @@
+class << DataManager
+  def make_thumbnail
+    @thumbnails = {}
+    @current_thumbnail = nil
+    @dummy_thumbnail = nil
+    src_bitmap = SceneManager.background_bitmap
+    @current_thumbnail = Bitmap.new(160, 120)
+    @current_thumbnail.stretch_blt(@current_thumbnail.rect, src_bitmap, src_bitmap.rect)
+    @dummy_thumbnail = Bitmap.new(160, 120)
+    @dummy_thumbnail.fill_rect(@dummy_thumbnail.rect, Color.new(0, 0, 0))
+
+    Dir.mkdir("Save") unless Dir.exist?("Save")
+    Dir.entries("Save").each do |file_name|
+      next unless file_name =~ /^Save(\d+)\.rvdata2/i
+
+      thumnail_file = "Save/Save#{Regexp.last_match(1)}.png"
+
+      if File.exist?(thumnail_file)
+        @thumbnails[Regexp.last_match(1).to_i - 1] = Bitmap.new(thumnail_file)
+      else
+        @thumbnails[Regexp.last_match(1).to_i - 1] = Bitmap.new("Graphics/System/NotThumbnailFile.png") if NWFileTest.system_exist?("NotThumbnailFile.png")
+      end
+    end
+  end
+end

@@ -1,0 +1,52 @@
+class Game_Battler
+  def item_effect_add_state_normal(user, item, effect)
+    chance = add_state_chance(user, item, effect.data_id, effect.value1)
+    return unless rand < chance
+
+    if effect.data_id == NWConst::State::INSTANT_DEAD && (hp > 0) && instant_dead_reverse?
+      @result.hp_damage = -(mhp - hp)
+      self.hp = mhp
+    else
+      add_state(effect.data_id)
+    end
+    @result.success = true
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 使用効果［ステート付加］
+  #--------------------------------------------------------------------------
+  def item_effect_add_state(user, item, effect)
+    if effect.data_id == 0
+      item_effect_add_state_attack(user, item, effect)
+    else
+      item_effect_add_state_normal(user, item, effect)
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 使用効果［ステート付加］：通常攻撃
+  #--------------------------------------------------------------------------
+  def item_effect_add_state_attack(user, item, effect)
+    user.atk_states.each do |state_id|
+      ef = RPG::UsableItem::Effect.new(0, state_id, effect.value1 * user.atk_states_rate(state_id))
+      item_effect_add_state_normal(user, item, ef)
+    end
+  end
+
+  def add_state_chance(user, item, state_id, chance)
+    return 0.0 if state_resist?(state_id)
+
+    if item.is_skill?
+      c = chance
+      chance *= user.booster_state_ratio_type(item)
+      chance *= user.booster_state_ratio_skill(item)
+      chance += user.booster_state_fix_type(item)
+      chance = [[c, 1.0].max, chance].min
+    end
+
+    chance *= state_rate(state_id) unless item.state_penetrate?
+    chance = [chance, 0.0].max
+    print "#{$data_states[state_id].name}付与最終成功率#{(chance * 100).to_i}%\n" if $TEST
+    chance
+  end
+end

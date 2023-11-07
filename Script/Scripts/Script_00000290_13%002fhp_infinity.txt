@@ -1,0 +1,32 @@
+module NWRegexp
+  module Enemy
+    HP_INFINITE = /<HP無限>/i
+    MP_INFINITE = /<MP無限>/i
+  end
+end
+
+class Game_Enemy
+  def refresh
+    @hp = mhp if hp_infinite?
+    @mp = mmp if mp_infinite?
+    super
+  end
+
+  def hp_infinite?
+    enemy.hp_infinite?
+  end
+
+  def mp_infinite?
+    enemy.mp_infinite?
+  end
+end
+
+class RPG::Enemy
+  def hp_infinite?
+    @data_ex.fetch(:hp_infinite, false)
+  end
+
+  def mp_infinite?
+    @data_ex.fetch(:mp_infinite, false)
+  end
+end

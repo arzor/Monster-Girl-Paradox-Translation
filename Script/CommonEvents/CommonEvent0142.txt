@@ -1,0 +1,19 @@
+﻿// EVENT 0142
+Name "Page Synthesis"
+
+ChangeVariable(11,11,0,2,1,50)
+If(1,11,0,40,2)
+ ChangeInventory_Item(109,0,0,1)
+ ShowMessageFace("",0,0,2,1)
+ ShowMessage("Obtained Grimoire Page!")
+ EndEventProcessing()
+ 0()
+EndIf()
+If(1,11,0,41,1)
+ ChangeInventory_Item(109,0,0,2)
+ ShowMessageFace("",0,0,2,2)
+ ShowMessage("Obtained 2 Grimoire Pages!")
+ EndEventProcessing()
+ 0()
+EndIf()
+0()

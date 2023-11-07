@@ -1,0 +1,1040 @@
+﻿
+
+
+EVENT   1
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Villager>This is the assembly hall for the village. The village elder can usually be found here.")
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,47,22,0,0)
+  216(0)
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,24,24,0,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,11,32,0,0)
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,50,31,0,0)
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,30,44,0,0)
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,48,40,0,0)
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Store Owner>Hmm... What business do you have here?")
+  Shop(1,128,0,0,false)
+  605(1,243,0,0)
+  605(1,268,0,0)
+  605(2,12,0,0)
+  605(2,136,0,0)
+  605(2,189,0,0)
+  605(2,212,0,0)
+  605(2,248,0,0)
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  ShowMessageFace("kappa_fc1",0,0,2,1)
+  ShowMessage("\\n<Kappa Blacksmith>Kappappa! ♪\nI'm a kappa blacksmith! ♪")
+  355("call_synthesize(15)")
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Nobunaga>You mustn't neglect to stock up on tools...")
+  Shop(0,2,0,0,false)
+  605(0,13,0,0)
+  605(0,17,0,0)
+  605(0,18,0,0)
+  605(0,20,0,0)
+  605(0,102,0,0)
+  605(2,1051,0,0)
+  605(2,1143,0,0)
+  605(2,1148,0,0)
+  605(2,1163,0,0)
+  605(2,1164,0,0)
+  605(2,1721,0,0)
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Shopkeeper>Welcome to our restaurant!\nWhat would you like to order?")
+  Shop(0,361,0,0,false)
+  605(0,408,0,0)
+  605(0,410,0,0)
+  605(0,411,0,0)
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Vegetable-selling Girl>Do you need any vegetables?")
+  Shop(0,308,0,0,false)
+  605(0,310,0,0)
+  605(0,312,0,0)
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,53,31,18,0,0)
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  If(1,826,0,2,1)
+   If(0,1575,1)
+    ShowMessageFace("mob_samurai_fc1",0,0,2,1)
+    ShowMessage("\\n<Yayoi>Will you take me along on your adventure too? It'd be nice to have something to cut...")
+    ShowChoices(strings("Let her join","Decline for now"),0)
+    IfPlayerPicksChoice(0,null)
+     ShowMessageFace("mob_samurai_fc1",0,0,2,2)
+     ShowMessage("\\n<Yayoi>Really?! Let's get cutting!")
+     PictureClear(5)
+     205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+     355("add_actor_ex(575)")
+     249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+     ShowMessageFace("",0,0,2,3)
+     ShowMessage("Yayoi joined the party!")
+     Wait(60)
+     EndEventProcessing()
+     0()
+    IfPlayerPicksChoice(1,null)
+     ShowMessageFace("mob_samurai_fc1",1,0,2,4)
+     ShowMessage("\\n<Yayoi>Am I no good...?")
+     0()
+    404()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  RunCommonEvent(7251)
+  0()
+ PAGE   2
+  // condition: party contains actor #575
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  If(1,1217,0,1,1)
+   If(1,1217,0,3,2)
+    If(1,1217,0,1,0)
+     ChangeVariable(1217,1217,0,0,2)
+     0()
+    EndIf()
+    ShowMessageFace("",0,0,2,1)
+    ShowMessage("\\n<Village Elder>Ooh, you've arrived!\nSomeone called Daji was seen at the Fox Shrine!")
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Village Elder>She looked just like the one on the wanted poster from Grand Noah, a purple kitsune.")
+    ShowMessageFace("",0,0,2,3)
+    ShowMessage("\\n<Village Elder>I've heard stories that she is a very fearsome yoma...\nI beg of you, please exterminate her for us.")
+    ShowMessageFace("kazuya_fc1",0,0,2,4)
+    ShowMessage("\\n<Kazuya>Yeah, leave it to us.")
+    If(0,4,0)
+     ShowMessageFace("alice_fc5",2,0,2,5)
+     ShowMessage("\\n<Alice>The Fox Shrine, right...? We must go there immediately!")
+     0()
+    EndIf()
+    If(0,5,0)
+     ShowMessageFace("iriasu_fc4",7,0,2,6)
+     ShowMessage("\\n<Ilias>She's at the Fox Shrine, yes...? We must head there at once!")
+     0()
+    EndIf()
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1055,0,0,0)
+   ShowMessageFace("",0,0,2,7)
+   ShowMessage("\\n<Village Elder>Oooh, this is bad.\nReal bad...")
+   ShowMessageFace("",0,0,2,8)
+   ShowMessage("\\n<Village Elder>No, don't mind me. This is our problem, not something you travelers need concern yourselves with.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1055,0,1,0)
+   ChangeVariable(1055,1055,0,0,2)
+   ShowMessageFace("",0,0,2,9)
+   ShowMessage("\\n<Village Elder>Oh, you're here! You came from Grand Noah to help us, right?")
+   ShowMessageFace("durahan_fc1",0,0,2,10)
+   ShowMessage("\\n<Arthur>That is correct. We are here in response to your request. So, just what is going on here?")
+   If(4,203,0)
+    ShowMessageFace("tatunoko_k_fc1",1,0,2,11)
+    ShowMessage("\\n<Tatsuko>We'll solve it!")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,12)
+   ShowMessage("\\n<Village Elder>There are four major shrines in this village: the kitsune shrine, tanuki shrine, cat shrine, and snake shrine.")
+   ShowMessageFace("",0,0,2,13)
+   ShowMessage("\\n<Village Elder>The gods worshiped at each of the shrines have gone mad. One after the other, terrible things have happened at each shrine for no discernible reason...")
+   If(4,201,0)
+    ShowMessageFace("ashel_fc1",0,0,2,14)
+    ShowMessage("\\n<Ashel>Sometimes when it rains, it pours, but four disasters at the same time sounds extreme.")
+    0()
+   EndIf()
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,15)
+    ShowMessage("\\n<Alice>We get the idea. Can you summarize what happened at each shrine for us?")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,16)
+    ShowMessage("\\n<Ilias>So, four separate disasters?\nLet's go through them one by one to start with.")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,17)
+   ShowMessage("\\n<Village Elder>First, the Shirohebi of the snake shrine are gathering followers and forming an army of youkai.")
+   ShowMessageFace("",0,0,2,18)
+   ShowMessage("\\n<Village Elder>It appears that they're amassing an army in order to take over the village... At least, that's what it seems like they've been preparing to do.")
+   ShowMessageFace("ruka_fc1",0,0,2,19)
+   ShowMessage("\\n<Luka>A whole army of youkai? We can't let them attack the village!")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,20)
+    ShowMessage("\\n<Alice>The Shirohebi are a pair of sisters, I believe, with the older one known for her bad behavior. We'll have to knock some sense into her to stop her from doing anything barbaric.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,21)
+    ShowMessage("\\n<Ilias>If I recall correctly, the Shirohebi are a pair of sisters, and the older one is especially evil. We should take this opportunity to rid the world of her.")
+    0()
+   EndIf()
+   If(4,129,0)
+    ShowMessageFace("brunhild_fc1",0,0,2,22)
+    ShowMessage("\\n<Hild>Mission acknowledged. Eliminate youkai army led by Shirohebi.")
+    0()
+   EndIf()
+   If(0,6,0)
+    ShowMessageFace("sonia_fc1",3,0,2,23)
+    ShowMessage("\\n<Sonya>Let's bust up that snake shrine! Night raid, morning assault, any time works for me!")
+    ShowMessageFace("ruka_fc1",0,0,2,24)
+    ShowMessage("\\n<Luka>(She's really pumped up for this...)")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,25)
+   ShowMessage("\\n<Village Elder>Next up, the master of the kitsune shrine is depressed for some reason, and it's spreading unrest among all the kitsune.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,26)
+    ShowMessage("\\n<Alice>Tamamo is the master of that shrine, is she not? What could possibly cause her to be depressed?")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,27)
+    ShowMessage("\\n<Ilias>The master of the kitsune shrine is that infuriating Tamamo. Anything that could send her into a depression cannot bode well.")
+    0()
+   EndIf()
+   If(4,102,0)
+    ShowMessageFace("youko_fc1",2,0,2,28)
+    ShowMessage("\\n<Kitsu>I wonder what happened to Tamamo...")
+    0()
+   EndIf()
+   If(4,103,0)
+    ShowMessageFace("kamuro_fc1",2,0,2,29)
+    ShowMessage("\\n<Kamuro>I'm really worried for Tamamo now...")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,30)
+   ShowMessage("\\n<Village Elder>The tanuki god can't be found anywhere at the tanuki shrine. Instead, there's a kitsune crying there for some reason.")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc2",2,0,2,31)
+    ShowMessage("\\n<Sonya>A kitsune crying and a tanuki missing? It sounds like the two can't possibly be unrelated.")
+    0()
+   Else()
+    ShowMessageFace("ruka_fc1",0,0,2,32)
+    ShowMessage("\\n<Luka>A kitsune crying and a tanuki missing? It sounds like the two can't possibly be unrelated.")
+    0()
+   EndIf()
+   If(4,53,0)
+    ShowMessageFace("slime_fc1",2,0,2,33)
+    ShowMessage("\\n<Lime>Maybe someone was bullying them...?")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,34)
+   ShowMessage("\\n<Village Elder>At the cat shrine... Well, just go see for yourself. We have no idea which of them is the cat god.")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc2",2,0,2,35)
+    ShowMessage("\\n<Sonya>Which of them...? What does that mean?")
+    0()
+   Else()
+    ShowMessageFace("ruka_fc1",0,0,2,36)
+    ShowMessage("\\n<Luka>What in the world is going on there...")
+    0()
+   EndIf()
+   If(4,222,0)
+    ShowMessageFace("nekomata_fc1",4,0,2,37)
+    ShowMessage("\\n<Tama>...Unyaa?")
+    0()
+   EndIf()
+   ShowMessageFace("durahan_fc1",0,0,2,38)
+   ShowMessage("\\n<Arthur>I think we know enough for now. Shall we go investigate the shrines themselves now?")
+   ShowMessageFace("",0,0,2,39)
+   ShowMessage("\\n<Village Elder>Please, you would be doing us a great service. The hill leading to the four shrines is on the outskirts of the village to the northeast of here.")
+   ShowMessageFace("",0,0,2,40)
+   ShowMessage("\\n<Village Elder>If you resolve everything, I'll reward you with the \\C[3]Eastern Book of Secrets\\C[0]. May fortune smile upon you.")
+   If(4,218,0)
+    ShowMessageFace("nyumaou_fc1",0,0,2,41)
+    ShowMessage("\\n<Cow Demon Queen>Sure, just leave it to me!")
+    0()
+   EndIf()
+   If(4,79,0)
+    ShowMessageFace("nuruko_fc1",0,0,2,42)
+    ShowMessage("\\n<Nuruko>Kyuu!")
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1055,0,2,0)
+   ShowMessageFace("",0,0,2,43)
+   ShowMessage("\\n<Village Elder>Please, you would be doing us a great service. The hill leading to the four shrines is on the outskirts of the village to the northeast of here.")
+   ShowMessageFace("",0,0,2,44)
+   ShowMessage("\\n<Village Elder>If you resolve everything, I'll reward you with the \\C[3]Eastern Book of Secrets\\C[0]. May fortune smile upon you.")
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1055,0,3,0)
+   ChangeVariable(1055,1055,0,0,4)
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x14,0x73,0x63,0x65,0x6e,0x65,0x5f,0x65,0x70,0x69,0x6c,0x6f,0x67,0x75,0x65,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   355("gain_medal(35)")
+   ShowMessageFace("durahan_fc1",1,0,2,45)
+   ShowMessage("\\n<Arthur>Elder, we have finished solving the issues with the shrines.")
+   ShowMessageFace("",0,0,2,46)
+   ShowMessage("\\n<Village Elder>Thank you so much!\nPlease accept this as a token of my gratitude.")
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   ChangeInventory_Item(603,0,0,1)
+   If(4,202,0)
+    ShowMessageFace("bonny_fc1",1,0,2,47)
+    ShowMessage("\\n<Bonnie>Yes! Booty!")
+    0()
+   EndIf()
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",1,0,2,48)
+    ShowMessage("\\n<Alice>This will let us change jobs to Samurai, Taoist, and Ninja. Thanks, it's much appreciated.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",0,0,2,49)
+    ShowMessage("\\n<Ilias>This will allow us to change jobs to Samurai, Taoist, and Ninja. We shall receive it with gratitude.")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,50)
+   ShowMessage("\\n<Village Elder>I can't thank you enough for your help. You're welcome in this village whenever you want to drop by.")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc1",0,0,2,51)
+    ShowMessage("\\n<Sonya>All's well that ends well...right?")
+    0()
+   Else()
+    ShowMessageFace("ruka_fc1",0,0,2,52)
+    ShowMessage("\\n<Luka>Well, we've finished what we came here to do.")
+    0()
+   EndIf()
+   ShowMessageFace("durahan_fc1",1,0,2,53)
+   ShowMessage("\\n<Arthur>I owe you my thanks as well. I am truly in your debt.")
+   ShowMessageFace("durahan_fc1",1,0,2,54)
+   ShowMessage("\\n<Arthur>Actually, Her Majesty the Queen gave me another mission. I am to accompany you even after we've completed our duty in Yamatai.")
+   ShowMessageFace("durahan_fc1",1,0,2,55)
+   ShowMessage("\\n<Arthur>Therefore, you can continue to count on me. I hope my sword will be useful in your quest to save the world.")
+   249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+   ShowMessageFace("",0,0,2,56)
+   ShowMessage("Arthur formally joins the party!")
+   If(0,6,0)
+    ShowMessageFace("sonia_fc1",0,0,2,57)
+    ShowMessage("\\n<Sonya>It's reassuring to know that the Queen of Grand Noah is secretly supporting us.")
+    0()
+   Else()
+    ShowMessageFace("ruka_fc1",0,0,2,58)
+    ShowMessage("\\n<Luka>It's very helpful to have the Queen of Grand Noah secretly supporting us.")
+    0()
+   EndIf()
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",2,0,2,59)
+    ShowMessage("\\n<Alice>But that's also a sign of how important our responsibility is. Never forget that we can't afford to relax and take it easy.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,60)
+    ShowMessage("\\n<Ilias>Let that remind you of just how important our mission is.")
+    0()
+   EndIf()
+   ShowMessageFace("ruka_fc1",0,0,2,61)
+   ShowMessage("\\n<Luka>Of course. I know how much weight we carry on our shoulders. With that said, let's get going!")
+   If(4,62,0)
+    ShowMessageFace("gob_fc1",0,0,2,62)
+    ShowMessage("\\n<Gob>If we do get a chance to relax, let's come back to Yamatai!")
+    0()
+   EndIf()
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x6d,0x75,0x72,0x61,0x37,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(1,1055,0,4,0)
+   ShowMessageFace("",0,0,2,63)
+   ShowMessage("\\n<Village Elder>There are no major issues facing the village at the moment. Our young men being like a living mass of worldly desires is nothing new...")
+   ShowMessageFace("",0,0,2,64)
+   ShowMessage("\\n<Village Elder>Besides, the world would be in trouble if the youth gave up on their sexual desires. Without more children, the village would die off.")
+   If(4,382,0)
+    ShowMessageFace("morrigan_fc1",0,0,2,65)
+    ShowMessage("\\n<Morrigan>Sounds about right to me.")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,66)
+   ShowMessage("\\n<Village Elder>Get married. Reproduce. Consume. Sleep.\nDon't think. Obey.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",6,0,2,67)
+    ShowMessage("\\n<Alice>What the!? Did he just receive some radio waves!?")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",5,0,2,68)
+    ShowMessage("\\n<Ilias>He just blurted out his real feelings! Did he have a nervous breakdown!?")
+    0()
+   EndIf()
+   If(12,"exist_party_persona_id?(241)")
+    ShowMessageFace("a_emp_fc1",0,0,2,69)
+    ShowMessage("\\n<Priestess>He's probably worn out.")
+    0()
+   EndIf()
+   If(12,"exist_party_persona_id?(242)")
+    ShowMessageFace("a_emp_fc1",4,0,2,70)
+    ShowMessage("\\n<Priestess>Fufu.")
+    0()
+   EndIf()
+   If(0,2183,0)
+    If(0,2283,1)
+     If(0,2228,0)
+      If(0,2229,0)
+       If(0,2230,0)
+        If(0,2231,0)
+         ChangeSwitch(2283,2283,0)
+         ShowMessageFace("",0,0,2,71)
+         ShowMessage("\\n<Village Elder>I've heard that you managed to find all four of our young lads. In reward for your efforts, take this...")
+         250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+         ChangeInventory_Item(546,0,0,1)
+         ShowMessageFace("",0,0,2,72)
+         ShowMessage("\\n<Village Elder>ＯＢＥＹ")
+         If(0,4,0)
+          ShowMessageFace("alice_fc5",2,0,2,73)
+          ShowMessage("\\n<Alice>Perhaps you should go lie down for a bit?")
+          0()
+         EndIf()
+         If(0,5,0)
+          ShowMessageFace("iriasu_fc4",2,0,2,74)
+          ShowMessage("\\n<Ilias>Get some rest...")
+          0()
+         EndIf()
+         EndEventProcessing()
+         0()
+        EndIf()
+        0()
+       EndIf()
+       0()
+      EndIf()
+      0()
+     EndIf()
+     ShowMessageFace("",0,0,2,75)
+     ShowMessage("\\n<Village Elder>Oh ho ho, this is an exciting chance!\nFind the young lads scattered throughout the world!")
+     ShowMessageFace("",0,0,2,76)
+     ShowMessage("\\n<Village Elder>If you find all four, you get an amazing prize! It's seeking time!!")
+     0()
+    EndIf()
+    0()
+   EndIf()
+   EndEventProcessing()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  ShowMessageFace("kooni_fc1",0,0,2,1)
+  ShowMessage("\\n<Oni>If you have an \\C[3]Eastern Book of Secrets\\C[0], a demi-human will be able to change into the \\C[14]Yasha\\C[0] race. They are powerful oni who can master \\C[5]katana skills\\C[0]!")
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  ShowMessageFace("youki_fc1",0,0,2,1)
+  ShowMessage("\\n<Youki>Heard of the \\C[14]Savage Warrior\\C[0] job?\nThey're literal crazy warriors who rampage about the battlefield, swinging their axes wildly.")
+  ShowMessageFace("youki_fc1",0,0,2,2)
+  ShowMessage("\\n<Youki>They won't listen to any commands during battles.\nTheir power is said to be overwhelming, however.")
+  ShowMessageFace("youki_fc1",0,0,2,3)
+  ShowMessage("\\n<Youki>Their ability to accumulate large amounts of SP from normal attacks seems to be quite appealing. If you're good with combat skills, how about you give savage warrior a try?")
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Shopkeeper>These oni shouldn't eat so much...\nI'll have to go out shopping again.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("164")
+  ShowMessageFace("kooni_fc1",0,0,2,2)
+  ShowMessage("\\n<Shizuku>Even a small oni can eat a lot!")
+  EndEventProcessing()
+  DefineLabel("300")
+  ShowMessageFace("youki_fc1",0,0,2,3)
+  ShowMessage("\\n<Kureha>That's an oni for you!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Shopkeeper>This is the kitchen.\nPlease place your order in the dining room over there.")
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Old Woman>It is good of you to have traveled so far to our village.\nWill you stay the night for 5G?\\$")
+  ShowChoices(strings("Yes","No"),2)
+  IfPlayerPicksChoice(0,null)
+   If(7,5,0)
+    125(1,0,5)
+    221()
+    249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x49,0x6e,0x6e,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+    Wait(150)
+    314(0,0)
+    222()
+    0()
+   Else()
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Old Woman>You're penniless... Leave immediately.")
+    0()
+   EndIf()
+   0()
+  IfPlayerPicksChoice(1,null)
+   0()
+  404()
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Guard>For the \\C[14]Samurai\\C[0]] job, not only is attack important, but also dexterity. The strength of \\C[5]katana skills\\C[0] is influenced by both, too.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Guard>Thus, it is not a job suited for those dedicated to strength alone. If your dexterity is also high, then you will be able to bring out its full potential.")
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Ninja>Dexterity is crucial for a ninja.\nThe art of Ninjutsu is also significantly influenced by dexterity.")
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  If(1,825,0,2,1)
+   If(0,1574,1)
+    ShowMessageFace("mob_miko1_fc1",1,0,2,1)
+    ShowMessage("\\n<Satsuki>Umm, I'd like to travel for a little while.\nWill you take me along too...?")
+    ShowChoices(strings("Let her join","Decline for now"),0)
+    IfPlayerPicksChoice(0,null)
+     ShowMessageFace("mob_miko1_fc1",6,0,2,2)
+     ShowMessage("\\n<Satsuki>Ufufu, I'm looking forward to it...♪")
+     PictureClear(5)
+     205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+     355("add_actor_ex(574)")
+     249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+     ShowMessageFace("",0,0,2,3)
+     ShowMessage("Satsuki joined the party!")
+     Wait(60)
+     EndEventProcessing()
+     0()
+    IfPlayerPicksChoice(1,null)
+     ShowMessageFace("mob_miko1_fc1",0,0,2,4)
+     ShowMessage("\\n<Satsuki>Is that so...\nHow disappointing, but I understand.")
+     0()
+    404()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  RunCommonEvent(7241)
+  0()
+ PAGE   2
+  // condition: party contains actor #574
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Villager>It's said there's a hidden treasure room within Orochi's cave. I obtained a note with the directions written down, but the writing is blurred and I can hardly make them out.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Villager>The parts I could barely make out are...\n\"Jump\" and \"Descend from the rope\", that's as much as I could decipher.")
+  If(0,2149,0)
+   ShowMessageFace("bonny_fc1",1,0,2,3)
+   ShowMessage("\\n<Bonnie>A message describing how to reach the treasure room! My pirate spirit is burning red hot!")
+   ShowMessageFace("ashel_fc1",0,0,2,4)
+   ShowMessage("\\n<Ashel>Jump, and descend from the rope...\nWe'd better remember that.")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  ShowMessageFace("hutakuti_fc1",1,0,2,1)
+  ShowMessage("\\n<Futakuchi Girl>Tea dango are very delicious...♪")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("5")
+  ShowMessageFace("alice_fc5",7,0,2,2)
+  ShowMessage("\\n<Alice>They look delicious...♪\nBuy me some, Luka!")
+  EndEventProcessing()
+  DefineLabel("26")
+  ShowMessageFace("iriasu_fc4",1,0,2,3)
+  ShowMessage("\\n<Ilias>They do look delicious...♪\nPlease buy one for me too, Luka!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  ShowMessageFace("hutakuti_fc1",6,0,2,1)
+  ShowMessage("\\n<Futakuchi Girl>My back mouth keeps eating dango without my permission!\nKyaaaaaah!!")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("75")
+  ShowMessageFace("hituzi_fc1",7,0,2,2)
+  ShowMessage("\\n<Mary>My front mouth drinks without permission!\nBaaaaaaaa!!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  If(0,2317,1)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Villager>A great youkai named Yamata no Orochi lives in Orochi's cave. She constantly threatens this village to bring out sacrifices.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Villager>No real harm is ever done because the young men will voluntarily sacrifice themselves... Still, it makes me uneasy that a dangerous youkai lives so close the village.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",3,0,2,3)
+    ShowMessage("\\n<Alice>We shouldn't ignore her, but Yamata no Orochi is a very powerful monster. We should hold off on subduing her for now if she is beyond our ability to do so...")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,4)
+    ShowMessage("\\n<Ilias>We should destroy Yamata no Orochi immediately, but... It might be difficult for us right now, so we should probably postpone it.")
+    0()
+   EndIf()
+   0()
+  Else()
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("\\n<Villager>They say that Yamata no Orochi was suppressed by a traveling warrior. Although she did very little actual harm to begin with, my anxiety has completely disappeared.")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Man>I'm completely dried up...")
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Man>Ahiii...\nYamata no Orochi...")
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Girl>People who are sacrificed to Yamata no Orochi return after a year... That's been the case for a while.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Girl>At first, we treated them as heroes who sacrificed themselves for the sake of the village. When they returned, they would receive the utmost care up until their recovery.")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Girl>But now, we get so many volunteers who are in it purely for the pleasure of being with her. We pretty much just leave them to care for themselves, at this point.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("163")
+  ShowMessageFace("lily_fc1",3,0,2,4)
+  ShowMessage("\\n<Lily>What a waste... Couldn't you reuse them for something else?")
+  EndEventProcessing()
+  DefineLabel("155")
+  ShowMessageFace("saki_fc1",0,0,2,5)
+  ShowMessage("\\n<Saki>I wonder if I should perform a live benefit concert for them?")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Villager>In the past, Yamata no Orochi troubled this place by snatching away our young men... There are plenty of foreign workers nowadays, so there is no shortage of labor.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Villager>If the young men want to volunteer to become sacrifices, they can do whatever they please...\n...which is exactly what most of them do.")
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Old man>Yamata no Orochi may ask for sacrifices, but she is by no means barbarous. In exchange for those sacrifices, she grants this village protection in times of crisis.")
+  If(1,1055,0,3,2)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Old Man>The calamity at the Four Great Shrines is a terrible problem. Oh, what is happening to this village...")
+   0()
+  EndIf()
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("230")
+  ShowMessageFace("yamatanooroti_fc1",3,0,2,3)
+  ShowMessage("\\n<Yamata no Orochi>Well, this village is my territory...\nI wouldn't do anything to cause them harm.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Man>Yamata no Orochi... More...")
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Man>Ahiiiiiiii!!")
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Villager>I was once driven by lust and wanted to go to Yamata no Orochi, but... When I thought about being licked past the point of incoherent thought, I became a little wary about it.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("134")
+  ShowMessageFace("chrom_fc2",5,0,2,2)
+  ShowMessage("\\n<Chrome>What a miserable sight...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Girl>Mama! What's wrong with those people lying down over there?")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Mother>That is the sad fate of foolish men who were swallowed by their desires.")
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Girl>Mama! Why are those people rolling around?")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Mother>That is the fate of foolish men who indulge in their desire.")
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Young Man>Faaaa... So good...")
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Girl>Even though we call them sacrifices to Yamata no Orochi... Aren't they just having their whole bodies licked for a year?")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Girl>All the stupid men become sacrifices to satisfy their eroticism anyways. If those guys are pleased, wouldn't it be best to leave her alone?")
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Old Woman>The matter of Yamata no Orochi worries me...\nEven though she is harmless now, I don't know what will happen in the future.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Old Woman>There's no mistaking that she is a terribly frightening great youkai. She may change her mind someday and lay waste to this village.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("230")
+  ShowMessageFace("yamatanooroti_fc1",3,0,2,3)
+  ShowMessage("\\n<Yamata no Orochi>Relax, young girl.\nI have an attachment to this village.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Merchant>We have a variety of food and sweets!")
+  Shop(0,332,0,0,false)
+  605(0,333,0,0)
+  605(0,334,0,0)
+  605(0,335,0,0)
+  605(0,336,0,0)
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  ShowMessageFace("nekomata_fc1",0,0,2,1)
+  ShowMessage("\\n<Nekomata>............")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("The nekomata is sneaking towards the fish!")
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  ShowMessageFace("hutakuti_fc1",2,0,2,1)
+  ShowMessage("\\n<Futakuchi Girl>That red bean paste looks delicious...\n*drool*...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("143")
+  ShowMessageFace("eva_fc1",0,0,2,2)
+  ShowMessage("\\n<Eva>Let's eat it!")
+  ShowMessageFace("hutakuti_fc1",2,0,2,3)
+  ShowMessage("\\n<Futakuchi Girl>Ah, a wicked temptation...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  ShowMessageFace("yukionna_fc1",2,0,2,1)
+  ShowMessage("\\n<Yuki-Onna>I'm actually keeping a secret...\nIf my husband finds out that I'm not human, we cannot continue to live together...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("121")
+  ShowMessageFace("page65537_fc1",1,0,2,2)
+  ShowMessage("\\n<Cornelia>Tragic love is my favorite kind...")
+  EndEventProcessing()
+  DefineLabel("221")
+  ShowMessageFace("yukionna_fc1",0,0,2,3)
+  ShowMessage("\\n<Oyuki>I hope you find happiness...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Husband>Does my wife really believe I haven't found out what she is...? Ah, the miso soup is frozen again.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("72")
+  ShowMessageFace("phoenix_fc1",1,0,2,2)
+  ShowMessage("\\n<Mini>I'll make it melt!\nBwaaah!!")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Husband>Ahhh! Aah, hot!!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  ShowMessageFace("slime_fc1",0,0,2,1)
+  ShowMessage("\\n<Slime Girl>Gozaru! ♪ Gozaru! ♪")
+  0()
+
+
+
+EVENT   48
+ PAGE   1
+  ShowMessageFace("slime_fc1",0,0,2,1)
+  ShowMessage("\\n<Slime Girl>I saw a ninja in this village!")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("219")
+  ShowMessageFace("kunoitielf_fc1",0,0,2,2)
+  ShowMessage("\\n<Kasumi>Was I discovered...?")
+  EndEventProcessing()
+  DefineLabel("266")
+  ShowMessageFace("kunoitisanbi_fc1",0,0,2,3)
+  ShowMessage("\\n<Minamo>That kind of stealth is the worst of the worst...")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   49
+ PAGE   1
+  If(0,2317,1)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Soldier>I went to Orochi's cave to exterminate Yamata no Orochi, but... I ran away after taking one look at her.")
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("\\n<Soldier>No human could match up against a monster like that.\nYou should avoid fighting Yamata no Orochi.")
+   0()
+  Else()
+   ShowMessageFace("",0,0,2,3)
+   ShowMessage("\\n<Soldier>No way, you eliminated Yamata no Orochi?!\nI'm impressed, you're an incredible hero!")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   50
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Old Man>The kappa blacksmith's skills are really good.\nI get the feeling she could save the world with just a farming hoe.")
+  0()
+
+
+
+EVENT   51
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(32,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   52
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(56,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   53
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(209,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   54
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(21,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()

@@ -1,0 +1,232 @@
+module Vocab
+  ACTOR_DAMAGE     = "%s takes %s %s damage!"
+  ENEMY_DAMAGE     = "%s takes %s %s damage!"
+  STATE_BOOST = "Condition bonus!!"
+  EX_CATEGORY_BOOST = "Slayer bonus!!"
+end
+module NWConst
+  module Elem
+    NIGHTMARE = 52
+  end
+end
+
+class Game_Battler < Game_BattlerBase
+  def elements_max_rate(elements)
+    return 1.0 if elements.empty?
+
+    elements.map { |id| element_rate(id) }.max
+  end
+
+  def elements_max_display(user, elements)
+    return [1.0, id] if elements.empty?
+
+    elements.map do |id|
+      if user.element_penetrate?(id)
+        [[element_rate(id), 1.0].max, id]
+      else
+        [element_rate(id), id]
+      end
+    end.max_by { |rate, _| rate }
+  end
+
+  def booster_state_rate(states, item)
+    states.map do |state|
+      v = 1.0
+      rate = item.state_boost(state)
+      v *= (rate + state_boost_plus) if rate != 1.0
+      v *= booster_state_skill(state, item)
+      v *= booster_state_skill_type(state, item)
+      if item == $data_skills[attack_skill_id]
+        v *= booster_state_normal_attack(state)
+      end
+      v
+    end.max || 1.0
+  end
+
+
+end
+class Window_BattleLog < Window_Selectable
+  def display_critical(target, item)
+    texts = []
+    if target.result.critical
+      texts << (target.actor? ? Vocab::CriticalToActor : Vocab::CriticalToEnemy)
+    end
+    texts << Vocab::EX_CATEGORY_BOOST if target.result.ex_category_boost
+    texts << Vocab::STATE_BOOST if target.result.state_boost
+    return if texts.empty?
+
+    add_text(texts.join(" "))
+    wait
+  end
+
+  def draw_line(line_number)
+    rect = item_rect_for_text(line_number)
+    contents.clear_rect(rect)
+    draw_text_ex(rect.x, rect.y, @lines[line_number])
+  end
+
+  def setup_reduce_over_line(text, pos)
+    @reduce_flag = false
+    if @reduce_bitmap
+      @reduce_bitmap.dispose
+      @reduce_bitmap = nil
+    end
+    return if text.empty?
+
+    line_text = text.split(/\n|\f/)[0]
+    return unless line_text
+
+    line_text.gsub!(/\eC\[(\d+)\]/i) { "" }
+    line_text.gsub!(/\e\$/i) { "" }
+    line_text.gsub!(/\e\./i) { "" }
+    line_text.gsub!(/\e\|/i) { "" }
+    line_text.gsub!(/\e!/i) { "" }
+    line_text.gsub!(/\e>/i) { "" }
+    line_text.gsub!(/\e</i) { "" }
+    line_text.gsub!(/\e\^/i) { "" }
+    line_text.gsub!(/\eD/i) { "" }
+    line_text_width = text_size(line_text).width
+    total_width = pos[:new_x] + line_text_width
+    over_flag = total_width > contents.width
+    return unless over_flag
+
+    @reduce_flag = true
+    @reduce_bitmap = Bitmap.new(line_text_width, contents.height)
+  end
+
+  def process_new_line(text, pos)
+    @line_show_fast = false
+    super
+    setup_reduce_over_line(text, pos)
+  end
+
+  def prepare_reduce_draw
+    @reduce_bitmap.font = contents.font.clone
+  end
+
+  def reduce_draw_text(*args)
+    @reduce_bitmap.draw_text(*args)
+  end
+
+  def reduce_draw_icon(icon_index, x, y, enabled = true)
+    bitmap = Cache.system("Iconset")
+    rect = Rect.new(icon_index % 16 * 24, icon_index / 16 * 24, 24, 24)
+    @reduce_bitmap.blt(x, y, bitmap, rect, enabled ? 255 : translucent_alpha)
+  end
+
+  def reflect_reduce_contents(pos)
+    draw_area_width = contents.width - pos[:new_x]
+    line_rect = Rect.new(pos[:new_x], pos[:y], draw_area_width, line_height)
+    contents.clear_rect(line_rect)
+    dest_rect = Rect.new(pos[:new_x], 0, draw_area_width, contents.height)
+    contents.stretch_blt(dest_rect, @reduce_bitmap, @reduce_bitmap.rect)
+  end
+
+  def process_normal_character(c, pos)
+    text_width = text_size(c).width
+    args = [pos[:x], pos[:y], text_width * 2, pos[:height], c]
+    if @reduce_flag
+      args[0] -= pos[:new_x]
+      prepare_reduce_draw
+      reduce_draw_text(*args)
+      reflect_reduce_contents(pos)
+    else
+      draw_text(*args)
+    end
+    pos[:x] += text_width
+  end
+
+  def process_draw_icon(icon_index, pos)
+    args = [icon_index, pos[:x], pos[:y]]
+    if @reduce_flag
+      args[0] -= pos[:new_x]
+      prepare_reduce_draw
+      reduce_draw_icon(*args)
+      reflect_reduce_contents(pos)
+    else
+      draw_icon(*args)
+    end
+    pos[:x] += 24
+  end
+
+  def draw_text_ex(x, y, text)
+    reset_font_settings
+    text = convert_escape_characters(text)
+    pos = { x: x, y: y, new_x: x, height: calc_line_height(text) }
+    setup_reduce_over_line(text, pos)
+    process_character(text.slice!(0, 1), text, pos) until text.empty?
+  end
+end
+
+class Game_ActionResult
+  attr_accessor :nightmare
+  attr_accessor :ex_category_boost
+  attr_accessor :state_boost
+  attr_accessor :element_id
+  attr_accessor :damage_rate
+
+  def clear
+    clear_hit_flags
+    clear_damage_values
+    clear_status_effects
+    clear_nwapeg_extends
+    clear_stealed_information
+    clear_battler_ability
+    clear_binded_information
+    clear_damage_display
+  end
+
+  def clear_damage_display
+    @nightmare = false
+    @state_boost = false
+    @ex_category_boost = false
+    @element_id = nil
+    @damage_rate = 1.0
+  end
+
+  def hp_damage_text
+    if @hp_drain > 0
+      fmt = @battler.actor? ? Vocab::ActorDrain : Vocab::EnemyDrain
+      value = @hp_drain >= NWConst::Damage::GIVE_UNIT ? @hp_drain.give_unit_floor(15) : @hp_drain
+      value = "究極" if @hp_drain >= (10**72)
+      format(fmt, @battler.name, value, Vocab.hp)
+    elsif @hp_damage > 0
+      fmt = @battler.actor? ? Vocab::ACTOR_DAMAGE : Vocab::ENEMY_DAMAGE
+      value = @hp_damage >= NWConst::Damage::GIVE_UNIT ? @hp_damage.give_unit_floor(15) : @hp_damage
+      value = "究極" if @hp_damage >= (10**72)
+      format(fmt, @battler.name, "\\*\\c[#{damage_color}]#{value}\\c[0]", element_text)
+    elsif @hp_damage < 0
+      fmt = @battler.actor? ? Vocab::ActorRecovery : Vocab::EnemyRecovery
+      value = -@hp_damage >= NWConst::Damage::GIVE_UNIT ? (-@hp_damage).give_unit_floor(15) : (-@hp_damage)
+      value = "究極" if -@hp_damage >= (10**72)
+      format(fmt, @battler.name, value, Vocab.hp)
+    else
+      fmt = @battler.actor? ? Vocab::ActorNoDamage : Vocab::EnemyNoDamage
+      format(fmt, @battler.name)
+    end
+  end
+
+  def element_text
+    return "" if @element_id.nil?
+
+    id =
+      if @nightmare
+        NWConst::Elem::NIGHTMARE
+      elsif @pleasure
+        NWConst::Elem::PLEASURE
+      elsif @element_id == 1
+        0
+      else
+        @element_id
+      end
+    $data_system.elements[id] || ""
+  end
+
+  def damage_color
+    return 0 if @damage_rate == 1.0
+    return 10 if @damage_rate >= 2.0
+    return 11 if @damage_rate < 1.0
+
+    17
+  end
+end

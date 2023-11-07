@@ -1,0 +1,35 @@
+
+class Game_Actor
+  def last_select_skill_in_battle(stype)
+    @last_select_skill_in_battle ||= []
+    @last_select_skill_in_battle[stype] ||= Game_BaseItem.new
+  end
+
+  def last_select_skill(stype)
+    return last_select_skill_in_battle(stype) if $game_party.in_battle
+
+    @last_select_skill ||= []
+    @last_select_skill[stype] ||= Game_BaseItem.new
+  end
+
+  def get_last_skill(stype_id)
+    last_select_skill(stype_id).object
+  end
+
+  def set_last_skill(stype_id, skill)
+    last_select_skill(stype_id).object = skill
+  end
+
+  def get_last_stype
+    return @last_select_stype_in_battle if $game_party.in_battle
+    @last_select_stype
+  end
+
+  def set_last_stype(stype_id)
+    if $game_party.in_battle
+      @last_select_stype_in_battle = stype_id
+    else
+      @last_select_stype = stype_id
+    end
+  end
+end

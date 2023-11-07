@@ -1,0 +1,26 @@
+# ID 3200
+module NWRegexp
+  module Skill
+    AUTO_BATTLE_SETTING = /<自動戦闘\s?((?:\d+(?:\,\s?)?)*)>/i
+  end
+
+  module UsableItem
+    EXT_SCOPE_SETTING = /<使用対象\s?((?:\d+(?:\,\s?)?)+)>/i
+  end
+
+  module Actor
+    SEX = /<性別(?:\:|：|\s)(\d)>/i
+  end
+
+  SEX_ARRAY = [0x0, NWSex::LUCA, NWSex::FEMALE, NWSex::MALE, NWSex::HERO]
+end
+
+class RPG::Skill
+  def no_auto_battle
+    @data_ex.fetch(:no_auto_battle, [])
+  end
+
+  def no_auto_battle?(type)
+    no_auto_battle.include?(type)
+  end
+end

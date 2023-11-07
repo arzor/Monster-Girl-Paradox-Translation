@@ -1,0 +1,1054 @@
+﻿
+
+
+EVENT   1
+ PAGE   1
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,15,16,0,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,28,18,0,0)
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,48,7,0,0)
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,9,31,0,0)
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,31,24,0,0)
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,46,22,0,0)
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,18,37,0,0)
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,42,55,55,0,0)
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,42,56,55,0,0)
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,42,28,52,0,0)
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,42,29,52,0,0)
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  281(1)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,41,30,41,0,0)
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel Soldier>Hostile angels frequently appear outside of the town.\nThus, it has been necessary for us to arm ourselves...")
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Cupid>This is so cuuuute♪\nI don't need its special effect, so let me have it for half price.")
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>When we first fell to the surface, we had no currency system or private property. A variety of issues arose due to that.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>We initially tried making our own currency, but we eventually adopted the human currency. Now it's normal for the outside world's currency to circulate through this town.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("196")
+  ShowMessageFace("s_mermaid_fc1",0,0,2,3)
+  ShowMessage("\\n<Mink>So, we can buy and sell like normal in this town.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(32,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>This shop specializes in chocolate.\nExperience the sweetness of paradise...")
+  Shop(0,414,0,0,false)
+  605(0,415,0,0)
+  605(0,416,0,0)
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Arms Vendor>We have an array of excellent arms.\nPlease use them to ensure your safety.")
+  Shop(1,181,0,0,false)
+  605(1,230,0,0)
+  605(1,745,0,0)
+  605(1,909,0,0)
+  605(2,142,0,0)
+  605(2,172,0,0)
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>We invite you to heaven with these angelic cakes...")
+  Shop(0,417,0,0,false)
+  605(0,418,0,0)
+  605(0,419,0,0)
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  If(1,837,0,2,1)
+   If(0,1586,1)
+    ShowMessageFace("mob_ninzya1_fc1",0,0,2,1)
+    ShowMessage("\\n<Shoki>I can entrust my abilities to you.\nAre you in need of my blade?")
+    ShowChoices(strings("Let her join","Decline for now"),0)
+    IfPlayerPicksChoice(0,null)
+     ShowMessageFace("mob_ninzya1_fc1",0,0,2,2)
+     ShowMessage("\\n<Shoki>Then let us fight together...")
+     PictureClear(5)
+     205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+     355("add_actor_ex(586)")
+     249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+     ShowMessageFace("",0,0,2,3)
+     ShowMessage("Shoki joined the party!")
+     Wait(60)
+     EndEventProcessing()
+     0()
+    IfPlayerPicksChoice(1,null)
+     ShowMessageFace("mob_ninzya1_fc1",0,0,2,4)
+     ShowMessage("\\n<Shoki>I see...")
+     0()
+    404()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(2,"A",1)
+   ChangeSelfSwitch("A",0)
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,5)
+   ShowMessage("\\n<Shoki>So you're the second human to visit this town...?\nYou look like a pretty diverse group.")
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,6)
+   ShowMessage("\\n<Shoki>I am a member of Sabasa's Assassin Clan.\nI was dispatched to investigate this icy continent by the orders of the late king.")
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,7)
+   ShowMessage("\\n<Shoki>However, my comrades fell one after another in this harsh environment... As a result, I was the only one protected in this town of angels.")
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,8)
+   ShowMessage("\\n<Shoki>My body has fully recovered and the angels said I can return home, but... For the time being, I don't intend to return to Sabasa.")
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,9)
+   ShowMessage("\\n<Shoki>I want to pay respects to my fallen comrades in the Snow Cave, and...I also want to try training myself in this quiet sanctuary.")
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,10)
+   ShowMessage("\\n<Shoki>And so, please leave me be.\nBut, a battle fuck would coincide with my training, so I'll join you for one if you wish.")
+   0()
+  Else()
+   ShowMessageFace("mob_ninzya1_fc1",0,0,2,11)
+   ShowMessage("\\n<Shoki>Sorry, but I don't plan to return to my home country for a while.\nBut, a battle fuck would coincide with my training, so I'll join you for one if you wish.")
+   0()
+  EndIf()
+  ShowChoices(strings("Challenge to a battle fuck","Never mind"),2)
+  IfPlayerPicksChoice(0,null)
+   RunCommonEvent(7361)
+   0()
+  IfPlayerPicksChoice(1,null)
+   0()
+  404()
+  0()
+ PAGE   2
+  // condition: party contains actor #586
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  If(2,"A",1)
+   ChangeSelfSwitch("A",0)
+   PictureDisplay(5,"80_ranael_st11",0,0,0,0,100,100,0,0)
+   PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+   ShowMessageFace("ranael_fc1",0,0,2,1)
+   ShowMessage("\\n<Ranael>What have we here, visitors from the outside world...? This is only the second time in these thirty years.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",2,0,2,2)
+    ShowMessage("\\n<Alice>Are you the leader of the angels?")
+    ShowMessageFace("ranael_fc1",0,0,2,3)
+    ShowMessage("\\n<Ranael>I am no more than a proxy for the head angel.\nShe does not involve herself in such trifles as governing this town.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,4)
+    ShowMessage("\\n<Ilias>Ranael...\nAre you governing the angels?")
+    ShowMessageFace("ranael_fc1",0,0,2,5)
+    ShowMessage("\\n<Ranael>Oh my, a little angel who looks just like Ilias...\nI'm only acting as a proxy for the head angel.")
+    ShowMessageFace("ranael_fc1",0,0,2,6)
+    ShowMessage("\\n<Ranael>She does not involve herself in such trifles as governing this town.")
+    0()
+   EndIf()
+   0()
+  EndIf()
+  DefineLabel("説明")
+  ShowMessageFace("ranael_fc1",0,0,2,7)
+  ShowMessage("\\n<Ranael>Well then, is there something you would like to ask? I will do my best to answer it...")
+  ShowChoices(strings("About the Snow Continent","About the angels","About what's distorting the flow of mana","I have nothing to ask"),4)
+  IfPlayerPicksChoice(0,null)
+   ShowMessageFace("ranael_fc1",2,0,2,8)
+   ShowMessage("\\n<Ranael>I won't forget, that day thirty years ago...\nThe day that the Goddess Ilias disappeared from sight...")
+   ShowMessageFace("ranael_fc1",2,0,2,9)
+   ShowMessage("\\n<Ranael>A mysterious phenomenon attacked Ilias Temple, turning it otherworldly. At the same time, Heaven tilted and crashed into the world below.")
+   ShowMessageFace("ranael_fc1",2,0,2,10)
+   ShowMessage("\\n<Ranael>Flung into the lower world, we trembled with fear. We had no choice but to go on living in a world full of violence and depravity.")
+   ShowMessageFace("ranael_fc1",2,0,2,11)
+   ShowMessage("\\n<Ranael>Our reconstruction efforts have made it this far in the thirty years since. We believe that Ilias will make a second coming someday...")
+   ShowMessageFace("ranael_fc1",0,0,2,12)
+   ShowMessage("\\n<Ranael>That is all there is to say about the Snow Continent...and Snow Heaven. It is the history of our hardships, after being flung to the surface without even knowing why.")
+   JumpToLabel("説明")
+   0()
+  IfPlayerPicksChoice(1,null)
+   ShowMessageFace("ranael_fc1",0,0,2,13)
+   ShowMessage("\\n<Ranael>The head angel is the one who has led us since falling to the earth. However, since she is almost never in town, I am acting as her proxy.")
+   ShowMessageFace("ranael_fc1",0,0,2,14)
+   ShowMessage("\\n<Ranael>The whereabouts of the head angel...?\nShe is in the depths of the \\C[17]Snow Shrine\\C[0], southeast from this village.")
+   ShowMessageFace("ranael_fc1",0,0,2,15)
+   ShowMessage("\\n<Ranael>Secluded there, she prays night and day, while earnestly awaiting the day of the Goddess Ilias' return.")
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,16)
+    ShowMessage("\\n<Ilias>If she has the spare time for prayer, I'd have liked for her to have come and helped me.")
+    0()
+   EndIf()
+   JumpToLabel("説明")
+   0()
+  IfPlayerPicksChoice(2,null)
+   ShowMessageFace("ranael_fc1",0,0,2,17)
+   ShowMessage("\\n<Ranael>The flow of mana has been distorted...?\nIf the cause is on this continent, then it is most likely Ilias Temple.")
+   ShowMessageFace("sonia_fc2",2,0,2,18)
+   ShowMessage("\\n<Sonya>Ilias Temple...\nYou aren't referring to the temple in Iliasville, are you?")
+   ShowMessageFace("ranael_fc1",0,0,2,19)
+   ShowMessage("\\n<Ranael>It is a different Ilias Temple from the one you know in the outside world. It is the sublime temple where Ilias used to reside in Heaven.")
+   ShowMessageFace("ranael_fc1",2,0,2,20)
+   ShowMessage("\\n<Ranael>But at the time of the Great Disaster, it transformed into something otherworldly. A barrier is currently being maintained to hold back the erosion.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",2,0,2,21)
+    ShowMessage("\\n<Alice>The former Ilias Temple has become otherworldly...? Indeed, the heart of the mystery seems to lie there.")
+    ShowMessageFace("alice_fc5",0,0,2,22)
+    ShowMessage("\\n<Alice>But if a barrier is closing it off, getting inside won't be so simple. We need to visit the barrier's caster and get them to temporarily release it.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",7,0,2,23)
+    ShowMessage("\\n<Ilias>Ilias Temple has become otherworldly...?\nThere's no mistaking it, the heart of the mystery is in there.")
+    ShowMessageFace("iriasu_fc4",7,0,2,24)
+    ShowMessage("\\n<Ilias>But if a barrier is closing it off, it will be troublesome to get inside. We must command the caster of the barrier to release it.")
+    0()
+   EndIf()
+   ShowMessageFace("ranael_fc1",0,0,2,25)
+   ShowMessage("\\n<Ranael>The temple is being sealed by the head angel in the Snow Shrine. If you wish to enter, you will need to ask her.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,26)
+    ShowMessage("\\n<Alice>Got it, this head angel is in the \\C[17]Snow Shrine\\C[0]. It was southeast from this town, right...? Let's check it out.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",7,0,2,27)
+    ShowMessage("\\n<Ilias>I understand. The leader of the angels is in the \\C[17]Snow Shrine\\C[0]. If I recall, it's to the southeast of this town... Let us head there immediately.")
+    0()
+   EndIf()
+   ShowMessageFace("ruka_fc1",0,0,2,28)
+   ShowMessage("\\n<Luka>All right then, let's go meet the head angel!\nI hope she's okay with releasing the barrier...")
+   ChangeVariable(1076,1076,0,0,4)
+   JumpToLabel("説明")
+   0()
+  IfPlayerPicksChoice(3,null)
+   PictureClear(5)
+   EndEventProcessing()
+   0()
+  404()
+  0()
+ PAGE   2
+  // condition: variable 1076 >= 5
+  PictureDisplay(5,"80_ranael_st11",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,1096,0,3,0)
+   ChangeVariable(1096,1096,0,0,4)
+   ShowMessageFace("ranael_fc1",0,0,2,1)
+   ShowMessage("\\n<Ranael>Oh... Is there something I can help you with?")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,2)
+    ShowMessage("\\n<Alice>If you've got a moment, we need to ask you a few questions... They're about a certain item that was being kept in Heaven.")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,3)
+    ShowMessage("\\n<Ilias>Ranael, we need to ask you about something... Where is the Psycho Shard that was being kept in Heaven?")
+    0()
+   EndIf()
+   ShowMessageFace("ranael_fc1",0,0,2,4)
+   ShowMessage("\\n<Ranael>Such items would be under the management of the town's warehouse. Please give me a moment and I will have the one in charge search for it...")
+   221()
+   ShowMessageFace("",0,0,2,5)
+   ShowMessage("After receiving Ranael's instructions, her secretary hands her a report...")
+   222()
+   ShowMessageFace("ranael_fc1",0,0,2,6)
+   ShowMessage("\\n<Ranael>Here it is, Seal Designation No.00290613: Psycho Shard...")
+   ShowMessageFace("ranael_fc1",2,0,2,7)
+   ShowMessage("\\n<Ranael>...It is not in this town currently.\nIt was given to the Polar Bear Village in a business transaction.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",6,0,2,8)
+    ShowMessage("\\n<Alice>You're telling me it was given to a polar bear girl?!")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",5,0,2,9)
+    ShowMessage("\\n<Ilias>To the polar bear girls?!")
+    0()
+   EndIf()
+   ShowMessageFace("ranael_fc1",2,0,2,10)
+   ShowMessage("\\n<Ranael>According to the records...this transaction took place five years and three months ago. It was apparently exchanged for 300kg of salmon.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",6,0,2,11)
+    ShowMessage("\\n<Alice>Salmon?!")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",5,0,2,12)
+    ShowMessage("\\n<Ilias>Salmon?!")
+    0()
+   EndIf()
+   ShowMessageFace("ranael_fc1",2,0,2,13)
+   ShowMessage("\\n<Ranael>After we had fallen to the surface...it was no longer possible for us to maintain our bodies simply by taking in holy energy.")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,14)
+    ShowMessage("\\n<Alice>Well, there's nothing else we can do here.\nMaybe we should check around the Polar Bear Village...")
+    ShowMessageFace("sonia_fc1",0,0,2,15)
+    ShowMessage("\\n<Sonya>The Polar Bear Village was in the middle of the Snow Caves, right? I'm pretty sure it's just north from this town.")
+    ShowMessageFace("ruka_fc1",0,0,2,16)
+    ShowMessage("\\n<Luka>All right, let's go!\nWe'll see if we can get the polar bear girls to give us the job change item.")
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",2,0,2,17)
+    ShowMessage("\\n<Ilias>I won't blame you, you have undergone much hardship... Still, I cannot believe you would trade a seal of Heaven for salmon...")
+    ShowMessageFace("eden_fc1",1,0,2,18)
+    ShowMessage("\\n<Eden>I take full responsibility for what was done, Lady Ilias. Please, let me bear the punishment for this.")
+    ShowMessageFace("iriasu_fc4",2,0,2,19)
+    ShowMessage("\\n<Ilias>I already told you, none of you are at fault. Though you did admit to doing business with the polar bear girls...")
+    ShowMessageFace("eden_fc1",1,0,2,20)
+    ShowMessage("\\n<Eden>I will never forget what happened...\nIt was thirty years ago, on the day after we crashed to the surface...")
+    242(1)
+    221()
+    PictureClear(5)
+    Wait(60)
+    211(0)
+    TeleportPlayer(0,59,0,0,0,2)
+    222()
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,1215,0,2,0)
+   ShowMessageFace("ranael_fc1",0,0,2,21)
+   ShowMessage("\\n<Ranael>Oh... Is there something I can help you with?")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",0,0,2,22)
+    ShowMessage("\\n<Alice>If you've got a moment, we need to ask you a few questions...")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",7,0,2,23)
+    ShowMessage("\\n<Ilias>Ranael, we need to ask you about something...")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,24)
+   ShowMessage("We tell Ranael about Musette--")
+   ShowMessageFace("ranael_fc1",0,0,2,25)
+   ShowMessage("\\n<Ranael>...If that's what this is about, then I can assist you. There have been some unusual sightings at the Snow Shrine.")
+   ShowMessageFace("ranael_fc1",0,0,2,26)
+   ShowMessage("\\n<Ranael>An angel we had never seen before was in the shrine. Or so say the reports that have reached me.")
+   ShowMessageFace("rest_fc1",0,0,2,27)
+   ShowMessage("\\n<Lest>That must be Musette, isn't it?")
+   If(0,4,0)
+    ShowMessageFace("alice_fc5",2,0,2,28)
+    ShowMessage("\\n<Alice>We should at least consider that possibility. All right, let's head to the Snow Shrine!")
+    0()
+   EndIf()
+   If(0,5,0)
+    ShowMessageFace("iriasu_fc4",7,0,2,29)
+    ShowMessage("\\n<Ilias>That is a very likely possibility.\nCome, let us head for the Snow Shrine!")
+    0()
+   EndIf()
+   ShowMessageFace("",0,0,2,30)
+   ShowMessage("The Snow Shrine is to the east of this village.\nCould Musette be hiding there...?")
+   ChangeVariable(1215,1215,0,0,3)
+   PictureClear(5)
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(0,4,0)
+   ShowMessageFace("ranael_fc1",0,0,2,31)
+   ShowMessage("\\n<Ranael>The head angel spends every day praying in the Snow Shrine. None among us can hope to be like her...")
+   PictureClear(5)
+   EndEventProcessing()
+   0()
+  EndIf()
+  If(0,5,0)
+   If(2,"A",1)
+    ChangeSelfSwitch("A",0)
+    ShowMessageFace("ranael_fc1",0,0,2,32)
+    ShowMessage("\\n<Ranael>The head angel spends every day praying in the Snow Shrine. None among us can hope to be like her...")
+    ShowMessageFace("eden_fc1",0,0,2,33)
+    ShowMessage("\\n<Eden>Ranael, I must go.\nI entrust this town to you.")
+    ShowMessageFace("ranael_fc1",0,0,2,34)
+    ShowMessage("\\n<Ranael>The head angel has been moved...\n...Which means, impossible...!")
+    If(1,1077,0,2,1)
+     ShowMessageFace("micaelac_fc1",0,0,2,35)
+     ShowMessage("\\n<Micaela-chan>Micaela-chan is here too...")
+     ShowMessageFace("rucyfinac_fc1",0,0,2,36)
+     ShowMessage("\\n<Lucifina-chan>I'm Lucifina-chan♪")
+     0()
+    EndIf()
+    ShowMessageFace("ranael_fc1",0,0,2,37)
+    ShowMessage("\\n<Ranael>Oh, what's this...?\nMy heart is filled with bliss...")
+    ShowMessageFace("eden_fc1",0,0,2,38)
+    ShowMessage("\\n<Eden>Keep this quiet from those in town.\nWe still have matters to attend to...")
+    ShowMessageFace("ranael_fc1",0,0,2,39)
+    ShowMessage("\\n<Ranael>Understood...\nPlease be careful, everyone.")
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(2,"A",0)
+    ShowMessageFace("ranael_fc1",0,0,2,40)
+    ShowMessage("\\n<Ranael>Ilias... How are you feeling?\nIf you are tired, please feel free to relax in this town.")
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>How about some delicious ice cream?\nWe also have nice, cool jelly and pudding.")
+  Shop(0,421,0,0,false)
+  605(0,422,0,0)
+  605(0,423,0,0)
+  605(0,424,0,0)
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>To be honest, life on the surface isn't so bad.\nIn Heaven, there was no such thing as food.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>Please forgive me, Ilias...\nI have been tainted...")
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",3,0,2,3)
+   ShowMessage("\\n<Ilias>*munch* *munch*...How sinful.\n*munch* *munch*...Be ashamed of yourself for succumbing to such indulgence...")
+   ShowMessageFace("sonia_fc4",0,0,2,4)
+   ShowMessage("\\n<Sonya>(Don't say that while you're stuffing your face with chocolate...)")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>For the humans of the surface to have been enjoying such pleasures... It's only natural for their spirits to have become corrupted...!")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>I might be corrupted, myself...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("5")
+  ShowMessageFace("alice_fc5",7,0,2,3)
+  ShowMessage("\\n<Alice>Can I be corrupted too?")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>Aah, so sweet...\nMy cheeks could melt away...")
+  0()
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>When we fell to the surface, we were driven by the need to eat meals. However, with no desire of eating the likes of meat, we decided instead to focus on consuming sugar.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>Before we knew it, the candy shop was thriving...\nAah, so sweet and delicious...")
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>Blissful sweetness...\nAt this rate, I'll turn into a fallen angel myself...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>...Also, I feel like I've gained weight.\nTo think such a trap existed...")
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Valkyrie>*crunch* *crunch*, *munch* *munch*...\n...D-don't look! Don't look at my depravity!")
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Valkyrie>There are three types of jobs: basic, intermediate, and advanced. According to ancient texts, there are \\C[14]Sealed Jobs\\C[0] in addition to these.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Valkyrie>However, these jobs were sealed by the Goddess Ilias and the Dark Goddess... Just what kind of jobs these were is shrouded in mystery.")
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>This shop... is truly Heaven...")
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Smith>I studied forging techniques when I was in Heaven.\nNow I make a living as a blacksmith.")
+  355("call_synthesize(22)")
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>Ranael essentially rules this town.\nHer style is to consult the head angel only when problems arise.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>Since the head angel is always praying for Ilias' return...she does not want to trouble her mind with trivial chores.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("383")
+  ShowMessageFace("eden_fc1",0,0,2,3)
+  ShowMessage("\\n<Eden>The time for prayer has ended. Now is the time for battle. Please go on defending this town.")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Angel>Yes! Certainly!")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>When it comes to managing the town, miscellaneous matters flood in one after another. It is only very recently that things have finally calmed down since the Great Disaster.")
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>This is the house of Ranael, who governs this town.")
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>When Heaven fell to the surface, with a few exceptions, most of the buildings were lost. Thus, we learned from humanity and founded a town with houses built of wood and brick.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>We also disguised ourselves as merchants and slipped into human towns and villages to obtain many goods. The progress of our reconstruction is proof of what our day-to-day unwavering resolve has accomplished.")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("36")
+  ShowMessageFace("rucyfinac_fc1",0,0,2,3)
+  ShowMessage("\\n<Lucifina-chan>You've worked hard... Well done, well done.")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  If(0,2259,1)
+   217()
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("\\n<Angel>Until I fell to the surface, I did not even know what it was like to feel cold...")
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x4f,0x70,0x65,0x6e,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   Wait(30)
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   ChangeSwitch(31,31,0)
+   Wait(60)
+   ShowMessageFace("sonia_fc3",2,0,2,2)
+   ShowMessage("\\n<Sonya>Wah! A polar bear!")
+   ShowMessageFace("shirokuma_fc1",0,0,2,3)
+   ShowMessage("\\n<Polar Bear Girl>Cold...")
+   205(43,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x0c,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x09,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x07,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2d,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+   ChangeSwitch(2259,2259,0)
+   ChangeSwitch(31,31,1)
+   ShowMessageFace("shirokuma_fc1",0,0,2,4)
+   ShowMessage("\\n<Polar Bear Girl>Indoors, warm...")
+   0()
+  EndIf()
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Angel>It's cold outside, so polar bear girls have started coming into this house to warm up...")
+  ShowMessageFace("",0,0,2,6)
+  ShowMessage("\\n<Angel>It surprised me at first, but I've accepted it now.\nIt's warmer when we huddle together, after all...")
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  // condition: switch 31 is ON
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  // condition: switch 2259 is ON
+  ShowMessageFace("shirokuma_fc1",0,0,2,1)
+  ShowMessage("\\n<Polar Bear Girl>Indoors, warm...")
+  355("actor_label_jump")
+  EndEventProcessing()
+  DefineLabel("359")
+  ShowMessageFace("cupid_fc1",4,0,2,2)
+  ShowMessage("\\n<Cupi>Polar Beary, waaaarm♪")
+  EndEventProcessing()
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Tool Seller>We have all sorts of items available.\nThey will surely be of use in your travels...")
+  Shop(0,2,0,0,false)
+  605(0,4,0,0)
+  605(0,7,0,0)
+  605(0,11,0,0)
+  605(0,13,0,0)
+  605(0,14,0,0)
+  605(0,15,0,0)
+  605(0,16,0,0)
+  605(0,17,0,0)
+  605(0,18,0,0)
+  605(0,19,0,0)
+  605(0,20,0,0)
+  605(0,21,0,0)
+  605(0,23,0,0)
+  605(0,35,0,0)
+  605(0,109,0,0)
+  If(1,1005,0,20,0)
+   If(4,66,0)
+    If(0,2065,0)
+     If(2,"A",1)
+      ChangeSelfSwitch("A",0)
+      ShowMessageFace("vgirl_fc1",0,0,2,2)
+      ShowMessage("\\n<Vanilla>Pleased to meet you. I'm the merchant Vanilla.\nI'd like to sell miracle drugs at my store...")
+      ShowMessageFace("",0,0,2,3)
+      ShowMessage("\\n<Tool Seller>That may be difficult.\nOur stock of miracle drugs is only enough to meet the demands of this town.")
+      ShowMessageFace("",0,0,2,4)
+      ShowMessage("\\n<Tool Seller>Though, we could produce a lot of miracle drugs if we had more spirit powder...")
+      ShowMessageFace("vgirl_fc1",0,0,2,5)
+      ShowMessage("\\n<Vanilla>Where can spirit powder be found?")
+      ShowMessageFace("",0,0,2,6)
+      ShowMessage("\\n<Tool Seller>We extract it from the air of this continent in places with high concentrations of holy energy. This is inefficient in the long term, as it only results in miniscule amounts of powder.")
+      ShowMessageFace("",0,0,2,7)
+      ShowMessage("\\n<Tool Seller>However, if you could enter the Hall of Creation...\nA highly-concentrated condensate of spirit powder may be enshrined there.")
+      ShowMessageFace("vgirl_fc1",0,0,2,8)
+      ShowMessage("\\n<Vanilla>So, that's all you need to mass-produce miracle drugs? Then let's check out the Hall of Creation!")
+      EndEventProcessing()
+      0()
+     Else()
+      If(8,554)
+       ChangeInventory_Item(554,1,0,1)
+       ShowMessageFace("",0,0,2,9)
+       ShowMessage("\\n<Tool Seller>I gratefully accept this spirit powder.\nWith this we can produce larger quantities of miracle drugs...")
+       ShowMessageFace("",0,0,2,10)
+       ShowMessage("\\n<Tool Seller>As promised, I will also deliver them to your shop.\nPlease be sure to cover the costs as requested.")
+       ShowMessageFace("vgirl_fc1",0,0,2,11)
+       ShowMessage("\\n<Vanilla>Thank you!\nI'll be looking forward to it... I assure you!")
+       249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+       ShowMessageFace("",0,0,2,12)
+       ShowMessage("Vanilla can now sell miracle drugs at her shop!")
+       ChangeVariable(1005,1005,0,0,21)
+       ChangeSwitch(2065,2065,1)
+       Wait(60)
+       EndEventProcessing()
+       0()
+      Else()
+       ShowMessageFace("",0,0,2,13)
+       ShowMessage("\\n<Tool Seller>If you could enter the Hall of Creation...\nA highly-concentrated condensate of spirit powder may be enshrined there.")
+       EndEventProcessing()
+       0()
+      EndIf()
+      0()
+     EndIf()
+     0()
+    EndIf()
+    0()
+   EndIf()
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Merchant-disguised Angel>Now then, a business trip to Sabasa, huh?\nThis time, we need additional cocoa beans and coffee.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Merchant-disguised Angel>I am one of the very few angels adapted enough to blend in with the outside world. Most angels are still a long way from being able to appear in a human town...")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\\n<Merchant-disguised Angel>When Heaven still existed, I was in charge of managing faith on the surface. So I had a fair amount of knowledge about the world's customs.")
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Accessory Vendor>How about some handy accessories?\nThese should be the absolute best you can get hold of on the surface.")
+  Shop(2,1067,0,0,false)
+  605(2,1072,0,0)
+  605(2,1077,0,0)
+  605(2,1155,0,0)
+  605(2,1165,0,0)
+  605(2,1538,0,0)
+  605(2,1540,0,0)
+  605(2,1542,0,0)
+  605(2,1544,0,0)
+  605(2,1573,0,0)
+  605(2,1575,0,0)
+  605(2,1577,0,0)
+  605(2,1579,0,0)
+  0()
+
+
+
+EVENT   48
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>Many angels utilize ascension magic.\nYou should carry an Ascension Guard at all times.")
+  0()
+
+
+
+EVENT   49
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Inn Angel>Well done arriving here.\nIt will be 15G, do you want to rest your body?\\$")
+  ShowChoices(strings("Yes","No"),2)
+  IfPlayerPicksChoice(0,null)
+   If(7,15,0)
+    125(1,0,15)
+    221()
+    249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x49,0x6e,0x6e,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+    Wait(150)
+    314(0,0)
+    222()
+    0()
+   Else()
+    ShowMessageFace("",0,0,2,2)
+    ShowMessage("\\n<Inn Angel>It appears you do not have enough money...")
+    0()
+   EndIf()
+   0()
+  IfPlayerPicksChoice(1,null)
+   0()
+  404()
+  0()
+
+
+
+EVENT   50
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>I wasn't sure an inn would be profitable in a town that travelers do not come to... but there seem to be many angels who like to relax here for a while.")
+  0()
+
+
+
+EVENT   51
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>After doing guard work for several weeks, I usually rest my body here for a couple of days. Due to this living cycle, owning a home is too much to manage for many angels.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Angel>For them, this inn is very helpful.\nSince you can have all your needs taken care of for a few days.")
+  0()
+
+
+
+EVENT   52
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>Inns are great, don't you think...?\nI get to just lie around as much as I like while I'm here.")
+  0()
+
+
+
+EVENT   53
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>Work, rest, work...\nWorking up a sweat every day makes me realize how alive I am.")
+  0()
+
+
+
+EVENT   54
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Angel>I will soon be returning to agricultural work after a few days off. They say this is the style of migrant workers in the outside world.")
+  0()
+
+
+
+EVENT   55
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Cupid>Ice cream, chocolate, cake...\nAhh, my heart is going to be spoiled! ♪")
+  0()
+
+
+
+EVENT   56
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(57,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   57
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(77,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   58
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(241,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   59
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(417,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   60
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(322,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   61
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(8,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   62
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(19,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()
+
+
+
+EVENT   63
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  ChangeSelfSwitch("A",0)
+  ChangeInventory_Item(25,0,0,1)
+  0()
+ PAGE   2
+  // condition: self-switch A is ON
+  0()

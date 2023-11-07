@@ -1,0 +1,5 @@
+﻿// EVENT 0145
+Name "Logos Magia Count"
+
+ChangeVariable(202,202,1,0,1)
+0()

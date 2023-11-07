@@ -1,0 +1,2083 @@
+﻿State 001
+ Name "Incapacitated"
+ Message1 " has been incapacitated!"
+ Message2 " has been defeated!"
+ Message4 " has returned to the fight!"
+ Notes "ステート１番はＨＰが０になったときに自動的に付加されます。"
+State 002
+ Name "Defending"
+State 003
+ Name "Binding Opponent"
+ Notes "<表示：なし>"
+State 004
+ Name "Bound"
+ Notes "<表示：Bound>"
+State 005
+ Name "Caught Opponent"
+ Notes "<表示：なし>"
+State 006
+ Name "Caught"
+ Notes "<表示：Bound>"
+State 007
+ Name "Poison"
+ Message1 " has been poisoned!"
+ Message2 " has been poisoned!"
+ Message3 " is affected by poison..."
+ Message4 "'s poison is cured!"
+State 008
+ Name "Blind"
+ Message1 "'s vision is plunged into darkness!"
+ Message2 "'s vision is plunged into darkness!"
+ Message3 "'s vision is affected by darkness..."
+ Message4 "'s vision returns to normal!"
+State 009
+ Name "Silence"
+ Message1 "'s magic skills are sealed!"
+ Message2 "'s magic skills have been sealed!"
+ Message4 "'s seal is broken!"
+State 010
+ Name "Confusion"
+ Message1 " has been confused!"
+ Message2 " has been confused!"
+ Message3 " is confused..."
+ Message4 " returns to normal!"
+ Notes "<ステート解除:id=3,4,5,6>"
+State 011
+ Name "Sleep"
+ Message1 " fell asleep!"
+ Message2 " fell asleep!"
+ Message3 " is sleeping..."
+ Message4 " woke up!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 012
+ Name "Paralysis"
+ Message1 " is paralyzed!"
+ Message2 " has been paralyzed!"
+ Message3 "'s body is numb and can't move!"
+ Message4 "'s paralysis wore off!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 013
+ Name "Burn"
+ Message1 " has been set on fire!"
+ Message2 " has been set on fire!"
+ Message3 "'s body is burning..."
+ Message4 " doused the flames!"
+State 014
+ Name "Freeze"
+ Message1 " has been frozen!"
+ Message2 " has been frozen!"
+ Message3 " is frozen..."
+ Message4 " has thawed out!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 015
+ Name "Shock"
+ Message1 " has been shocked and can't move!"
+ Message2 " has been shocked and can't move!"
+ Message3 " is shocked and can't move."
+ Message4 "'s shock wore off!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 016
+ Name "Slow"
+ Message1 " has been slowed down!"
+ Message2 " has been slowed down!"
+ Message3 " is moving more slowly..."
+ Message4 "'s speed has returned to normal!"
+State 017
+ Name "Stop"
+ Message1 " has been stopped in time!"
+ Message2 " has been stopped in time!"
+ Message3 " is stopped..."
+ Message4 " has returned to normal time!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 018
+ Name "Mini"
+ Message1 " has been shrunk!"
+ Message2 " has been shrunk!"
+ Message3 " is tiny..."
+ Message4 " has returned to normal size!"
+State 019
+ Name "Zombie"
+ Message1 " has been zombified!"
+ Message2 " has been zombified!"
+ Message4 " has returned to normal!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<回復反転 100%>\r\n<属性吸収 36-100>\r\n<即死反転>"
+State 020
+ Name "Petrify"
+ Message1 " has been turned to stone!"
+ Message2 " has been turned to stone!"
+ Message3 " is petrified..."
+ Message4 " has returned to normal!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<獲得経験値倍率 0%>\r\n<獲得職業経験値倍率 0%>\r\n<ステート解除:id=3,4,5,6>\r\n<全滅判定有>"
+State 021
+ Name "Digest"
+ Message1 " has been covered in digestive fluids!"
+ Message2 " has been covered in digestive fluids!"
+ Message3 " is being digested..."
+ Message4 " has cleaned off the digestive fluids!"
+State 022
+ Name "Stun"
+ Message1 " is knocked off balance!"
+ Message2 " is knocked off balance!"
+ Message3 " is off balance..."
+ Message4 " has recovered balance!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>"
+State 023
+ Name "Slimed"
+ Message1 " has been covered in slime!"
+ Message2 " has been covered in slime!"
+ Message3 " is covered in slime..."
+ Message4 "'s slime came off!"
+State 024
+ Name "Horny"
+ Message1 " has become horny!"
+ Message2 " has become horny!"
+ Message3 " is thinking sexy thoughts..."
+ Message4 "'s sexual desire returns to normal!"
+ Notes "<属性強化 2-15>"
+State 025
+ Name "Trance"
+ Message1 " is lost in a trance!"
+ Message2 " is lost in a trance!"
+ Message3 " is in a trance..."
+ Message4 " comes back to reality!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 026
+ Name "Seduction"
+ Message1 " has been seduced!"
+ Message2 " has been seduced!"
+ Message3 " is seduced..."
+ Message4 " returns to normal!"
+ Notes "<ステート解除:id=3,4,5,6>"
+State 027
+ Name "Incontinence"
+ Message1 " has become incontinent!"
+ Message2 " has become incontinent!"
+ Message3 " is humiliated by incontinence..."
+ Message4 " has returned to normal!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<ステート解除:id=3,4,5,6>"
+State 028
+ Name "Bind"
+ Message1 " has been bound!"
+ Message2 " has been bound!"
+ Message3 " is bound..."
+ Message4 " broke free from the binding!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>"
+State 029
+ Name "Quick"
+ Message1 "'s movements have sped up!"
+ Message2 "'s movements have sped up!"
+ Message3 " is moving faster..."
+ Message4 "'s movement has returned to normal."
+State 030
+ Name "Berserk"
+ Message1 " has gone berserk!"
+ Message2 " has gone berserk!"
+ Message3 " is berserk..."
+ Message4 " has calmed down!"
+State 031
+ Name "Rampage"
+ Message1 " has gone on a rampage!!"
+ Message2 " has gone on a rampage!!"
+ Message3 " is on a rampage!!"
+ Message4 "'s rampage has ended."
+State 032
+ Name "Transform"
+ Message4 "'s transformation has ended."
+State 033
+ Name "10% HP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 034
+ Name "20% HP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 035
+ Name "30% HP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 036
+ Name "2% MP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 037
+ Name "4% MP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 038
+ Name "8% MP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 039
+ Name "10% SP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 040
+ Name "20% SP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 041
+ Name "30% SP/turn recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 045
+ Name "Evasion +30%"
+ Message1 "'s evasion has increased!"
+ Message2 "'s evasion has increased!"
+ Message4 "'s evasion has returned to normal."
+State 046
+ Name "Evasion +50%"
+ Message1 "'s evasion has increased!"
+ Message2 "'s evasion has increased!"
+ Message4 "'s evasion has returned to normal."
+State 047
+ Name "Evasion +100%"
+ Message1 "'s evasion has increased!"
+ Message2 "'s evasion has increased!"
+ Message4 "'s evasion has returned to normal."
+State 048
+ Name "Evasion -100%"
+State 049
+ Name "Magic Evasion +30%"
+ Message1 "'s magic evasion has increased!"
+ Message2 "'s magic evasion has increased!"
+ Message4 "'s magic evasion has returned to normal."
+State 050
+ Name "Magic Evasion +50%"
+ Message1 "'s magic evasion has increased!"
+ Message2 "'s magic evasion has increased!"
+ Message4 "'s magic evasion has returned to normal."
+State 051
+ Name "Magic Evasion +100%"
+ Message1 "'s magic evasion has increased!"
+ Message2 "'s magic evasion has increased!"
+ Message4 "'s magic evasion has returned to normal."
+State 052
+ Name "Magic Evasion -100%"
+State 053
+ Name "Critical Hit Rate +50%"
+ Message1 "'s critical hit rate has increased!"
+ Message2 "'s critical hit rate has increased!"
+ Message4 "'s critical hit rate has returned to normal."
+State 054
+ Name "Critical Hit Rate +100%"
+ Message1 "'s critical hit rate has increased!"
+ Message2 "'s critical hit rate has increased!"
+ Message4 "'s critical hit rate has returned to normal."
+State 055
+ Name "Hit Rate +50%"
+ Message1 "'s hit rate has increased!"
+ Message2 "'s hit rate has increased!"
+ Message4 "'s hit rate has returned to normal."
+State 056
+ Name "Perfect Hits"
+ Message1 "'s hit rate has increased!"
+ Message2 "'s hit rate has increased!"
+ Message4 "'s hit rate has returned to normal."
+ Notes "<命中率 200%>"
+State 057
+ Name "Double Charge"
+ Message1 "'s charge rate has increased!"
+ Message2 "'s charge rate has increased!"
+ Message4 "'s charge rate has returned to normal."
+State 058
+ Name "Triple Charge"
+ Message1 "'s charge rate has increased!"
+ Message2 "'s charge rate has increased!"
+ Message4 "'s charge rate has returned to normal."
+State 059
+ Name "Penta Charge"
+ Message1 "'s charge rate has increased!"
+ Message2 "'s charge rate has increased!"
+ Message4 "'s charge rate has returned to normal."
+State 060
+ Name "Fire Imbue"
+ Message4 "'s weapon has lost the power of fire!"
+ Notes "<属性強化 3-50>"
+State 061
+ Name "Ice Imbue"
+ Message4 "'s weapon has lost the power of ice!"
+ Notes "<属性強化 4-50>"
+State 062
+ Name "Lightning Imbue"
+ Message4 "'s weapon has lost the power of lightning!"
+ Notes "<属性強化 5-50>"
+State 063
+ Name "Wind Imbue"
+ Message4 "'s weapon has lost the power of wind!"
+ Notes "<属性強化 6-50>"
+State 064
+ Name "Earth Imbue"
+ Message4 "'s weapon has lost the power of earth!"
+ Notes "<属性強化 7-50>"
+State 065
+ Name "Water Imbue"
+ Message4 "'s weapon has lost the power of water!"
+ Notes "<属性強化 8-50>"
+State 066
+ Name "Holy Imbue"
+ Message4 "'s weapon has lost the power of holy!"
+ Notes "<属性強化 9-50>"
+State 067
+ Name "Dark Imbue"
+ Message4 "'s weapon has lost the power of darkness!"
+ Notes "<属性強化 10-50>"
+State 068
+ Name "All Elements Boost"
+ Message1 "'s elemental attacks have been strengthened!"
+ Message2 "'s elemental attacks have been strengthened!"
+ Message4 "'s elemental attacks have returned to normal."
+ Notes "<属性強化 3-50,4-50,5-50,6-50,7-50,8-50,9-50,10-50>"
+State 069
+ Name "Diluted Elixir"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 070
+ Name "Diluted Last Elixir"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 071
+ Name "Drunken Boxing"
+ Message1 " is practicing drunken boxing!"
+ Message2 " is practicing drunken boxing!"
+ Message4 " has sobered up."
+ Notes "<連続発動タイプ 21-2,37-2,38-2,53-2>\r\n<会心ダメージ増加:50>"
+State 072
+ Name "Critical Rate & Damage Up"
+ Message1 "'s critical rate and damage has increased!"
+ Message2 "'s critical rate and damage has increased!"
+ Message4 "'s critical rate and damage returned to normal."
+ Notes "<会心ダメージ増加:50>\r\n<表示：Critical Rate & Damage Up>"
+State 073
+ Name "Evasion +90%"
+ Message1 "'s evasion has increased!"
+ Message2 "'s evasion has increased!"
+ Message4 "'s evasion has returned to normal."
+State 074
+ Name "Bleed"
+ Message1 " is bleeding!"
+ Message2 " is bleeding!"
+ Message3 " is bleeding..."
+ Message4 "'s bleeding has stopped!"
+State 076
+ Name "Fire Weakness"
+ Message1 " has become weak to fire!"
+ Message2 " has become weak to fire!"
+ Message4 "'s fire resistance has returned to normal."
+ Notes "<属性耐性固定 3-150>"
+State 077
+ Name "Ice Weakness"
+ Message1 " has become weak to ice!"
+ Message2 " has become weak to ice!"
+ Message4 "'s ice resistance has returned to normal."
+ Notes "<属性耐性固定 4-150>"
+State 078
+ Name "Lightning Weakness"
+ Message1 " has become weak to lightning!"
+ Message2 " has become weak to lightning!"
+ Message4 "'s lightning resistance has returned to normal."
+ Notes "<属性耐性固定 5-150>"
+State 079
+ Name "Wind Weakness"
+ Message1 " has become weak to wind!"
+ Message2 " has become weak to wind!"
+ Message4 "'s wind resistance has returned to normal."
+ Notes "<属性耐性固定 6-150>"
+State 080
+ Name "Earth Weakness"
+ Message1 " has become weak to earth!"
+ Message2 " has become weak to earth!"
+ Message4 "'s earth resistance has returned to normal."
+ Notes "<属性耐性固定 7-150>"
+State 081
+ Name "Water Weakness"
+ Message1 " has become weak to water!"
+ Message2 " has become weak to water!"
+ Message4 "'s water resistance has returned to normal."
+ Notes "<属性耐性固定 8-150>"
+State 082
+ Name "Holy Weakness"
+ Message1 " has become weak to holy!"
+ Message2 " has become weak to holy!"
+ Message4 "'s holy resistance has returned to normal."
+ Notes "<属性耐性固定 9-150>"
+State 083
+ Name "Dark Weakness"
+ Message1 " has become weak to dark!"
+ Message2 " has become weak to dark!"
+ Message4 "'s dark resistance has returned to normal."
+ Notes "<属性耐性固定 10-150>"
+State 084
+ Name "Sonic Weakness"
+ Message1 " has become weak to sonic!"
+ Message2 " has become weak to sonic!"
+ Message4 "'s sonic resistance has returned to normal."
+ Notes "<属性耐性固定 35-150>"
+State 085
+ Name "Bio Weakness"
+ Message1 " has become weak to bio!"
+ Message2 " has become weak to bio!"
+ Message4 "'s bio resistance has returned to normal."
+ Notes "<属性耐性固定 36-150>"
+State 086
+ Name "Physical Weakness"
+ Message1 " has become weak to physical attacks!"
+ Message2 " has become weak to physical attacks!"
+ Message4 "'s physical resistance has returned to normal."
+ Notes "<属性耐性固定 1-150>"
+State 087
+ Name "Pleasure Weakness"
+ Message1 " has become weak to pleasure!"
+ Message2 " has become weak to pleasure!"
+ Message4 "'s pleasure resistance has returned to normal."
+ Notes "<属性耐性固定 2-150>"
+State 088
+ Name "Clear Mind"
+ Message1 " has become immune to most elements!"
+ Message2 " has become immune to most elements!"
+ Message4 "'s elemental resistances have returned to normal."
+State 089
+ Name "Tri-Element Fist"
+ Message1 "'s fists have been imbued with the power of the three monsters!"
+ Message2 "'s fists have been imbued with the power of the three monsters!"
+ Message4 "'s monster power has run out."
+ Notes "<属性強化 3-50,4-50,5-50>"
+State 090
+ Name "Four Spirits Fist"
+ Message1 "'s fists have been imbued with the power of the four spirits!"
+ Message2 "'s fists have been imbued with the power of the four spirits!"
+ Message4 "'s spirit power has run out."
+ Notes "<属性強化 3-50,6-50,7-50,8-50>"
+State 091
+ Name "Dual Energy Fist"
+ Message1 "'s fists have been imbued with holy and dark energies!"
+ Message2 "'s fists have been imbued with holy and dark energies!"
+ Message4 "'s holy and dark energy has run out."
+ Notes "<属性強化 9-50,10-50>"
+State 092
+ Name "Fire/Ice/Lightning Defense"
+ Message1 " has become immune to fire, ice, and lightning!"
+ Message2 " has become immune to fire, ice, and lightning!"
+ Message4 "'s elemental resistances have returned to normal."
+State 094
+ Name "Null Holy"
+State 095
+ Name "Null Dark"
+State 096
+ Name "Null Sonic"
+State 097
+ Name "Null Bio"
+State 098
+ Name "Null Physical"
+ Message1 " has become immune to physical attacks!"
+ Message2 " has become immune to physical attacks!"
+ Message4 "'s physical resistance has returned to normal."
+State 099
+ Name "Null Pleasure"
+ Message1 " has become immune to pleasure attacks!"
+ Message2 " has become immune to pleasure attacks!"
+ Message4 "'s pleasure resistance has returned to normal."
+State 100
+ Name "Null Magic"
+ Message1 " has become immune to magical attacks!"
+ Message2 " has become immune to magical attacks!"
+ Message4 "'s magic resistance has returned to normal."
+State 101
+ Name "Absorb Fire"
+ Notes "<属性吸収 3>"
+State 102
+ Name "Absorb Ice"
+ Notes "<属性吸収 4>"
+State 103
+ Name "Absorb Lightning"
+ Notes "<属性吸収 5>"
+State 104
+ Name "Natural Element Absorb"
+ Message1 " has obtained the protection of the planet!"
+ Message2 " has obtained the protection of the planet!"
+ Message4 "'s elemental resistance has returned to normal."
+ Notes "<属性吸収 6,7,8>"
+State 107
+ Name "Absorb Holy"
+ Notes "<属性吸収 9>"
+State 108
+ Name "Absorb Dark"
+ Notes "<属性吸収 10>"
+State 109
+ Name "Absorb Sonic"
+ Notes "<属性吸収 35>"
+State 110
+ Name "Absorb Bio"
+ Notes "<属性吸収 36>"
+State 111
+ Name "Absorb Pleasure"
+ Message1 " can now absorb pleasure attacks!"
+ Message2 " can now absorb pleasure attacks!"
+ Message4 "'s pleasure resistance has returned to normal."
+ Notes "<属性吸収 2>"
+State 112
+ Name "Physical Damage Half"
+State 113
+ Name "Pleasure Damage Half"
+ Message1 " has become resistant to pleasure attacks!"
+ Message2 " has become resistant to pleasure attacks!"
+ Message4 "'s pleasure resistance has returned to normal."
+State 114
+ Name "Magic Damage Half"
+ Message1 " now has a magical barrier!"
+ Message2 " now has a magical barrier!"
+ Message4 "'s magical barrier has ended."
+State 115
+ Name "Magic Reflect"
+ Message1 " gains a magic reflective wall!"
+ Message2 " gains a magic reflective wall!"
+ Message4 "'s magic reflective wall has ended."
+State 116
+ Name "Ascension Strike 100%"
+ Message4 "'s weapon has lost the power of ascension!"
+State 117
+ Name "Death Strike 100%"
+ Message4 "'s weapon has lost the power of death!"
+State 118
+ Name "Poison Strike 100%"
+ Message4 "'s weapon has lost the power of poison!"
+State 119
+ Name "Blind Strike 100%"
+ Message4 "'s weapon has lost the power of blind!"
+State 120
+ Name "Silence Strike 100%"
+ Message4 "'s weapon has lost the power of silence!"
+State 121
+ Name "Confuse Strike 100%"
+ Message4 "'s weapon has lost the power of confusion!"
+State 122
+ Name "Sleep Strike 100%"
+ Message4 "'s weapon has lost the power of sleep!"
+State 123
+ Name "Paralyze Strike 100%"
+ Message4 "'s weapon has lost the power of paralysis!"
+State 124
+ Name "Digestion Strike 100%"
+State 125
+ Name "Normal Attack HP Drain 100%"
+ Message4 "'s weapon has lost the power of physical absorption!"
+ Notes "<通常攻撃 7>"
+State 126
+ Name "Normal Attack MP Drain 100%"
+ Message4 "'s weapon has lost the power of magic absorption!"
+ Notes "<通常攻撃 8>"
+State 127
+ Name "Normal Attack Enhance"
+ Message1 "'s normal attacks have been enhanced!"
+ Message2 "'s normal attacks have been enhanced!"
+ Message4 "'s normal attacks have returned to normal."
+ Notes "<通常攻撃強化 0-400,1-400,2-400,3-400,4-400,5-400,6-400,7-400,8-400,9-400,10-400,11-400,12-400,13-400,14-400,15-400,16-400,17-400,18-400,19-400,20-400,21-400,22-400,23-400,24-400,25-400,26-400,27-400,28-400,29-400,30-400,31-400>"
+State 128
+ Name "Poison Immunity"
+ Message1 " has become immune to poison!"
+ Message2 " has become immune to poison!"
+ Message4 "'s poison resistance has returned to normal."
+State 129
+ Name "Blind Immunity"
+ Message1 " has become immune to blind!"
+ Message2 " has become immune to blind!"
+ Message4 "'s blind resistance has returned to normal."
+State 130
+ Name "Silence Immunity"
+ Message1 " has become immune to silence!"
+ Message2 " has become immune to silence!"
+ Message4 "'s silence resistance has returned to normal."
+State 131
+ Name "Confuse/Sleep Immunity"
+ Message1 " has become immune to confuse and sleep!"
+ Message2 " has become immune to confuse and sleep!"
+ Message4 "'s confuse and sleep resistances have returned to normal."
+State 132
+ Name "Paralyze Immunity"
+ Message1 " has become immune to paralysis!"
+ Message2 " has become immune to paralysis!"
+ Message4 "'s paralyze resistance has returned to normal."
+State 133
+ Name "Mini Immunity"
+ Message1 " has become immune to mini!"
+ Message2 " has become immune to mini!"
+ Message4 "'s mini resistance has returned to normal."
+State 134
+ Name "Zombie Immunity"
+ Message1 " has become immune to zombification!"
+ Message2 " has become immune to zombification!"
+ Message4 "'s zombie resistance has returned to normal."
+State 135
+ Name "Stone Immunity"
+ Message1 " has become immune to petrification!"
+ Message2 " has become immune to petrification!"
+ Message4 "'s petrification resistance has returned to normal."
+State 136
+ Name "Aphrodisia Immunity"
+ Message1 " has become immune to aphrodisiacs!"
+ Message2 " has become immune to aphrodisiacs!"
+ Message4 "'s aphrodisiac resistance has returned to normal."
+State 137
+ Name "All Status Immunity"
+ Message1 " has become immune to abnormal status effects!"
+ Message2 " has become immune to abnormal status effects!"
+ Message4 "'s status effect resistance has returned to normal."
+State 138
+ Name "Double Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+State 139
+ Name "Triple Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+State 140
+ Name "Quad Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+State 141
+ Name "Penta Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+State 142
+ Name "Hex Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+State 143
+ Name "Octo Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+State 144
+ Name "Double Action"
+State 145
+ Name "Triple Action"
+State 146
+ Name "Chaotic Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+ Notes "<通常攻撃 3>"
+State 147
+ Name "Master Chaotic Attack"
+ Message1 "'s weapon gains divine power!"
+ Message2 "'s weapon gains divine power!"
+ Message4 "'s attacks return to normal."
+ Notes "<通常攻撃 4>"
+State 148
+ Name "Brief Double Action"
+ Notes "<表示：Double Action>"
+State 149
+ Name "Nullify Pleasure Ailments"
+ Message1 " is immune against pleasure ailments!"
+ Message2 " is immune against pleasure ailments!"
+ Message4 "'s pleasure immunity has returned to normal."
+State 151
+ Name "Auto Resurrection"
+ Message1 " is endowed with divine rebirth!"
+ Message2 " is endowed with divine rebirth!"
+ Notes "<死亡時スキル 3264>\r\n<即死時スキル 3264>"
+State 152
+ Name "XP ×2"
+ Notes "<獲得経験値倍率 200%>"
+State 153
+ Name "XP ×3"
+ Notes "<獲得経験値倍率 300%>"
+State 154
+ Name "Job XP ×2"
+ Notes "<獲得職業経験値倍率 200%>"
+State 155
+ Name "Job XP ×3"
+ Notes "<獲得職業経験値倍率 300%>"
+State 156
+ Name "Gold Drop Rate ×2"
+ Notes "<獲得金額倍率 200%>"
+State 157
+ Name "Gold Drop Rate ×3"
+ Notes "<獲得金額倍率 300%>"
+State 158
+ Name "Item Drop Rate ×2"
+ Notes "<獲得アイテム倍率 200%>"
+State 159
+ Name "Item Drop Rate ×3"
+ Notes "<獲得アイテム倍率 300%>"
+State 160
+ Name "Party Join Rate ×2"
+ Notes "<仲間加入倍率 200%>"
+State 161
+ Name "Party Join Rate ×3"
+ Notes "<仲間加入倍率 300%>"
+State 162
+ Name "MP Consumption 1/2"
+State 163
+ Name "MP Consumption 1/4"
+State 164
+ Name "MP Consumption 0"
+State 165
+ Name "SP Consumption 1/2"
+ Notes "<TP消費率 50%>"
+State 166
+ Name "SP Consumption 1/4"
+ Notes "<TP消費率 25%>"
+State 167
+ Name "SP Consumption 0"
+ Notes "<TP消費率 0%>"
+State 168
+ Name "Magic Curtain"
+ Message1 " now has a magical curtain!"
+ Message2 " now has a magical curtain!"
+ Message4 "'s magical curtain has ended."
+ Notes "<ダメージMP吸収 10%>"
+State 169
+ Name "Magic Wall"
+ Message1 " now has a magical wall!"
+ Message2 " now has a magical wall!"
+ Message4 "'s magical wall has ended."
+ Notes "<ダメージMP変換 100%>"
+State 170
+ Name "Gold Curtain"
+ Message1 " now has a strange protective wall!"
+ Message2 " now has a strange protective wall!"
+ Message4 "'s strange protective wall has ended."
+ Notes "<ダメージゴールド回収 100%>"
+State 171
+ Name "Money Wall"
+ Message1 " now has a strange protective wall!"
+ Message2 " now has a strange protective wall!"
+ Message4 "'s strange protective wall has ended."
+ Notes "<ダメージゴールド変換 100%>"
+State 172
+ Name "Magic Concentration"
+ Message1 "'s magic and willpower are increased for next turn!"
+ Message2 "'s magic and willpower are increased for next turn!"
+ Notes "<命中率 200%>"
+State 173
+ Name "Mental Concentration"
+ Message1 "'s dexterity and agility are increased for next turn!"
+ Message2 "'s dexterity and agility are increased for next turn!"
+ Notes "<命中率 200%>"
+State 174
+ Name "Battle Maid"
+ Message1 "'s weapon skills are unlocked!"
+ Message2 "'s weapon arts skills are unlocked!"
+ Message4 "'s skills have returned to normal."
+State 175
+ Name "Magical Maid"
+ Message1 "'s magical skills are unlocked!"
+ Message2 "'s magical skills are unlocked!"
+ Message4 "'s skills have returned to normal."
+State 176
+ Name "All Monster Skill Usage"
+ Message1 "'s monster skills are unlocked!"
+ Message2 "'s monster skills are unlocked!"
+ Message4 "'s skills have returned to normal."
+State 177
+ Name "All Skill Usage"
+ Message1 " has all skill types unlocked!"
+ Message2 " has all skill types unlocked!"
+ Message4 "'s skills have returned to normal."
+State 178
+ Name "Perfect Maid"
+ Message1 " has all skill types unlocked!"
+ Message2 " has all skill types unlocked!"
+ Message4 "'s skills have returned to normal."
+State 179
+ Name "Desperate Strike"
+State 180
+ Name "Noblesse Oblige"
+ Message1 "'s blade shines with noble intentions!"
+ Message2 "'s blade shines with noble intentions!"
+ Message4 "'s blade returns to normal."
+ Notes "<連続発動タイプ 8-2>"
+State 181
+ Name "Rise From Nothing"
+ Message1 "'s weapon gains the power of a kishin!"
+ Message2 "'s weapon gains the power of a kishin!"
+ Message4 "'s weapon returns to normal."
+ Notes "<連続発動タイプ 9-2>"
+State 182
+ Name "First Spear"
+ Message1 "'s weapon gains the power of the horse god!"
+ Message2 "'s weapon gains the power of the horse god!"
+ Message4 "'s weapon returns to normal."
+State 183
+ Name "Supreme Cavalry"
+ Message1 "'s weapon gains the power of the horse god!"
+ Message2 "'s weapon gains the power of the horse god!"
+ Message4 "'s weapon returns to normal."
+ Notes "<連続発動タイプ 10-2>"
+State 184
+ Name "Ixion"
+ Message1 "'s weapon gains the power of the horse god!"
+ Message2 "'s weapon gains the power of the horse god!"
+ Message4 "'s weapon returns to normal."
+State 185
+ Name "Sylph"
+ Message4 " loses Sylph's protection."
+ Notes "<属性強化 6-50>\r\n<属性吸収 6>"
+State 186
+ Name "Gnome"
+ Message4 " loses Gnome's protection."
+ Notes "<属性強化 7-50>\r\n<属性吸収 7>"
+State 187
+ Name "Undine"
+ Message4 " loses Undine's protection."
+ Notes "<属性強化 8-50>\r\n<属性吸収 8>"
+State 188
+ Name "Salamander"
+ Message4 " loses Salamander's protection."
+ Notes "<属性強化 3-50>\r\n<属性吸収 3>"
+State 189
+ Name "Zylphe"
+ Message4 " loses the effect from Zylphe."
+State 190
+ Name "Gnomaren"
+ Message4 " loses the effect from Gnomaren."
+State 191
+ Name "Grandine"
+ Message4 " loses the effect from Grandine."
+State 192
+ Name "Gigamander"
+ Message4 " loses the effect from Gigamander."
+State 193
+ Name "Spirit Stance"
+ Message1 " gains the blessing of Heaven and Earth!"
+ Message2 " gains the blessing of Heaven and Earth!"
+ Message4 "'s protection has ended."
+State 194
+ Name "Divine Stance"
+ Message1 " gains the blessing of Heaven and Earth!"
+ Message2 " gains the blessing of Heaven and Earth!"
+ Message4 "'s protection has ended."
+State 195
+ Name "Bird Stance"
+ Message1 " gains the blessing of Heaven and Earth!"
+ Message2 " gains the blessing of Heaven and Earth!"
+ Message4 "'s protection has ended."
+State 196
+ Name "Dragon Stance"
+ Message1 " gains the blessing of Heaven and Earth!"
+ Message2 " gains the blessing of Heaven and Earth!"
+ Message4 "'s protection has ended."
+State 197
+ Name "Life Insurance"
+ Message1 " takes out a life insurance policy!"
+ Message2 " takes out a life insurance policy!"
+ Notes "<最終反撃 14>"
+State 198
+ Name "Continuous Turns"
+ Message1 " gets lots of turns in a row!"
+ Message2 " gets lots of turns in a row!"
+ Message4 "'s turns have ended."
+State 199
+ Name "Counter Rate +50%"
+ Message1 "'s counter rate has increased!"
+ Message2 "'s counter rate has increased!"
+ Message4 "'s counter rate has returned to normal."
+State 200
+ Name "Counter Rate +100%"
+ Message1 "'s counter rate has greatly increased!"
+ Message2 "'s counter rate has greatly increased!"
+ Message4 "'s counter rate has returned to normal."
+State 201
+ Name "Dance of the Snake God"
+ Message1 " gains the protection of the snake god!"
+ Message2 " gains the protection of the snake god!"
+ Message4 " has lost the protection of the snake god."
+ Notes "<魔法反撃 100%>\r\n<必中反撃 100%>\r\n<反撃強化 100%>"
+State 202
+ Name "Max HP +50%"
+ Message1 "'s Max HP has temporarily increased!"
+ Message2 "'s Max HP has temporarily increased!"
+ Message4 "'s doping effect has worn off!"
+State 203
+ Name "Blitzkrieg"
+ Message1 " gains the protection of the machine god!"
+ Message2 " gains the protection of the machine god!"
+ Message4 " has lost the protection of the machine god."
+State 204
+ Name "Holy Energy Erosion"
+ Message1 " is harmed by unconstrained holy energy!"
+ Message2 " is harmed by unconstrained holy energy!"
+State 205
+ Name "Dullahan Twins"
+ Message1 "'s head and body are now acting separately!"
+ Message2 "'s head and body are now acting separately!"
+ Message4 "'s head and body have returned to normal."
+State 206
+ Name "Dullahan Rondo"
+ Message1 "'s head and body are now acting separately!"
+ Message2 "'s head and body are now acting separately!"
+ Message4 "'s head and body have returned to normal."
+State 208
+ Name "Division"
+ Message1 " divides! The separate parts are now acting on their own!"
+ Message2 " divides! The separate parts are now acting on their own!"
+ Message4 "'s divisions come back together."
+State 209
+ Name "Divine Destiny"
+ Message1 " divides! The separate parts are now acting on their own!"
+ Message2 " divides! The separate parts are now acting on their own!"
+ Message4 "'s divisions come back together."
+State 210
+ Name "Ultimate Colony"
+ Message1 " divides! The separate parts are now acting on their own!"
+ Message2 " divides! The separate parts are now acting on their own!"
+ Message4 "'s divisions come back together."
+State 211
+ Name "Lunatic High"
+ Message1 " goes wild!"
+ Message2 " goes wild!"
+ Message4 "'s recklessness wears off."
+State 212
+ Name "Genocide High"
+ Message1 " goes wild!"
+ Message2 " goes wild!"
+ Message4 "'s recklessness wears off."
+State 213
+ Name "Lunatic"
+ Message1 " goes wild!"
+ Message2 " goes wild!"
+ Message4 "'s recklessness wears off."
+ Notes "<TP消費率 0%>"
+State 214
+ Name "Sleepy Kitty"
+ Message3 " is fast asleep..."
+ Message4 " woke up!"
+State 216
+ Name "Soft Body"
+ Message4 "'s body has returned to normal."
+State 217
+ Name "Group Behavior"
+ Message1 "'s allies provide covering fire!"
+ Message2 "'s allies provide covering fire!"
+ Message4 "'s allies back off."
+ Notes "<連続発動タイプ 57-2>"
+State 218
+ Name "Group Leader"
+ Message1 "'s allies provide covering fire!"
+ Message2 "'s allies provide covering fire!"
+ Message4 "'s allies back off."
+ Notes "<連続発動タイプ 57-3>"
+State 219
+ Name "Spirit Form"
+ Message1 " has transformed into spirit form!"
+ Message2 " has transformed into spirit form!"
+ Message4 " has returned to a normal form."
+State 220
+ Name "Stealth"
+State 221
+ Name "Limiter Release"
+ Message1 " goes wild!"
+ Message2 " goes wild!"
+ Message4 "'s recklessness wears off."
+ Notes "<連続発動タイプ 6-2,7-2,8-2,9-2,10-2,11-2,12-2,13-2,14-2,15-2,16-2,17-2,18-2,19-2,20-2,21-2,50-2,51-2,52-2,53-2,54-2,55-2,56-2,57-2,58-2,59-2,60-2,61-2,62-2>"
+State 222
+ Name "Chaotic Magic"
+ Message1 " goes wild!"
+ Message2 " goes wild!"
+ Message4 "'s recklessness wears off."
+State 223
+ Name "Deep Breath"
+ Message1 "'s metabolism is stimulated!"
+ Message2 "'s metabolism is stimulated!"
+ Message4 "'s metabolism has returned to normal."
+State 224
+ Name "Tactical Breathing"
+ Message1 "'s metabolism is stimulated!"
+ Message2 "'s metabolism is stimulated!"
+ Message4 "'s metabolism has returned to normal."
+State 225
+ Name "Power Charge"
+ Message1 "'s attack power is increased for the next turn!"
+ Message2 "'s attack power is increased for the next turn!"
+State 226
+ Name "Focused Spirit"
+ Message1 "'s attack power is increased for the next turn!"
+ Message2 "'s attack power is increased for the next turn!"
+State 227
+ Name "Full Power"
+ Message1 "'s attack power is increased for the next turn!"
+ Message2 "'s attack power is increased for the next turn!"
+State 228
+ Name "Permanent Transformation"
+ Message3 " has transformed..."
+ Message4 "'s transformation has reverted!"
+State 229
+ Name "Stage Time"
+ Message4 "'s stage time is over!"
+State 230
+ Name "Death"
+ Message1 " draws their last breath!"
+ Message2 " draws their last breath!"
+ Notes "<即死>"
+State 231
+ Name "Ascension"
+ Message1 " ascends to Heaven!"
+ Message2 " ascends to Heaven!"
+ Notes "<即死>"
+State 232
+ Name "Climax"
+ Message1 " reached climax!"
+ Message2 " reached climax!"
+ Notes "<即死>\r\n<快楽死亡>"
+State 233
+ Name "Instant KO Protection"
+ Message1 " is protected against instant death!"
+ Message2 " is protected against instant death!"
+ Message4 "'s instant death protection has worn off."
+State 234
+ Name "Chaos Event: Charge"
+ Message1 "'s attack power is increased for the next turn!"
+ Message2 "'s attack power is increased for the next turn!"
+ Notes "<表示：Power Charge>"
+State 235
+ Name "Massive Mucus Secretion"
+ Message4 "'s body returns to normal!"
+ Notes "<反撃スキル 26>"
+State 236
+ Name "Digestive Liquid Erosion"
+ Notes "<ターン終了時発動 37,100%>"
+State 237
+ Name "Venus Nepenthes"
+ Notes "<ターン終了時発動 38,100%>"
+State 238
+ Name "Request Reinforcements"
+ Notes "<ターン終了時発動 39,100%>"
+State 239
+ Name "Support Bombardment"
+ Message1 " initiates an artillery bombardment!"
+ Notes "<ターン終了時発動 40,100%>"
+State 240
+ Name "Kaiser Fleet"
+ Message1 "'s artillery bombardment continues!"
+ Notes "<ターン終了時発動 41,100%>"
+State 241
+ Name "Armada Bombardment"
+ Message1 "'s artillery bombardment continues!"
+ Notes "<ターン終了時発動 42,100%>"
+State 242
+ Name "Mermaid Cannon"
+ Message1 "'s artillery bombardment continues!"
+ Notes "<ターン終了時発動 43,100%>"
+State 243
+ Name "Group Strike"
+ Notes "<ターン終了時発動 44,100%>"
+State 244
+ Name "Clan Assault"
+ Notes "<ターン終了時発動 45,100%>"
+State 245
+ Name "Light of Victory Katana: Imperial Wrath"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<反撃スキル 46>\r\n<表示：なし>"
+State 246
+ Name "Supreme Dragon Guard"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<反撃スキル 47>\r\n<表示：なし>"
+State 247
+ Name "Taoism: 4 Symbol Pentagram"
+ Notes "<無効化魔法反撃 100%>\r\n<反撃スキル 48>\r\n<表示：なし>"
+State 249
+ Name "Lightspeed Palm"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<反撃スキル 50>\r\n<表示：なし>"
+State 250
+ Name "Hard Job Mode"
+ Notes "<連続発動タイプ 50-2,51-2,52-2,53-2,54-2,55-2,56-2,57-2,58-2,59-2,60-2,61-2,62-2,63-2>"
+State 251
+ Name "Evasion +75%"
+State 252
+ Name "Daystar"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<無効化必中反撃 100%>\r\n<反撃スキル 49>\r\n<表示：なし>"
+State 253
+ Name "Daystar (Enemy)"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<無効化必中反撃 100%>\r\n<反撃スキル 4599>\r\n<表示：なし>"
+State 254
+ Name "Waiting"
+ Notes "<表示：なし>"
+State 255
+ Name "Morning Star"
+ Notes "<無効化反撃 100%>\r\n<反撃スキル 57>\r\n<表示：なし>"
+State 256
+ Name "Combat Skills ×2"
+ Message1 " gains the power of consecutive weapon skills!"
+ Message2 " gains the power of consecutive weapon skills!"
+ Message4 " has returned to normal."
+ Notes "<連続発動タイプ 6-2,7-2,8-2,9-2,10-2,11-2,12-2,13-2,14-2,15-2,16-2,17-2,18-2,19-2,20-2,21-2>"
+State 257
+ Name "Magic Skills ×2"
+ Message1 " gains the power of dualcasting!"
+ Message2 " gains the power of dualcasting!"
+ Message4 " has returned to normal."
+ Notes "<連続発動タイプ 22-2,23-2,24-2,25-2,26-2,27-2,29-2,40-2,41-2,42-2,67-2>"
+State 258
+ Name "Multi Recovery"
+ Message1 "'s metabolism has been invigorated!"
+ Message2 "'s metabolism has been invigorated!"
+ Message4 "'s metabolism has returned to normal."
+State 259
+ Name "Guaranteed Critical Hit"
+ Message1 " surges with power!"
+ Message2 " surges with power!"
+ Message4 " returns to normal."
+ Notes "<命中率 200%>"
+State 260
+ Name "Six Element Absorb"
+ Message1 " gains the power of element absorption!"
+ Message2 " gains the power of element absorption!"
+ Message4 " has lost the power of element absorption."
+ Notes "<属性吸収 3,4,5,6,7,8>"
+State 261
+ Name "Absorb Physical"
+ Message1 " gains the power of physical absorption!"
+ Message2 " gains the power of physical absorption!"
+ Message4 "  has lost the power of physical absorption."
+ Notes "<属性吸収 1>"
+State 262
+ Name "Physical-Pleasure Reflect"
+ Message1 " gains the power of physical and pleasure reflection!"
+ Message2 " gains the power of physical and pleasure reflection!"
+ Message4 " has lost the power of physical and pleasure reflection."
+ Notes "<属性反射:1,2>"
+State 263
+ Name "All Damage Half"
+ Message1 "'s resistance to all elements has increased!"
+ Message2 "'s resistance to all elements has increased!"
+ Message4 "'s element resistance has returned to normal."
+State 264
+ Name "Excalibur"
+ Message1 " wields (a created) Excalibur!"
+ Message2 " wields (a created) Excalibur!"
+ Notes "<属性強化 9-50>"
+State 265
+ Name "Supreme Dragon Guard (Enemy)"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<反撃スキル 5740>"
+State 266
+ Name "Sub-100 Damage Null"
+ Message1 " now ignores all damage below 100!"
+ Message4 "'s damage resistance has worn off."
+ Notes "<無効化障壁 100>"
+State 267
+ Name "Sub-300 Damage Null"
+ Message1 " now ignores all damage below 300!"
+ Message4 "'s damage resistance has worn off."
+ Notes "<無効化障壁 300>"
+State 268
+ Name "Sub-1,000 Damage Null"
+ Message1 " now ignores all damage below 1000!"
+ Message4 "'s damage resistance has worn off."
+ Notes "<無効化障壁 1000>"
+State 269
+ Name "Sub-3,000 Damage Null"
+ Message1 " now ignores all damage below 3000!"
+ Message4 "'s damage resistance has worn off."
+ Notes "<無効化障壁 3000>"
+State 270
+ Name "Perfect Evasion +50%"
+ Notes "<必中回避率 50%>"
+State 271
+ Name "Stun 2"
+ Message1 " has fallen to the ground!"
+ Message2 " has fallen to the ground!"
+ Message3 " rolls around and struggles..."
+ Message4 " managed to stand up!"
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<表示：Stun>"
+State 272
+ Name "Stun 3"
+ Message1 " is frozen in place, cowering!"
+ Message2 " is frozen in place, cowering!"
+ Message3 " is still cowering..."
+ Message4 " returns to normal."
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<表示：Stun>"
+State 273
+ Name "Stun 4"
+ Message1 " is lured into a dance!"
+ Message2 " is lured into a dance!"
+ Message3 " is still dancing..."
+ Message4 " returns to normal."
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<表示：Stun>"
+State 274
+ Name "Stun 5"
+ Message1 " takes a SPARKLE☆ pose!"
+ Message2 " takes a SPARKLE☆ pose!"
+ Message3 " maintains a SPARKLE☆ pose..."
+ Message4 " returns to normal."
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<表示：Stun>"
+State 275
+ Name "Stun 6"
+ Message1 " laughs uncontrollably!"
+ Message2 " laughs uncontrollably!"
+ Message3 " is still laughing..."
+ Message4 " returns to normal."
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>\r\n<表示：Stun>"
+State 276
+ Name "Stun 7"
+ Message1 " is completely captivated!"
+ Message2 " is completely captivated!"
+ Message3 " is still captivated..."
+ Message4 " returns to normal."
+ Notes "<回避率 -200%>\r\n<魔法回避率 -200%>"
+State 277
+ Name "Negate+Counter Skill with Royal Bombardment"
+ Notes "<無効化反撃 25%>\r\n<反撃スキル 3338>\r\n<表示：なし>"
+State 278
+ Name "Negate+Counter Skill with Pope's Prayer"
+ Notes "<無効化反撃 25%>\r\n<反撃スキル 3337>\r\n<表示：なし>"
+State 279
+ Name "Negate+Counter Skill with Magic King"
+ Notes "<無効化反撃 25%>\r\n<反撃スキル 3336>\r\n<表示：なし>"
+State 280
+ Name "Negate+Counter Skill with King's Wrath"
+ Notes "<無効化反撃 25%>\r\n<反撃スキル 3335>\r\n<表示：なし>"
+State 281
+ Name "Illusion Heaven Dance"
+ Message4 " returns to normal."
+ Notes "<回避率 50%>\r\n<魔法回避率 200%>\r\n<必中回避率 33%>\r\n<命中率 200%>"
+State 282
+ Name "Fallen Angel Dance"
+ Message4 " returns to normal."
+ Notes "<回避率 200%>\r\n<魔法回避率 50%>\r\n<必中回避率 33%>\r\n<命中率 200%>"
+State 283
+ Name "Murderer's Permission"
+ Message1 "'s katana flashes with the power to kill!"
+ Message2 "'s katana flashes with the power to kill!"
+ Message4 "'s katana returns to normal."
+State 284
+ Name "Lucky Star"
+ Message1 " looks up to see a lucky star shining overhead!"
+ Message2 " looks up to see a lucky star shining overhead!"
+ Message4 " looks up to see the lucky star vanish."
+State 285
+ Name "Lucky Hunter"
+ Message1 "'s Experience points and Gold for this battle are doubled!"
+ Message2 "'s Experience points and Gold for this battle are doubled!"
+ Notes "<獲得経験値倍率 200%>\r\n<獲得職業経験値倍率 200%>\r\n<獲得金額倍率 200%>"
+State 286
+ Name "Multi-Attribute Weakness"
+ Message1 "'s attributes have all been weakened!"
+ Message2 "'s attributes have all been weakened!"
+ Message4 "'s attribute resists have returned to normal."
+State 287
+ Name "Lesser HP/MP Regeneration"
+ Message1 "'s metabolism is stimulated!"
+ Message2 "'s metabolism is stimulated!"
+ Message4 "'s metabolism has returned to normal."
+State 288
+ Name "Harpy Dance"
+ Message1 " floats through the air dancing!"
+ Message2 " floats through the air dancing!"
+ Message4 " returns to the ground."
+State 289
+ Name "Perfect Sky Dance"
+ Message1 " dances with flawless movements!"
+ Message2 " dances with flawless movements!"
+ Message4 "'s movements return to normal."
+State 290
+ Name "MP/SP Cost 1/4"
+ Message1 "'s MP and SP consumption is reduced!"
+ Message2 "'s MP and SP consumption is reduced!"
+ Message4 "'s MP and SP consumption has returned to normal."
+ Notes "<TP消費率 25%>"
+State 291
+ Name "Maid Boost"
+ Message1 " gets a boost!"
+ Message2 " gets a boost!"
+ Message4 "'s boost has ended."
+State 292
+ Name "Magic Evasion +75%"
+State 293
+ Name "Tentacle Up"
+ Message4 "'s tentacles return to normal."
+ Notes "<連続発動タイプ 55-2>"
+State 294
+ Name "High Tentacle Up"
+ Message4 "'s tentacles return to normal."
+ Notes "<連続発動タイプ 55-3>"
+State 295
+ Name "EX Tentacle Up"
+ Message4 "'s tentacles return to normal."
+ Notes "<連続発動タイプ 55-4>"
+State 296
+ Name "Zero MP/SP Cost"
+ Message1 "'s skills no longer consume MP or SP!"
+ Message2 "'s skills no longer consume MP or SP!"
+ Message4 "'s MP and SP consumption returned to normal."
+ Notes "<TP消費率 0%>"
+State 297
+ Name "Focus Mind"
+ Message1 "'s attack power and critical hit rate increase!"
+ Message2 "'s attack power and critical hit rate increase!"
+ Message4 "'s attack power and critical hit rate return to normal."
+State 298
+ Name "Inner Focus Mind"
+ Message1 "'s attack power and critical hit rate increase!"
+ Message2 "'s attack power and critical hit rate increase!"
+ Message4 "'s attack power and critical hit rate return to normal."
+State 299
+ Name "Dragon Steel Body"
+ Message1 "'s body becomes as strong as a dragon's!"
+ Message2 "'s body becomes as strong as a dragon's!"
+ Message4 "'s body returns to normal."
+State 300
+ Name "Playful Wind"
+ Message4 " has lost the blessing of the wind."
+State 301
+ Name "Devastating Gale"
+ Message4 " has lost the blessing of the wind."
+ Notes "<命中率 200%>"
+State 302
+ Name "Breath of the Earth"
+ Message4 " has lost the blessing of the earth."
+State 303
+ Name "Wild Lands"
+ Message4 " has lost the blessing of the earth."
+State 304
+ Name "Serene Mind"
+ Message4 "'s preparedness returns to normal."
+ Notes "<命中率 200%>"
+State 306
+ Name "Defense Up"
+ Message1 "'s defensive power has increased!"
+ Message2 "'s defensive power has increased!"
+ Message4 "'s defensive power has returned to normal."
+State 307
+ Name "Willpower Up"
+ Message1 "'s magic defense has increased!"
+ Message2 "'s magic defense has increased!"
+ Message4 "'s magic defense has returned to normal!"
+State 308
+ Name "Defense Down"
+ Message1 "'s defensive power has decreased!"
+ Message2 "'s defensive power has decreased!"
+ Message4 "'s defensive power has returned to normal."
+State 309
+ Name "Willpower Down"
+ Message1 "'s magic defense has decreased!"
+ Message2 "'s magic defense has decreased!"
+ Message4 "'s magic defense has returned to normal!"
+State 311
+ Name "Imbue Fire Fist"
+ Message1 "'s fists are imbued with the power of fire!"
+ Message4 "'s fists have returned to normal."
+ Notes "<属性強化 3-50>"
+State 312
+ Name "Imbue Ice Fist"
+ Message1 "'s fists are imbued with the power of ice!"
+ Message4 "'s fists have returned to normal."
+ Notes "<属性強化 4-50>"
+State 313
+ Name "Imbue Thunder Fist"
+ Message1 "'s fists are imbued with the power of thunder!"
+ Message4 "'s fists have returned to normal."
+ Notes "<属性強化 5-50>"
+State 314
+ Name "Imbue Wind Fist"
+ Message1 "'s fists are imbued with the power of wind!"
+ Message4 "'s fists have returned to normal."
+ Notes "<属性強化 6-50>"
+State 315
+ Name "Imbue Earth Fist"
+ Message1 "'s fists are imbued with the power of earth!"
+ Message4 "'s fists have returned to normal."
+ Notes "<属性強化 7-50>"
+State 316
+ Name "Imbue Water Fist"
+ Message1 "'s fists are imbued with the power of water!"
+ Message4 "'s fists have returned to normal."
+ Notes "<属性強化 8-50>"
+State 318
+ Name "Very Easy Mode: Allies"
+ Notes "<表示：なし>"
+State 319
+ Name "Very Easy Mode: Enemies"
+ Notes "<表示：なし>"
+State 320
+ Name "Defense Up (short)"
+ Message1 "'s defensive power has increased!"
+ Message2 "'s defensive power has increased!"
+ Message4 "'s defensive power has returned to normal."
+ Notes "<表示：Defense Up>"
+State 321
+ Name "Willpower Up (short)"
+ Message1 "'s magic defense has increased!"
+ Message2 "'s magic defense has increased!"
+ Message4 "'s magic defense has returned to normal!"
+ Notes "<表示：Willpower Up>"
+State 322
+ Name "Katana Skill ×2"
+ Message1 "'s blade is imbued by the sword god!"
+ Message2 "'s blade is imbued by the sword god!"
+ Message4 "'s blade returns to normal."
+ Notes "<連続発動タイプ 9-2>"
+State 323
+ Name "Sword Skill ×2"
+ Message1 "'s blade is imbued by the sword god!"
+ Message2 "'s blade is imbued by the sword god!"
+ Message4 "'s blade returns to normal."
+ Notes "<連続発動タイプ 7-2>"
+State 324
+ Name "Spear Skill ×2"
+ Message1 "'s blade is imbued by the sword god!"
+ Message2 "'s blade is imbued by the sword god!"
+ Message4 "'s blade returns to normal."
+ Notes "<連続発動タイプ 10-2>"
+State 325
+ Name "Zero Shift"
+ Notes "<回避率 -500%>\r\n<魔法回避率 -500%>\r\n<会心率 -500%>\r\n<魔法反射率 -500%>\r\n<物理反射率 -500%>"
+State 326
+ Name "Chaos Event: Weapon Skills Sealed"
+ Notes "<表示：なし>"
+State 327
+ Name "Chaos Event: Magic Sealed"
+ Notes "<表示：なし>"
+State 328
+ Name "Chaos Event: Job Skills Sealed"
+ Notes "<表示：なし>"
+State 329
+ Name "Chaos Event: MP Consumption Halved"
+ Notes "<表示：なし>"
+State 330
+ Name "Chaos Event: SP Consumption Halved"
+ Notes "<TP消費率 50%>\r\n<表示：なし>"
+State 332
+ Name "Level Drain+"
+ Notes "<表示：なし>"
+State 333
+ Name "Level Drain-"
+ Message1 "'s level has temporarily decreased!"
+ Notes "<表示：なし>"
+State 335
+ Name "Human Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 11-50>"
+State 336
+ Name "Yoma Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 12-50>"
+State 337
+ Name "Demi-Human Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 13-50>"
+State 338
+ Name "Succubus Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 14-50>"
+State 339
+ Name "Vampire Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 15-50>"
+State 340
+ Name "Mermaid Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 16-50>"
+State 341
+ Name "Elf Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 17-50>"
+State 342
+ Name "Fairy Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 18-50>"
+State 343
+ Name "Slime Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 19-50>"
+State 344
+ Name "Beast Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 20-50>"
+State 345
+ Name "Kitsune Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 21-50>"
+State 346
+ Name "Lamia Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 22-50>"
+State 347
+ Name "Scylla Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 23-50>"
+State 348
+ Name "Harpy Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 24-50>"
+State 349
+ Name "Dragon Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 25-50>"
+State 350
+ Name "Land-Dweller Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 26-50>"
+State 351
+ Name "Sea-Dweller Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 27-50>"
+State 352
+ Name "Insect Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 28-50>"
+State 353
+ Name "Plant Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 29-50>"
+State 354
+ Name "Zombie Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 30-50>"
+State 355
+ Name "Ghost Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 31-50>"
+State 356
+ Name "Doll Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 32-50>"
+State 357
+ Name "Chimera Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 33-50>"
+State 358
+ Name "Angel Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 34-50>"
+State 359
+ Name "Giant Slayer"
+ Message4 "'s Species Slayer effect has worn off!"
+ Notes "<特殊カテゴリー与ダメージアップ 37-50>"
+State 361
+ Name "Ultimate Charge"
+ Message1 "'s attack power is increased for the next turn!"
+ Message2 "'s attack power is increased for the next turn!"
+ Notes "<命中率 200%>"
+State 362
+ Name "Magical Rampage"
+ Message1 "'s magic and willpower are increased for next turn!"
+ Message2 "'s magic and willpower are increased for next turn!"
+ Notes "<命中率 200%>"
+State 363
+ Name "Technical Burst"
+ Message1 "'s dexterity is increased for next turn!"
+ Message2 "'s dexterity is increased for next turn!"
+ Notes "<命中率 200%>"
+State 364
+ Name "Acceleration"
+ Message1 "'s agility is increased for next turn!"
+ Message2 "'s agility is increased for next turn!"
+ Notes "<命中率 200%>"
+State 366
+ Name "Cosmo Heal"
+ Notes "<ターン終了時発動 58,100%>"
+State 367
+ Name "Perfect Evasion 75%"
+ Notes "<必中回避率 75%>"
+State 368
+ Name "All XP+Gold ×5"
+ Message1 "'s Experience points and Gold for this battle are quantified!"
+ Message2 "'s Experience points and Gold for this battle are quantified!"
+ Notes "<獲得経験値倍率 500%>\r\n<獲得職業経験値倍率 500%>\r\n<獲得金額倍率 500%>"
+State 369
+ Name "Max HP +100%"
+ Message1 "'s Max HP has temporarily increased!"
+ Message2 "'s Max HP has temporarily increased!"
+ Message4 "'s doping effect has worn off!"
+State 370
+ Name "Physical-Pleasure Damage Quarter"
+ Message1 "'s physical and pleasure resistance has greatly increased!"
+ Message2 "'s physical and pleasure resistance has greatly increased!"
+ Message4 "'s physical and pleasure resistance has returned to normal!"
+State 371
+ Name "Magic Damage Quarter"
+ Message1 "'s magic resistance has greatly increased!"
+ Message2 "'s magic resistance has greatly increased!"
+ Message4 "'s magic resistance has returned to normal."
+State 372
+ Name "All Damage Half"
+ Message1 "'s resistance to all attacks has increased!"
+ Message2 "'s resistance to all attacks has increased!"
+ Message4 "'s resistance to all attacks has returned to normal."
+ Notes "<必中ダメージ率 50%>"
+State 373
+ Name "All Damage Quarter"
+ Message1 "'s resistance to all attacks has greatly increased!"
+ Message2 "'s resistance to all attacks has greatly increased!"
+ Message4 "'s resistance to all attacks has returned to normal."
+ Notes "<必中ダメージ率 25%>"
+State 374
+ Name "Null All Damage"
+ Message1 " has become immune to all damage!"
+ Message2 " has become immune to all damage!"
+ Message4 "'s resistance to all attacks has returned to normal."
+ Notes "<必中ダメージ率 0%>"
+State 375
+ Name "Quad Spirit Summon"
+ Message1 "'s abilities have increased tremendously!"
+ Message2 "'s abilities have increased tremendously!"
+ Message4 "'s abilities have returned to normal."
+State 376
+ Name "Goddess Ilias's Protection"
+ Message4 "'s protection from the Goddess has vanished!"
+State 378
+ Name "Sexcraft Damage ×2"
+ Notes "<スキルタイプ強化 49-100>"
+State 379
+ Name "Demon Arts Damage ×2"
+ Notes "<スキルタイプ強化 50-100>"
+State 380
+ Name "Ocean Damage ×2"
+ Notes "<スキルタイプ強化 51-100>"
+State 381
+ Name "Slime Damage ×2"
+ Notes "<スキルタイプ強化 52-100>"
+State 382
+ Name "Beast Damage ×2"
+ Notes "<スキルタイプ強化 53-100>"
+State 383
+ Name "Snake Damage ×2"
+ Notes "<スキルタイプ強化 54-100>"
+State 384
+ Name "Tentacle Damage ×2"
+ Notes "<スキルタイプ強化 55-100>"
+State 385
+ Name "Wing Damage ×2"
+ Notes "<スキルタイプ強化 56-100>"
+State 386
+ Name "Insect Damage ×2"
+ Notes "<スキルタイプ強化 57-100>"
+State 387
+ Name "Plant Damage ×2"
+ Notes "<スキルタイプ強化 58-100>"
+State 388
+ Name "Corpse Damage ×2"
+ Notes "<スキルタイプ強化 59-100>"
+State 389
+ Name "Artificial Damage ×2"
+ Notes "<スキルタイプ強化 60-100>"
+State 390
+ Name "Nature Damage ×2"
+ Notes "<スキルタイプ強化 61-100>"
+State 391
+ Name "Breath Damage ×2"
+ Notes "<スキルタイプ強化 62-100>"
+State 392
+ Name "Giant Damage ×2"
+ Notes "<スキルタイプ強化 69-100>"
+State 393
+ Name "Attack Down"
+ Message1 "'s attack power has decreased!"
+ Message2 "'s attack power has decreased!"
+ Message4 "'s attack power has returned to normal."
+State 394
+ Name "Magic Down"
+ Message1 "'s magic power has decreased!"
+ Message2 "'s magic power has decreased!"
+ Message4 "'s magic power has returned to normal."
+State 395
+ Name "Dexterity Down"
+ Message1 "'s dexterity has decreased!"
+ Message2 "'s dexterity has decreased!"
+ Message4 "'s dexterity has returned to normal."
+State 396
+ Name "Agility Down"
+ Message1 "'s agility has decreased!"
+ Message2 "'s agility has decreased!"
+ Message4 "'s agility has returned to normal."
+State 397
+ Name "All Stats Down"
+ Message1 "'s abilities have decreased!"
+ Message2 "'s abilities have decreased!"
+ Message4 "'s abilities have returned to normal."
+State 398
+ Name "Greater Agility Down"
+ Message1 "'s agility has greatly decreased!"
+ Message2 "'s agility has greatly decreased!"
+ Message4 "'s agility has returned to normal."
+State 399
+ Name "Attack Up"
+ Message1 "'s attack power has increased!"
+ Message2 "'s attack power has increased!"
+ Message4 "'s attack power has returned to normal."
+State 400
+ Name "Magic Up"
+ Message1 "'s magic power has increased!"
+ Message2 "'s magic power has increased!"
+ Message4 "'s magic power has returned to normal."
+State 401
+ Name "Dexterity Up"
+ Message1 "'s dexterity has increased!"
+ Message2 "'s dexterity has increased!"
+ Message4 "'s dexterity has returned to normal."
+State 402
+ Name "Agility Up"
+ Message1 "'s agility has increased!"
+ Message2 "'s agility has increased!"
+ Message4 "'s agility has returned to normal."
+State 403
+ Name "All Stats Up"
+ Message1 "'s abilities have increased!"
+ Message2 "'s abilities have increased!"
+ Message4 "'s abilities have returned to normal."
+State 404
+ Name "All Stats Up ×3"
+ Message1 "'s abilities have increased!"
+ Message2 "'s abilities have increased!"
+ Message4 "'s abilities have returned to normal."
+State 405
+ Name "All Stats Up ×3"
+ Notes "<表示：All Stats Up ×3>"
+State 406
+ Name "Chaos Status Abnormality 50"
+ Notes "<表示：なし>"
+State 407
+ Name "Chaos Status Abnormality 25"
+ Notes "<表示：なし>"
+State 408
+ Name "Chaos Status Abnormality 1"
+ Notes "<表示：なし>"
+State 409
+ Name "Chaos Instant Death 50"
+ Notes "<表示：なし>"
+State 410
+ Name "Chaos Instant Death 25"
+ Notes "<表示：なし>"
+State 411
+ Name "Chaos Instant Death 1"
+ Notes "<表示：なし>"
+State 413
+ Name "Defensive Attack"
+ Message1 " shifts to a defensive stance..."
+ Notes "<表示：防御>"
+State 414
+ Name "Chaos Status Abnormality 1"
+ Notes "<表示：なし>"
+State 415
+ Name "Evade Attacks"
+State 416
+ Name "Auto Magic Concentration"
+ Message1 "'s magic power is increased for next turn!"
+ Message2 "'s magic power is increased for next turn!"
+ Notes "<命中率 200%>\r\n<表示：Magic Concentration>"
+State 417
+ Name "Fire Damage Quarter"
+State 418
+ Name "Ice Damage Quarter"
+State 419
+ Name "Lightning Damage Quarter"
+State 420
+ Name "Wind Damage Quarter"
+State 421
+ Name "Earth Damage Quarter"
+State 422
+ Name "Water Damage Quarter"
+State 423
+ Name "Bio Damage Quarter"
+State 424
+ Name "Pleasure Damage Half"
+State 425
+ Name "Terra Damage Half"
+State 429
+ Name "Supporting Fire Counter 50%"
+ Notes "<反撃スキル 40>\r\n<表示：なし>"
+State 430
+ Name "Vampire Robe"
+ Notes "<物理ダメージ率 0%>\r\n<魔法ダメージ率 0%>\r\n<必中ダメージ率 0%>"
+State 431
+ Name "Protection of the Stars"
+ Notes "<属性反射:6,7,8>\r\n<属性強化 6-300,7-300,8-300>"
+State 432
+ Name "Moon Song Talisman"
+ Notes "<ターン終了時発動 1739,100%>\r\n<表示：なし>"
+State 434
+ Name "Holy Amplification"
+ Notes "<属性強化 9-30>"
+State 435
+ Name "Dark Amplification"
+ Notes "<属性強化 10-30>"
+State 436
+ Name "All Attributes Immunity Cancel"
+ Message1 "'s attribute immunities have been nullified!"
+ Message2 "'s attribute immunities have been nullified!"
+ Message4 "'s attribute resistances have returned to normal."
+ Notes "<属性耐性固定 3-0,4-0,5-0,6-0,7-0,8-0,9-0,10-0,43-0,44-0,45-0,46-0,47-0,48-0,49-0,50-0>"
+State 437
+ Name "World Engine"
+ Message1 "'s power with all attributes has significantly increased!"
+ Message2 "'s power with all attributes has significantly increased!"
+ Message4 "'s attribute power has returned to normal."
+ Notes "<属性強化 3-100,4-100,5-100,6-100,7-100,8-100,9-100,10-100,43-100,44-100,45-100,46-100,47-100,48-100,49-100,50-100>"
+State 438
+ Name "Overconfidence"
+ Message1 "'s dexterity and sexcraft power has increased!"
+ Message2 "'s dexterity and sexcraft power has increased!"
+ Message4 "'s overconfidence has settled down."
+ Notes "<スキルタイプ強化 49-50>"
+State 439
+ Name "Flash Counter"
+ Notes "<無効化反撃 100%>\r\n<無効化魔法反撃 100%>\r\n<反撃スキル 5832>\r\n<表示：なし>"
+State 440
+ Name "Berserk"
+ Message1 " has gone berserk!"
+ Message2 " has gone berserk!"
+ Message4 "'s Berserk state has worn off."
+ Notes "<連続発動タイプ 7-2>"
+State 441
+ Name "Two-Handing"
+ Message1 "'s sword skills now activate twice!"
+ Message2 "'s sword skills now activate twice!"
+ Message4 " is no longer two-handing."
+ Notes "<連続発動タイプ 7-2>"
+State 442
+ Name "Execution"
+ Message1 "'s form has awakened!"
+ Message2 "'s form has awakened!"
+ Message4 "'s form reverted to normal."
+ Notes "<連続発動タイプ 13-2>\r\n<速攻発動スキルタイプ:13>\r\n<拡張回避率 40%>"
+State 443
+ Name "Ogretooth Release"
+ Message1 "'s form has awakened!"
+ Message2 "'s form has awakened!"
+ Message4 "'s form reverted to normal."
+ Notes "<スキルタイプ強化 21-50>\r\n<反撃強化 500%>"
+State 444
+ Name "Godslaying Branch"
+ Message1 "'s form has awakened!"
+ Message2 "'s form has awakened!"
+ Message4 "'s form reverted to normal."
+ Notes "<スキルタイプ強化 7-50,23-50,27-50>\r\n<拡張会心率 65%>"
+State 445
+ Name "Cool Calm"
+ Message1 " has become immune to mental abnormalities!"
+ Message2 " has become immune to mental abnormalities!"
+ Message4 "'s resistance to mental abnormalities returned to normal."
+State 446
+ Name "Vortex Step"
+ Message1 "'s skills have gained priority!"
+ Message2 "'s skills have gained priority!"
+ Message4 "'s Vortex Step is no longer in effect."
+ Notes "<速攻発動スキルタイプ:7>\r\n<速攻発動スキルタイプ:19>\r\n<速攻発動スキルタイプ:23>"
+State 447
+ Name "Frozen"
+ Message1 " entered the Frozen state!"
+ Message2 " entered the Frozen state!"
+ Message4 "'s Frozen state has disappeared."
+State 448
+ Name "MP/SP Cost Half"
+ Message1 "'s MP and SP consumption is reduced!"
+ Message2 "'s MP and SP consumption is reduced!"
+ Message4 "'s MP and SP consumption has returned to normal."
+ Notes "<TP消費率 50%>"
+State 449
+ Name "Rising"
+ Message1 " entered the Rising state!"
+ Message2 " entered the Rising state!"
+ Message4 "'s Rising state has disappeared."
+State 450
+ Name "Hell Break"
+ Message1 " entered the Hell Break state!"
+ Message2 " entered the Hell Break state!"
+ Message4 "'s Hell Break state has disappeared."
+State 451
+ Name "Cross Counter"
+ Notes "<反撃スキル 5806>"
+State 452
+ Name "Alraune Form"
+ Message1 " changed into an alraune form!"
+ Message2 " changed into an alraune form!"
+ Message4 " returned to her normal form."
+State 453
+ Name "Beast Form"
+ Message1 " changed into a beast form!"
+ Message2 " changed into a beast form!"
+ Message4 " returned to her normal form."
+State 454
+ Name "Gel Form"
+ Message1 " changed into a gel form!"
+ Message2 " changed into a gel form!"
+ Message4 " returned to her normal form."
+State 455
+ Name "Reverberation"
+ Message1 "'s ninjutsu skills now activate twice!"
+ Message2 "'s ninjutsu skills now activate twice!"
+ Message4 "'s Echo ninjutsu has worn off."
+ Notes "<連続発動タイプ 31-2>"
+State 456
+ Name "Vagina Quicken"
+ Message2 "'s movements have accelerated!"
+ Message4 "'s movements have returned to normal."
+ Notes "<連続発動タイプ 49-2>"
+State 457
+ Name "Grimgerde"
+ Message1 "'s abilities have significantly increased!"
+ Message2 "'s abilities have significantly increased!"
+ Message4 "'s abilities returned to normal."
+State 458
+ Name "Adrenaline Rush"
+ Message1 "'s normal attacks have been enhanced!"
+ Message2 "'s normal attacks have been enhanced!"
+ Message4 "'s normal attacks have returned to normal."
+ Notes "<通常攻撃強化 0-400,1-400,2-400,3-400,4-400,5-400,6-400,7-400,8-400,9-400,10-400,11-400,12-400,13-400,14-400,15-400,16-400,17-400,18-400,19-400,20-400,21-400,22-400,23-400,24-400,25-400,26-400,27-400,28-400,29-400,30-400,31-400>"
+State 459
+ Name "Reversal Slash"
+ Notes "<魔法反撃率 100%>\r\n<必中反撃率 100%>\r\n<反撃スキル 5888>\r\n<表示：なし>"
+State 460
+ Name "Reversal Slash (Enemy)"
+ Notes "<魔法反撃率 100%>\r\n<必中反撃率 100%>\r\n<反撃スキル 5908>\r\n<表示：なし>"
+State 461
+ Name "Succubus Prison"
+ Message1 "'s sexcraft barrier has enveloped the surrounding area!"
+ Notes "<ターン終了時発動 5903,100%>\r\n<表示：なし>"
+State 462
+ Name "Equipped Weapon Skill Seal"
+ Notes "<表示：なし>"
+State 463
+ Name "All Attributes Pleasure"
+ Notes "<全攻撃属性付加 2>"
+State 464
+ Name "All Stats Up ×3"
+ Message1 "'s abilities have dramatically increased!"
+ Message2 "'s abilities have dramatically increased!"
+ Message4 "'s boost effect wore off."
+State 465
+ Name "Encouragement"
+ Message1 "'s attack and dexterity have increased!"
+ Message2 "'s attack and dexterity have increased!"
+ Message4 "'s abilities returned to normal."
+State 466
+ Name "Sheep-sama"
+ Notes "<表示：Sheep-sama>"
+State 467
+ Name "Psycho Drain"
+ Message4 "'s power to drain energy faded from her blade!"
+ Notes "<通常攻撃 7>\r\n<属性強化 2-50>"
+State 468
+ Name "Increased Status Ailment Resistance"
+ Message1 " has become more resistant to status ailments!"
+ Message2 " has become more resistant to status ailments!"
+ Message4 "'s resistance to status ailments has returned to normal."
+State 469
+ Name "Wind Fire Wheel Boosters"
+ Message1 "'s speed has increased further!"
+ Message4 "'s Wind Fire Wheel Boosters have stopped."
+ Notes "<連続発動タイプ 29-2,64-2>"
+State 470
+ Name "All Stats Up ×2"
+ Message1 "'s abilities have dramatically increased!"
+ Message2 "'s abilities have dramatically increased!"
+ Message4 "'s boost effect wore off."
+ Notes "<表示：All Stats Up ×2>"
+State 471
+ Name "Nightingale's Divine Medicine"
+ Message1 "'s body has been enhanced with divine medicine!"
+ Message2 "'s body has been enhanced with divine medicine!"
+ Message4 "'s divine medicine has worn off!"
+ Notes "<死亡時スキル 3264>\r\n<即死時スキル 3264>"
+State 472
+ Name "Concentrate"
+ Message1 "'s magic and willpower have temporarily increased!"
+ Message2 "'s magic and willpower have temporarily increased!"
+ Notes "<命中率 200%>"
+State 473
+ Name "Sophisticate"
+ Message1 "'s agility and dexterity have temporarily increased!"
+ Message2 "'s agility and dexterity have temporarily increased!"
+ Notes "<命中率 200%>"
+State 474
+ Name "Oblige Infini"
+ Message1 "'s blade shines with noble intentions!"
+ Message2 "'s blade shines with noble intentions!"
+ Message4 "'s blade returns to normal."
+ Notes "<連続発動タイプ 8-3>"
+State 475
+ Name "Titanium Armor"
+ Message4 "'s Titanium Armor has worn off!"
+ Notes "<必中ダメージ率 50%>"
+State 476
+ Name "Full Shield"
+ Message4 "'s Full Shield has worn off!"
+ Notes "<必中ダメージ率 25%>"
+State 477
+ Name "Mega Beam Shield"
+ Message4 "'s Mega Beam Shield has worn off!"
+ Notes "<必中ダメージ率 10%>"
+State 478
+ Name "Quantization"
+ Message4 "'s quantization effect has worn off!"
+ Notes "<必中ダメージ率 0%>"
+State 479
+ Name "Accelerator"
+ Message4 "'s accelerator effect has worn off."
+State 480
+ Name "Monster Lord's Resolve"
+ Message1 " is getting serious!"
+ Message2 " is getting serious!"
+ Notes "<表示：なし>"
+State 481
+ Name "Self-Destruct Preparation"
+ Message2 " initiated a fusion reaction!"
+ Message3 " is maintaining a fusion reaction..."
+ Notes "<属性強化 39-1000>"
+State 482
+ Name "Pleasure Ailment Resistance Break"
+ Message1 "'s resistance to pleasure ailments has been nullified!"
+ Message2 "'s resistance to pleasure ailments has been nullified!"
+ Message4 "'s resistance to pleasure ailments returns to normal!"
+ Notes "<ステート耐性固定 24-100,25-100,26-100,27-100>"
+State 483
+ Name "Rage"
+ Message2 " became furious!"
+ Notes "<魔法反撃 50%>\r\n<必中反撃 30%>\r\n<反撃スキル 4482>\r\n<表示：なし>"
+State 484
+ Name "Silence Resistance"
+ Message1 " became resistant to silence!"
+ Message2 " became resistant to silence!"
+State 485
+ Name "Slow Resistance"
+ Message1 " became resistant to slow!"
+ Message2 " became resistant to slow!"
+State 486
+ Name "Stop Resistance"
+ Message1 " became resistant to stop!"
+ Message2 " became resistant to stop!"
+State 487
+ Name "Bind Resistance"
+ Message1 " became resistant to binds!"
+ Message2 " became resistant to binds!"
+State 488
+ Name "Power Charge"
+ Message1 "'s attack power rose tempoarily!"
+ Message2 "'s attack power rose tempoarily!"
+ Notes "<表示：なし>"
+State 489
+ Name "Magic Concentration (Double Use)"
+ Message1 "'s magic and willpower rose temporarily!"
+ Message2 "'s magic and willpower rose temporarily!"
+ Notes "<命中率 200%>\r\n<表示：なし>"
+State 490
+ Name "Mental Concentration (Double Use)"
+ Message1 "'s agility and dexterity rose temporarily!"
+ Message2 "'s agility and dexterity rose temporarily!"
+ Notes "<命中率 200%>\r\n<表示：なし>"
+State 491
+ Name "Shield Assemble"
+ Message1 " embraces unyielding spirit!"
+ Message2 " embraces unyielding spirit!"
+ Message4 " returns to normal..."
+ Notes "<必中ダメージ率 50%>\r\n<踏みとどまり 10%>\r\n<死亡時スキル 3264>\r\n<即死時スキル 3264>"
+State 492
+ Name "Shield Guard"
+ Notes "<物理反射率 75%>"
+State 493
+ Name "Ultimate Guard"
+ Notes "<物理反射率 90%>\r\n<必中反射率 50%>"

@@ -1,0 +1,16 @@
+class Game_Actor
+  def abilities(stype_id = nil)
+    return @abilities unless stype_id
+    @abilities[stype_id] + added_abilities(stype_id)
+  end
+
+  def added_abilities(stype_id)
+    added_skills.select { |id| $data_skills[id].stype_id == stype_id }
+  end
+
+  alias hima_12_ability_refresh refresh
+  def refresh
+    hima_12_ability_refresh
+    refresh_ability_all
+  end
+end

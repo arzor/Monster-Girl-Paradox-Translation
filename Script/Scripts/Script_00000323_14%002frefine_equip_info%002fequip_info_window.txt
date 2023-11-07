@@ -1,0 +1,7 @@
+module EquipInfoWindow
+  attr_accessor :page_index
+  attr_writer :item, :actor
+  def page_max
+    1
+  end
+end

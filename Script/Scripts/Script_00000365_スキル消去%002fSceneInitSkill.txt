@@ -1,0 +1,75 @@
+module Sound
+  @play_init_skill_ok = RPG::SE.new("Powerup", 80)
+  def self.play_init_skill_ok
+    @play_init_skill_ok.play
+  end
+end
+
+class Scene_InitSkill < SkillForget::Scene_ActorSelectBase
+  def create_all_window
+    super
+    create_popup_window
+  end
+
+  def popup_message
+    "%s's skills will be relearned. Are you sure?"
+  end
+
+  def process_actor_ok
+    @actors_window.deactivate
+    @popup_window.select(0)
+    @popup_window.set_name(actor.name)
+    @popup_window.refresh
+    @popup_window.show.activate
+  end
+
+  def create_popup_window
+    @popup_window = Window_PopupConfirm.new
+    @popup_window.z = 500
+    @popup_window.hide
+    @popup_window.set_title(popup_message)
+    @popup_window.set_handler(:ok, method(:confirm_ok))
+    @popup_window.set_handler(:cancel, method(:confirm_cancel))
+  end
+
+  def confirm_ok
+    actor.relearn_skills
+    $game_variables[11] = actor.id
+    @popup_window.deactivate.hide
+    @actors_window.refresh
+    @actors_window.activate
+    Sound.play_init_skill_ok
+    @popup_window.deactivate.hide
+    @actors_window.activate
+  end
+
+  def confirm_cancel
+    @popup_window.deactivate.hide
+    @actors_window.activate
+  end
+end
+
+class Game_Actor < Game_Battler
+  def relearn_skills
+    self.original_persona_data_actor.peculiar_skill.each{ |obj|
+      learn_skill(obj[:id]) if obj[:lv] <= base_level
+    }
+    @level_list.each{|id, level|                        
+      $data_classes[id].learnings.each{|learning|
+        learn_skill(learning.skill_id) if learning.level <= level
+      }
+    }
+    self.actor.init_abilities.each{ |id|
+      skill = $data_skills[id]
+      next unless skill
+      stype_id = skill.stype_id
+      next unless NWConst::Ability::ABILITY_SKILL_TYPE.include?(stype_id)
+      next unless abilities[stype_id].include?(id)
+      next if skill_learn?(skill)
+      next unless skill.memorize_cost <= max_ap(stype_id) - ap(stype_id)
+      @equip_abilities[stype_id].push(id)  
+    }
+    @skill_types_disabled = $data_system.skill_types.collect{|stype| false}
+
+  end
+end

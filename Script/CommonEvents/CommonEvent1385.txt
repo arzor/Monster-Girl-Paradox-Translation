@@ -1,0 +1,5 @@
+﻿// EVENT 1385
+Name "Talk: Alma Elma (2)"
+
+RunCommonEvent(1177)
+0()

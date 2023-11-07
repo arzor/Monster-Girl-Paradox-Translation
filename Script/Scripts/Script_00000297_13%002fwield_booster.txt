@@ -1,0 +1,28 @@
+module NWRegexp
+  module BaseItem
+    WIELD_BOOSTER = /<(一|二)刀流強化\s?(#{NWRegexp::VALUE}),(#{NWRegexp::VALUE})>/i
+  end
+end
+
+class Game_BattlerBase
+  def param_equip_boost(param_id)
+    1.0
+  end
+end
+
+class Game_Actor < Game_Battler
+  def param_equip_boost(param_id)
+    return 1.0 unless (2..7).include?(param_id)
+
+    w = weapons
+    return 1.0 if w.empty?
+
+    booster_wield_param(w.size)
+  end
+
+  def booster_wield_param(weapon_size)
+    features_with_id(FEATURE_WIELD_BOOST, weapon_size).inject(1.0) do |r, ft|
+      r + ft.value[0]
+    end
+  end
+end

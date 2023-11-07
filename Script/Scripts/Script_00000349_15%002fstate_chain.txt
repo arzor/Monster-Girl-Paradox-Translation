@@ -1,0 +1,35 @@
+module NWRegexp
+  module BaseItem
+    STATE_CHAIN = /<連鎖ステート\s?(((?:\d+-\d+)(?:,\s?)?)+)>/i
+  end
+end
+
+class Game_Battler
+  #--------------------------------------------------------------------------
+  # ○ ステートの付加
+  #--------------------------------------------------------------------------
+  def add_state(state_id)
+    display_state_id = state_id
+    state_id = death_state_id if $data_states[state_id].death?
+    if state_addable?(state_id)
+      unless state?(state_id)
+        add_new_state(state_id)
+        state_chain(state_id)
+      end
+      reset_state_counts(state_id)
+      @result.added_states.push(display_state_id).uniq!
+    end
+  end
+
+  def state_chain(state_id)
+    add_state_ids = features_with_id(FEATURE_STATE_CHAIN, state_id).map(&:value).uniq
+    add_state_ids.each { |id| force_add_state(id) }
+  end
+
+  def force_add_state(state_id)
+    display_state_id = state_id
+    state_id = death_state_id if $data_states[state_id].death?
+    result.removed_states.delete(state_id)
+    add_state(display_state_id)
+  end
+end

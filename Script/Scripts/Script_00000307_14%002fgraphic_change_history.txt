@@ -1,0 +1,54 @@
+class Game_Actor
+  def init_name
+    @name = $game_system.change_history[:name].fetch(@actor_id, nil) || actor.name
+  end
+
+  def init_nickname
+    @nickname = $game_system.change_history[:nickname].fetch(@actor_id, nil) || actor.nickname
+  end
+
+  def init_graphics
+    graphic_data = $game_system.change_history[:graphic].fetch(@actor_id, nil)
+    return set_graphic(*graphic_data) if graphic_data
+
+    @character_name = actor.character_name
+    @character_index = actor.character_index
+    @face_name = actor.face_name
+    @face_index = actor.face_index
+  end
+end
+
+class Game_System
+  def change_history
+    @change_history ||= { :graphic => {}, :name => {}, :nickname => {} }
+  end
+end
+class Game_Interpreter
+  def command_322
+    actor_id = @params[0]
+    actor = $game_actors[actor_id]
+    return unless actor
+
+    $game_system.change_history[:graphic][actor_id] = [@params[1], @params[2], @params[3], @params[4]]
+    actor.init_graphics
+    $game_player.refresh
+  end
+
+  def command_324
+    actor_id = @params[0]
+    actor = $game_actors[@params[0]]
+    return unless actor
+
+    $game_system.change_history[:nickname][actor_id] = @params[1]
+    actor.init_nickname
+  end
+
+  def command_320
+    actor_id = @params[0]
+    actor = $game_actors[@params[0]]
+    return unless actor
+
+    $game_system.change_history[:name][actor_id] = @params[1]
+    actor.init_name
+  end
+end

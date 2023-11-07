@@ -1,0 +1,22 @@
+﻿// EVENT 0152
+Name "Reaper: Forget/Remember Skills"
+
+ShowMessageFace("sinigami_fc1",0,0,2,1)
+ShowMessage("\\n<Reaper>You may temporarily forget any skill or ability you've learned, however... Only those learned via jobs, races, or leveling up can be remembered.")
+ShowMessageFace("sinigami_fc1",0,0,2,2)
+ShowMessage("\\n<Reaper>Be aware that you won't be able to remember any skills you've learned from events. Should you forget one, you won't be able to learn them again unless you replay the event.")
+PictureClear(5)
+ShowChoices(strings("Forget skills","Remember skills","Do nothing"),3)
+IfPlayerPicksChoice(0,null)
+ 355("SceneManager.call(Scene_Forget)")
+ EndEventProcessing()
+ 0()
+IfPlayerPicksChoice(1,null)
+ 355("SceneManager.call(Scene_InitSkill)")
+ EndEventProcessing()
+ 0()
+IfPlayerPicksChoice(2,null)
+ EndEventProcessing()
+ 0()
+404()
+0()

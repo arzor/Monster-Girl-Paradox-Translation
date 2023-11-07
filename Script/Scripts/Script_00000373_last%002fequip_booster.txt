@@ -1,0 +1,21 @@
+module Hima
+  class FeatureObjects
+    def equip_booster(actor)
+      boost = actor.equip_ability_boost
+      self + actor.equips.compact.map { |equip| [equip] * boost[equip.etype_id] }.flatten.compact
+    end
+  end
+end
+
+class Game_Actor
+  alias base_feature_objects feature_objects
+  def feature_objects
+    base_feature_objects.equip_booster(self)
+  end
+
+  def equip_ability_boost
+    base_feature_objects.features_with_id(FEATURE_BATTLER_ABILITY, EQUIP_ABILITY_BOOST).each_with_object([0] * 5) do |ft, a|
+      a[ft.value] += 1
+    end
+  end
+end

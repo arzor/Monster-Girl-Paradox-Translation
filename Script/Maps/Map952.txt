@@ -1,0 +1,187 @@
+﻿
+DisplayName "Shrine Hill"
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  0()
+
+
+
+EVENT   1
+ PAGE   1
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Shopkeeper>Welcome!\nLet's fill up that light stomach of yours!")
+  Shop(0,361,0,0,false)
+  605(0,408,0,0)
+  605(0,410,0,0)
+  605(0,411,0,0)
+  0()
+
+
+
+EVENT   62
+ PAGE   1
+  0()
+
+
+
+EVENT   64
+ PAGE   1
+  0()
+
+
+
+EVENT   63
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   61
+ PAGE   1
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("\\n<Villager>What have you done to Kappa-chan, you fake sorceress?!")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\\n<Village Girl>That was a terrible thing you just did!\nGet out of this village!")
+  ShowMessageFace("daimeikai_fc1",1,0,2,3)
+  ShowMessage("\\n<Daimyokai>Hey, wait a minute!\nJust who do you think I am...?!")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\\n<Villager>Get out of here!")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\\n<Old Man>And don't come back!")
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0d,0x6d,0x6f,0x6e,0x5f,0x6d,0x69,0x73,0x73,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+  ShowMessageFace("daimeikai_fc1",1,0,2,6)
+  ShowMessage("\\n<Daimyokai>Hey, stop!\nQuit throwing rocks...!!")
+  212(2,243,true)
+  ShowMessageFace("daimeikai_fc1",1,0,2,7)
+  ShowMessage("\\n<Daimyokai>Which of you ungrateful brats threw that big rock?\nYou'd all be dead if I weren't here!!")
+  ShowMessageFace("",0,0,2,8)
+  ShowMessage("\\n<Villager>GO AWAY! GO AWAY!")
+  ShowMessageFace("",0,0,2,9)
+  ShowMessage("\\n<Village Girl>GO AWAY! GO AWAY!")
+  ShowMessageFace("",0,0,2,10)
+  ShowMessage("\\n<Old Man>GO AWAY! GO AWAY!")
+  Wait(60)
+  242(1)
+  221()
+  Wait(60)
+  211(0)
+  TeleportPlayer(0,920,242,61,2,2)
+  211(1)
+  222()
+  ShowMessageFace("daimeikai_fc1",1,0,2,11)
+  ShowMessage("\\n<Daimyokai>They seriously hurt me back there...")
+  ShowMessageFace("rovissa_fc1",0,0,2,12)
+  ShowMessage("\\n<Rovissa>Aren't you just reaping what you've sown?")
+  ShowMessageFace("daimeikai_fc1",1,0,2,13)
+  ShowMessage("\\n<Daimyokai>This world... It seems like it's just normal for monsters to be living among humans here.")
+  ShowMessageFace("daimeikai_fc1",1,0,2,14)
+  ShowMessage("\\n<Daimyokai>It's absolutely bizarre compared to my world.\nLet's defeat the Queen of Dreams quickly so that I can say goodbye to this one.")
+  ShowMessageFace("rovissa_fc1",0,0,2,15)
+  ShowMessage("\\n<Rovissa>In any case, we can't enter Yamatai Village.\nIf Daimyokai is with us, they're just going to throw rocks at us.")
+  EndEventProcessing()
+  0()

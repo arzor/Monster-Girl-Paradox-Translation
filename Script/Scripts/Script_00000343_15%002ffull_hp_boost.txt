@@ -1,0 +1,38 @@
+module NWRegexp
+  module BaseItem
+    FULL_HP_SKILL_BOOST = /<全快スキル強化\s?(((?:\d+-#{NWRegexp::VALUE})(?:,\s?)?)+)>/i
+    FULL_HP_SKILL_TYPE_BOOST = /<全快スキルタイプ強化\s?(((?:\d+-#{NWRegexp::VALUE})(?:,\s?)?)+)>/i
+    FULL_HP_BOOST = /<HP全快時強化\s?(\d+)\s?,\s?(#{NWRegexp::VALUE})%>/i
+  end
+
+  module UsableItem
+    FULL_HP_BOOST = /<全快強化\s?(\d+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def booster_full_hp(skill)
+    powor = [booster_full_hp_skill(skill), booster_full_hp_skill_type(skill), skill.full_hp_boost].max
+    1.0 + (hp.to_f / mhp) * powor / 10
+  end
+
+  def booster_full_hp_skill(skill)
+    features_max(FEATURE_FULL_HP_SKILL_BOOST, skill.id)
+  end
+
+  def booster_full_hp_skill_type(skill)
+    skill.stypes.map { |stype| features_max(FEATURE_FULL_HP_SKILL_TYPE_BOOST, stype) }.max
+  end
+
+  def booster_full_hp_status_rate
+    features(FEATURE_FULL_HP_BOOST).select { |ft| ft.data_id <= hp_rate }.map(&:value).max || 1.0
+  end
+end
+
+module RPG
+  class UsableItem
+    def full_hp_boost
+      @data_ex.fetch(:full_hp_boost, 0)
+    end
+  end
+end

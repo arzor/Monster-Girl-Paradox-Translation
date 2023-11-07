@@ -1,0 +1,44 @@
+
+class Game_Troop
+  def setup_vga(troop_id)
+    clear
+    @troop_id = troop_id
+    @enemies = []
+    troop.members.each do |member|
+      next unless $data_enemies[member.enemy_id]
+
+      enemy = enemy_class.new(@enemies.size, member.enemy_id)
+      enemy.hide if member.hidden
+      enemy.screen_x = member.x
+      enemy.screen_y = member.y
+      @enemies.push(enemy)
+    end
+    init_screen_tone
+    init_challenge_battle
+    make_unique_names
+    auto_correct_bitmap_xy
+  end
+
+  def enemy_class
+    challenge_battle? ? Challenge_Battle::Enemy : Game_Enemy
+  end
+
+  def challenge_battle?
+    Array(NWConst::Troop::CHALLENGE_BATTLE).include?(@troop_id)
+  end
+
+  def init_challenge_battle
+    return unless challenge_battle?
+
+    $game_variables[NWConst::Var::CHALLENGE_BATTLE_DAMAGE] = 0
+  end
+
+  alias hima_14_ch_setup_battle_event setup_battle_event
+  def setup_battle_event
+    if challenge_battle? && BattleManager.turn_end? && @turn_count >= $game_variables[NWConst::Var::CHALLENGE_BATTLE_TURN]
+      BattleManager.abort
+    end
+    hima_14_ch_setup_battle_event
+  end
+end
+

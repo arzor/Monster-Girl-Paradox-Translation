@@ -1,0 +1,1730 @@
+﻿
+DisplayName "MS Fish 1F"
+
+
+
+EVENT   1
+ PAGE   1
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()
+
+
+
+EVENT   14
+ PAGE   1
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  0()
+
+
+
+EVENT   16
+ PAGE   1
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  0()
+
+
+
+EVENT   18
+ PAGE   1
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  0()
+
+
+
+EVENT   20
+ PAGE   1
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  0()
+
+
+
+EVENT   24
+ PAGE   1
+  0()
+
+
+
+EVENT   25
+ PAGE   1
+  0()
+
+
+
+EVENT   26
+ PAGE   1
+  0()
+
+
+
+EVENT   27
+ PAGE   1
+  0()
+
+
+
+EVENT   28
+ PAGE   1
+  0()
+
+
+
+EVENT   29
+ PAGE   1
+  0()
+
+
+
+EVENT   30
+ PAGE   1
+  0()
+
+
+
+EVENT   31
+ PAGE   1
+  0()
+
+
+
+EVENT   32
+ PAGE   1
+  0()
+
+
+
+EVENT   33
+ PAGE   1
+  0()
+
+
+
+EVENT   34
+ PAGE   1
+  0()
+
+
+
+EVENT   35
+ PAGE   1
+  0()
+
+
+
+EVENT   36
+ PAGE   1
+  0()
+
+
+
+EVENT   37
+ PAGE   1
+  0()
+
+
+
+EVENT   38
+ PAGE   1
+  0()
+
+
+
+EVENT   39
+ PAGE   1
+  0()
+
+
+
+EVENT   40
+ PAGE   1
+  0()
+
+
+
+EVENT   41
+ PAGE   1
+  0()
+
+
+
+EVENT   42
+ PAGE   1
+  0()
+
+
+
+EVENT   43
+ PAGE   1
+  0()
+
+
+
+EVENT   44
+ PAGE   1
+  0()
+
+
+
+EVENT   45
+ PAGE   1
+  0()
+
+
+
+EVENT   46
+ PAGE   1
+  0()
+
+
+
+EVENT   47
+ PAGE   1
+  0()
+
+
+
+EVENT   48
+ PAGE   1
+  0()
+
+
+
+EVENT   49
+ PAGE   1
+  0()
+
+
+
+EVENT   50
+ PAGE   1
+  0()
+
+
+
+EVENT   51
+ PAGE   1
+  281(0)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,743,12,32,0,0)
+  0()
+
+
+
+EVENT   52
+ PAGE   1
+  281(0)
+  If(6,-1,2)
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+   TeleportPlayer(0,743,20,16,0,0)
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   53
+ PAGE   1
+  // condition: switch 1195 is ON
+  PictureDisplay(5,"80_mermaid_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3195,0,100,1)
+   If(1,4195,0,0,0)
+    ChangeVariable(4195,4195,0,0,1)
+    ShowMessageFace("mermaid_fc1",3,0,2,1)
+    ShowMessage("\\n<Maine (Affection:\\V[3195])>Please accept this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1026,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3195,0,500,1)
+   If(1,4195,0,1,0)
+    ChangeVariable(4195,4195,0,0,2)
+    ShowMessageFace("mermaid_fc1",3,0,2,2)
+    ShowMessage("\\n<Maine (Affection:\\V[3195])>Please accept this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1258,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3195,0,2000,1)
+   If(1,4195,0,2,0)
+    ChangeVariable(4195,4195,0,0,3)
+    ShowMessageFace("mermaid_fc1",3,0,2,3)
+    ShowMessage("\\n<Maine (Affection:\\V[3195])>Please accept this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1143,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3195,0,4000,1)
+   If(1,4195,0,3,0)
+    ChangeVariable(4195,4195,0,0,4)
+    ShowMessageFace("mermaid_fc1",3,0,2,4)
+    ShowMessage("\\n<Maine (Affection:\\V[3195])>Please accept this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1406,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("mermaid_fc1",3,0,2,5)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>Living here is really easy.\nIt's perfect for a vacation...")
+  JumpToLabel("メニュー")
+  DefineLabel("83")
+  ShowMessageFace("mermaid_fc1",3,0,2,6)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>I envy that you are able to fly in the sky...")
+  ShowMessageFace("hapy_a_fc1",0,0,2,7)
+  ShowMessage("\\n<Reina (Affection:\\V[3083])>You're able to swim down there♪")
+  ShowMessageFace("mermaid_fc1",3,0,2,8)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>I would like to exchange bodies for a bit and fly around freely in the sky.")
+  ShowMessageFace("hapy_a_fc1",0,0,2,9)
+  ShowMessage("\\n<Reina (Affection:\\V[3083])>I'd also like to dive to the bottom of the ocean.\nWe both yearn for something we don't have.")
+  JumpToLabel("メニュー")
+  DefineLabel("118")
+  ShowMessageFace("mermaid_fc1",3,0,2,10)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>You seemed to have caused a lot of trouble, Meia. Did you really become the Queen of the Southern Seas and build a harem?")
+  ShowMessageFace("meia_fc1",0,0,2,11)
+  ShowMessage("\\n<Meia (Affection:\\V[3118])>I was brainwashed into doing something like that... It was embarrassing.")
+  ShowMessageFace("mermaid_fc1",3,0,2,12)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>If I was in your place, it would be a harem of handsome, muscular men... No no, it's nothing.")
+  ShowMessageFace("meia_fc1",3,0,2,13)
+  ShowMessage("\\n<Meia (Affection:\\V[3118])>A harem of handsome muscular men you say...\nIsn't that a bit unusual?")
+  ShowMessageFace("mermaid_fc1",3,0,2,14)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>I didn't want to hear that coming from you...")
+  JumpToLabel("メニュー")
+  DefineLabel("324")
+  ShowMessageFace("mermaid_fc1",3,0,2,15)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>You're just a straight-laced swordsman...\nWouldn't it be nice to fall in love once in a while?")
+  ShowMessageFace("knight_mermaid_fc1",0,0,2,16)
+  ShowMessage("\\n<Meryl (Affection:\\V[3324])>Things like love are unnecessary for a warrior...!")
+  ShowMessageFace("mermaid_fc1",3,0,2,17)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>Wouldn't you be in trouble when that time of need comes...?")
+  ShowMessageFace("knight_mermaid_fc1",2,0,2,18)
+  ShowMessage("\\n<Meryl (Affection:\\V[3324])>I-I'm not worried...!")
+  JumpToLabel("メニュー")
+  DefineLabel("328")
+  ShowMessageFace("mermaid_fc1",3,0,2,19)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>Queen! I am pleased that we can fight together.")
+  ShowMessageFace("queenmermaid_fc1",0,0,2,20)
+  ShowMessage("\\n<Laura (Affection:\\V[3328])>For the sake of my mermaid brethren... I shall lend you my strength.")
+  ShowMessageFace("mermaid_fc1",3,0,2,21)
+  ShowMessage("\\n<Maine (Affection:\\V[3195])>Yes! Let us seduce everyone with our mermaid songs!")
+  ShowMessageFace("queenmermaid_fc1",0,0,2,22)
+  ShowMessage("\\n<Laura (Affection:\\V[3328])>Be careful not to seduce your allies as well...")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(195)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(195)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,23)
+    ShowMessage("Affection       100:\\ia[1026]")
+    ShowMessage("Affection       500:\\ia[1258]")
+    ShowMessage("Affection     2000:\\ia[1143]")
+    ShowMessage("Affection     4000:\\ia[1406]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,24)
+    ShowMessage("Ask her for what? (Affection:\\V[3195])")
+    ShowChoices(strings("Mermaid Paizuri(Affection:10)","Never mind"),2)
+    IfPlayerPicksChoice(0,null)
+     If(1,3195,0,10,1)
+      355("call_novel_scene(4786)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("mermaid_fc1",2,0,2,25)
+      ShowMessage("\\n<Maine (Affection:\\V[3195])>I don't really feel like doing that...")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #195
+  0()
+
+
+
+EVENT   54
+ PAGE   1
+  // condition: switch 1197 is ON
+  PictureDisplay(5,"80_k_mermaid_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3197,0,100,1)
+   If(1,4197,0,0,0)
+    ChangeVariable(4197,4197,0,0,1)
+    ShowMessageFace("k_mermaid_fc1",1,0,2,1)
+    ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Okay, here's a present!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1016,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3197,0,500,1)
+   If(1,4197,0,1,0)
+    ChangeVariable(4197,4197,0,0,2)
+    ShowMessageFace("k_mermaid_fc1",1,0,2,2)
+    ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Okay, here's a present!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1017,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3197,0,2000,1)
+   If(1,4197,0,2,0)
+    ChangeVariable(4197,4197,0,0,3)
+    ShowMessageFace("k_mermaid_fc1",1,0,2,3)
+    ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Okay, here's a present!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1513,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3197,0,4000,1)
+   If(1,4197,0,3,0)
+    ChangeVariable(4197,4197,0,0,4)
+    ShowMessageFace("k_mermaid_fc1",1,0,2,4)
+    ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Okay, here's a present!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1228,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("k_mermaid_fc1",0,0,2,5)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>I'm a pirate♪ I'm a pirate♪\nHurry up and take me with you♪")
+  JumpToLabel("メニュー")
+  DefineLabel("201")
+  ShowMessageFace("k_mermaid_fc1",0,0,2,6)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Boss Ashel!\nThe Captain called for you!")
+  ShowMessageFace("ashel_fc1",0,0,2,7)
+  ShowMessage("\\n<Ashel (Affection:\\V[3201])>Hm...I understand. I'll go later.")
+  ShowMessageFace("k_mermaid_fc1",0,0,2,8)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Also the helmsman, the head cannoneer, the chief strategist, the head chef, and the quartermaster called for you!")
+  ShowMessageFace("ashel_fc1",2,0,2,9)
+  ShowMessage("\\n<Ashel (Affection:\\V[3201])>I'm very busy...\nNo matter how many bodies there are, it's just not enough.")
+  JumpToLabel("メニュー")
+  DefineLabel("202")
+  ShowMessageFace("k_mermaid_fc1",0,0,2,10)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>Captain! Welcome!")
+  ShowMessageFace("bonny_fc1",0,0,2,11)
+  ShowMessage("\\n<Bonnie (Affection:\\V[3202])>Mmm, thank you for your hard work!\nBy the way, is it snack time yet?")
+  ShowMessageFace("k_mermaid_fc1",0,0,2,12)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>I have a message from Boss Ashel.\nShe said, \"Since you were eating between meals, I've taken the snacks away.\"")
+  ShowMessageFace("bonny_fc1",2,0,2,13)
+  ShowMessage("\\n<Bonnie (Affection:\\V[3202])>Awww!")
+  JumpToLabel("メニュー")
+  DefineLabel("196")
+  ShowMessageFace("k_mermaid_fc1",2,0,2,14)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>I'm hurt, sell me some herbs!")
+  ShowMessageFace("s_mermaid_fc1",0,0,2,15)
+  ShowMessage("\\n<Mink (Affection:\\V[3196])>Sure, I'll charge on your tab for the Fishy Pirates.")
+  ShowMessageFace("k_mermaid_fc1",0,0,2,16)
+  ShowMessage("\\n<Lolitta (Affection:\\V[3197])>In that case, I can buy all sorts of things as much as I want! Give me those apples and rice balls there!")
+  ShowMessageFace("s_mermaid_fc1",0,0,2,17)
+  ShowMessage("\\n<Mink (Affection:\\V[3196])>Stop, I need to properly explain the tab to the pirates. I just know Boss Ashel would get angry later.")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(197)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(197)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,18)
+    ShowMessage("Affection       100:\\ia[1016]")
+    ShowMessage("Affection       500:\\ia[1017]")
+    ShowMessage("Affection     2000:\\ia[1513]")
+    ShowMessage("Affection     4000:\\ia[1228]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,19)
+    ShowMessage("Ask her for what? (Affection:\\V[3197])")
+    ShowChoices(strings("Paizuri(Affection:10)","Reverse Rape(Affection:100)","Never mind"),3)
+    IfPlayerPicksChoice(0,null)
+     If(1,3197,0,10,1)
+      355("call_novel_scene(4796)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("k_mermaid_fc1",0,0,2,20)
+      ShowMessage("\\n<Lolitta (Affection:\\V[3197])>We don't get along that well, do we?")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     If(1,3197,0,100,1)
+      355("call_novel_scene(4797)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("k_mermaid_fc1",0,0,2,21)
+      ShowMessage("\\n<Lolitta (Affection:\\V[3197])>We don't get along that well, do we?")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(2,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #197
+  0()
+
+
+
+EVENT   55
+ PAGE   1
+  // condition: switch 1272 is ON
+  PictureDisplay(5,"80_seiren_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3272,0,100,1)
+   If(1,4272,0,0,0)
+    ChangeVariable(4272,4272,0,0,1)
+    ShowMessageFace("seiren_fc1",1,0,2,1)
+    ShowMessage("\\n<Leene (Affection:\\V[3272])>I got this from a passing merchant ship...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1026,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3272,0,500,1)
+   If(1,4272,0,1,0)
+    ChangeVariable(4272,4272,0,0,2)
+    ShowMessageFace("seiren_fc1",1,0,2,2)
+    ShowMessage("\\n<Leene (Affection:\\V[3272])>I got this from a passing merchant ship...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1586,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3272,0,2000,1)
+   If(1,4272,0,2,0)
+    ChangeVariable(4272,4272,0,0,3)
+    ShowMessageFace("seiren_fc1",1,0,2,3)
+    ShowMessage("\\n<Leene (Affection:\\V[3272])>I got this from a passing merchant ship...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1210,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3272,0,4000,1)
+   If(1,4272,0,3,0)
+    ChangeVariable(4272,4272,0,0,4)
+    ShowMessageFace("seiren_fc1",1,0,2,4)
+    ShowMessage("\\n<Leene (Affection:\\V[3272])>I got this from a passing merchant ship...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1587,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("seiren_fc1",0,0,2,5)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>I would like to sing a lot here, but...\nEveryone would be seduced, so I cannot sing.")
+  JumpToLabel("メニュー")
+  DefineLabel("155")
+  ShowMessageFace("saki_fc1",0,0,2,6)
+  ShowMessage("\\n<Saki (Affection:\\V[3155])>You're a harpy that loves to sing!\nAmazing!")
+  ShowMessageFace("seiren_fc1",0,0,2,7)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>I hear you are a succubus who is good at song and dance. Won't you sing along with me next time...?")
+  ShowMessageFace("saki_fc1",3,0,2,8)
+  ShowMessage("\\n<Saki (Affection:\\V[3155])>All right, let's sing together on stage! ♪")
+  ShowMessageFace("seiren_fc1",1,0,2,9)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>Everyone becomes fascinated by my song...fufufu.")
+  JumpToLabel("メニュー")
+  DefineLabel("221")
+  ShowMessageFace("seiren_fc1",0,0,2,10)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>Yuki-onna and sirens...\nIt's like we're both hated species.")
+  ShowMessageFace("yukionna_fc1",0,0,2,11)
+  ShowMessage("\\n<Oyuki (Affection:\\V[3221])>You sing a captivating song...\nEverything around me becomes frozen...")
+  ShowMessageFace("seiren_fc1",0,0,2,12)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>Well, let's try doing our best together.\nIf I charm all of the humans in the world, I will stop being hated.")
+  ShowMessageFace("yukionna_fc1",1,0,2,13)
+  ShowMessage("\\n<Oyuki (Affection:\\V[3221])>Yeah, if I freeze all of the humans...\nI expect I will stop being loathed.")
+  JumpToLabel("メニュー")
+  DefineLabel("326")
+  ShowMessageFace("loreley_fc1",0,0,2,14)
+  ShowMessage("\\n<Heine (Affection:\\V[3326])>I'm surprised to see a siren here...\nI am good at singing too.")
+  ShowMessageFace("seiren_fc1",0,0,2,15)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>There are many monsters who sing songs of temptation out at sea. I wonder why...")
+  ShowMessageFace("loreley_fc1",0,0,2,16)
+  ShowMessage("\\n<Heine (Affection:\\V[3326])>Isn't it because our voices resound well?\nIn such a vast sea, prey can be enticed from far away with ease...")
+  ShowMessageFace("seiren_fc1",0,0,2,17)
+  ShowMessage("\\n<Leene (Affection:\\V[3272])>I see... The sea is vast.")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(272)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(272)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,18)
+    ShowMessage("Affection       100:\\ia[1026]")
+    ShowMessage("Affection       500:\\ia[1586]")
+    ShowMessage("Affection     2000:\\ia[1210]")
+    ShowMessage("Affection     4000:\\ia[1587]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,19)
+    ShowMessage("Ask her for what? (Affection:\\V[3272])")
+    ShowChoices(strings("Reverse Rape(Affection:10)","Never mind"),2)
+    IfPlayerPicksChoice(0,null)
+     If(1,3272,0,10,1)
+      355("call_novel_scene(5171)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("seiren_fc1",0,0,2,20)
+      ShowMessage("\\n<Leene (Affection:\\V[3272])>I do not feel familiar with you yet...")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #272
+  0()
+
+
+
+EVENT   56
+ PAGE   1
+  // condition: switch 1273 is ON
+  PictureDisplay(5,"80_sango_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3273,0,100,1)
+   If(1,4273,0,0,0)
+    ChangeVariable(4273,4273,0,0,1)
+    ShowMessageFace("sango_fc1",0,0,2,1)
+    ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1011,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3273,0,500,1)
+   If(1,4273,0,1,0)
+    ChangeVariable(4273,4273,0,0,2)
+    ShowMessageFace("sango_fc1",0,0,2,2)
+    ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1574,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3273,0,2000,1)
+   If(1,4273,0,2,0)
+    ChangeVariable(4273,4273,0,0,3)
+    ShowMessageFace("sango_fc1",0,0,2,3)
+    ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1461,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3273,0,4000,1)
+   If(1,4273,0,3,0)
+    ChangeVariable(4273,4273,0,0,4)
+    ShowMessageFace("sango_fc1",0,0,2,4)
+    ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1538,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("sango_fc1",0,0,2,5)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+  JumpToLabel("メニュー")
+  DefineLabel("207")
+  ShowMessageFace("centa_fc1",0,0,2,6)
+  ShowMessage("\\n<Pony (Affection:\\V[3207])>Sango...\nDo you ever feel sad that you can't gallop around the land?")
+  ShowMessageFace("sango_fc1",0,0,2,7)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+  ShowMessageFace("centa_fc1",0,0,2,8)
+  ShowMessage("\\n<Pony (Affection:\\V[3207])>Then again, you probably don't see any worth in galloping across the land. I'm sure you feel that quietly passing time in the calm sea is the best, don't you?")
+  ShowMessageFace("sango_fc1",0,0,2,9)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+  ShowMessageFace("centa_fc1",0,0,2,10)
+  ShowMessage("\\n<Pony (Affection:\\V[3207])>Well... I feel like I communicated what I had to say to you.")
+  JumpToLabel("メニュー")
+  DefineLabel("225")
+  ShowMessageFace("hutakuti_fc1",0,0,2,11)
+  ShowMessage("\\n<Sakura (Affection:\\V[3225])>Coral is delicious, isn't it...?")
+  ShowMessageFace("sango_fc1",0,0,2,12)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>......*shudder*!!")
+  ShowMessageFace("hutakuti_fc1",1,0,2,13)
+  ShowMessage("\\n<Sakura (Affection:\\V[3225])>I was joking, I won't bite you...")
+  ShowMessageFace("sango_fc1",0,0,2,14)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+  ShowMessageFace("hutakuti_fc1",0,0,2,15)
+  ShowMessage("\\n<Sakura (Affection:\\V[3225])>*stare*...")
+  ShowMessageFace("sango_fc1",0,0,2,16)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>......*shudder*!!")
+  JumpToLabel("メニュー")
+  DefineLabel("274")
+  ShowMessageFace("hitode_fc1",0,0,2,17)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>I wonder if this coral has a will at all...")
+  ShowMessageFace("sango_fc1",0,0,2,18)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+  ShowMessageFace("hitode_fc1",0,0,2,19)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>I'll just tickle it with my tube feet, *rustle rustle*...")
+  ShowMessageFace("sango_fc1",0,0,2,20)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>..., ......, ...")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(273)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(273)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,21)
+    ShowMessage("Affection       100:\\ia[1011]")
+    ShowMessage("Affection       500:\\ia[1574]")
+    ShowMessage("Affection     2000:\\ia[1461]")
+    ShowMessage("Affection     4000:\\ia[1538]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,22)
+    ShowMessage("Ask her for what? (Affection:\\V[3273])")
+    ShowChoices(strings("Absorption(Affection:10)","Absorption...?(Affection:100)","Never mind"),3)
+    IfPlayerPicksChoice(0,null)
+     If(1,3273,0,10,1)
+      355("call_novel_scene(5176)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("sango_fc1",0,0,2,23)
+      ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     If(1,3273,0,100,1)
+      355("call_novel_scene(5177)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("sango_fc1",0,0,2,24)
+      ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(2,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #273
+  0()
+
+
+
+EVENT   57
+ PAGE   1
+  // condition: switch 1274 is ON
+  PictureDisplay(5,"80_hitode_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3274,0,100,1)
+   If(1,4274,0,0,0)
+    ChangeVariable(4274,4274,0,0,1)
+    ShowMessageFace("hitode_fc1",0,0,2,1)
+    ShowMessage("\\n<Asta (Affection:\\V[3274])>You should take care of this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1730,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3274,0,500,1)
+   If(1,4274,0,1,0)
+    ChangeVariable(4274,4274,0,0,2)
+    ShowMessageFace("hitode_fc1",0,0,2,2)
+    ShowMessage("\\n<Asta (Affection:\\V[3274])>You should take care of this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1090,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3274,0,2000,1)
+   If(1,4274,0,2,0)
+    ChangeVariable(4274,4274,0,0,3)
+    ShowMessageFace("hitode_fc1",0,0,2,3)
+    ShowMessage("\\n<Asta (Affection:\\V[3274])>You should take care of this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1482,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3274,0,4000,1)
+   If(1,4274,0,3,0)
+    ChangeVariable(4274,4274,0,0,4)
+    ShowMessageFace("hitode_fc1",0,0,2,4)
+    ShowMessage("\\n<Asta (Affection:\\V[3274])>You should take care of this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1577,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("hitode_fc1",0,0,2,5)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>I want to make this castle barrier-free so even starfish can move around easily. I'll need to demolish a lot of walls...")
+  JumpToLabel("メニュー")
+  DefineLabel("204")
+  ShowMessageFace("hitode_fc1",0,0,2,6)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>This coral is delicious...*munch munch*")
+  ShowMessageFace("umiusi_k_fc1",0,0,2,7)
+  ShowMessage("\\n<Stacy (Affection:\\V[3204])>Hold it right there, starfish!\nThat coral is a protected species, so preying upon it is prohibited!")
+  ShowMessageFace("hitode_fc1",2,0,2,8)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>Already, how annoying...\nWhy are there even marines in a place like this?")
+  ShowMessageFace("umiusi_k_fc1",0,0,2,9)
+  ShowMessage("\\n<Stacy (Affection:\\V[3204])>The Navy's eyes are shining everywhere!")
+  JumpToLabel("メニュー")
+  DefineLabel("273")
+  ShowMessageFace("hitode_fc1",0,0,2,10)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>I wonder if this coral has a will at all...")
+  ShowMessageFace("sango_fc1",0,0,2,11)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>............")
+  ShowMessageFace("hitode_fc1",0,0,2,12)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>I'll just tickle it with my tube feet, *rustle rustle*...")
+  ShowMessageFace("sango_fc1",0,0,2,13)
+  ShowMessage("\\n<Sango (Affection:\\V[3273])>..., ......, ...")
+  JumpToLabel("メニュー")
+  DefineLabel("307")
+  ShowMessageFace("seaanemone_fc1",0,0,2,14)
+  ShowMessage("\\n<Anemo (Affection:\\V[3307])>Ah, Asta...\nYou appear to be in good health.")
+  ShowMessageFace("hitode_fc1",2,0,2,15)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>I've been thinking for some time, but... What kind of monster are you?")
+  ShowMessageFace("seaanemone_fc1",0,0,2,16)
+  ShowMessage("\\n<Anemo (Affection:\\V[3307])>I'm some kind of sea anemone...or something like it.")
+  ShowMessageFace("hitode_fc1",2,0,2,17)
+  ShowMessage("\\n<Asta (Affection:\\V[3274])>Something like it?!")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(274)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(274)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,18)
+    ShowMessage("Affection       100:\\ia[1730]")
+    ShowMessage("Affection       500:\\ia[1090]")
+    ShowMessage("Affection     2000:\\ia[1482]")
+    ShowMessage("Affection     4000:\\ia[1577]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,19)
+    ShowMessage("Ask her for what? (Affection:\\V[3274])")
+    ShowChoices(strings("Swallow(Affection:10)","Swallow...?(Affection:100)","Never mind"),3)
+    IfPlayerPicksChoice(0,null)
+     If(1,3274,0,10,1)
+      355("call_novel_scene(5181)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("hitode_fc1",0,0,2,20)
+      ShowMessage("\\n<Asta (Affection:\\V[3274])>You don't live up to my expectations...")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     If(1,3274,0,100,1)
+      355("call_novel_scene(5182)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("hitode_fc1",0,0,2,21)
+      ShowMessage("\\n<Asta (Affection:\\V[3274])>You don't live up to my expectations...")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(2,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #274
+  0()
+
+
+
+EVENT   58
+ PAGE   1
+  // condition: switch 1278 is ON
+  PictureDisplay(5,"80_arkjelly_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3278,0,100,1)
+   If(1,4278,0,0,0)
+    ChangeVariable(4278,4278,0,0,1)
+    ShowMessageFace("arkjelly_fc1",0,0,2,1)
+    ShowMessage("\\n<Samansa (Affection:\\V[3278])>Give...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1171,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3278,0,500,1)
+   If(1,4278,0,1,0)
+    ChangeVariable(4278,4278,0,0,2)
+    ShowMessageFace("arkjelly_fc1",0,0,2,2)
+    ShowMessage("\\n<Samansa (Affection:\\V[3278])>Give...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1558,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3278,0,2000,1)
+   If(1,4278,0,2,0)
+    ChangeVariable(4278,4278,0,0,3)
+    ShowMessageFace("arkjelly_fc1",0,0,2,3)
+    ShowMessage("\\n<Samansa (Affection:\\V[3278])>Give...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1446,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3278,0,4000,1)
+   If(1,4278,0,3,0)
+    ChangeVariable(4278,4278,0,0,4)
+    ShowMessageFace("arkjelly_fc1",0,0,2,4)
+    ShowMessage("\\n<Samansa (Affection:\\V[3278])>Give...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1144,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("arkjelly_fc1",0,0,2,5)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>Jellyfish, float, float...swish, swish...")
+  JumpToLabel("メニュー")
+  DefineLabel("115")
+  ShowMessageFace("arkjelly_fc1",0,0,2,6)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>...A jellyfish!")
+  ShowMessageFace("kurage_fc1",0,0,2,7)
+  ShowMessage("\\n<Kurage (Affection:\\V[3115])>You're an arch jellyfish...")
+  ShowMessageFace("arkjelly_fc1",0,0,2,8)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>Sway, sway...")
+  ShowMessageFace("kurage_fc1",0,0,2,9)
+  ShowMessage("\\n<Kurage (Affection:\\V[3115])>Swish, swish...")
+  ShowMessageFace("arkjelly_fc1",0,0,2,10)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>Jellyfish...")
+  ShowMessageFace("kurage_fc1",0,0,2,11)
+  ShowMessage("\\n<Kurage (Affection:\\V[3115])>Jellyfish...")
+  JumpToLabel("メニュー")
+  DefineLabel("258")
+  ShowMessageFace("arkjelly_fc1",0,0,2,12)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>Jellyfish, swish, swish...")
+  ShowMessageFace("fakejelly_fc1",0,0,2,13)
+  ShowMessage("\\n<Arne (Affection:\\V[3258])>Ah, a friend!\nI'm a jellyfish too! ♪")
+  ShowMessageFace("arkjelly_fc1",0,0,2,14)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>But you're a jellyfish wearing clothes...\nDon't they feel tight?")
+  ShowMessageFace("fakejelly_fc1",0,0,2,15)
+  ShowMessage("\\n<Arne (Affection:\\V[3258])>They're a bit tight, but I like dressing up♪")
+  JumpToLabel("メニュー")
+  DefineLabel("277")
+  ShowMessageFace("beelzebub_fc3",0,0,2,16)
+  ShowMessage("\\n<Media (Affection:\\V[3277])>Jellyfish...")
+  ShowMessageFace("arkjelly_fc1",0,0,2,17)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>......???")
+  ShowMessageFace("beelzebub_fc3",1,0,2,18)
+  ShowMessage("\\n<Media (Affection:\\V[3277])>I wonder if you taste like summer...")
+  ShowMessageFace("arkjelly_fc1",0,0,2,19)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>I can't say...")
+  ShowMessageFace("beelzebub_fc3",2,0,2,20)
+  ShowMessage("\\n<Media (Affection:\\V[3277])>Stung by a jellyfish...")
+  ShowMessageFace("arkjelly_fc1",1,0,2,21)
+  ShowMessage("\\n<Samansa (Affection:\\V[3278])>Mufu.")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(278)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(278)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,22)
+    ShowMessage("Affection       100:\\ia[1171]")
+    ShowMessage("Affection       500:\\ia[1558]")
+    ShowMessage("Affection     2000:\\ia[1446]")
+    ShowMessage("Affection     4000:\\ia[1144]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,23)
+    ShowMessage("Ask her for what? (Affection:\\V[3278])")
+    ShowChoices(strings("Semen Sucking Restraint(Affection:10)","Never mind"),2)
+    IfPlayerPicksChoice(0,null)
+     If(1,3278,0,10,1)
+      355("call_novel_scene(5201)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("arkjelly_fc1",0,0,2,24)
+      ShowMessage("\\n<Samansa (Affection:\\V[3278])>Swish, swish...")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #278
+  0()
+
+
+
+EVENT   59
+ PAGE   1
+  // condition: switch 1310 is ON
+  PictureDisplay(5,"80_ikkaku_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3310,0,500,1)
+   If(1,4310,0,0,0)
+    ChangeVariable(4310,4310,0,0,1)
+    ShowMessageFace("ikkaku_fc1",0,0,2,1)
+    ShowMessage("\\n<Horn (Affection:\\V[3310])>Use this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1715,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3310,0,2000,1)
+   If(1,4310,0,1,0)
+    ChangeVariable(4310,4310,0,0,2)
+    ShowMessageFace("ikkaku_fc1",0,0,2,2)
+    ShowMessage("\\n<Horn (Affection:\\V[3310])>Use this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1207,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3310,0,4000,1)
+   If(1,4310,0,2,0)
+    ChangeVariable(4310,4310,0,0,3)
+    ShowMessageFace("ikkaku_fc1",0,0,2,3)
+    ShowMessage("\\n<Horn (Affection:\\V[3310])>Use this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1514,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3310,0,6000,1)
+   If(1,4310,0,3,0)
+    ChangeVariable(4310,4310,0,0,4)
+    ShowMessageFace("ikkaku_fc1",0,0,2,4)
+    ShowMessage("\\n<Horn (Affection:\\V[3310])>Use this...")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1005,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("ikkaku_fc1",0,0,2,5)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>Am I a dragon, a sea serpent, or a horned whale...? My body only grows longer as I think about it.")
+  JumpToLabel("メニュー")
+  DefineLabel("309")
+  ShowMessageFace("manta_fc1",0,0,2,6)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Narwhal...\nWhy don't we decide with a fight who the king of the sea is?")
+  ShowMessageFace("ikkaku_fc1",0,0,2,7)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>All right, Manta...\nWe'll decide right here who the king of the sea is!")
+  ShowMessageFace("sonia_fc1",5,0,2,8)
+  ShowMessage("\\n<Sonya>Heeey, you can't fiiight!\nCan you hear my voiiice?")
+  ShowMessageFace("manta_fc1",2,0,2,9)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Don't get mad at me... We have no choice but to settle this another time.")
+  ShowMessageFace("ikkaku_fc1",2,0,2,10)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>Indeed... Does that club-wielding human rule this place?")
+  JumpToLabel("メニュー")
+  DefineLabel("329")
+  ShowMessageFace("kraken_fc1",0,0,2,11)
+  ShowMessage("\\n<Kraken (Affection:\\V[3329])>Are you a Narwhal...?\nYour horn is still as majestic as ever.")
+  ShowMessageFace("ikkaku_fc1",1,0,2,12)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>As expected, the Queen of the Southern Seas has a discerning eye. My large horn has first-class hardness and beauty.")
+  ShowMessageFace("kraken_fc1",1,0,2,13)
+  ShowMessage("\\n<Kraken (Affection:\\V[3329])>It is indeed splendid...\nI would like to pull it out and decorate the undersea temple with it.")
+  ShowMessageFace("ikkaku_fc1",2,0,2,14)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>Oh, come on...")
+  JumpToLabel("メニュー")
+  DefineLabel("36")
+  ShowMessageFace("rucyfinac_fc1",0,0,2,15)
+  ShowMessage("\\n<Lucifina-chan (Affection:\\V[3036])>Wow! What a big horn!")
+  ShowMessageFace("ikkaku_fc1",1,0,2,16)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>Fufu, it's great isn't it?\nThis big horn is my pride.")
+  ShowMessageFace("rucyfinac_fc1",3,0,2,17)
+  ShowMessage("\\n<Lucifina-chan (Affection:\\V[3036])>I want to have a big horn too!\nThen I can skewer all of the Goddess' enemies! ♪")
+  ShowMessageFace("ikkaku_fc1",2,0,2,18)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>Don't say horrible things like that...")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(310)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(310)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,19)
+    ShowMessage("Affection       500:\\ia[1715]")
+    ShowMessage("Affection     2000:\\ia[1207]")
+    ShowMessage("Affection     4000:\\ia[1514]")
+    ShowMessage("Affection     6000:\\ia[1005]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,20)
+    ShowMessage("Ask her for what? (Affection:\\V[3310])")
+    ShowChoices(strings("Reverse Rape(Affection:10)","Never mind"),2)
+    IfPlayerPicksChoice(0,null)
+     If(1,3310,0,10,1)
+      355("call_novel_scene(5366)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("ikkaku_fc1",0,0,2,21)
+      ShowMessage("\\n<Horn (Affection:\\V[3310])>I'm not in the mood now.")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #310
+  0()
+
+
+
+EVENT   60
+ PAGE   1
+  // condition: switch 1309 is ON
+  PictureDisplay(5,"80_manta_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  If(1,3309,0,500,1)
+   If(1,4309,0,0,0)
+    ChangeVariable(4309,4309,0,0,1)
+    ShowMessageFace("manta_fc1",1,0,2,1)
+    ShowMessage("\\n<Ocean (Affection:\\V[3309])>You should take this!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1002,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3309,0,2000,1)
+   If(1,4309,0,1,0)
+    ChangeVariable(4309,4309,0,0,2)
+    ShowMessageFace("manta_fc1",1,0,2,2)
+    ShowMessage("\\n<Ocean (Affection:\\V[3309])>You should take this!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1003,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3309,0,4000,1)
+   If(1,4309,0,2,0)
+    ChangeVariable(4309,4309,0,0,3)
+    ShowMessageFace("manta_fc1",1,0,2,3)
+    ShowMessage("\\n<Ocean (Affection:\\V[3309])>You should take this!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1268,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  If(1,3309,0,6000,1)
+   If(1,4309,0,3,0)
+    ChangeVariable(4309,4309,0,0,4)
+    ShowMessageFace("manta_fc1",1,0,2,4)
+    ShowMessage("\\n<Ocean (Affection:\\V[3309])>You should take this!")
+    250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x49,0x74,0x65,0x6d,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+    ChangeInventoryArmor(1248,0,0,1,false)
+    0()
+   EndIf()
+   0()
+  EndIf()
+  355("actor_label_jump")
+  ShowMessageFace("manta_fc1",1,0,2,5)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Now, unleash me upon the seas!\nI shall rampage as much as I want!")
+  JumpToLabel("メニュー")
+  DefineLabel("36")
+  ShowMessageFace("rucyfinac_fc1",0,0,2,6)
+  ShowMessage("\\n<Lucifina-chan (Affection:\\V[3036])>A manta ray! It's sooo big!")
+  ShowMessageFace("manta_fc1",1,0,2,7)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Fufufu, that's right!\nI'm the king of the sea!")
+  ShowMessageFace("rucyfinac_fc1",0,0,2,8)
+  ShowMessage("\\n<Lucifina-chan (Affection:\\V[3036])>Can I climb on your back...?")
+  ShowMessageFace("manta_fc1",2,0,2,9)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Hey stop, you can't do that...")
+  ShowMessageFace("rucyfinac_fc1",4,0,2,10)
+  ShowMessage("\\n<Lucifina-chan (Affection:\\V[3036])>Your back is slimy...\n...Gyah! I slipped!")
+  ShowMessageFace("manta_fc1",2,0,2,11)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>That's what I tried to tell you...")
+  JumpToLabel("メニュー")
+  DefineLabel("280")
+  ShowMessageFace("poseidones_fc1",0,0,2,12)
+  ShowMessage("\\n<Poseidoness (Affection:\\V[3280])>Manta... You aren't raising havoc around the sea, are you?")
+  ShowMessageFace("manta_fc1",1,0,2,13)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>I'm a gentle monster, Queen of the Northern Seas. I wish for the seas to be calm, I won't devastate them.")
+  ShowMessageFace("poseidones_fc1",0,0,2,14)
+  ShowMessage("\\n<Poseidoness (Affection:\\V[3280])>So you won't get into fights with the Narwhal again?")
+  ShowMessageFace("manta_fc1",0,0,2,15)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>The Narwhal and I are the rivals of the sea... Even if you are the Queen of the Northern Seas, I can't just surrender to her!")
+  ShowMessageFace("poseidones_fc1",2,0,2,16)
+  ShowMessage("\\n<Poseidoness (Affection:\\V[3280])>Good grief, really...\nTry not to involve any ships or other creatures in your rivalry.")
+  JumpToLabel("メニュー")
+  DefineLabel("310")
+  ShowMessageFace("manta_fc1",0,0,2,17)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Narwhal...\nWhy don't we decide with a fight who the king of the sea is?")
+  ShowMessageFace("ikkaku_fc1",0,0,2,18)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>All right, Manta...\nWe'll decide right here who the king of the sea is!")
+  ShowMessageFace("sonia_fc1",5,0,2,19)
+  ShowMessage("\\n<Sonya>Heeey, you can't fiiight!\nCan you hear my voiiice?")
+  ShowMessageFace("manta_fc1",2,0,2,20)
+  ShowMessage("\\n<Ocean (Affection:\\V[3309])>Don't get mad at me... We have no choice but to settle this another time.")
+  ShowMessageFace("ikkaku_fc1",2,0,2,21)
+  ShowMessage("\\n<Horn (Affection:\\V[3310])>Indeed... Does that club-wielding human rule this place?")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  StartLoop()
+   355("unlimited_choices(11, [\"Give presents\",")
+   655("\"Add to party\",")
+   655("\"View present list\",\"Make a request\",")
+   655("\"Never mind\"])")
+   If(1,11,0,0,0)
+    355("present_start(309)")
+    0()
+   EndIf()
+   If(1,11,0,1,0)
+    PictureClear(5)
+    355("move_actor_ex(309)")
+    EndEventProcessing()
+    0()
+   EndIf()
+   If(1,11,0,2,0)
+    ShowMessageFace("",0,0,2,22)
+    ShowMessage("Affection       500:\\ia[1002]")
+    ShowMessage("Affection     2000:\\ia[1003]")
+    ShowMessage("Affection     4000:\\ia[1268]")
+    ShowMessage("Affection     6000:\\ia[1248]")
+    0()
+   EndIf()
+   If(1,11,0,3,0)
+    PictureClear(5)
+    ShowMessageFace("",0,0,2,23)
+    ShowMessage("Ask her for what? (Affection:\\V[3309])")
+    ShowChoices(strings("Paizuri(Affection:10)","Reverse Rape(Affection:100)","Never mind"),3)
+    IfPlayerPicksChoice(0,null)
+     If(1,3309,0,10,1)
+      355("call_novel_scene(5361)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("manta_fc1",0,0,2,24)
+      ShowMessage("\\n<Ocean (Affection:\\V[3309])>Not yet!")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(1,null)
+     If(1,3309,0,100,1)
+      355("call_novel_scene(5362)")
+      EndEventProcessing()
+      0()
+     Else()
+      ShowMessageFace("manta_fc1",0,0,2,25)
+      ShowMessage("\\n<Ocean (Affection:\\V[3309])>Not yet!")
+      0()
+     EndIf()
+     0()
+    IfPlayerPicksChoice(2,null)
+     0()
+    404()
+    0()
+   EndIf()
+   If(1,11,0,4,1)
+    PictureClear(5)
+    EndEventProcessing()
+    0()
+   EndIf()
+   0()
+  EndLoop()
+  0()
+ PAGE   2
+  // condition: party contains actor #309
+  0()
+
+
+
+EVENT   61
+ PAGE   1
+  RunCommonEvent(120)
+  0()
+
+
+
+EVENT   62
+ PAGE   1
+  // condition: variable 1083 >= 2
+  If(0,1159,0)
+   ShowMessageFace("ironmaiden_fc1",0,0,2,1)
+   ShowMessage("\\n<Maiden>............")
+   0()
+  Else()
+   ShowMessageFace("ironmaiden_fc1",0,0,2,2)
+   ShowMessage("\\n<Iron Maiden>............")
+   0()
+  EndIf()
+  0()
+ PAGE   2
+  // condition: variable 1083 >= 3
+  0()
+
+
+
+EVENT   63
+ PAGE   1
+  // condition: variable 1083 >= 2
+  ShowMessageFace("ningyohime_fc1",2,0,2,1)
+  ShowMessage("\\n<El>Mermaid blood is a medicine that can heal any injury... I have no choice but to do this!")
+  If(0,1159,0)
+   ShowMessageFace("ironmaiden_fc1",0,0,2,2)
+   ShowMessage("\\n<Maiden>............")
+   0()
+  Else()
+   ShowMessageFace("ironmaiden_fc1",0,0,2,3)
+   ShowMessage("\\n<Iron Maiden>............")
+   0()
+  EndIf()
+  ShowMessageFace("ningyohime_fc1",2,0,2,4)
+  ShowMessage("\\n<El>...Okay, here I go! Yaaaah!")
+  205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x0a,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x29,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x09,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0e,0x6d,0x6f,0x6e,0x5f,0x64,0x6f,0x6f,0x72,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x10,0x73,0x63,0x65,0x6e,0x65,0x5f,0x63,0x6f,0x6d,0x69,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  ShowMessageFace("ningyohime_fc2",0,0,2,5)
+  ShowMessage("\\n<El>...Hyaaah! What's going on...?!\nIt's not sharp at all...!!")
+  If(0,1159,0)
+   ShowMessageFace("ironmaiden_fc1",0,0,2,6)
+   ShowMessage("\\n<Maiden>............")
+   0()
+  Else()
+   ShowMessageFace("ironmaiden_fc1",0,0,2,7)
+   ShowMessage("\\n<Iron Maiden>............")
+   0()
+  EndIf()
+  ShowMessageFace("ningyohime_fc2",0,0,2,8)
+  ShowMessage("\\n<El>These tentacles are so slimy...!!\nN-noooo! S-Stop...!!")
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0e,0x6d,0x6f,0x6e,0x5f,0x64,0x6f,0x6f,0x72,0x32,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x08,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2d,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x13,0x3b,0x0c,0x5b,0x07,0x69,0x00,0x69,0x06,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("ningyohime_fc1",1,0,2,9)
+  ShowMessage("\\n<El>Hauu... That was amazing...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",5,0,2,10)
+   ShowMessage("\\n<Alice>What the hell are you doing...?")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,11)
+   ShowMessage("\\n<Ilias>What on earth were you trying to do...?")
+   0()
+  EndIf()
+  205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x1e,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ShowMessageFace("ningyohime_fc1",6,0,2,12)
+  ShowMessage("\\n<El>The people of the Natalia region were hurt because of me, right? So I was thinking of sending them mermaid blood as medicine...")
+  If(0,6,0)
+   ShowMessageFace("sonia_fc2",2,0,2,13)
+   ShowMessage("\\n<Sonya>And you were using the Iron Maiden for that...\nYou thought there were spikes inside.")
+   0()
+  Else()
+   ShowMessageFace("ruka_fc1",0,0,2,14)
+   ShowMessage("\\n<Luka>And you were using the Iron Maiden for that...\nYou thought there were spikes inside.")
+   0()
+  EndIf()
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x75,0x6d,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  ShowMessageFace("ningyohime_fc1",2,0,2,15)
+  ShowMessage("\\n<El>Yeah... I need to let out a lot of blood somehow.\nSince I will become the next queen, I have to redeem myself on behalf of the mermaid race.")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",2,0,2,16)
+   ShowMessage("\\n<Alice>You're approaching atonement the wrong way.\nIt would be very difficult for humans to accept mermaids through taking their blood.")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,17)
+   ShowMessage("\\n<Ilias>Your method of atonement is misguided.\nHumans are sentimental, and would be reluctant to use mermaid blood as medicine.")
+   0()
+  EndIf()
+  ShowMessageFace("ningyohime_fc1",6,0,2,18)
+  ShowMessage("\\n<El>Then, what would be the best thing to do...?")
+  ShowMessageFace("ruka_fc1",0,0,2,19)
+  ShowMessage("\\n<Luka>If it's about medicine, how about we ask Queen Alraune? You should come together with us.")
+  ShowMessageFace("ningyohime_fc1",3,0,2,20)
+  ShowMessage("\\n<El>Good idea! Let's go!")
+  205(0,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x09,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x2a,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x0f,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x2c,0x3b,0x0c,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  ChangeVariable(1083,1083,0,0,3)
+  355("add_actor_ex(327)")
+  249(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0c,0x66,0x61,0x6e,0x66,0x61,0x6c,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+  ShowMessageFace("",0,0,2,21)
+  ShowMessage("El rejoined the party!")
+  Wait(60)
+  0()
+ PAGE   2
+  // condition: variable 1083 >= 3
+  0()
+
+
+
+EVENT   64
+ PAGE   1
+  // condition: switch 1571 is ON
+  PictureDisplay(5,"80_mob_kaihei_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  355("actor_label_jump")
+  ShowMessageFace("mob_kaihei_fc1",0,0,2,1)
+  ShowMessage("\\n<Milio (Affection:\\V[3571])>Let's go, marines!\nNaturally, you'll take me along...?")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  ShowChoices(strings("Add to party","Battle fuck","Never mind"),3)
+  IfPlayerPicksChoice(0,null)
+   PictureClear(5)
+   355("move_actor_ex(571)")
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   ChangeSwitch(2331,2331,0)
+   RunCommonEvent(7211)
+   ChangeSwitch(2331,2331,1)
+   PictureClear(5)
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x75,0x6d,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(2,null)
+   PictureClear(5)
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x75,0x6d,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   EndEventProcessing()
+   0()
+  404()
+  0()
+ PAGE   2
+  // condition: party contains actor #571
+  0()
+
+
+
+EVENT   65
+ PAGE   1
+  // condition: switch 1579 is ON
+  PictureDisplay(5,"80_mob_sanzoku_st01",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  355("actor_label_jump")
+  ShowMessageFace("mob_sanzoku_fc1",0,0,2,1)
+  ShowMessage("\\n<Magda (Affection:\\V[3579])>I'm a bandit, but a ship is nice too.")
+  JumpToLabel("メニュー")
+  DefineLabel("メニュー")
+  ShowChoices(strings("Add to party","Battle fuck","Never mind"),3)
+  IfPlayerPicksChoice(0,null)
+   PictureClear(5)
+   355("move_actor_ex(579)")
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(1,null)
+   ChangeSwitch(2331,2331,0)
+   RunCommonEvent(7291)
+   ChangeSwitch(2331,2331,1)
+   PictureClear(5)
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x75,0x6d,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   EndEventProcessing()
+   0()
+  IfPlayerPicksChoice(2,null)
+   PictureClear(5)
+   241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x08,0x75,0x6d,0x69,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+   EndEventProcessing()
+   0()
+  404()
+  0()
+ PAGE   2
+  // condition: party contains actor #579
+  0()

@@ -1,0 +1,46 @@
+class Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # ○ スキル使用コストの支払い
+  #--------------------------------------------------------------------------
+  def pay_skill_cost(skill)
+    self.hp -= skill_hp_cost(skill)
+    self.mp -= skill_mp_cost(skill)
+    self.tp -= skill_tp_cost(skill)
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ スキル使用コストの支払い可能判定
+  #--------------------------------------------------------------------------
+  def skill_cost_payable?(skill)
+    tp >= skill_tp_cost(skill) &&
+      mp >= skill_mp_cost(skill) &&
+      hp > skill_hp_cost(skill)
+  end
+end
+
+
+class Game_Actor
+  def pay_skill_cost(skill)
+    super
+    $game_party.lose_gold(skill_gold_cost(skill))
+
+    pay_skill_cost_item(skill)
+  end
+
+  def pay_skill_cost_item(skill)
+    return unless rand >= item_cost_scrimp_type(skill)
+
+    skill.item_cost.each do |cost|
+      next if rand < item_cost_scrimp(cost[:id])
+
+      $game_party.lose_item($data_items[cost[:id]], cost[:num])
+    end
+  end
+
+  def skill_cost_payable?(skill)
+    super &&
+      $game_party.gold >= skill_gold_cost(skill) &&
+      skill_need_item?(skill)
+  end
+end
+

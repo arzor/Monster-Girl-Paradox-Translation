@@ -1,0 +1,21 @@
+﻿// EVENT 0571
+Name "Loop: Succubus Hair"
+
+ChangeVariable(1112,1112,1,0,1)
+If(1,1112,0,1,0)
+ ShowMessageFace("ruka_fc1",0,0,2,1)
+ ShowMessage("\\n<Luka>That's the first one...\nI need to collect two more succubus hairs.")
+ 0()
+EndIf()
+If(1,1112,0,2,0)
+ ShowMessageFace("ruka_fc1",0,0,2,2)
+ ShowMessage("\\n<Luka>That's the second one...\nI just need one more succubus hair.")
+ 0()
+EndIf()
+If(1,1112,0,3,1)
+ ShowMessageFace("ruka_fc1",0,0,2,3)
+ ShowMessage("\\n<Luka>All right, now I've gotten three.\nI'm done collecting the succubus hairs.")
+ 0()
+EndIf()
+EndEventProcessing()
+0()

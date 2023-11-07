@@ -1,0 +1,170 @@
+# ~ #とりあえず分けたデータ作るだけ
+#==============================================================================
+# ■ DataManager
+#==============================================================================
+class << DataManager
+	def load_normal_database
+		bm = Benchmark.new
+		bm.start
+		if $TEST && (!FileTest.exist?("Data/ExVersionID.rvdata2") || load_data("Data/ExVersionID.rvdata2") != load_data("Data/System.rvdata2").version_id)
+			nw_base_load_normal_database
+			nw_analyze_database
+			setting_features_data
+			save_analyzed_database_ex
+		else
+			#load_normal_database_ex
+			nw_base_load_normal_database
+			nw_analyze_database
+			setting_features_data
+		end
+		bm.stop
+		
+		p "データベース読み込み時間は#{bm.elapsed}です" if $TEST
+	end
+
+  def load_battle_test_database
+    bm = Benchmark.new
+    bm.start
+    if update_database?
+      nw_base_load_normal_database # Data_Ex作成には通常データベースを使う
+      nw_analyze_database
+      setting_features_data
+      save_analyzed_database_ex
+    end
+    load_battle_test_database_ex
+    bm.stop
+    p "データベース読み込み時間は#{bm.elapsed}です" if $test_battlers
+  end
+
+  def update_database?
+    return true if script_update?
+
+    begin
+      load_data("Data/ExVersionID.rvdata2") != load_data("Data/System.rvdata2").version_id
+    rescue Errno::ENOENT
+      true
+    end
+  end
+
+  def script_update?
+    SCRIPT_UPDATE != load_data("Data/ExScriptUpdate.rvdata2")
+  rescue Errno::ENOENT
+    true
+  end
+
+  def rgss_encrypt?
+    @rgss_encrypt ||= FileTest.file?("Game.rgss3a")
+  end
+
+  def setting_features_data
+    $data_actors.compact.each(&:setting_feature_data)
+    $data_classes.compact.each(&:setting_feature_data)
+    $data_weapons.compact.each(&:setting_feature_data)
+    $data_armors.compact.each(&:setting_feature_data)
+    $data_enemies.compact.each(&:setting_feature_data)
+    $data_states.compact.each(&:setting_feature_data)
+    $data_items.compact.each(&:setting_feature_data)
+    $data_skills.compact.each(&:setting_feature_data)
+  end
+end
+
+#==============================================================================
+# ■ RPG::BaseItem
+#==============================================================================
+class RPG::BaseItem
+  attr_reader :feature_data
+
+  def setting_feature_data
+    @feature_data = {}
+    features.each do |ft|
+      @feature_data[ft.code] ||= {}
+      @feature_data[ft.code][ft.data_id] ||= []
+      @feature_data[ft.code][ft.data_id].push(ft)
+    end
+  end
+end
+
+module Enchant_Item
+  #--------------------------------------------------------------------------
+  # ● 特徴を取得
+  #--------------------------------------------------------------------------
+  alias hima_enchant_set_features set_features
+  def set_features
+    hima_enchant_set_features
+    setting_feature_data
+  end
+end
+
+class RPG::BaseItem
+  def features_with_code(code = nil)
+    feature_objects.features(code)
+  end
+
+  def feature_objects
+    @fts ||= Hima::FeatureObjects.new([self])
+  end
+
+  def all_features
+    feature_objects.all_features
+  end
+
+  def features_with_id(code, id)
+    feature_objects.features_with_id(code, id)
+  end
+end
+
+module Hima
+  class FeatureObjects
+    include Enumerable
+    def initialize(feature_objects)
+      @feature_objects = feature_objects
+    end
+
+    def all_features
+      @feature_objects.map(&:features).flatten
+    end
+
+    def +(other)
+      case other
+      when Array
+        FeatureObjects.new(@feature_objects + other)
+      when FeatureObjects
+        FeatureObjects.new(@feature_objects + other.instance_variable_get(:@feature_objects))
+      end
+    end
+
+    def features(code)
+      @feature_objects.map { |obj| obj.feature_data.fetch(code, {}).values }.flatten
+    end
+
+    def features_with_id(code, id)
+      @feature_objects.map { |obj| obj.feature_data.fetch(code, {}).fetch(id, []) }.flatten
+    end
+
+    def features_set(code)
+      features(code).inject([]) { |r, ft| r |= [ft.data_id] }
+    end
+
+    def each(&block)
+      @feature_objects.each(&block)
+    end
+  end
+end
+
+class Game_BattlerBase
+  def feature_objects
+    Hima::FeatureObjects.new(states)
+  end
+
+  def all_features
+    feature_objects.all_features
+  end
+
+  def features(code)
+    feature_objects.features(code)
+  end
+
+  def features_with_id(code, id)
+    feature_objects.features_with_id(code, id)
+  end
+end

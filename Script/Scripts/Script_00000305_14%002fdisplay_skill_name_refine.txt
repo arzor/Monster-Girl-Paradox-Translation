@@ -1,0 +1,14 @@
+class Scene_Battle
+  def display_skill_name(item, action = nil)
+    return unless item.is_skill? && item.visible?
+    $game_party.display_skill_name = item.display_name
+  end
+end
+
+module RPG
+  class UsableItem
+    def display_name
+      @data_ex.fetch(:display_name, name)
+    end
+  end
+end

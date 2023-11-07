@@ -1,0 +1,19 @@
+module NWRegexp
+  module Skill
+    INVALID_BOOST = /<威力強化なし>/i
+  end
+end
+
+module RPG
+  class UsableItem
+    def invalid_boost?
+      false
+    end
+  end
+
+  class Skill
+    def invalid_boost?
+      @data_ex.key?(:invalid_boost)
+    end
+  end
+end

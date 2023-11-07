@@ -1,0 +1,9 @@
+module NWRegexp::Skill
+  EX_CATEGORY_BOOSTER = /<特殊カテゴリー与ダメージアップスキル\s?(((?:\d+\-\d+)(?:\,\s?)?)+)>/i
+end
+
+class RPG::UsableItem < RPG::BaseItem
+  def booster_ex_category_attack(id)
+    @data_ex.fetch(:booster_ex_category_attack, {}).fetch(id, 0.0)
+  end
+end

@@ -1,0 +1,26 @@
+module NWRegexp::Skill
+  NO_INVOKE_REPEATS = /<連続発動なし>/i
+end
+
+class RPG::UsableItem < RPG::BaseItem
+  def no_invoke_repeats?
+    @data_ex.fetch(:no_invoke_repeats, false)
+  end
+end
+
+class Game_BattlerBase
+  def invoke_repeats(item)
+    return 1 if !item.is_skill? || item.no_invoke_repeats?
+
+    stype_count = item.stypes.inject(1) do |count, stype_id|
+      features_with_id(FEATURE_BATTLER_ABILITY, INVOKE_REPEATS_TYPE).each do |ft|
+        count += ft.value[stype_id] - 1 if ft.value.key?(stype_id)
+      end
+      count
+    end
+    skill_count = features_with_id(FEATURE_BATTLER_ABILITY, INVOKE_REPEATS_SKILL).inject(1) do |count, ft|
+      ft.value.key?(item.id) ? (count += ft.value[item.id] - 1) : count
+    end
+    [stype_count, skill_count].max
+  end
+end

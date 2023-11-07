@@ -1,0 +1,307 @@
+﻿
+
+
+EVENT   5
+ PAGE   1
+  0()
+ PAGE   2
+  // condition: switch 31 is ON
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+ PAGE   2
+  // condition: switch 31 is ON
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+ PAGE   2
+  // condition: switch 31 is ON
+  0()
+
+
+
+EVENT   15
+ PAGE   1
+  // condition: switch 4 is ON
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  0()
+ PAGE   3
+  // condition: switch 32 is ON
+  0()
+
+
+
+EVENT   17
+ PAGE   1
+  // condition: switch 4 is ON
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  0()
+ PAGE   3
+  // condition: switch 34 is ON
+  0()
+
+
+
+EVENT   19
+ PAGE   1
+  // condition: switch 4 is ON
+  0()
+ PAGE   2
+  // condition: switch 5 is ON
+  0()
+ PAGE   3
+  // condition: switch 33 is ON
+  0()
+
+
+
+EVENT   21
+ PAGE   1
+  // condition: variable 1212 >= 3
+  If(0,4,0)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("Let's leave this place to the Lilith Sisters and hurry on ahead...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("Let's leave this place to the three Seraphs and hurry on ahead...")
+   0()
+  EndIf()
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x06,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  0()
+ PAGE   2
+  // condition: variable 1212 >= 7
+  0()
+
+
+
+EVENT   22
+ PAGE   1
+  // condition: variable 1212 >= 3
+  If(0,4,0)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("Let's leave this place to the Lilith Sisters and hurry on ahead...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("Let's leave this place to the three Seraphs and hurry on ahead...")
+   0()
+  EndIf()
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x06,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  0()
+ PAGE   2
+  // condition: variable 1212 >= 7
+  0()
+
+
+
+EVENT   23
+ PAGE   1
+  // condition: variable 1212 >= 3
+  If(0,4,0)
+   ShowMessageFace("",0,0,2,1)
+   ShowMessage("Let's leave this place to the Lilith Sisters and hurry on ahead...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("",0,0,2,2)
+   ShowMessage("Let's leave this place to the three Seraphs and hurry on ahead...")
+   0()
+  EndIf()
+  205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x06,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+  0()
+ PAGE   2
+  // condition: variable 1212 >= 7
+  0()
+
+
+
+EVENT   1
+ PAGE   1
+  Wait(60)
+  PictureDisplay(5,"80_mistilteinn_st31",0,0,0,0,100,100,0,0)
+  PictureMove(5,null,0,0,0,0,100,100,255,0,30,true)
+  ShowMessageFace("mistilteinn_fc1",0,0,2,1)
+  ShowMessage("\\n<Mysteltainn>...We should stop this now.\nAny more fighting would be pointless.")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("Mysteltainn could no longer sense the heroes' presence.\nThey have made their way into the Land of Night.")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("If they've gone that far, then there's no longer any point in pursuing them. Continuing to fight here would only be a waste of energy...")
+  If(0,4,0)
+   PictureDisplay(5,"80_lilith2_st01b",0,0,-150,0,100,100,255,0)
+   PictureDisplay(6,"80_mistilteinn_st01",0,0,240,20,100,100,255,0)
+   ShowMessageFace("lilith2_fc1",0,0,2,4)
+   ShowMessage("\\n<Lilith>...You're surprisingly quick to give up.")
+   ShowMessageFace("lilith2_fc1",0,0,2,5)
+   ShowMessage("\\n<Lilith>You could at least try to defeat one us...\nWouldn't you think so?")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,6)
+   ShowMessage("\\n<Mysteltainn>It's not that I loathe fighting against you.\nA battle which transcends time and space is already close at hand.")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,7)
+   ShowMessage("\\n<Mysteltainn>Will the Queen of Dreams be victorious...?\nOr will the heroes claim victory?")
+   PictureClear(6)
+   PictureDisplay(5,"80_morrigan_st02b",0,0,0,0,100,100,255,0)
+   ShowMessageFace("morrigan_fc1",4,0,2,8)
+   ShowMessage("\\n<Morrigan>Luka and the other heroes will win, of course!")
+   PictureDisplay(5,"80_executioner_st01",0,0,70,-50,70,70,255,0)
+   PictureDisplay(6,"80_ogretooth_st01",0,0,-150,80,100,100,255,0)
+   PictureDisplay(7,"80_mistilteinn_st01",0,0,280,130,80,80,255,0)
+   ShowMessageFace("ogretooth_fc1",0,0,2,9)
+   ShowMessage("\\n<Ogretooth>...It doesn't matter to us who wins.\nThough it would be more convenient for us if the heroes won.")
+   ShowMessageFace("executioner_fc1",0,0,2,10)
+   ShowMessage("\\n<Executioner>So we could get our hands on \"that\"...\nThose heroes could be useful in helping us find it.")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,11)
+   ShowMessage("\\n<Mysteltainn>That is why we shall be leaving.\nThis was still fun, even though we weren't serious in fighting each other.")
+   ShowMessageFace("lilith2_fc1",0,0,2,12)
+   ShowMessage("\\n<Lilith>Whatever \"that\" is you are looking for...\nI wish you luck in finding it.")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,13)
+   ShowMessage("\\n<Mysteltainn>Yes, and I hope you accomplish your goals as well.\nUntil then...")
+   PictureClear(5)
+   PictureClear(6)
+   PictureClear(7)
+   Wait(30)
+   212(5,542,false)
+   Wait(60)
+   ChangeSwitch(31,31,0)
+   Wait(60)
+   ShowMessageFace("morrigan_fc1",6,0,2,14)
+   ShowMessage("\\n<Morrigan>Should we really be letting them go, sis...?")
+   ShowMessageFace("astaroth_fc1",0,0,2,15)
+   ShowMessage("\\n<Astaroth>We've stalled them for long enough.\nThere's no point in continuing to fight them.")
+   ShowMessageFace("lilith2_fc1",0,0,2,16)
+   ShowMessage("\\n<Lilith>Our work here is done.\nCome, let us return...")
+   ShowMessageFace("morrigan_fc1",0,0,2,17)
+   ShowMessage("\\n<Morrigan>I'll head back to Luka and the others.\nA succubus' power should come in handy against the Queen of Dreams!")
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0e,0x6d,0x6f,0x6e,0x5f,0x77,0x69,0x6e,0x64,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x01,0x96,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+   ChangeSwitch(32,32,0)
+   ShowMessageFace("lilith2_fc1",3,0,2,18)
+   ShowMessage("\\n<Lilith>Monster Lord Alipheese and Luka...\nPlease be victorious...")
+   250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0e,0x6d,0x6f,0x6e,0x5f,0x77,0x69,0x6e,0x64,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x01,0x96,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+   ChangeSwitch(33,33,0)
+   ChangeSwitch(34,34,0)
+   Wait(120)
+   0()
+  EndIf()
+  If(0,5,0)
+   PictureDisplay(5,"80_eden_st34",0,0,-150,0,100,100,0,0)
+   PictureDisplay(6,"80_mistilteinn_st31",0,0,150,0,100,100,0,0)
+   PictureMove(5,null,0,0,-150,0,100,100,255,0,30,false)
+   PictureMove(6,null,0,0,150,0,100,100,255,0,30,true)
+   ShowMessageFace("eden_fc2",3,0,2,19)
+   ShowMessage("\\n<Eden>It's too soon for you to give up.\nDo you not detest angels...?")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,20)
+   ShowMessage("\\n<Mysteltainn>Strictly speaking, you are a different variety from the angels of my world. I hold no personal grudge against you.")
+   PictureDisplay(5,"80_executioner_st03",0,0,-150,0,80,80,255,0)
+   PictureDisplay(6,"80_ogretooth_st03",0,0,150,0,100,100,255,0)
+   ShowMessageFace("ogretooth_fc1",2,0,2,21)
+   ShowMessage("\\n<Ogretooth>Certainly... Now that you mention it, you're right.")
+   ShowMessageFace("executioner_fc1",2,0,2,22)
+   ShowMessage("\\n<Executioner>I guess so, but I still hate them...")
+   ShowMessageFace("shion_fc1",0,0,2,23)
+   ShowMessage("\\n<Zion>You must really hate them...\nWhat have the angels done in your world?")
+   PictureDisplay(5,"80_eden_st34",0,0,-150,0,100,100,255,0)
+   PictureDisplay(6,"80_mistilteinn_st31",0,0,150,0,100,100,255,0)
+   ShowMessageFace("mistilteinn_fc1",0,0,2,24)
+   ShowMessage("\\n<Mysteltainn>Something absolutely unjust. Anyways....\nA battle which transcends time and space is already close at hand.")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,25)
+   ShowMessage("\\n<Mysteltainn>Will the Queen of Dreams be victorious...?\nOr will the heroes claim victory?")
+   ShowMessageFace("eden_fc2",3,0,2,26)
+   ShowMessage("\\n<Eden>Ilias will be triumphant, of course.\nOr if I may put it another way, the hero Luka and his companions will be the victorious ones.")
+   PictureDisplay(5,"80_executioner_st01",0,0,70,-50,70,70,255,0)
+   PictureDisplay(6,"80_ogretooth_st01",0,0,-150,80,100,100,255,0)
+   PictureDisplay(7,"80_mistilteinn_st01",0,0,280,130,80,80,255,0)
+   ShowMessageFace("ogretooth_fc1",0,0,2,27)
+   ShowMessage("\\n<Ogretooth>...It doesn't matter to us who wins.\nThough it would be more convenient for us if the heroes won.")
+   ShowMessageFace("executioner_fc1",0,0,2,28)
+   ShowMessage("\\n<Executioner>So we could get our hands on \"that\"...\nThose heroes could be useful in helping us find it.")
+   ShowMessageFace("mistilteinn_fc1",0,0,2,29)
+   ShowMessage("\\n<Mysteltainn>That is why we shall be leaving.\nThis was still fun, even though we weren't serious in fighting each other.")
+   ShowMessageFace("eden_fc2",3,0,2,30)
+   ShowMessage("\\n<Eden>Wait just a moment--")
+   PictureClear(5)
+   PictureClear(6)
+   PictureClear(7)
+   Wait(30)
+   212(5,542,false)
+   Wait(60)
+   ChangeSwitch(31,31,0)
+   Wait(60)
+   ShowMessageFace("gnosis_fc1",4,0,2,31)
+   ShowMessage("\\n<Gnosis>I've failed to execute her...")
+   ShowMessageFace("shion_fc1",2,0,2,32)
+   ShowMessage("\\n<Zion>Damn it, they got away...!")
+   ShowMessageFace("eden_fc2",0,0,2,33)
+   ShowMessage("\\n<Eden>That does not matter...\nWe have accomplished our task of holding them off.")
+   ShowMessageFace("shion_fc1",0,0,2,34)
+   ShowMessage("\\n<Zion>This isn't the result I wanted, but it can't be helped. Anyways, let's get going.")
+   212(19,501,false)
+   Wait(30)
+   ChangeSwitch(33,33,0)
+   Wait(60)
+   ShowMessageFace("gnosis_fc1",0,0,2,35)
+   ShowMessage("\\n<Gnosis>Next time, I will execute her...")
+   212(15,501,false)
+   Wait(30)
+   ChangeSwitch(32,32,0)
+   Wait(60)
+   ShowMessageFace("eden_fc2",3,0,2,36)
+   ShowMessage("\\n<Eden>............")
+   ShowMessageFace("eden_fc2",0,0,2,37)
+   ShowMessage("\\n<Eden>May the fortunes of war smile upon you, Ilias...")
+   212(17,501,false)
+   Wait(30)
+   ChangeSwitch(34,34,0)
+   Wait(180)
+   0()
+  EndIf()
+  242(1)
+  221()
+  Wait(120)
+  211(1)
+  ChangeSwitch(31,31,1)
+  ChangeSwitch(32,32,1)
+  ChangeSwitch(33,33,1)
+  ChangeSwitch(34,34,1)
+  ChangeVariable(1212,1212,0,0,7)
+  281(0)
+  314(0,0)
+  TeleportPlayer(0,932,19,29,8,2)
+  222()
+  Wait(30)
+  ShowMessageFace("rovissa_fc1",0,0,2,38)
+  ShowMessage("\\n<Rovissa>Jeez, nearly all of the space here has been eroded...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",0,0,2,39)
+   ShowMessage("\\n<Alice>This is the Land of Night...\nIt's unbearable to think the entire world is becoming like this.")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",7,0,2,40)
+   ShowMessage("\\n<Ilias>This is the Land of Night...\nIf we don't win, the whole world will end up like this.")
+   0()
+  EndIf()
+  ShowMessageFace("rest_fc1",0,0,2,41)
+  ShowMessage("\\n<Lest>What's with those people floating in the air?\nIt looks like the Nightmares are having sex with them...")
+  ShowMessageFace("rejeo_fc1",0,0,2,42)
+  ShowMessage("\\n<Rigeo>They're most likely people who had fallen into dreams in the real world... They end up being raped by Nightmares in the dream world.")
+  ShowMessageFace("rejeo_fc1",0,0,2,43)
+  ShowMessage("\\n<Rigeo>Until they are awakened, they will remain like this... This dream world appears to be comprised of the dreams of those people.")
+  ShowMessageFace("",0,0,2,44)
+  ShowMessage("Every human will sink into dreams of pleasure in this world... It certainly is nightmarish.")
+  ShowMessageFace("",0,0,2,45)
+  ShowMessage("It's just a little further to the gate.\nJust a little further, and this dream will be brought to an end...")
+  EndEventProcessing()
+  0()

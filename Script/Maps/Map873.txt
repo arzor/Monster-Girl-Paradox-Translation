@@ -1,0 +1,233 @@
+﻿
+DisplayName "Château des Romances"
+
+
+
+EVENT   1
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,874,10,48,0,0)
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,874,10,48,0,0)
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,874,10,48,0,0)
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  If(1,1208,0,13,2)
+   ShowMessageFace("rejeo_fc1",0,0,2,1)
+   ShowMessage("\\n<Rigeo>We can't turn back just yet...")
+   205(-1,bytes(0x04,0x08,0x6f,0x3a,0x13,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x52,0x6f,0x75,0x74,0x65,0x09,0x3a,0x0c,0x40,0x72,0x65,0x70,0x65,0x61,0x74,0x46,0x3a,0x0f,0x40,0x73,0x6b,0x69,0x70,0x70,0x61,0x62,0x6c,0x65,0x46,0x3a,0x0a,0x40,0x77,0x61,0x69,0x74,0x54,0x3a,0x0a,0x40,0x6c,0x69,0x73,0x74,0x5b,0x07,0x6f,0x3a,0x15,0x52,0x50,0x47,0x3a,0x3a,0x4d,0x6f,0x76,0x65,0x43,0x6f,0x6d,0x6d,0x61,0x6e,0x64,0x07,0x3a,0x0a,0x40,0x63,0x6f,0x64,0x65,0x69,0x09,0x3a,0x10,0x40,0x70,0x61,0x72,0x61,0x6d,0x65,0x74,0x65,0x72,0x73,0x5b,0x00,0x6f,0x3b,0x0a,0x07,0x3b,0x0b,0x69,0x00,0x3b,0x0c,0x5b,0x00))
+   EndEventProcessing()
+   0()
+  EndIf()
+  Wait(30)
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0b,0x4d,0x61,0x67,0x69,0x63,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,2,328,187,2,1)
+  ShowMessageFace("rejeo_fc1",0,0,2,2)
+  ShowMessage("\\n<Rigeo>We've managed to escape somehow...")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",2,0,2,3)
+   ShowMessage("\\n<Alice>Let's get started with the strategy meeting.\nEveryone, come to the Pocket Castle.")
+   ShowMessageFace("",0,0,2,4)
+   ShowMessage("Alice took out the Pocket Castle!")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",7,0,2,5)
+   ShowMessage("\\n<Ilias>Let's get started with the strategy meeting.\nEveryone, come to the Pocket Castle.")
+   ShowMessageFace("",0,0,2,6)
+   ShowMessage("Ilias took out the Pocket Castle!")
+   0()
+  EndIf()
+  ShowMessageFace("byakunen_fc1",1,0,2,7)
+  ShowMessage("\\n<Hakunen>To think we can go inside such a little castle...\nWhat a mysterious tool!")
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",1,0,2,8)
+   ShowMessage("\\n<Alice>Fufufu, amazing, isn't it...?")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",1,0,2,9)
+   ShowMessage("\\n<Ilias>Fufufu, this thing sure is good.\nI took it from the Monster Lord of this world...")
+   0()
+  EndIf()
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0b,0x4d,0x61,0x67,0x69,0x63,0x31,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  242(1)
+  221()
+  Wait(60)
+  ShowMessageFace("",0,0,2,10)
+  ShowMessage("All of us gathered in a room of the Pocket Castle to plan a strategy for the final battle against the Queen of Dreams--")
+  Wait(60)
+  211(0)
+  ChangeSwitch(31,31,1)
+  TeleportPlayer(0,943,22,19,0,2)
+  222()
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  355("keep_all_equip")
+  355("set_temp_actors(807,808,812,815,811,813,816,817)")
+  314(0,0)
+  PictureDisplay(1,"iv_castle1",0,0,0,0,100,100,255,0)
+  222()
+  241(bytes(0x04,0x08,0x6f,0x3a,0x0d,0x52,0x50,0x47,0x3a,0x3a,0x42,0x47,0x4d,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x0a,0x62,0x6f,0x73,0x73,0x30,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69))
+  Wait(60)
+  ShowMessageFace("kazuya_fc1",0,0,2,1)
+  ShowMessage("\\n<Kazuya>So that's the Château des Romances...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("It's definitely a sight that makes me doubt my own eyes.\nThere's no way that this huge, bizarre castle could possibly be real.")
+  ShowMessageFace("rejeo_fc1",1,0,2,3)
+  ShowMessage("\\n<Rigeo>Oh no, we were too late...")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("In the end, we were unable to stop the summoning of the Demonic Castle that Fulbeua mentioned. Something had come up just before we reached Grand Noah...")
+  ShowMessageFace("rejeo_fc1",0,0,2,5)
+  ShowMessage("\\n<Rigeo>However... The Land of Night appears to be spreading slower than I imagined. There might've been a mistake when she summoned the Demonic Castle...")
+  ShowMessageFace("byakunen_fc1",0,0,2,6)
+  ShowMessage("\\n<Hakunen>Does that mean...we still have time?")
+  ShowMessageFace("",0,0,2,7)
+  ShowMessage("If the Demonic Castle had appeared, this world should've fallen towards ruin immediately. But it doesn't appear to be that way right now...")
+  ShowMessageFace("rejeo_fc1",0,0,2,8)
+  ShowMessage("\\n<Rigeo>But it's only a matter of time.\nEven as we speak, the power of dreams from the Demonic Castle is encroaching upon reality.")
+  ShowMessageFace("magatu_fc1",2,0,2,9)
+  ShowMessage("\\n<Magatsu>In that case, we'd better act fast.\nWhat can we do about this, Rigeo?")
+  ShowMessageFace("rejeo_fc1",0,0,2,10)
+  ShowMessage("\\n<Rigeo>...I can feel some connection with the Land of Night inside the castle. Perhaps...there is a gate to another world inside?")
+  ShowMessageFace("kazuya_fc1",0,0,2,11)
+  ShowMessage("\\n<Kazuya>If we can seal that gate...\nWould that mean this world would be saved?")
+  ShowMessageFace("rejeo_fc1",0,0,2,12)
+  ShowMessage("\\n<Rigeo>That's\\*\\fi if\\*\\fi we are able to seal it...\nBut how might we do that...?")
+  ShowMessageFace("byakunen_fc1",0,0,2,13)
+  ShowMessage("\\n<Hakunen>This gate is like that black vortex, right?\nThe ones that sucked us into this world...?")
+  ShowMessageFace("rejeo_fc1",0,0,2,14)
+  ShowMessage("\\n<Rigeo>Yes, but I imagine this one is much larger.\nI wouldn't know how to close it...")
+  ShowMessageFace("kazuya_fc1",0,0,2,15)
+  ShowMessage("\\n<Kazuya>At any rate, none of us have seen it.\nI can only imagine what it is...")
+  ShowMessageFace("kazuya_fc1",0,0,2,16)
+  ShowMessage("\\n<Kazuya>Instead of scratching our heads here...\nShouldn't we be trying different things once we come across the real deal?")
+  ShowMessageFace("byakunen_fc1",2,0,2,17)
+  ShowMessage("\\n<Hakunen>Didn't we just escape from that game...?\nI'm a little worried...")
+  ShowMessageFace("kazuya_fc1",0,0,2,18)
+  ShowMessage("\\n<Kazuya>If we waste this chance, our options will be narrowed. We need to take action while we still have time.")
+  ShowMessageFace("magatu_fc1",2,0,2,19)
+  ShowMessage("\\n<Magatsu>Even if things are getting desperate, we gotta do this--right?")
+  ShowMessageFace("rejeo_fc1",0,0,2,20)
+  ShowMessage("\\n<Rigeo>...In the end, we're just going to have to take this head-on. There's no other way we can go about this, is there?")
+  ShowMessageFace("lawrat_fc1",0,0,2,21)
+  ShowMessage("\\n<Lauratt>............")
+  ShowMessageFace(binary"",0,0,2,22)
+  ShowMessage("Lauratt quietly nodded.\nA strong determination could be seen in his eyes.")
+  ShowMessageFace("lanpass_fc2",3,0,2,23)
+  ShowMessage("\\n<Lampas>Weelll, I'm gonna leave the hard stuff to you guys. Me, I'm just going to spread my pollen around.")
+  ShowMessageFace("youkosan_fc1",0,0,2,24)
+  ShowMessage("\\n<Dream Fox>Same here.\nI'm just a fox to be honest.")
+  ShowMessageFace("mukuro_fc1",3,0,2,25)
+  ShowMessage("\\n<Mukuro>I'm not familiar with the circumstances of this world. My only purpose is to protect Kazuya.")
+  ShowMessageFace("mukuro_fc1",3,0,2,26)
+  ShowMessage("\\n<Mukuro>Will Kazuya return to his own world when this is done? If so, then I shall take this on with all my strength.")
+  ShowMessageFace("",0,0,2,27)
+  ShowMessage("It's settled then.\nWe will be entering the Château des Romances from the front...")
+  ShowMessageFace("",0,0,2,28)
+  ShowMessage("Reckless as this may be, we have no other choice.\nIf we just stand around with our hands behind our backs, this world will fall into ruin.")
+  ShowMessageFace("kazuya_fc1",0,0,2,29)
+  ShowMessage("\\n<Kazuya>Everyone's prepared...? All right, let's go!")
+  ShowMessageFace("byakunen_fc1",0,0,2,30)
+  ShowMessage("\\n<Hakunen>Understood, I'll accompany you!")
+  ShowMessageFace("lawrat_fc1",0,0,2,31)
+  ShowMessage("\\n<Lauratt>......!!")
+  ShowMessageFace("",0,0,2,32)
+  ShowMessage("Thus, the heroes set forth towards the Demonic Castle...")
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x10,0x6d,0x6f,0x6e,0x5f,0x61,0x73,0x69,0x6f,0x74,0x6f,0x33,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x69))
+  242(1)
+  221()
+  Wait(120)
+  PictureClear(1)
+  222()
+  ShowMessageFace("byakunen_fc1",0,0,2,33)
+  ShowMessage("\\n<Hakunen>There's something really strange about this atmosphere... It feels both horrific and peaceful at the same time.")
+  ScrollMap(8,5,4)
+  ShowMessageFace("rejeo_fc1",0,0,2,34)
+  ShowMessage("\\n<Rigeo>The Château des Romances... I was never able to explore much of it, but what I see before us looks almost no different from the Demonic Castle of our world.")
+  ShowMessageFace("",0,0,2,35)
+  ShowMessage("Rigeo cautiously checks her surroundings...")
+  ShowMessageFace("rejeo_fc1",0,0,2,36)
+  ShowMessage("\\n<Rigeo>But these gargoyles aren't moving...\nI wonder why they aren't attacking us...?")
+  ScrollMap(2,5,4)
+  ShowMessageFace("magatu_fc1",2,0,2,37)
+  ShowMessage("\\n<Magatsu>What's a gargoyle...?")
+  ShowMessageFace("rejeo_fc1",0,0,2,38)
+  ShowMessage("\\n<Rigeo>They're those stone statues, and they too are Nightmares. Normally, they would attack us as soon as we approach them...")
+  ShowMessageFace("kazuya_fc1",0,0,2,39)
+  ShowMessage("\\n<Kazuya>Well, I guess that means we won't have to do any extra fighting. Okay then, let's proceed with caution...")
+  ChangeVariable(1208,1208,0,0,1)
+  EndEventProcessing()
+  0()
+ PAGE   2
+  // condition: variable 1208 >= 1
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  0()
+
+
+
+EVENT   8
+ PAGE   1
+  0()
+
+
+
+EVENT   9
+ PAGE   1
+  0()
+
+
+
+EVENT   10
+ PAGE   1
+  0()
+
+
+
+EVENT   11
+ PAGE   1
+  0()
+
+
+
+EVENT   12
+ PAGE   1
+  0()
+
+
+
+EVENT   13
+ PAGE   1
+  0()

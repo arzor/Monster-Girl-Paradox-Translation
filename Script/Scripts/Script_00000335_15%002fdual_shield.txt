@@ -1,0 +1,147 @@
+module NWRegexp
+  module BaseItem
+    DUAL_SHIELD = /<両手盾>/i
+    DUAL_SHIELD_ADD_ABILITY = /<両手盾時能力(?::|：)(\d+)>/i
+  end
+
+  module Skill
+    NEED_DUAL_SHIELD = /<両手盾時使用可能>/
+  end
+end
+
+module RPG
+  class EquipItem
+    def shield?
+      etype_id == 1
+    end
+  end
+
+  class Skill
+    def need_dual_shield?
+      @data_ex.key?(:need_dual_shield?)
+    end
+  end
+end
+
+class Game_BattlerBase
+  def dual_shield?
+    slot_type == 2
+  end
+
+  def slot_type
+    features_set(FEATURE_SLOT_TYPE).max || 0
+  end
+end
+
+class Game_Actor
+  def skill_conditions_met?(skill)
+    super && skill_need_dual_wield?(skill) && skill_need_dual_shield?(skill)
+  end
+
+  def atk_animation_id1
+    if equip_shield_with_weapon_slot?
+      NWConst::Actor::DUAL_SHIELD_ANIMATION_ID
+    elsif dual_wield?
+      return weapons[0].animation_id if weapons[0]
+
+      weapons[1] ? 0 : 1
+    else
+      weapons[0] ? weapons[0].animation_id : 1
+    end
+  end
+
+  def equip_slots
+    return [0, 0, 2, 3, 4] if dual_wield?
+    return [1, 1, 2, 3, 4] if dual_shield?
+
+    [0, 1, 2, 3, 4]
+  end
+
+  def equip_dual_shield?
+    armors.compact.select(&:shield?).size == 2
+  end
+
+  def dual_shield_add_ability
+    return [] unless equip_dual_shield?
+
+    h_15_ds_feature_objects.features_set(FEATURE_DUAL_SHIELD_ADD_ABILITY).map { |id| $data_armors[id] }
+  end
+
+  alias h_15_ds_feature_objects feature_objects
+  def feature_objects
+    h_15_ds_feature_objects + dual_shield_add_ability
+  end
+
+  def equip_shield_with_weapon_slot?
+    e = equips[0]
+    e && e.shield?
+  end
+
+  def wtypes
+    return [99] if equip_shield_with_weapon_slot?
+
+    weapons.map(&:wtype_id).uniq
+  end
+
+  def atypes
+    armors.map(&:atype_id).uniq
+  end
+
+  def wtype_equipped?(wtype_id)
+    wtypes.include?(wtype_id)
+  end
+
+  def skill_need_dual_shield?(skill)
+    return true unless skill.need_dual_shield?
+    return true if dual_shield? && equip_dual_shield?
+
+    false
+  end
+
+  def param_plus(param_id)
+    base = [@param_plus[param_id], max_param_plus(param_id)].min
+    base + equip_params[param_id]
+  end
+
+  def equip_params
+    params = equips.map.with_index do |item, index|
+      next Array.new(8, 0) if item.nil?
+
+      rate = item_mastery_rate(item, index)
+      item.params.map { |param| param * rate }
+    end
+
+    params.transpose.map { |p| p.inject(:+) }
+  end
+
+  def item_mastery_rate(item, index = nil)
+    ft_ids = case item
+             when RPG::Weapon
+               [[0, item.wtype_id]] + weapon_mastery_bonus.map { |wmb| [0, wmb] }.uniq
+             when RPG::Armor
+               [[1, item.atype_id]] + shield_mastery_bonus(item, index)
+             else
+               return 1.0
+             end
+    masteries = ft_ids.map { |ft_id| features_with_id(NWFeature::FEATURE_EQUIP_MASTERY, ft_id) }.flatten
+    return 1.0 if masteries.empty?
+
+    masteries.map(&:value).max
+  end
+
+  def shield_mastery_bonus(item, index)
+    return [] if index.nil? || !item.shield? || index != 0
+
+    [[0, 99]]
+  end
+
+  #--------------------------------------------------------------------------
+  # ● スキルの二刀流要求判定
+  #--------------------------------------------------------------------------
+  def skill_need_dual_wield?(skill)
+    return true unless skill.need_dual_wield?
+    return true if dual_wield? && weapons[1]
+
+    false
+  end
+end

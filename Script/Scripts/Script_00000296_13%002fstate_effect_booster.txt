@@ -1,0 +1,29 @@
+module NWRegexp
+  module BaseItem
+    STATE_EFFECT_BOOSTER = /<ステート増加効果アップ\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def param_rate(param_id)
+    features_pi(FEATURE_PARAM, param_id) * features_with_id(FEATURE_PARAM_STATE, param_id).inject(1.0) do |i, feature|
+      state_rate = booster_state_effect(feature.obj_id)
+      i * (feature.value * state_rate)
+    end
+  end
+
+  def booster_state_effect(state_id)
+    1.0 + features_sum(FEATURE_STATE_EFFECT_BOOST, state_id)
+  end
+end
+
+module RPG
+  class BaseItem
+    class Feature
+      attr_writer :obj_id
+      def obj_id
+        @obj_id ||= 0
+      end
+    end
+  end
+end

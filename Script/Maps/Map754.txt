@@ -1,0 +1,96 @@
+﻿
+DisplayName "? ? ?"
+
+
+
+EVENT   1
+ PAGE   1
+  ChangeSwitch(2318,2318,0)
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("There is a time-worn journal...")
+  ShowMessageFace("",0,0,2,2)
+  ShowMessage("\"Half a month has passed by since we drifted onto this island. The food stores from our ship have run out, and we now await our deaths.\"")
+  ShowMessageFace("",0,0,2,3)
+  ShowMessage("\"We wandered around this island aimlessly.\nAs we ascended a steep hill, we found ourselves surrounded by fog.\"")
+  ShowMessageFace("",0,0,2,4)
+  ShowMessage("\"The compass began pointing in strange directions and had clearly stopped working correctly. An unusual presence surrounded us.\"")
+  ShowMessageFace("",0,0,2,5)
+  ShowMessage("\"Once we had climbed the steep hill, there was a monument.\nIt was quite old, but still legible enough for us to read.\"")
+  ShowMessageFace("",0,0,2,6)
+  ShowMessage("\"............\"")
+  ShowMessageFace("",0,0,2,7)
+  ShowMessage("\"The inscription's contents were very unsettling.\nWho in the world made this, and why?\"")
+  ShowMessageFace("",0,0,2,8)
+  ShowMessage("\"As the fog wrapped around us, the eerie presence grew even stronger. I rushed to write up these last sentences of this adventurer's saga.\"")
+  ShowMessageFace("",0,0,2,9)
+  ShowMessage("\"If someone reads this journal...\nEscape from this island immediately.\"")
+  ShowMessageFace("",0,0,2,10)
+  ShowMessage("The entry cuts off from there...")
+  If(0,6,0)
+   ShowMessageFace("sonia_fc2",2,0,2,11)
+   ShowMessage("\\n<Sonya>There aren't any stone monuments anywhere...\nNor are there any steep hills on this small island...")
+   0()
+  Else()
+   ShowMessageFace("ruka_fc1",0,0,2,12)
+   ShowMessage("\\n<Luka>There are no stone monuments anywhere...\nThere isn't even a steep hill on this small island to begin with.")
+   0()
+  EndIf()
+  If(0,4,0)
+   ShowMessageFace("alice_fc5",3,0,2,13)
+   ShowMessage("\\n<Alice>Did they experience a vision in the face of death...? Or maybe...")
+   0()
+  EndIf()
+  If(0,5,0)
+   ShowMessageFace("iriasu_fc4",2,0,2,14)
+   ShowMessage("\\n<Ilias>Did they experience a vision in the face of death...? Or maybe...")
+   0()
+  EndIf()
+  0()
+
+
+
+EVENT   2
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("Looks to be just a dead body...")
+  0()
+
+
+
+EVENT   3
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("There is nothing noteworthy inside this toolbox...")
+  0()
+
+
+
+EVENT   4
+ PAGE   1
+  ShowMessageFace("",0,0,2,1)
+  ShowMessage("There is nothing noteworthy inside this tool bag...")
+  0()
+
+
+
+EVENT   5
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,2,87,207,2,0)
+  0()
+
+
+
+EVENT   6
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,2,87,207,2,0)
+  0()
+
+
+
+EVENT   7
+ PAGE   1
+  250(bytes(0x04,0x08,0x6f,0x3a,0x0c,0x52,0x50,0x47,0x3a,0x3a,0x53,0x45,0x08,0x3a,0x0a,0x40,0x6e,0x61,0x6d,0x65,0x49,0x22,0x09,0x4d,0x6f,0x76,0x65,0x06,0x3a,0x06,0x45,0x54,0x3a,0x0b,0x40,0x70,0x69,0x74,0x63,0x68,0x69,0x69,0x3a,0x0c,0x40,0x76,0x6f,0x6c,0x75,0x6d,0x65,0x69,0x55))
+  TeleportPlayer(0,2,87,207,2,0)
+  0()

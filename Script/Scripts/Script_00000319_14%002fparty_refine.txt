@@ -1,0 +1,49 @@
+module NWConst
+  module Sw
+    ADD_ACTOR_BASE_NUMBER = 900
+    ADD_ACTOR_RANGE = ADD_ACTOR_BASE..(ADD_ACTOR_BASE + ADD_ACTOR_BASE_NUMBER)
+  end
+end
+
+class Game_Interpreter
+  def delete_actor_ex(actor_id)
+    $game_party.remove_actor(actor_id)
+  end
+end
+class Game_Switches
+  # @param switch_id [Integer]
+  # @param value [Boolearn]
+  def actor_switch_set(switch_id, value)
+    id = switch_id - ADD_ACTOR_BASE
+    return $game_party.remove_actor(id) if value == false
+
+    return if $game_party.exist_all_actor_id?(id)
+
+    $game_party.persona_change(id)
+    nw_array_set(switch_id, value)
+  end
+end
+
+class Game_Actor < Game_Battler
+  #--------------------------------------------------------------------------
+  # ● 人格の変更
+  #--------------------------------------------------------------------------
+  def persona_change(persona_id)
+    return if $data_actors[persona_id].persona_kind == :none
+
+    $game_switches.nw_array_set(NWConst::Sw::ADD_ACTOR_BASE + @actor_id, false)
+    @actor_id = persona_id
+    $game_switches.nw_array_set(NWConst::Sw::ADD_ACTOR_BASE + @actor_id, true)
+    init_name
+    init_nickname
+    init_graphics
+    refresh
+  end
+
+  def refresh_persona(actor_id, persona_id)
+    actors.collect! do |last_id|
+      $game_actors[persona_id] == $game_actors[last_id] ? persona_id : last_id
+    end
+    $game_library.actor.set_had(persona_id)
+  end
+end

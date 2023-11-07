@@ -1,0 +1,107 @@
+class Game_Action
+  def item
+    @item.object(@subject)
+  end
+end
+
+class Game_BaseItem
+  alias hima_12_skill_change_object object
+  def object(battler = nil)
+    data = hima_12_skill_change_object
+    return data unless data && battler
+
+    data.change(battler)
+  end
+end
+
+module RPG
+  class BaseItem
+    def change(battler)
+      self
+    end
+  end
+
+  class UsableItem < BaseItem
+    def one_rate
+      1.0
+    end
+  end
+
+  class Skill < UsableItem
+    def one_rate
+      @one_rate || 1.0
+    end
+
+    def changed?
+      @change_flag
+    end
+
+    def changed(flag = true)
+      @change_flag = flag
+    end
+
+    def change_penetrate(battler)
+      return unless battler.skill_def_penetration?(self)
+
+      damage.def_penetration_flag = true
+    end
+
+    def change(battler)
+      return self unless battler
+      return self if changed?
+
+      skill = Marshal.load(Marshal.dump(self))
+      skill.changed
+      skill.change_penetrate(battler)
+      return skill.tap(&:change_scope_all) if skill.change_scope_all?(battler)
+
+      skill.change_scope_one(battler)
+      skill.change_plus_attack(battler)
+
+      skill
+    end
+
+    def change_scope_all?(battler)
+      [1, 7, 9, 11].include?(@scope) && !exp_target? && battler.skill_scope_all?(self)
+    end
+
+    def change_plus_attack?
+      [1, 3, 7].include?(@scope) && !exp_target?
+    end
+
+    def change_scope_one?(battler)
+      for_all? && !exp_target? && battler.skill_scope_one?(self)
+    end
+
+    def change_scope_all
+      @scope += 1
+      @scope = 8 if @scope == 12
+      @exp_target = false
+    end
+
+    def change_scope_one(battler)
+      return unless change_scope_one?(battler)
+
+      @scope -= 1
+      @one_rate = battler.skill_scope_one_rate(self)
+      @exp_target = false
+    end
+
+    def change_plus_attack(battler)
+      return unless change_plus_attack?
+      count = battler.skill_plus_attack_one_count(self)
+      return if count == 0
+
+      et = for_opponent? ? 1 : 4
+      et += 2 if for_random?
+
+      if battler.skill_plus_attack_one_random?(self)
+        et += 2 unless for_random?
+        @scope = for_opponent? ? 2 : 8
+      end
+      @exp_target = []
+      @exp_target[2] = -1
+      @exp_target[0] = [et, count + 1]
+    end
+  end
+end

@@ -1,0 +1,14 @@
+﻿// EVENT 3439
+Name "Collab"
+
+ShowChoices(strings("Change difficulty","Reincarnate"),2)
+IfPlayerPicksChoice(0,null)
+ ShowMessageFace("",0,0,2,1)
+ ShowMessage("Please choose a difficulty level.")
+ RunCommonEvent(110)
+ 0()
+IfPlayerPicksChoice(1,null)
+ 0()
+404()
+RunCommonEvent(2999)
+0()

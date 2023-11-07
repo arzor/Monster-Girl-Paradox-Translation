@@ -1,0 +1,52 @@
+class Game_Battler
+  def learning?
+    false
+  end
+
+  def use_item_learning_skill(item)
+    false
+  end
+end
+
+class Game_Actor
+  def learning?
+    !features(FEATURE_LEARNING).empty?
+  end
+
+  def learning_valid?
+    Array(NWConst::State::LEARNING_INVALID).all? { |id| !state?(id) }
+  end
+
+  def use_item_learning_skill(item)
+    return false unless item && item.learning_skill && learning? && !skill_learn?($data_skills[item.learning_skill])
+
+    learn_skill(item.learning_skill)
+    true
+  end
+end
+
+class Scene_Battle
+  def use_item_learning_skill(item)
+    texts = $game_party.movable_members.select do |member|
+      member.learning_valid? && member.use_item_learning_skill(item)
+    end.map do |member|
+      "#{member.name} has learned #{$data_skills[item.learning_skill].name}!"
+    end
+    return if texts.empty?
+
+    wait(5)
+    RPG::SE.new("Flash2").play
+    texts.each do |text|
+      $game_message.add(text)
+    end
+    wait_for_message
+  end
+end
+
+module RPG
+  class UsableItem
+    def learning_skill
+      @data_ex.fetch(:learning_skill, nil)
+    end
+  end
+end

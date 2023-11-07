@@ -1,0 +1,15 @@
+
+module Graphics
+  class << self
+    alias hima_14_set_frame_count frame_count=
+    def frame_count=(other)
+      @frame_count = other.abs
+      hima_14_set_frame_count(0)
+    end
+
+    alias hima_14_frame_count frame_count
+    def frame_count
+      hima_14_frame_count + @frame_count
+    end
+  end
+end

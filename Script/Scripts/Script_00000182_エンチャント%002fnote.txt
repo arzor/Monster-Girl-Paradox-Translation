@@ -1,0 +1,2009 @@
+# 特徴計算式クラス
+
+class Enchant_Value
+  attr_reader :type, :variance_id, :calc_id
+  def initialize(type, id)
+    @type = type
+    sid = id.split("-")
+    @calc_id = sid[0].to_i
+    @variance_id = sid.size >= 2 ? sid[1].to_i : 0
+  end
+
+  def calculation(r = 0, v = 0)
+    r *= v
+    data = NWConst::Enchantment::FEATURE_CALCULATION[calc_id]
+    result = eval(data[:value])
+    result = [result, data[:max_value]].min if data.key?(:max_value)
+    result = [result, data[:min_value]].max if data.key?(:min_value)
+    type == :rate ? result.to_f * 0.01 : result.to_i
+  end
+end
+
+class RPG::BaseItem::Feature
+  attr_writer :enchant_id
+  def enchant_id
+    @enchant_id || -1
+  end
+  
+  def display_color
+    HIMA::Enchant.display_color(!enchant_id || enchant_id < 0 ? 0 : $data_classes[enchant_id].dummy_enchant_color)
+  end
+end
+
+module NWRegexp
+  ENCHANT_VALUE = /\\e\[\d+\]|\\e\[\d+\-\d+\]/i
+  VALUE = /[-+]?\d+|#{ENCHANT_VALUE}/i
+  FEATURE_RATE_ARRAY        = [:属性, :弱体, :ステート]
+  FEATURE_XPARAM_EX_ARRAY   = [:命中, :回避, :会心, :会心回避, :魔法回避, :魔法反射, :反撃, :HP再生, :MP再生, :TP再生]
+  FEATURE_SPARAM_ARRAY      = [:狙われ率, :防御効果率, :回復効果率, :薬の知識, :MP消費率, :TPチャージ率, :物理ダメージ率, :魔法ダメージ率, :床ダメージ率, :経験獲得率]
+  PARTY_ABILITY_ARRAY       = [:獲得金額, :獲得アイテム, :エンカウント, :仲間加入]
+  FEATURE_PARAM_ARRAY       = [:最大HP, :最大MP, :攻撃力, :防御力, :魔力, :精神力, :素早さ, :器用さ]
+  MULTI_BOOSTER_ARRAY       = [:属性強化, :武器強化物理, :武器強化魔法, :武器強化必中, :通常攻撃強化, :ステート割合強化タイプ, :ステート固定強化タイプ, :スキルタイプ強化, :ステート割合強化スキル, :スキル強化]
+end
+
+#==============================================================================
+# ■ NWRegexp::BaseItem
+#==============================================================================
+module NWRegexp::BaseItem
+  # デフォルト機能
+  FEATURE_PARAM             = /<(#{NWRegexp::FEATURE_PARAM_ARRAY.join("|")})\s?(#{NWRegexp::VALUE})\%>/i
+  FEATURE_ELEMENT_RATE      = /<(拡張|)属性有効度\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  FEATURE_DEBUFF_RATE       = /<(拡張|)弱体有効度\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  FEATURE_STATE_RATE        = /<(拡張|)ステート有効度\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  FEATURE_SPARAM            = /<(#{NWRegexp::FEATURE_SPARAM_ARRAY.join("|")})\s?(#{NWRegexp::VALUE})\%>/i
+  FEATURE_ATK_STATE         = /<攻撃時ステート\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+
+  # 追加
+  ITEM_COST_SCRIMP_TYPE     = /<消費アイテム節約スキルタイプ\s?((?:\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  CERTAIN_EVASION           = /<(拡張|)必中回避(率|)\s?(#{NWRegexp::VALUE}\%)>/i
+  ELEMENT_REFLECTION        = /<属性反射(?:\:|：|\s)(((?:\d+)(?:\,\s?)?)+)>/i
+  REFLECTION_BOOST          = /<反射ダメージ増加(?:\s|：|:)?(#{NWRegexp::VALUE})%?>/i
+  CERTAIN_DAMAGE_RATE       = /<必中ダメージ率\s?(#{NWRegexp::VALUE}\%)>/i
+  CRITICAL_BOOST            = /<会心ダメージ増加(?:\:|：)(#{NWRegexp::VALUE})>/i
+  ACTOR_PARAM_BOOST         = /<特定アクター能力アップ\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  ACTOR_EXIST_PARAM_BOOST   = /<パーティ特定アクター能力アップ\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  CLASS_BOOST               = /<職業アップ\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  STATE_EXTEND              = /<(自己|相手)ステート延長\s?((?:\d+\-\d+(?:\,\s?)?)+)>/i
+  STATE_ETERNAL             = /<(自己|相手)ステート永続\s?((?:\d+(?:\,\s?)?)+)>/i
+  HP_REGEN_INVALID          = /<HPターン回復無効>/i
+  CANT_MOVE                 = /<行動不能>/
+  BATTLE_START_HP           = /<開始時HP\s?(#{NWRegexp::VALUE}\%)>/i
+  SKILL_STATE_ADD           = /<スキルステート(自己|)付加\s?(((?:\d+\-\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  SKILL_TYPE_STATE_ADD      = /<スキルタイプステート(敵|味方|自己)付加\s?(((?:\d+\-\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  EQUIP_ABILITY_BOOST       = /<装備品アビリティ強化\s?(\d+)>/i
+  FAST_MOVE_TYPE            = /<速攻発動スキルタイプ(?:\:|：)(\d+)>/i
+  SLOW_MOVE_TYPE            = /<遅攻発動スキルタイプ(?:\:|：)(\d+)>/i
+  STATE_SKILL_BOOST         = /<ステート特攻スキル\s?((?:\d+\-\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  STATE_SKILL_TYPE_BOOST    = /<ステート特攻スキルタイプ\s?((?:\d+\-\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  STATE_NORMAL_ATACK_BOOST  = /<ステート特攻通常攻撃\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  STATE_BOOST_PLUS          = /<ステート特攻強化 (#{NWRegexp::VALUE})>/i
+  PINCHI_SKILL_BOOST        = /<窮地スキル強化\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  PINCHI_SKILL_TYPE_BOOST   = /<窮地スキルタイプ強化\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+
+  # \e[]対応他
+  FEATURE_XPARAM_EX         = /<(?:拡張|)(#{NWRegexp::FEATURE_XPARAM_EX_ARRAY.join("|")})(?:率|)\s?(#{NWRegexp::VALUE})\%>/i
+  PARTY_ABILITY             = /<(#{NWRegexp::PARTY_ABILITY_ARRAY.join("|")})倍率\s?(#{NWRegexp::VALUE})\%>/i
+  STEAL_SUCCESS             = /<スティール成功率\s?(#{NWRegexp::VALUE})\%>/i
+  METAL_BODY                = /<メタルボディ\s?(#{NWRegexp::VALUE})>/i
+  INVALIDATE_WALL           = /<無効化障壁\s?(#{NWRegexp::VALUE})>/i
+  DAMAGE_GOLD_CONVERT       = /<ダメージゴールド変換\s?(#{NWRegexp::VALUE})\%>/i
+  DAMAGE_MP_DRAIN           = /<ダメージMP吸収\s?(#{NWRegexp::VALUE})\%>/i
+  STYPE_COST_RATE           = /<(HP|MP|TP)タイプ消費率\s?(\d+)\s?\,\s?(#{NWRegexp::VALUE})\%>/i
+  SKILL_COST_RATE           = /<(HP|MP|TP)スキル消費率\s?(\d+)\s?\,\s?(#{NWRegexp::VALUE})\%>/i
+  TP_COST_RATE              = /<TP消費率\s?(#{NWRegexp::VALUE})\%>/i
+  HP_COST_RATE              = /<HP消費率\s?(#{NWRegexp::VALUE})\%>/i
+  GOLD_COST_RATE            = /<ゴールド消費率\s?(#{NWRegexp::VALUE})\%>/i
+  INCREASE_TP               = /<最大TP(増加|減少)\s?(#{NWRegexp::VALUE})([%])?>/i
+  START_TP_RATE             = /<開始時TP\s?(#{NWRegexp::VALUE})%>/i
+  BATTLE_END_HEEL_HP        = /<戦闘後HP回復\s?(#{NWRegexp::VALUE})\%>/i
+  BATTLE_END_HEEL_MP        = /<戦闘後MP回復\s?(#{NWRegexp::VALUE})\%>/i
+  MAGICAL_COUNTER           = /<(?:拡張|)魔法反撃(?:率|)\s?(#{NWRegexp::VALUE}\%)>/i
+  CERTAIN_COUNTER           = /<(?:拡張|)必中反撃(?:率|)\s?(#{NWRegexp::VALUE}\%)>/i
+  CERTAIN_COUNTER_EX        = /<無効化必中反撃(?:率|)\s?(#{NWRegexp::VALUE}\%)>/i
+  PHYSICAL_COUNTER_EX       = /<無効化反撃(?:率|)\s?(#{NWRegexp::VALUE}\%)>/i
+  MAGICAL_COUNTER_EX        = /<無効化魔法反撃(?:率|)\s?(#{NWRegexp::VALUE}\%)>/i
+  CONSIDERATE               = /<仲間想い\s?(#{NWRegexp::VALUE})\%>/i
+  ITEM_COST_SCRIMP          = /<消費アイテム節約\s?((?:\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  MULTI_BOOSTER             = /<(#{NWRegexp::MULTI_BOOSTER_ARRAY.join("|")})\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  WTYPE_SKILL_BOOST         = /<武器スキル倍率強化\s?((?:\d+\-\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  GET_EXP_RATE              = /<獲得経験値倍率\s?(#{NWRegexp::VALUE})\%>/i
+  GET_CLASSEXP_RATE         = /<獲得職業経験値倍率\s?(#{NWRegexp::VALUE})\%>/i
+
+  COUNTER_BOOST             = /<反撃強化\s?(#{NWRegexp::VALUE})\%>/i
+  FALL_HP_BOOST             = /<HP減少時強化\s?(\d+)\s?\,\s?(#{NWRegexp::VALUE})\%>/i
+  OVER_SOUL                 = /<オーバーソウル\s?(#{NWRegexp::VALUE})\%>/i
+  PHYSICAL_REFLECTION       = /<(拡張|)物理反射(率|)\s?(#{NWRegexp::VALUE})\%>/i
+  EQUIP_MASTERY             = /<(武器|防具)マスタリー\s?((?:\d+\-#{NWRegexp::VALUE}+(?:\,\s?)?)+)>/i
+  NORMAL_ATTACK_FORCE_ELEMENT = /<通常攻撃物理属性化>/i
+
+  SUCCUBUS      = /<夢魔>/i
+  PENETRATION_ELEMENT = /<属性貫通\s?((?:\d+(?:\,\s?)?)+)>/i
+  ALL_ADD_ELEMENT =  /<全攻撃属性付加\s?((?:\d+(?:\,\s?)?)+)>/i
+  LEARNING        =  /<ラーニング>/
+end
+
+#==============================================================================
+# ■ NWRegexp::UsableItem
+#==============================================================================
+module NWRegexp::UsableItem
+  # 追加
+  FAST_MOVE                  = /<速攻発動>/i
+  SLOW_MOVE                  = /<遅攻発動>/i
+  ALLOWANCE                  = /<手加減>/i
+  SELF_ENCHANT_REGEN         = /<自己解除\s+ステート=(\d+)(?:\s+確率=(\d+))?>/i
+  STATE_BOOST                = /<ステート特攻\s?((?:\d+\-#{NWRegexp::VALUE}(?:\,\s?)?)+)>/i
+  PINCHI_BOOST               = /<窮地強化\s?(\d+)>/i
+  DISPLAY_NAME               = /<スキルタイトル(?:\s|:)(\S+)>/i
+  LEARNING_SKILL             = /<ラーニングスキル(?:\s|:)(\d+)>/
+end
+
+#==============================================================================
+# ■ NWRegexp::Skill
+#==============================================================================
+module NWRegexp::Skill
+  # 追加
+  CRITICAL_EX               = /<スキル会心率(?:\:|：)(\d+)>/i
+  SUCCUBUS_UNAVAILABLE      = /<夢魔使用不可>/i
+end
+
+#==============================================================================
+# ■ NWRegexp::Item
+#==============================================================================
+module NWRegexp::Item
+  ENCHANT_STONE_CATEGORY    = /<秘石カテゴリー(?:\:|：)(\d+)>/i
+  ENCHANT_STONE_ID          = /<秘石能力防具\s?((?:\d+(?:\,\s?)?)+)>/i
+end
+
+#==============================================================================
+# ■ NWRegexp::Class
+#==============================================================================
+module NWRegexp::Class
+  # 追加
+  BOTH_DISABLE               = /<両立不可(?:\:|：)?((?:\d+(?:\,\s?)?)+)>/i
+  PREFIX                     = /<接頭(?:\:|：)(\S+)>/i
+  RARE_PREFIX                = /<レア接頭(?:\:|：)(\S+)>/i
+  PARAM_BONUS                = /<(#{NWRegexp::FEATURE_PARAM_ARRAY.join("|")})ボーナス\s?(#{NWRegexp::VALUE})>/i
+  MAX_SP_BONUS               = /<最大SPボーナス\s?(#{NWRegexp::VALUE})>/i
+  FINAL_BONUS                = /<最終ボーナス\s?(#{NWRegexp::VALUE})\%>/i
+  DUMMY_ENCHANT_COLOR        = /<文字色\s?(\d+)>/i
+end
+#==============================================================================
+# ■ NWRegexp::State
+#==============================================================================
+module NWRegexp::State
+  # 追加
+  ALL_DEAD                   = /<全滅判定有>/i
+end
+#==============================================================================
+# ■ NWRegexp::EquipItem
+#==============================================================================
+module NWRegexp::EquipItem
+  # 追加
+  NOT_ENCHANT_ID = /<付加能力不可\s?((?:\d+(?:\,\s?)?)+)>/i
+  FINAL_BONUS = /<最終ボーナス\s?\s?(#{NWRegexp::VALUE})\%>/i
+  PARAM_OVERRIDE = /<(#{NWRegexp::FEATURE_PARAM_ARRAY.join("|")})変化量\s?(\d+)>/
+end
+
+#==============================================================================
+# ■ RPG::BaseItem
+#==============================================================================
+class RPG::BaseItem
+  #--------------------------------------------------------------------------
+  # ● データの取得
+  #--------------------------------------------------------------------------
+  def get_value(value, type)
+    case type
+    when :rate
+      value.to_f * 0.01
+    when :int
+      value.to_i
+    when :string
+      value
+    end
+  end
+
+  def add_feature(code, data_id, value)
+    @add_features.push(RPG::BaseItem::Feature.new(code, data_id, value))
+  end
+
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_base_item_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::BaseItem::FEATURE_XPARAM_EX
+        data_id = NWRegexp::FEATURE_XPARAM_EX_ARRAY.index(Regexp.last_match(1).to_sym)
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_XPARAM, data_id, get_value(Regexp.last_match(2), :rate)))
+      when NWRegexp::BaseItem::PARTY_ABILITY
+        kind = [:獲得金額, :獲得アイテム, :エンカウント, :仲間加入]
+        kind_id = kind.index(Regexp.last_match(1).to_sym)
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_PARTY_EX_ABILITY, kind_id, get_value(Regexp.last_match(2), :rate)))
+      when NWRegexp::BaseItem::SLOT_CHANCE
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_PARTY_EX_ABILITY, SLOT_CHANCE, get_value(Regexp.last_match(1), :int)))
+      when NWRegexp::BaseItem::UNLOCK_LEVEL
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_PARTY_EX_ABILITY, UNLOCK_LEVEL, get_value(Regexp.last_match(1), :int)))
+      when NWRegexp::BaseItem::STEAL_SUCCESS
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, STEAL_SUCCESS, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::GET_EXP_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, GET_EXP_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::GET_CLASSEXP_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, GET_CLASSEXP_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::AUTO_STAND
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, AUTO_STAND, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::HEEL_REVERSE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, HEEL_REVERSE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::AUTO_STATE
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| array.push(get_value(id, :int)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, AUTO_STATE, array
+                           ))
+      when NWRegexp::BaseItem::TRIGGER_STATE
+        hash = { point: Regexp.last_match(1).to_sym, trigger: Regexp.last_match(2).to_i, per: get_value(Regexp.last_match(3), :rate), state_id: Regexp.last_match(4).to_i }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, TRIGGER_STATE, hash
+                           ))
+      when NWRegexp::BaseItem::METAL_BODY
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, METAL_BODY, get_value(Regexp.last_match(1), :int)
+                           ))
+      when NWRegexp::BaseItem::DEFENSE_WALL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, DEFENSE_WALL, get_value(Regexp.last_match(1), :int)
+                           ))
+      when NWRegexp::BaseItem::INVALIDATE_WALL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, INVALIDATE_WALL, get_value(Regexp.last_match(1), :int)
+                           ))
+      when NWRegexp::BaseItem::DAMAGE_MP_CONVERT
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, DAMAGE_MP_CONVERT, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::DAMAGE_GOLD_CONVERT
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, DAMAGE_GOLD_CONVERT, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::DAMAGE_MP_DRAIN
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, DAMAGE_MP_DRAIN, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::DAMAGE_GOLD_DRAIN
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, DAMAGE_GOLD_DRAIN, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::DEAD_SKILL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, DEAD_SKILL, get_value(Regexp.last_match(1), :int)
+                           ))
+      when NWRegexp::BaseItem::BATTLE_START_SKILL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, BATTLE_START_SKILL,
+                             id: Regexp.last_match(1).to_i, per: get_value(Regexp.last_match(2), :rate)
+                           ))
+      when NWRegexp::BaseItem::TURN_START_SKILL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, TURN_START_SKILL,
+                             id: Regexp.last_match(1).to_i, per: get_value(Regexp.last_match(2), :rate)
+                           ))
+      when NWRegexp::BaseItem::TURN_END_SKILL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, TURN_END_SKILL,
+                             id: Regexp.last_match(1).to_i, per: get_value(Regexp.last_match(2), :rate)
+                           ))
+      when NWRegexp::BaseItem::CHANGE_ACTION
+        array = []
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| array.push(id: a.to_i, per: get_value(b, :rate)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CHANGE_ACTION, array
+                           ))
+      when NWRegexp::BaseItem::STYPE_COST_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, STYPE_COST_RATE, type: Regexp.last_match(1).to_sym, id: Regexp.last_match(2).to_i, rate: get_value(Regexp.last_match(3), :rate)
+                           ))
+      when NWRegexp::BaseItem::SKILL_COST_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, SKILL_COST_RATE, type: Regexp.last_match(1).to_sym, id: Regexp.last_match(2).to_i, rate: get_value(Regexp.last_match(3), :rate)
+                           ))
+      when NWRegexp::BaseItem::TP_COST_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, TP_COST_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::HP_COST_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, HP_COST_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::GOLD_COST_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, GOLD_COST_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::INCREASE_TP
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, INCREASE_TP, plus: Regexp.last_match(1).to_s == "増加", num: get_value(Regexp.last_match(2), :int), per: Regexp.last_match(3) ? true : false
+                           ))
+      when NWRegexp::BaseItem::START_TP_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, START_TP_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::BATTLE_END_HEEL_HP
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, BATTLE_END_HEEL_HP, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::BATTLE_END_HEEL_MP
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, BATTLE_END_HEEL_MP, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::NORMAL_ATTACK
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, Battler::NORMAL_ATTACK, get_value(Regexp.last_match(1), :int)
+                           ))
+      when NWRegexp::BaseItem::COUNTER_SKILL
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| array.push(get_value(id, :int)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, COUNTER_SKILL, array
+                           ))
+      when NWRegexp::BaseItem::FINAL_INVOKE
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| array.push(get_value(id, :int)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, FINAL_INVOKE, array
+                           ))
+      when NWRegexp::BaseItem::CERTAIN_COUNTER
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CERTAIN_COUNTER, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::MAGICAL_COUNTER
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, MAGICAL_COUNTER, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::CERTAIN_COUNTER_EX
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CERTAIN_COUNTER_EX, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::PHYSICAL_COUNTER_EX
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, PHYSICAL_COUNTER_EX, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::MAGICAL_COUNTER_EX
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, MAGICAL_COUNTER_EX, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::CONSIDERATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CONSIDERATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::INVOKE_REPEATS_TYPE
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :int) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, INVOKE_REPEATS_TYPE, hash
+                           ))
+      when NWRegexp::BaseItem::INVOKE_REPEATS_SKILL
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :int) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, INVOKE_REPEATS_SKILL, hash
+                           ))
+      when NWRegexp::BaseItem::OWN_CRUSH_RESIST
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, OWN_CRUSH_RESIST, true
+                           ))
+      when NWRegexp::BaseItem::ELEMENT_DRAIN
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| array.push(get_value(id, :int)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, ELEMENT_DRAIN, array
+                           ))
+      when NWRegexp::BaseItem::IGNORE_OVER_DRIVE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, IGNORE_OVER_DRIVE, true
+                           ))
+      when NWRegexp::BaseItem::INSTANT_DEAD_REVERSE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, INSTANT_DEAD_REVERSE, true
+                           ))
+      when NWRegexp::BaseItem::CHANGE_SKILL
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :int) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CHANGE_SKILL, hash
+                           ))
+      when NWRegexp::BaseItem::ITEM_COST_SCRIMP
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, ITEM_COST_SCRIMP, hash
+                           ))
+      when NWRegexp::BaseItem::NEED_ITEM_IGNORE
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| array.push(get_value(id, :int)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, NEED_ITEM_IGNORE, array
+                           ))
+      when NWRegexp::BaseItem::MULTI_BOOSTER
+        data_id = NWRegexp::MULTI_BOOSTER_ARRAY.index(Regexp.last_match(1).to_sym)
+        hash = {}
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_MULTI_BOOSTER, data_id, hash))
+      when NWRegexp::BaseItem::WTYPE_SKILL_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)\-(#{NWRegexp::VALUE})/) { |a, b, c| hash[[a.to_i, b.to_i]] = get_value(c, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_MULTI_BOOSTER, WTYPE_SKILL, hash))
+      when NWRegexp::BaseItem::COUNTER_BOOST
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_MULTI_BOOSTER, COUNTER, get_value(Regexp.last_match(1), :rate)))
+      when NWRegexp::BaseItem::FALL_HP_BOOST
+        hash = { per: Regexp.last_match(1).to_f * 0.01, boost: get_value(Regexp.last_match(2), :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_MULTI_BOOSTER, FALL_HP, hash))
+      when NWRegexp::BaseItem::FULL_HP_BOOST
+        add_feature(FEATURE_FULL_HP_BOOST, Regexp.last_match(1).to_f * 0.01, get_value(Regexp.last_match(2), :rate))
+      when NWRegexp::BaseItem::OVER_SOUL
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, OVER_SOUL, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::DUMMY_ENCHANT
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_DUMMY_ENCHANT, nil, Regexp.last_match(1).to_s))
+      when NWRegexp::BaseItem::TERRAIN_BOOSTER
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_TERRAIN_BOOSTER, Regexp.last_match(1).to_sym, Regexp.last_match(2).nil? ? 0.2 : 0.4
+                           ))
+      when NWRegexp::BaseItem::SKILL_CONVERT_PARAM
+        @data_ex[:skill_convert_param_data] ||= {}
+        @data_ex[:skill_convert_param_data][Regexp.last_match(1).to_i] ||= []
+        @data_ex[:skill_convert_param_data][Regexp.last_match(1).to_i].push([Regexp.last_match(2).to_i + 1, Regexp.last_match(3).to_i + 1])
+      when NWRegexp::BaseItem::PHYSICAL_REFLECTION
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, PHYSICAL_REFLECTION, get_value(Regexp.last_match(3), :rate)
+                           ))
+      when NWRegexp::BaseItem::SELLD_DRAW
+        @data_ex[:selld_draw] = Regexp.last_match(1).to_s
+      when NWRegexp::BaseItem::EXCLUDE
+        @data_ex[:lib_exclude?] = true
+      when NWRegexp::BaseItem::EQUIP_MASTERY
+        category = [:武器, :防具].index(Regexp.last_match(1).to_sym)
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_EQUIP_MASTERY, [category, a.to_i], get_value(b, :rate)
+                             ))
+        end
+
+      when NWRegexp::BaseItem::FEATURE_PARAM
+        data_id = NWRegexp::FEATURE_PARAM_ARRAY.index(Regexp.last_match(1).to_sym)
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_PARAM, data_id, get_value(Regexp.last_match(2), :rate)
+                           ))
+      when NWRegexp::BaseItem::FEATURE_ELEMENT_RATE
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_ELEMENT_RATE, a.to_i, get_value(b, :rate)
+                             ))
+        end
+      when NWRegexp::BaseItem::FEATURE_DEBUFF_RATE
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_DEBUFF_RATE, a.to_i, get_value(b, :rate)
+                             ))
+        end
+      when NWRegexp::BaseItem::FEATURE_STATE_RATE
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_STATE_RATE, a.to_i, get_value(b, :rate)
+                             ))
+        end
+      when NWRegexp::BaseItem::FEATURE_SPARAM
+        data_id = NWRegexp::FEATURE_SPARAM_ARRAY.index(Regexp.last_match(1).to_sym)
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_SPARAM, data_id, get_value(Regexp.last_match(2), :rate)
+                           ))
+      when NWRegexp::BaseItem::ITEM_COST_SCRIMP_TYPE
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, ITEM_COST_SCRIMP_TYPE, hash
+                           ))
+      when NWRegexp::BaseItem::CERTAIN_EVASION
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CERTAIN_EVASION, get_value(Regexp.last_match(3), :rate)
+                           ))
+      when NWRegexp::BaseItem::ELEMENT_REFLECTION
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_BATTLER_ABILITY, ELEMENT_REFLECTION, get_value(id, :int)
+                             ))
+        end
+      when NWRegexp::BaseItem::REFLECTION_BOOST
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, REFLECTION, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::CERTAIN_DAMAGE_RATE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CERTAIN_DAMAGE_RATE, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::CRITICAL_BOOST
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, CRITICAL, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::ACTOR_PARAM_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, ACTOR_PARAM, hash
+                           ))
+      when NWRegexp::BaseItem::ACTOR_EXIST_PARAM_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, ACTOR_EXIST_PARAM, hash
+                           ))
+      when NWRegexp::BaseItem::CLASS_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, CLASS, hash
+                           ))
+      when NWRegexp::BaseItem::STATE_EXTEND
+        data = [SELF_STATE, TARGET_STATE]
+        id = [:自己, :相手].index(Regexp.last_match(1).to_sym)
+        hash = {}
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :int) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, data[id], hash
+                           ))
+      when NWRegexp::BaseItem::STATE_ETERNAL
+        data_id = [SELF_STATE_ETERNAL, TARGET_STATE_ETERNAL]
+        data_id = data_id[[:自己, :相手].index(Regexp.last_match(1).to_sym)]
+        array = []
+        Regexp.last_match(2).split(/\,\s?/).each { |id| array.push(get_value(id, :int)) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, data_id, array
+                           ))
+      when NWRegexp::BaseItem::HP_REGEN_INVALID
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, HP_REGEN_INVALID, true
+                           ))
+      when NWRegexp::BaseItem::CANT_MOVE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, CANT_MOVE, true
+                           ))
+      when NWRegexp::BaseItem::BATTLE_START_HP
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, BATTLE_START_HP, get_value(Regexp.last_match(1), :rate)
+                           ))
+      when NWRegexp::BaseItem::SKILL_STATE_ADD
+        hash = { self: {}, target: {} }
+        index = [:自己, :""].index(Regexp.last_match(1).to_sym)
+        Regexp.last_match(2).scan(/(\d+)\-(\d+)\-(#{NWRegexp::VALUE})/) do |a, b, c|
+          hash[[:self, :target][index]][b.to_i] = get_value(c, :rate)
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_SKILL_STATE_ADD, a.to_i, hash
+                             ))
+        end
+		# Fix for duplicate state additions
+      when NWRegexp::BaseItem::SKILL_TYPE_STATE_ADD
+        index = [:敵, :味方, :自己].index(Regexp.last_match(1).to_sym)
+        Regexp.last_match(2).scan(/(\d+)\-(\d+)\-(#{NWRegexp::VALUE})/) do |a, b, c|
+          hash = {:opponents =>{},:friends => {},:self => {} }
+          hash[[:opponents, :friends, :self][index]][b.to_i] = get_value(c, :rate)
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_SKILL_TYPE_STATE_ADD, a.to_i, hash
+                             ))
+        end
+      when NWRegexp::BaseItem::EQUIP_ABILITY_BOOST
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, EQUIP_ABILITY_BOOST, Regexp.last_match(1).to_i
+                           ))
+
+      when NWRegexp::BaseItem::FAST_MOVE_TYPE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, FAST_MOVE_TYPE, Regexp.last_match(1).to_i
+                           ))
+      when NWRegexp::BaseItem::SLOW_MOVE_TYPE
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, SLOW_MOVE_TYPE, Regexp.last_match(1).to_i
+                           ))
+      when NWRegexp::BaseItem::FEATURE_ATK_STATE
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_ATK_STATE, a.to_i, get_value(b, :rate)
+                             ))
+        end
+      when NWRegexp::BaseItem::STATE_SKILL_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)\-(#{NWRegexp::VALUE})/) { |a, b, c| hash[[a.to_i, b.to_i]] = get_value(c, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_MULTI_BOOSTER, STATE_SKILL, hash))
+      when NWRegexp::BaseItem::STATE_SKILL_TYPE_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)\-(#{NWRegexp::VALUE})/) { |a, b, c| hash[[a.to_i, b.to_i]] = get_value(c, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_MULTI_BOOSTER, STATE_SKILL_TYPE, hash))
+      when NWRegexp::BaseItem::STATE_NORMAL_ATACK_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :rate) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, STATE_NORMAL_ATACK, hash
+                           ))
+      when NWRegexp::BaseItem::PINCHI_SKILL_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :int) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, PINCHI_SKILL, hash
+                           ))
+      when NWRegexp::BaseItem::PINCHI_SKILL_TYPE_BOOST
+        hash = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) { |a, b| hash[a.to_i] = get_value(b, :int) }
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_MULTI_BOOSTER, PINCHI_SKILL_TYPE, hash
+                           ))
+      when NWRegexp::BaseItem::FULL_HP_SKILL_BOOST
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          add_feature(FEATURE_FULL_HP_SKILL_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::FULL_HP_SKILL_TYPE_BOOST
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          add_feature(FEATURE_FULL_HP_SKILL_TYPE_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::NORMAL_ATTACK_FORCE_ELEMENT
+        @add_features.push(RPG::BaseItem::Feature.new(
+                             FEATURE_BATTLER_ABILITY, NORMAL_ATTACK_FORCE_ELEMENT, true
+                           ))
+      when NWRegexp::BaseItem::SUCCUBUS
+        @add_features.push(RPG::BaseItem::Feature.new(
+          FEATURE_SUCCUBUS
+        ))
+      when NWRegexp::BaseItem::PENETRATION_ELEMENT
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @add_features.push(RPG::BaseItem::Feature.new(FEATURE_PENETRATION_ELEMENT, id.to_i, true))
+        end
+      when NWRegexp::BaseItem::ALL_ADD_ELEMENT
+        Regexp.last_match(1).split(/\,\s?/).each do |id| 
+          @add_features.push(RPG::BaseItem::Feature.new(FEATURE_ALL_ADD_ELEMENT, id.to_i, true))
+        end
+      when NWRegexp::BaseItem::EX_CATEGORY_BOOSTER
+        index = [:与, :被]
+        id = FEATURE_EX_CATEGORY_ATTACK + index.index((Regexp.last_match(1)[0]).to_sym)
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(id, a.to_i, get_value(b,:rate)))
+        end
+      when NWRegexp::BaseItem::WEAPON_RATE_BONUS
+        @data_ex[:weapon_rate_bonus] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @data_ex[:weapon_rate_bonus].push(id.to_i)
+        end
+      when NWRegexp::BaseItem::SKILL_ADD_PARAM
+        stype = Regexp.last_match(1).to_i
+        param = Regexp.last_match(2).to_i + 1
+        add_param = Regexp.last_match(3).to_i + 1
+        rate = get_value(Regexp.last_match(4), :rate)
+        @add_features.push(RPG::BaseItem::Feature.new(FEATURE_STYPE_ADD_PARAM, stype, [param, add_param, rate]))
+      when NWRegexp::BaseItem::SKILL_COMBO
+        code = Regexp.last_match(1) == "タイプ" ? FEATURE_SKILL_TYPE_COMBO : FEATURE_SKILL_COMBO
+        Regexp.last_match(2).scan(/(\d+)\-(\d+)/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(code, a.to_i, b.to_i))
+        end
+      when NWRegexp::BaseItem::SKILL_UNSTOPPABLE
+        data_id = Regexp.last_match(1) == "タイプ" ? SKILL_TYPE_UNSTOPPABLE : SKILL_UNSTOPPABLE
+        Regexp.last_match(2).split(/\,\s?/).each do |id|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_BATTLER_ABILITY, data_id, id.to_i
+                             ))
+        end
+      when NWRegexp::BaseItem::EX_CATEGORY_BOOSTER_BONUS
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(FEATURE_EX_CATEGORY_ATTACK_BONUS, a.to_i, get_value(b,:rate)))
+        end
+      when NWRegexp::BaseItem::SKILL_PLUS_ATTACK
+        data_id = Regexp.last_match(1) == "タイプ" ? FEATURE_SKILL_TYPE_PLUS_ATTACK : FEATURE_SKILL_PLUS_ATTACK
+        Regexp.last_match(2).scan(/(\d+)\-(\d+)/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               data_id, a.to_i, b.to_i
+                             ))
+        end
+      when NWRegexp::BaseItem::ADD_ELEMENT
+        @add_features.push(RPG::BaseItem::Feature.new(
+                            FEATURE_ADD_ELEMENT, Regexp.last_match(1).to_i, Regexp.last_match(2).to_i
+                          ))
+      when NWRegexp::BaseItem::STATE_RATE_FIX
+        data = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+            FEATURE_STATE_RATE_FIX, a.to_i, get_value(b, :rate)
+          ))
+        end
+      when NWRegexp::BaseItem::ELEMENT_RATE_FIX
+        data = {}
+        Regexp.last_match(1).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+            FEATURE_ELEMENT_RATE_FIX, a.to_i, get_value(b, :rate)
+          ))
+        end
+      when NWRegexp::BaseItem::AUTO_SKILL_INVALID
+        index = NWRegexp::BaseItem::AutoSkillInvalid::ID_ARRAY.at(
+          NWRegexp::BaseItem::AutoSkillInvalid::INVALID_ARRAY.index(
+            Regexp.last_match(1)
+            )
+          )
+        Regexp.last_match(2).split(/\,\s?/).each{|id|
+          @add_features.push(RPG::BaseItem::Feature.new(
+            FEATURE_AUTO_SKILL_INVALID, index, id.to_i
+          ))
+        }
+      when NWRegexp::BaseItem::SKILL_PLUS_ATTACK_ONE
+        data_id = Regexp.last_match(1) == "タイプ" ? FEATURE_SKILL_TYPE_PLUS_ATTACK_ONE : FEATURE_SKILL_PLUS_ATTACK_ONE
+        Regexp.last_match(2).scan(/(\d+)\-(\d+)/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               data_id, a.to_i, b.to_i
+                             ))
+        end
+      when NWRegexp::BaseItem::SKILL_PLUS_ATTACK_ONE_RANDOM
+        data_id = Regexp.last_match(1) == "タイプ" ? FEATURE_SKILL_TYPE_PLUS_ATTACK_ONE_RANDOM : FEATURE_SKILL_PLUS_ATTACK_ONE_RANDOM
+        Regexp.last_match(2).scan(/(\d+)\-(\d+)/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               data_id, a.to_i, b.to_i
+                             ))
+        end
+      when NWRegexp::BaseItem::SKILL_SCOPE_ALL
+        fid = Regexp.last_match(1) == "タイプ" ? FEATURE_SKILL_TYPE_SCOPE_ALL : FEATURE_SKILL_SCOPE_ALL
+        Regexp.last_match(2).split(/\,\s?/).each do |id|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               fid, id.to_i, true
+                             ))
+        end
+      when NWRegexp::BaseItem::SKILL_SCOPE_ONE
+        fid = Regexp.last_match(1) == "タイプ" ? FEATURE_SKILL_TYPE_SCOPE_ONE : FEATURE_SKILL_SCOPE_ONE
+        Regexp.last_match(2).scan(/(\d+)\-(#{NWRegexp::VALUE})/) do |a, b|
+          @add_features.push(RPG::BaseItem::Feature.new(
+            fid, a.to_i, get_value(b, :rate)
+          ))
+        end
+      when NWRegexp::BaseItem::EX_CATEGORY
+        Regexp.last_match(1).split(/\,\s?/).map do |item|
+          add_feature(FEATURE_EX_CATEGORY, item.to_i, true)
+        end
+      when NWRegexp::BaseItem::SKILL_TYPE_COST_ZERO
+        type = Regexp.last_match(1).to_sym
+        Regexp.last_match(2).split(/\,\s?/).each do |id|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                               FEATURE_SKILL_TYPE_COST_ZERO, [type, id.to_i], true
+                             ))
+        end
+      when NWRegexp::BaseItem::SKILL_COST_ZERO
+        type = Regexp.last_match(1).to_sym
+        Regexp.last_match(2).split(/\,\s?/).each do |id|
+          @add_features.push(RPG::BaseItem::Feature.new(
+                              FEATURE_SKILL_COST_ZERO, [type, id.to_i], true
+                             ))
+        end
+      when NWRegexp::BaseItem::COST_ZERO
+        type = Regexp.last_match(1).to_sym
+        @add_features.push(RPG::BaseItem::Feature.new(
+                              FEATURE_COST_ZERO, type, true
+                           ))
+      when NWRegexp::BaseItem::EX_VALUE_BOOSTER
+        id = Booster::BATTLE_COUNT + NWRegexp::EX_VALUES.index(Regexp.last_match(1).to_sym)
+        add_feature(FEATURE_MULTI_BOOSTER, id, get_value(Regexp.last_match(2), :rate))
+      when NWRegexp::BaseItem::ENEMY_NUMBER_BOOSTER
+        index = [:複数, :単体]
+        id = Booster::ENEMY_MULTI + index.index(Regexp.last_match(1).to_sym)
+        add_feature(FEATURE_MULTI_BOOSTER, id, get_value(Regexp.last_match(2), :rate))
+      when NWRegexp::BaseItem::ENEMY_NUMBER_SKILL_BOOSTER
+        index = [:複数, :単体]
+        data_id = FEATURE_ENEMY_MULTI_SKILL_BOOST + index.index(Regexp.last_match(1).to_sym) * 2
+        data_id += 1 if Regexp.last_match(2) == "タイプ"
+        Regexp.last_match(3).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(data_id, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::WTYPE_ATTACK_BOOSTER
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(FEATURE_WEAPON_TYPE_ATTACK_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::ATYPE_DEFENCE_BOOSTER
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(FEATURE_ARMOR_TYPE_DEFENCE_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::ITEM_DAMAGE_BOOSTER
+        add_feature(FEATURE_MULTI_BOOSTER, Booster::ITEM_DAMAGE, get_value(Regexp.last_match(1), :rate))
+      when NWRegexp::BaseItem::STATE_EFFECT_BOOSTER
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(FEATURE_STATE_EFFECT_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::STATE_DAMAGE_BOOSTER
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(FEATURE_STATE_DAMAGE_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::WIELD_BOOSTER
+        index = [:一, :二]
+        data_id = index.index(Regexp.last_match(1).to_sym) + 1
+        add_feature(FEATURE_WIELD_BOOST, data_id, [
+                      get_value(Regexp.last_match(2), :rate), get_value(Regexp.last_match(3), :rate)
+                    ])
+      when NWRegexp::BaseItem::BATTLE_START_STATE
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(FEATURE_BATTLE_START_STATE, 0, [a.to_i, get_value(b, :int)])
+        end
+      when NWRegexp::BaseItem::MULTI_ELEMENT
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          array.push(id.to_i)
+        end
+        add_feature(FEATURE_MULTI_ELEMENT, 0, array)
+      when NWRegexp::BaseItem::DISPLAY_ID
+        @data_ex[:sort_id] = Regexp.last_match(1).to_f
+      when NWRegexp::BaseItem::PARAM_NEUTRALIZE
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          add_feature(FEATURE_PARAM_NEUTRALIZE, id.to_i + 1, true)
+        end
+      when NWRegexp::BaseItem::SAME_ELEMENT_DAMAGE_BONUS
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          add_feature(FEATURE_SAME_ELEMENT_DAMAGE_BOOST, a.to_i, get_value(b, :rate))
+        end
+      when NWRegexp::BaseItem::STATE_BOOST_PLUS
+        add_feature(FEATURE_STATE_BOOST_PLUS, 0, get_value(Regexp.last_match(1), :rate))
+      when NWRegexp::BaseItem::LEARNING
+        add_feature(FEATURE_LEARNING, 0, true)
+      when NWRegexp::BaseItem::SLOW_MOVE_ALL
+        add_feature(FEATURE_SLOW_MOVE_ALL, 0, true)
+      when NWRegexp::BaseItem::FAST_MOVE_ALL
+        add_feature(FEATURE_FAST_MOVE_ALL, 0, true)
+      when NWRegexp::BaseItem::SKILL_TYPE_DEFENCE_PENETRATION
+        Regexp.last_match(1).split(/,\s?/).each do |id|
+          add_feature(FEATURE_SKILL_TYPE_DEFENCE_PENETRATION, id.to_i, true)
+        end
+      when NWRegexp::BaseItem::DUAL_SHIELD
+        add_feature(FEATURE_SLOT_TYPE, 2, true)
+      when NWRegexp::BaseItem::DUAL_SHIELD_ADD_ABILITY
+        add_feature(FEATURE_DUAL_SHIELD_ADD_ABILITY, Regexp.last_match(1).to_i, true)
+      when NWRegexp::BaseItem::STATE_CHAIN
+        Regexp.last_match(1).scan(/(\d+)-(\d+)/) do |a, b|
+          add_feature(FEATURE_STATE_CHAIN, a.to_i, b.to_i)
+        end
+      when NWRegexp::BaseItem::CERTAIN_REFLECTION
+        add_feature(FEATURE_BATTLER_ABILITY, CERTAIN_REFLECTION, get_value(Regexp.last_match(1), :rate))
+      end
+    end
+  end
+  #--------------------------------------------------------------------------
+  # ● 秘石かどうか
+  #--------------------------------------------------------------------------
+  def enchant_stone?
+    @data_ex.key?(:enchant_stone_id)
+  end
+end
+
+class RPG::Enemy < RPG::BaseItem
+  alias nw_h_enemy_note_analyze nw_note_analyze
+  def nw_note_analyze
+    nw_h_enemy_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::Enemy::HP_INFINITE
+        @data_ex[:hp_infinite] = true
+      when NWRegexp::Enemy::MP_INFINITE
+        @data_ex[:mp_infinite] = true
+      when NWRegexp::Enemy::DEFEAT_MESSAGE
+        @data_ex[:defeat_message] = Regexp.last_match(1)
+      when NWRegexp::Enemy::ESCAPE_NOT_COUNT
+        @data_ex[:escape_not_count?] = true
+      end
+    end
+  end
+
+  def defeat_message
+    @data_ex.key?(:defeat_message) ? @data_ex[:defeat_message] : ""
+  end
+end
+
+#==============================================================================
+# ■ RPG::UsableItem
+#==============================================================================
+class RPG::UsableItem < RPG::BaseItem
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_usable_item_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::UsableItem::HEEL_REVERSE_IGNORE
+        @data_ex[:heel_reverse_ignore] = true
+      when NWRegexp::UsableItem::CONSIDERATE_REVISE
+        @data_ex[:considerate_revise] = Regexp.last_match(1).to_f * 0.01
+      when NWRegexp::UsableItem::PAY_LIFE
+        @data_ex[:pay_life?] = true
+      when NWRegexp::UsableItem::RANDOM_INVOKE
+        @data_ex[:random_invoke] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:random_invoke].push(id.to_i) }
+      when NWRegexp::UsableItem::MULTI_INVOKE
+        @data_ex[:multi_invoke] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:multi_invoke].push(id.to_i) }
+      when NWRegexp::UsableItem::ADD_ANIME
+        @data_ex[:add_anime] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:add_anime].push(id.to_i) }
+      when NWRegexp::UsableItem::ELEMENT_EX
+        @data_ex[:element_ex] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:element_ex].push(id.to_i) }
+      when NWRegexp::UsableItem::WEAPON_RATE
+        @data_ex[:weapon_rate] ||= {}
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          @data_ex[:weapon_rate][a.to_i] = b.to_f * 0.01
+        end
+      when NWRegexp::UsableItem::APPLY_PHARMACOLOGY
+        @data_ex[:apply_pharmacology?] = true
+      when NWRegexp::UsableItem::WARP_ITEM
+        @data_ex[:warp_item?] = true
+      when NWRegexp::UsableItem::PENETRATE
+        @data_ex[:penetrate] ||= 0
+        @data_ex[:penetrate] |= 0x1 unless Regexp.last_match(1).to_s.empty?
+        @data_ex[:penetrate] |= 0x2 unless Regexp.last_match(2).to_s.empty?
+      when NWRegexp::UsableItem::SLOT
+        @data_ex[:use_slot?] = true
+      when NWRegexp::UsableItem::POKER
+        @data_ex[:use_poker?] = true
+      when NWRegexp::UsableItem::THROW
+        @data_ex[:throw?] = true
+      when NWRegexp::UsableItem::ADD_STEAL
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_STEAL, Regexp.last_match(1).to_i))
+      when NWRegexp::UsableItem::ITEM_GET
+        id = []; num = []
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) { |a, b| id.push(a.to_i); num.push(b.to_i) }
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_GET_ITEM, id.size, id, num))
+      when NWRegexp::UsableItem::ADD_DEFENSE_WALL
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_DEFENSE_WALL, Regexp.last_match(1).to_i))
+      when NWRegexp::UsableItem::OVER_DRIVE
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_OVER_DRIVE, Regexp.last_match(1).to_i))
+      when NWRegexp::UsableItem::GAIN_EXP
+        data_id = %w[基本 職業 種族].index(Regexp.last_match(1).to_s)
+        value1  = Regexp.last_match(3).to_i
+        value2  = (Regexp.last_match(2).to_s != "非表示")
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_GAIN_EXP, data_id, value1, value2))
+      when NWRegexp::UsableItem::DEATH_ELEMENT
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_DEATH_ELEMENT, 1, 1.0, id: Regexp.last_match(1).to_i, opt: Regexp.last_match(2).nil? ? false : true))
+      when NWRegexp::UsableItem::DEATH_STATE
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_DEATH_STATE, Regexp.last_match(2).to_i, Regexp.last_match(3).nil? ? 1.0 : Regexp.last_match(3).to_f / 100.0, id: Regexp.last_match(1).to_i, opt: Regexp.last_match(4).nil? ? false : true))
+      when NWRegexp::UsableItem::PREDATION
+        bit = 0
+        bit |= 0x1 unless Regexp.last_match(2).to_s.empty?
+        bit |= 0x2 unless Regexp.last_match(3).to_s.empty?
+        bit |= 0x4 unless Regexp.last_match(4).to_s.empty?
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_PREDATION, 0, Regexp.last_match(1).split(",").collect { |id| id.to_i }, bit))
+      when NWRegexp::UsableItem::SELF_ENCHANT
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_SELF_ENCHANT, Regexp.last_match(1).to_i, Regexp.last_match(2).nil? ? 1.0 : Regexp.last_match(2).to_f / 100.0, Regexp.last_match(3).nil? ? false : true))
+      when NWRegexp::UsableItem::RESTORATION
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_RESTORATION, Regexp.last_match(1).to_sym, Regexp.last_match(2).to_i * 0.01))
+      when NWRegexp::UsableItem::BINDING_START
+        @data_ex[:binding_start?] = true
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_BINDING_START, Regexp.last_match(1).to_i, NWConst::State::UBIND, NWConst::State::TBIND))
+      when NWRegexp::UsableItem::EBINDING_START
+        @data_ex[:binding_start?] = true
+        # 使用効果は通常版と共通
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_BINDING_START, -1, NWConst::State::EUBIND, NWConst::State::ETBIND))
+      when NWRegexp::UsableItem::BIND_RESIST
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_BIND_RESIST, 1))
+      when NWRegexp::UsableItem::REPEATS_EX
+        @data_ex[:repeat_ex] = Regexp.last_match(1).to_i
+      when NWRegexp::UsableItem::TARGET_REJECT_USER
+        @data_ex[:target_reject_user?] = true
+      when NWRegexp::UsableItem::ERASE_DEFENSE_WALL
+        @data_ex[:erase_defense_wall?] = true
+      when NWRegexp::UsableItem::INCLUDE_BENCH
+        @data_ex[:include_bench?] = true
+      when NWRegexp::UsableItem::PERSONA_CHANGE
+        @data_ex[:persona_change] = Regexp.last_match(1).to_i
+      when NWRegexp::UsableItem::FAST_MOVE
+        @data_ex[:fast_move?] = true
+      when NWRegexp::UsableItem::SLOW_MOVE
+        @data_ex[:slow_move?] = true
+      when NWRegexp::UsableItem::ALLOWANCE
+        @data_ex[:allowance?] = true
+      when NWRegexp::UsableItem::SELF_ENCHANT_REGEN
+        @effects_ex.push(RPG::UsableItem::Effect.new(EFFECT_SELF_ENCHANT_REGEN, Regexp.last_match(1).to_i, Regexp.last_match(2).nil? ? 1.0 : Regexp.last_match(2).to_f / 100.0, Regexp.last_match(3).nil? ? false : true))
+      when NWRegexp::UsableItem::STATE_BOOST
+        @data_ex[:state_boost] = {}
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          @data_ex[:state_boost][a.to_i] = b.to_f * 0.01
+        end
+      when NWRegexp::UsableItem::PINCHI_BOOST
+        @data_ex[:pinchi_boost] = Regexp.last_match(1).to_i
+      when NWRegexp::UsableItem::FULL_HP_BOOST
+        @data_ex[:full_hp_boost] = Regexp.last_match(1).to_i
+      when NWRegexp::UsableItem::EXT_SCOPE_SETTING
+        scope = Regexp.last_match(1).split(/\,\s?/).map { |id| id.to_i }
+        @data_ex[:ext_scope] ||= 0x0
+        NWRegexp::SEX_ARRAY.each.with_index do |id, index|
+          @data_ex[:ext_scope] |= id if scope.include?(index)
+        end
+      when NWRegexp::UsableItem::DISPLAY_NAME
+        @data_ex[:display_name] = Regexp.last_match(1)
+      when NWRegexp::UsableItem::LEARNING_SKILL
+        @data_ex[:learning_skill] = Regexp.last_match(1).to_i
+      end
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 速攻発動？
+  #--------------------------------------------------------------------------
+  def fast_move?
+    @data_ex.key?(:fast_move?) ? true : false
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 遅攻発動？
+  #--------------------------------------------------------------------------
+  def slow_move?
+    @data_ex.key?(:slow_move?) ? true : false
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 手加減？
+  #--------------------------------------------------------------------------
+  def allowance?
+    @data_ex.key?(:allowance?) ? true : false
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ステート特攻
+  #--------------------------------------------------------------------------
+  def state_boost(state)
+    return 1.0 unless @data_ex.key?(:state_boost)
+
+    @data_ex[:state_boost][state.id] ? 1.0 + @data_ex[:state_boost][state.id] : 1.0
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ステート特攻
+  #--------------------------------------------------------------------------
+  def pinchi_boost
+    @data_ex.key?(:pinchi_boost) ? @data_ex[:pinchi_boost] : 0
+  end
+end
+
+#==============================================================================
+# ■ RPG::Class
+#==============================================================================
+class RPG::Class < RPG::BaseItem
+  def get_value(value, type)
+    if NWRegexp::ENCHANT_VALUE.match(value)
+      /\[(.*?)\]/i.match(value)
+      return Enchant_Value.new(type, Regexp.last_match(1))
+    end
+    case type
+    when :rate
+      return value.to_f * 0.01
+    when :int
+      return value.to_i
+    when :string
+      return value
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_class_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::Class::CLASS_LANK
+        @data_ex[:class_lank] = Regexp.last_match(1).to_i
+      when NWRegexp::Class::NEED_JOBCHANGE_CLASS
+        @data_ex[:need_jobchange_class] ||= []
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          @data_ex[:need_jobchange_class].push(id: a.to_i, lv: b.to_i)
+        end
+      when NWRegexp::Class::SELECT_JOBCHANGE_CLASS
+        @data_ex[:select_jobchange_class] ||= []
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          @data_ex[:select_jobchange_class].push(id: a.to_i, lv: b.to_i)
+        end
+      when NWRegexp::Class::NEED_JOBCHANGE_ITEM
+        @data_ex[:need_jobchange_item] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @data_ex[:need_jobchange_item].push(id.to_i)
+        end
+      when NWRegexp::Class::MEMORIZE_CAPACITY_REVISE
+        @data_ex[:memorize_capacity_revise] ||= {}
+        Regexp.last_match(1).split(/\,\s?/).each_with_index do |capacity, i|
+          @data_ex[:memorize_capacity_revise][i + 1] = capacity.to_i
+        end
+      when NWRegexp::Class::PREFIX
+        @data_ex[:prefix] ||= []
+        @data_ex[:prefix] << Regexp.last_match(1)
+      when NWRegexp::Class::RARE_PREFIX
+        @data_ex[:rare_prefix] ||= []
+        @data_ex[:rare_prefix] << Regexp.last_match(1)
+      when NWRegexp::Class::PARAM_BONUS
+        @data_ex[:bonus_params] ||= [0] * 8
+        data_id = NWRegexp::FEATURE_PARAM_ARRAY.index(Regexp.last_match(1).to_sym)
+        @data_ex[:bonus_params][data_id] = get_value(Regexp.last_match(2), :int)
+      when NWRegexp::Class::MAX_SP_BONUS
+        @data_ex[:bonus_max_sp] = get_value(Regexp.last_match(1), :int)
+      when NWRegexp::EquipItem::FINAL_BONUS
+        @data_ex[:final_bonus] = get_value(Regexp.last_match(1), :rate)
+      when NWRegexp::Class::BOTH_DISABLE
+        @data_ex[:both_disable] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @data_ex[:both_disable].push(id.to_i)
+        end
+      when NWRegexp::Class::DUMMY_ENCHANT_COLOR
+        @data_ex[:dummy_enchant_color] = Regexp.last_match(1).to_i
+      when NWRegexp::Class::SET_EFFECT
+        effects = Regexp.last_match(1).split(/\,\s?/).map do |id|
+          id.to_i
+        end
+        @data_ex[:set_effect] = RPG::SetEffect.new(id, name, effects)
+      end
+    end
+  end
+
+  def dummy_enchant_color
+    @data_ex.key?(:dummy_enchant_color) ? @data_ex[:dummy_enchant_color] : 0
+  end
+
+  def bonus_params
+    @data_ex.key?(:bonus_params) ? @data_ex[:bonus_params] : [0] * 8
+  end
+
+  def bonus_max_sp
+    @data_ex.key?(:bonus_max_sp) ? @data_ex[:bonus_max_sp] : 0
+  end
+
+  def prefix
+    @data_ex.key?(:prefix) ? @data_ex[:prefix] : []
+  end
+
+  def rare_prefix
+    @data_ex.key?(:rare_prefix) ? @data_ex[:rare_prefix] : []
+  end
+
+  def both_disable
+    @data_ex.key?(:both_disable) ? @data_ex[:both_disable] : []
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 最終ボーナス
+  #--------------------------------------------------------------------------
+  def final_bonus
+    data_ex.key?(:final_bonus) ? @data_ex[:final_bonus] + 1.0 : 1.0
+  end
+end
+
+#==============================================================================
+# ■ RPG::State
+#==============================================================================
+class RPG::State < RPG::BaseItem
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::State::TMP_EQUIP
+        @data_ex[:tmp_equip] = Regexp.last_match(1).to_i
+      when NWRegexp::State::DEATH
+        @data_ex[:death?] = true
+      when NWRegexp::State::DEATH_PLEASURE
+        @data_ex[:death_pleasure?] = true
+      when NWRegexp::State::ALL_DEAD
+        @data_ex[:all_dead] = true
+      when NWRegexp::State::DISPLAY_NAME
+        if Regexp.last_match(1) == "なし"
+          @data_ex[:display?] = false
+        else
+          @data_ex[:display_name] = Regexp.last_match(1)
+        end
+      when NWRegexp::State::SEAL_ACTION
+        @data_ex[:seal_action] ||= []
+        Regexp.last_match(1).split(/,\s?/).each { |id| @data_ex[:seal_action].push(id.to_i) }
+      when NWRegexp::State::ADD_ACTION
+        @data_ex[:add_action] ||= []
+        Regexp.last_match(1).scan(/(\d+)-(\d+)/) do |a, b| 
+          action = RPG::Enemy::Action.new
+          action.skill_id = a.to_i
+          action.rating = b.to_i
+          @data_ex[:add_action].push(action)
+        end
+      end
+    end
+  end
+end
+
+#==============================================================================
+# ■ RPG::Skill
+#==============================================================================
+class RPG::Skill < RPG::UsableItem
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_skill_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::Skill::HP_COST_EX
+        @data_ex[:hp_cost_ex] = {}
+        @data_ex[:hp_cost_ex][:data] = Regexp.last_match(3).to_i
+        @data_ex[:hp_cost_ex][:abs?] = Regexp.last_match(1) ? true : false
+        @data_ex[:hp_cost_ex][:max?] = Regexp.last_match(2) == "MAXHP"
+        @data_ex[:hp_cost_ex][:per?] = Regexp.last_match(4).nil? ? false : true
+      when NWRegexp::Skill::MP_COST_EX
+        @data_ex[:mp_cost_ex] = {}
+        @data_ex[:mp_cost_ex][:data] = Regexp.last_match(3).to_i
+        @data_ex[:mp_cost_ex][:abs?] = Regexp.last_match(1) ? true : false
+        @data_ex[:mp_cost_ex][:max?] = Regexp.last_match(2) == "MAXMP"
+        @data_ex[:mp_cost_ex][:per?] = Regexp.last_match(4).nil? ? false : true
+      when NWRegexp::Skill::TP_COST_EX
+        @data_ex[:tp_cost_ex] = {}
+        @data_ex[:tp_cost_ex][:data] = Regexp.last_match(3).to_i
+        @data_ex[:tp_cost_ex][:abs?] = Regexp.last_match(1) ? true : false
+        @data_ex[:tp_cost_ex][:max?] = Regexp.last_match(2) == "MAXTP"
+        @data_ex[:tp_cost_ex][:per?] = Regexp.last_match(4).nil? ? false : true
+      when NWRegexp::Skill::GOLD_COST
+        @data_ex[:gold_cost] = Regexp.last_match(1).to_i
+      when NWRegexp::Skill::ITEM_COST
+        @data_ex[:item_cost] ||= []
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) { |a, b| @data_ex[:item_cost].push(id: a.to_i, num: b.to_i) }
+      when NWRegexp::Skill::NEED_ITEM
+        @data_ex[:need_item] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:need_item].push(id.to_i) }
+      when NWRegexp::Skill::NEED_DUAL_WIELD
+        @data_ex[:need_dual_wield?] = true
+      when NWRegexp::Skill::NEED_DUAL_SHIELD
+        @data_ex[:need_dual_shield?] = true
+      when NWRegexp::Skill::FRIEND_DRAW
+        @data_ex[:friend_draw?] = true
+      when NWRegexp::Skill::STYPE_EX
+        @data_ex[:stype_ex] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:stype_ex].push(id.to_i) }
+      when NWRegexp::Skill::SKILL_HIT
+        @data_ex[:skill_hit] = Regexp.last_match(1).to_f * 0.01
+      when NWRegexp::Skill::SKILL_HIT_FACTOR
+        @data_ex[:skill_hit_factor] = Regexp.last_match(1).to_f * 0.01
+      when NWRegexp::Skill::NOT_LEARN_ACTORS
+        @data_ex[:not_learn_actors] = true
+      when NWRegexp::Skill::NOT_LEARN_ACTORS_SET
+        @data_ex[:not_learn_actors] = true
+      when NWRegexp::Skill::MEMORIZE_COST
+        @data_ex[:memorize_cost] = Regexp.last_match(1).to_i
+      when NWRegexp::Skill::PASSIVE_ARMORS
+        @data_ex[:passive_armors] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:passive_armors].push(id.to_i) }
+      when NWRegexp::Skill::NOT_JUMBLE_MEMORIZE
+        @data_ex[:not_jumble_memorize] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each { |id| @data_ex[:not_jumble_memorize].push(id.to_i) }
+      when NWRegexp::Enemy::LIB_NAME
+        @data_ex[:lib_name] = Regexp.last_match(1).to_s
+      when NWRegexp::Skill::INVISIBLE
+        @data_ex[:visible?] = true
+      when NWRegexp::Skill::RECHARGE
+        @data_ex[:recharge] = Regexp.last_match(1).to_i
+      when NWRegexp::Skill::CYCLE
+        @data_ex[:cycle] = "($game_troop.turn_count - #{Regexp.last_match(1)}) % #{Regexp.last_match(2)} == 0"
+      when NWRegexp::Skill::LONELY_UNUSED
+        @data_ex[:lonely_unused?] = true
+      when NWRegexp::Skill::CRITICAL_EX
+        @data_ex[:critical_ex] = Regexp.last_match(1).to_i
+      when NWRegexp::Skill::AUTO_BATTLE_NORMAL_USEBLE
+        @data_ex[:use_normal] = true
+      when NWRegexp::Skill::SUCCUBUS_UNAVAILABLE
+        @data_ex[:succubus_unavailable] = true
+      when NWRegexp::Skill::EX_CATEGORY_BOOSTER
+        @data_ex[:booster_ex_category_attack] ||= {}
+        Regexp.last_match(1).scan(/(\d+)\-(\d+)/) do |a, b|
+          @data_ex[:booster_ex_category_attack][a.to_i] = b.to_f * 0.01
+        end
+      when NWRegexp::Skill::NO_INVOKE_REPEATS
+        @data_ex[:no_invoke_repeats] = true
+      when NWRegexp::Skill::INVALID_BOOST
+        @data_ex[:invalid_boost] = true
+      when NWRegexp::Skill::AUTO_BATTLE_SETTING
+        auto_battle = Regexp.last_match(1).split(/\,\s?/).map { |id| id.to_i }
+        @data_ex[:no_auto_battle] ||= [:auto, :normal, :not_mp_skill]
+        result = [:auto, :normal, :not_mp_skill].select.with_index do |_, index|
+          auto_battle.include?(index)
+        end
+        @data_ex[:no_auto_battle] -= result
+      end
+    end
+
+    if (@data_ex.fetch(:ext_scope, 0x0) & NWSex::LUCA) != 0
+      @data_ex[:ext_scope] |= NWSex::HERO
+    end
+  end
+
+  def critical_ex
+    @data_ex.key?(:critical_ex) ? @data_ex[:critical_ex] : 0
+  end
+end
+
+#==============================================================================
+# ■ RPG::Item
+#==============================================================================
+class RPG::Item < RPG::UsableItem
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  alias hima_enchant_nw_note_analyze nw_note_analyze
+  def nw_note_analyze
+    hima_enchant_nw_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::Item::ENCHANT_STONE_CATEGORY
+        @data_ex[:enchant_stone_category] = Regexp.last_match(1).to_i
+      when NWRegexp::Item::ENCHANT_STONE_ID
+        array = []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          array.push(id.to_i)
+        end
+        @data_ex[:enchant_stone_id] = array
+      end
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 秘石防具ID
+  #--------------------------------------------------------------------------
+  def enchant_stone_id
+    @data_ex.key?(:enchant_stone_id) ? @data_ex[:enchant_stone_id] : []
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 秘石カテゴリ
+  #--------------------------------------------------------------------------
+  def enchant_stone_category
+    @data_ex.key?(:enchant_stone_category) ? @data_ex[:enchant_stone_category] : nil
+  end
+end
+#==============================================================================
+# ■ RPG::EquipItem
+#==============================================================================
+class RPG::EquipItem < RPG::BaseItem
+  def get_value(value, type)
+    if NWRegexp::ENCHANT_VALUE.match(value)
+      /\[(.*?)\]/i.match(value)
+      return Enchant_Value.new(type, Regexp.last_match(1))
+    end
+    case type
+    when :rate
+      return value.to_f * 0.01
+    when :int
+      return value.to_i
+    when :string
+      return value
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● メモ欄解析処理
+  #--------------------------------------------------------------------------
+  def nw_note_analyze
+    nw_kure_equip_note_analyze
+    note.each_line do |line|
+      case line
+      when NWRegexp::EquipItem::EXCLUSIVE_ACTORS
+        @data_ex[:exclusive_actors] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @data_ex[:exclusive_actors].push(id.to_i)
+        end
+      when NWRegexp::EquipItem::NOT_ENCHANT_ID
+        @data_ex[:not_enchant_id] ||= []
+        Regexp.last_match(1).split(/\,\s?/).each do |id|
+          @data_ex[:not_enchant_id].push(id.to_i)
+        end
+      when NWRegexp::EquipItem::FINAL_BONUS
+        @data_ex[:final_bonus] = get_value(Regexp.last_match(1), :rate)
+      when NWRegexp::EquipItem::PARAM_OVERRIDE
+        param_id = NWRegexp::FEATURE_PARAM_ARRAY.index(Regexp.last_match(1).to_sym)
+        @params[param_id] = Regexp.last_match(2).to_i
+      when NWRegexp::EquipItem::SELECTABLE
+        @data_ex[:equip_selectable] = true
+      end
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● エンチャント不可能力ID取得
+  #--------------------------------------------------------------------------
+  def not_enchant_id
+    @data_ex.key?(:not_enchant_id) ? @data_ex[:not_enchant_id] : []
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 最終ボーナス
+  #--------------------------------------------------------------------------
+  def final_bonus
+    @data_ex.key?(:final_bonus) ? @data_ex[:final_bonus] + 1.0 : 1.0
+  end
+end
+
+# 追加特徴処理全般
+
+class Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # ● 正常判定
+  #--------------------------------------------------------------------------
+  def normal?
+    exist? && restriction == 0 && !cant_move?
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 通常能力値の取得
+  #--------------------------------------------------------------------------
+  def param(param_id)
+    value = param_base(param_id) + param_plus(param_id)
+    value *= param_rate(param_id) * param_buff_rate(param_id)
+    if $game_party.in_battle && (2..7).include?(param_id)
+      value *= (booster_fall_hp && hp_rate < booster_fall_hp[:per]) ? 1.0 + booster_fall_hp[:boost] : 1.0
+      value *= booster_full_hp_status_rate
+      value *= 1.0 + (friends_unit.dead_members.size * over_soul)
+      value *= terrain_revise
+    end
+    value *= booster_class
+    value *= booster_actor_param
+    value *= booster_actor_exist_param(param_id)
+    value *= param_equip_boost(param_id)
+    Integer(value.clamp(param_min(param_id), param_max(param_id)))
+  end
+
+  #--------------------------------------------------------------------------
+  # ● タイプ別消費アイテム節約率を取得
+  #--------------------------------------------------------------------------
+  def item_cost_scrimp_type(skill)
+    list = [0]
+    skill.stypes.each do |id|
+      features_with_id(FEATURE_BATTLER_ABILITY, ITEM_COST_SCRIMP_TYPE).each do |ft|
+        list.push(ft.value[id]) if ft.value[id]
+      end
+    end
+    list.max
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 攻撃時属性の取得
+  #--------------------------------------------------------------------------
+  def atk_elements
+    normal_attack_force_element ? [1] : features_set(FEATURE_ATK_ELEMENT)
+  end
+
+  def normal_attack_force_element
+    !features_with_id(FEATURE_BATTLER_ABILITY, NORMAL_ATTACK_FORCE_ELEMENT).empty?
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ステート特攻スキルの取得
+  #--------------------------------------------------------------------------
+  def booster_state_skill(state, skill)
+    1.0 + features_sum_booster(STATE_SKILL, [skill.id, state.id])
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ステート特攻スキルタイプの取得
+  #--------------------------------------------------------------------------
+  def booster_state_skill_type(state, skill)
+    1.0 + skill.stypes.inject(0.0) do |_sum, stype_id|
+      features_sum_booster(STATE_SKILL_TYPE, [stype_id, state.id])
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ステート特攻通常攻撃の取得
+  #--------------------------------------------------------------------------
+  def booster_state_normal_attack(state)
+    1.0 + features_sum_booster(STATE_NORMAL_ATACK, state.id)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 必中回避率を取得
+  #--------------------------------------------------------------------------
+  def certain_evasion
+    features_xparam_rate(FEATURE_BATTLER_ABILITY, CERTAIN_EVASION)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 属性反射を取得
+  #--------------------------------------------------------------------------
+  def element_reflection(element_id)
+    features_with_id(FEATURE_BATTLER_ABILITY, ELEMENT_REFLECTION).inject([]) { |a, ft| a << ft.value }.include?(element_id)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 反射ダメージ増加率を取得
+  #--------------------------------------------------------------------------
+  def booster_reflection
+    1.0 + features_sum(FEATURE_MULTI_BOOSTER, REFLECTION)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 必中ダメージ率を取得
+  #--------------------------------------------------------------------------
+  def certain_damage_rate
+    features_pi(FEATURE_BATTLER_ABILITY, CERTAIN_DAMAGE_RATE)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 会心ダメージ増加率を取得
+  #--------------------------------------------------------------------------
+  def booster_critical
+    1.0 + features_sum(FEATURE_MULTI_BOOSTER, CRITICAL)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 特定アクター能力増加率を取得
+  #--------------------------------------------------------------------------
+  def booster_actor_param
+    actor? ? 1.0 + features_sum_booster(ACTOR_PARAM, actor.original_persona_id) : 1.0
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 職業能力増加率を取得
+  #--------------------------------------------------------------------------
+  def booster_class
+    actor? ? 1.0 + features_sum_booster(CLASS, class_id) + features_sum_booster(CLASS, tribe_id) : 1.0
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 自己ステート延長取得
+  #--------------------------------------------------------------------------
+  def booster_self_state(state_id)
+    features_sum_booster(SELF_STATE, state_id).to_i
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 相手ステート延長取得
+  #--------------------------------------------------------------------------
+  def booster_target_state(state_id)
+    features_sum_booster(TARGET_STATE, state_id).to_i
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 自己ステート永久取得
+  #--------------------------------------------------------------------------
+  def self_state_eternal?(state_id)
+    features_with_id(FEATURE_BATTLER_ABILITY, SELF_STATE_ETERNAL).any? { |ft| ft.value.include?(state_id) }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 相手ステート永久取得
+  #--------------------------------------------------------------------------
+  def target_state_eternal?(state_id)
+    features_with_id(FEATURE_BATTLER_ABILITY, TARGET_STATE_ETERNAL).any? { |ft| ft.value.include?(state_id) }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● HPターン回復無効取得
+  #--------------------------------------------------------------------------
+  def hp_regen_invalid?
+    features_with_id(FEATURE_BATTLER_ABILITY, HP_REGEN_INVALID).any? { |ft| ft.value }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 行動不能取得
+  #--------------------------------------------------------------------------
+  def cant_move?
+    features_with_id(FEATURE_BATTLER_ABILITY, CANT_MOVE).any? { |ft| ft.value }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 戦闘開始時HP
+  #--------------------------------------------------------------------------
+  def battle_start_hp
+    features_min(FEATURE_BATTLER_ABILITY, BATTLE_START_HP)
+  end
+
+
+
+  def skill_state_add_effects(skill)
+    return [] if skill.nil? || !skill.is_skill?
+
+    add_effects = []
+    features_with_id(FEATURE_SKILL_STATE_ADD, skill.id).map { |ft| ft.value }.map do |hash|
+      hash.map do |k, v|
+        code =
+          case k
+          when :target
+            NWUsableEffect::EFFECT_ADD_STATE
+          when :self
+            NWUsableEffect::EFFECT_SELF_ENCHANT
+          end
+        v.map do |kk, vv|
+          add_effects << RPG::UsableItem::Effect.new(code, kk, vv)
+        end
+      end
+    end
+    features(FEATURE_SKILL_TYPE_STATE_ADD).select { |ft| skill.stypes.any? { |stype| ft.data_id == stype } }.map { |ft| ft.value }.map do |hash|
+      hash.map do |k, v|
+        code =
+          case k
+          when :self
+            NWUsableEffect::EFFECT_SELF_ENCHANT
+          when :friends
+            next unless skill.for_friend?
+
+            NWUsableEffect::EFFECT_FRIENDS_ENCHANT
+          when :opponents
+            next unless skill.for_opponent?
+
+            NWUsableEffect::EFFECT_OPPONENTS_ENCHANT
+          end
+        v.map do |kk, vv|
+          add_effects << RPG::UsableItem::Effect.new(code, kk, vv)
+        end
+      end
+    end
+    add_effects
+  end
+
+  def booster_pinchi_skill(skill)
+    features_with_id(FEATURE_MULTI_BOOSTER, PINCHI_SKILL).map do |ft|
+      ft.value.key?(skill.id) ? ft.value[skill.id] : 0
+    end.max || 0
+  end
+
+  def booster_pinchi_skill_type(skill)
+    features_with_id(FEATURE_MULTI_BOOSTER, PINCHI_SKILL_TYPE).map do |ft|
+      skill.stypes.map do |stype|
+        ft.value.key?(stype) ? ft.value[stype] : 0
+      end.max || 0
+    end.max || 0
+  end
+
+  def booster_pinchi(skill)
+    powor = [booster_pinchi_skill(skill), booster_pinchi_skill_type(skill), skill.pinchi_boost].max
+    1.0 + (1.0 - (hp.to_f / mhp)) * powor
+  end
+
+  def all_add_elements
+    features_set(FEATURE_ALL_ADD_ELEMENT)
+  end
+end
+#==============================================================================
+# ■ Game_Battler
+#==============================================================================
+class Game_Battler < Game_BattlerBase
+  #--------------------------------------------------------------------------
+  # ● スキル／アイテムの会心率計算
+  #--------------------------------------------------------------------------
+  def item_cri(user, item)
+    crit = item.is_skill? ? user.cri + item.critical_ex : user.cri
+    item.damage.critical ? crit * (1 - cev) : 0
+  end
+
+  #--------------------------------------------------------------------------
+  # ● HP の再生
+  #--------------------------------------------------------------------------
+  def regenerate_hp
+    damage = -(mhp * hrg).to_i
+    damage = 0 if damage < 0 && hp_regen_invalid?
+    perform_map_damage_effect if $game_party.in_battle && damage > 0
+    @result.hp_damage = [damage, max_slip_damage].min
+    self.hp -= @result.hp_damage
+  end
+
+  #--------------------------------------------------------------------------
+  # ● スキル／アイテムの共通使用可能条件チェック
+  #--------------------------------------------------------------------------
+  def usable_item_conditions_met?(item)
+    movable? && occasion_ok?(item) && !cant_move?
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 戦闘開始処理
+  #--------------------------------------------------------------------------
+  def on_battle_start
+    init_tp unless preserve_tp?
+    set_start_hp
+    set_counter
+    set_trigger_state
+    auto_state.each { |state_id| add_state(state_id) }
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 戦闘開始hpの設定
+  #--------------------------------------------------------------------------
+  def set_start_hp
+    @hp = [(mhp * battle_start_hp).to_i, @hp].min.to_i
+  end
+
+  def item_add_effects(item)
+    skill_state_add_effects(item)
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ 使用効果の適用
+  #--------------------------------------------------------------------------
+  def item_effect_apply(user, item, effect)
+    method_table = {
+      EFFECT_RECOVER_HP => :item_effect_recover_hp,
+      EFFECT_RECOVER_MP => :item_effect_recover_mp,
+      EFFECT_GAIN_TP => :item_effect_gain_tp,
+      EFFECT_ADD_STATE => :item_effect_add_state,
+      EFFECT_REMOVE_STATE => :item_effect_remove_state,
+      EFFECT_ADD_BUFF => :item_effect_add_buff,
+      EFFECT_ADD_DEBUFF => :item_effect_add_debuff,
+      EFFECT_REMOVE_BUFF => :item_effect_remove_buff,
+      EFFECT_REMOVE_DEBUFF => :item_effect_remove_debuff,
+      EFFECT_SPECIAL => :item_effect_special,
+      EFFECT_GROW => :item_effect_grow,
+      EFFECT_LEARN_SKILL => :item_effect_learn_skill,
+      EFFECT_COMMON_EVENT => :item_effect_common_event,
+      EFFECT_STEAL => :item_effect_steal,
+      EFFECT_DEFENSE_WALL => :item_effect_defense_wall,
+      EFFECT_OVER_DRIVE => :item_effect_over_drive,
+      EFFECT_GAIN_EXP => :item_effect_gain_exp,
+      EFFECT_DEATH_ELEMENT => :item_effect_death_element,
+      EFFECT_DEATH_STATE => :item_effect_death_state,
+      EFFECT_PREDATION => :item_effect_predation,
+      EFFECT_RESTORATION => :item_effect_restoration,
+      EFFECT_BINDING_START => :item_effect_binding_start,
+      EFFECT_BIND_RESIST => :item_effect_bind_resist
+
+    }
+    method_name = method_table[effect.code]
+    send(method_name, user, item, effect) if method_name
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ブースター補正率の取得
+  #--------------------------------------------------------------------------
+  def boost_rate(user, item, is_cnt, ref)
+    value  = 1.0
+    value *= user.item_booster_element(item)
+    value *= 1.0 + (user.friends_unit.dead_members.size * user.considerate)
+    value *= 1.0 + (user.friends_unit.dead_members.size * item.considerate_revise)
+    wrate = (user.wtypes + user.weapon_rate_bonus).uniq.map { |id| item.weapon_rate(id) }.max
+    value *= wrate if wrate
+    value *= user.pha if item.apply_pharmacology? || (!item.is_skill? && value < 0)
+    value *= user.booster_counter if is_cnt
+    value *= ref.booster_reflection if ref
+    value *= user.boost_ex_category_rate(self, item)
+    value *= user.boost_ex_count
+    value *= user.boost_equip_type_damage_rate(self)
+    value *= user.booster_item_damage(item)
+    value *= user.booster_states_damage(item)
+    value *= user.booster_same_element_damage(item)
+    user.wtypes.each do |wtype_id|
+      case item.hit_type
+      when 0 then value *= user.booster_weapon_certain(wtype_id)
+      when 1 then value *= user.booster_weapon_physical(wtype_id)
+      when 2 then value *= user.booster_weapon_magical(wtype_id)
+      end
+    end
+    if item.is_skill?
+      value *= user.boost_enemy_number_rate(item)
+      value *= user.booster_pinchi(item)
+      value *= user.booster_full_hp(item)
+      use_wtypes = user.wtypes.empty? ? [0] : user.wtypes
+      values = []
+      use_wtypes.each do |wtype_id|
+        t_value = value
+        t_value *= user.booster_wtype_skill(wtype_id, item)
+        if item == $data_skills[user.attack_skill_id]
+          t_value *= user.booster_normal_attack(wtype_id)
+        end
+        values << t_value
+      end
+      value = values.max
+      value *= user.booster_state_rate(states,item).tap do |rate| 
+        @result.state_boost = (rate > 1.0) 
+        @result.damage_rate *= (rate)
+      end
+      value *= user.booster_skill_type(item)
+      value *= user.booster_skill(item)
+      value *= item.one_rate
+    end
+    value
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ダメージの処理
+  #    呼び出し前に @result.hp_damage @result.mp_damage @result.hp_drain
+  #    @result.mp_drain が設定されていること。
+  #--------------------------------------------------------------------------
+  def execute_damage(user, item)
+    on_damage(@result.hp_damage) if @result.hp_damage > 0
+    hp_damage = [@result.hp_damage]
+    hp_damage << hp - 1 if item.allowance?
+    self.hp -= hp_damage.min
+    self.mp -= @result.mp_damage
+
+    user.hp += @result.hp_drain
+    user.mp += @result.mp_drain
+  end
+
+  #--------------------------------------------------------------------------
+  # ○ ダメージ計算
+  #--------------------------------------------------------------------------
+  def hima_count_make_damage_value(user, item, is_cnt = false, ref = nil)
+    value = item.eval_damage(user, self)
+    value *= item_element_rate(user, item)
+    value *= pdr if item.physical?
+    value *= mdr if item.magical?
+    value *= certain_damage_rate if item.certain? && item.for_opponent?
+    value *= rec if item.damage.recover?
+    value *= heel_reverse_rate(item)
+    value *= boost_rate(user, item, is_cnt, ref) unless item.invalid_boost?
+    value = apply_critical(value, user) if @result.critical
+    value = apply_variance(value, item.damage.variance)
+    value = apply_guard(value)
+    value = apply_damage_bind_turn(value, item, user)
+    value = apply_invalidate_wall(value, item)
+    value = apply_defense_wall(value, item)
+    value = apply_metal_body(value, item)
+    value = apply_stand(value, item)
+    value = apply_damage_mp_convert(value, item)
+    value = apply_damage_gold_convert(value, item)
+    value = apply_damage_mp_drain(value, item)
+    value = apply_damage_gold_drain(value, item)
+    @result.make_damage(value.to_i, item)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● ステートのカウント（ターン数および歩数）をリセット
+  #--------------------------------------------------------------------------
+  def reset_state_counts(state_id, user = nil)
+    unless @state_turns[state_id] == -1
+      state = $data_states[state_id]
+      variance = 1 + [state.max_turns - state.min_turns, 0].max
+      turn = state.min_turns + rand(variance) + booster_self_state(state_id)
+      turn += user.booster_target_state(state_id) if user
+      turn = -1 if self_state_eternal?(state_id) || (user && target_state_eternal?(state_id))
+      @state_turns[state_id] = turn
+    end
+    @state_steps[state_id] = state.steps_to_remove
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 「使用成功時に対象数に関わらず１度適用する使用効果」の適用
+  #--------------------------------------------------------------------------
+  def item_one_use_effect_apply(user, item, effect, called_scene)
+    user = user.master_observer
+    method_table = {
+      NWUsableEffect::EFFECT_GET_ITEM => :item_one_use_effect_get_item,
+      NWUsableEffect::EFFECT_SELF_ENCHANT => :item_one_use_effect_self_enchant,
+      NWUsableEffect::EFFECT_SELF_ENCHANT_REGEN => :item_one_use_effect_self_enchant_regen,
+      NWUsableEffect::EFFECT_FRIENDS_ENCHANT => :item_one_use_effect_friends_enchant,
+      NWUsableEffect::EFFECT_OPPONENTS_ENCHANT => :item_one_use_effect_opponents_enchant,
+      NWUsableEffect::EFFECT_OVER_DRIVE => :item_one_use_effect_over_drive
+    }
+    method_name = method_table[effect.code]
+    send(method_name, user, item, effect, called_scene) if method_name
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 使用効果［対象ステート付与］
+  #--------------------------------------------------------------------------
+  def item_one_use_effect_enchant(user, item, effect, called_scene)
+    @result.clear
+    item_effect_add_state_normal(user, item, effect)
+    if @result.success && called_scene.is_a?(Scene_Battle)
+      called_scene.refresh_status
+      log_window = called_scene.instance_variable_get(:@log_window)
+      log_window.display_user_self_enchant(self, effect.data_id)
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 使用効果［味方ステート付与］
+  #--------------------------------------------------------------------------
+  def item_one_use_effect_friends_enchant(user, item, effect, called_scene)
+    friends_unit.alive_members.each do |battler|
+      item_one_use_effect_self_enchant(battler, item, effect, called_scene)
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 使用効果［敵ステート付与］
+  #--------------------------------------------------------------------------
+  def item_one_use_effect_opponents_enchant(user, item, effect, called_scene)
+    @result.clear
+    opponents_unit.alive_members.each do |battler|
+      battler.item_one_use_effect_enchant(user, item, effect, called_scene)
+    end
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 使用効果［自己ステート解除］
+  #--------------------------------------------------------------------------
+  def item_one_use_effect_self_enchant_regen(user, item, effect, called_scene)
+    chance = effect.value1
+    if rand < chance
+      if state?(effect.data_id)
+        user.remove_state(effect.data_id)
+        if called_scene.is_a?(Scene_Battle)
+          called_scene.refresh_status
+          log_window = called_scene.instance_variable_get(:@log_window)
+          log_window.display_user_self_enchant_regen(user, effect.data_id)
+        end
+      end
+    end
+  end
+end
+class Window_BattleLog < Window_Selectable
+  #--------------------------------------------------------------------------
+  # ● 自己解除
+  #--------------------------------------------------------------------------
+  def display_user_self_enchant_regen(user, state_id)
+    state = $data_states[state_id]
+    unless state.message1.empty?
+      add_text(user.name + state.message4)
+      wait
+      wait
+    end
+  end
+
+  def display_reflection(target, item)
+    Sound.play_reflection
+    if item.physical? || item.certain?
+      add_text(sprintf(Vocab::PhysicalReflection, target.name))
+    else
+      add_text(sprintf(Vocab::MagicReflection, target.name))
+    end
+    wait
+    back_one
+  end
+end
+
+class Game_Unit
+  #--------------------------------------------------------------------------
+  # ● 行動可能なメンバーの配列取得
+  #--------------------------------------------------------------------------
+  def movable_members
+    members.select { |member| member.movable? && !member.cant_move? }
+  end
+end
+#==============================================================================
+# ■ Scene_Battle
+#==============================================================================
+class Scene_Battle < Scene_Base
+  #--------------------------------------------------------------------------
+  # ○ スキル／アイテムの発動
+  #--------------------------------------------------------------------------
+  def invoke_item(target, item)
+    return unless @subject.alive?
+
+    if target.alive? && ((rand < target.item_mrf(@subject, item)) || item.elements.any? { |element| target.element_reflection(element) })
+      invoke_magic_reflection(target, item)
+    else
+      apply_item_effects(apply_substitute(target, item), item)
+    end
+    @subject.last_target_index = target.index
+  end
+
+  def vxace_sp1_invoke_magic_reflection(target, item)
+    @log_window.display_reflection(target, item)
+    apply_item_effects(@subject, item)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● 魔法反射の発動
+  #--------------------------------------------------------------------------
+  def invoke_magic_reflection(target, item)
+    @log_window.display_reflection(target, item)
+    apply_item_effects(@subject, item, false, target)
+  end
+
+  #--------------------------------------------------------------------------
+  # ● スキル名の表示
+  #--------------------------------------------------------------------------
+  def display_skill_name(item, action = nil)
+    return unless item.is_skill?
+
+    $game_party.display_skill_name = item.visible? ? item.name : nil
+  end
+end
+
+
+class Game_Battler < Game_BattlerBase
+  def bind?
+    self.luca? && BattleManager.bind?
+  end
+end

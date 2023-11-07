@@ -1,0 +1,84 @@
+
+
+#アビリティの調整
+#==============================================================================
+# ■ Game_Actor
+#==============================================================================
+class Game_Actor < Game_Battler
+	def refresh_ability(stype_id)
+		ab = abilities(stype_id)
+		@equip_abilities[stype_id].select! do |ability|
+			ab.include?(ability)
+		end
+		while ap(stype_id) > max_ap(stype_id)
+			equip_abilities[stype_id].pop
+		end
+	end
+	def refresh_ability_all
+		equip_abilities.each_key{|key| refresh_ability(key)}
+	end
+	
+end
+
+class RPG::Skill < RPG::UsableItem
+	def ability?
+		NWConst::Ability::ABILITY_SKILL_TYPE.include?(stype_id)
+	end
+end
+
+#全処分
+class Game_Interpreter
+	def sell_item(item)
+		$game_party.lose_item(item,1)
+		$game_party.gain_gold(item.price/2)
+	end
+	
+	def sell_enchant_weapons
+		sell_items = $game_party.enchant_weapons.reject{|item|$game_party.favorite_item?(item)}
+		sell_items.each{|item|
+			sell_item(item)
+		}
+	end
+	
+	def sell_enchant_armors
+		sell_items = $game_party.enchant_armors.reject{|item|$game_party.favorite_item?(item)}
+		sell_items.each{|item|
+			sell_item(item)
+		}
+	end
+end
+
+class RPG::BaseItem
+	def enchant?
+		false
+	end
+end
+
+class RPG::Class < RPG::BaseItem
+	def enchant?
+		@id >= 1500
+	end
+end
+
+module HIMA
+	
+end
+
+
+module HIMA::Enchant
+	def self.display_color(id)
+		case id
+		when 0
+			0
+		when 1
+			23
+		when 2
+			6
+		when 3
+			2
+		when 4
+			11
+		end
+	end
+end
+

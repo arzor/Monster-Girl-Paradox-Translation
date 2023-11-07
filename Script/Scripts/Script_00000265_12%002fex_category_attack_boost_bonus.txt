@@ -1,0 +1,24 @@
+module NWRegexp
+  module BaseItem
+    EX_CATEGORY_BOOSTER_BONUS = /<特殊カテゴリー与ダメージアップ強化\s?(((?:\d+\-#{NWRegexp::VALUE})(?:\,\s?)?)+)>/i
+  end
+end
+
+class Game_BattlerBase
+  def booster_ex_category_attack_bonus(id)
+    1.0 + features_sum(FEATURE_EX_CATEGORY_ATTACK_BONUS, id)
+  end
+
+  def ex_category_attack_rate(id, item)
+    1.0 + (features_sum(FEATURE_EX_CATEGORY_ATTACK, id) + item.booster_ex_category_attack(id)) * booster_ex_category_attack_bonus(id)
+  end
+
+  def boost_ex_category_rate(target, item)
+    rate = target.ex_category.inject(1.0) { |r, id| r * ex_category_attack_rate(id, item) }.tap do |r|
+      target.result.ex_category_boost = (r > 1.0)
+      target.result.damage_rate *= r
+    end
+    rate *= ex_category.inject(1.0) { |r, id| r * target.booster_ex_category_defence(id) }
+    rate
+  end
+end

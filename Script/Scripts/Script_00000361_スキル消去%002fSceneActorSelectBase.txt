@@ -1,0 +1,61 @@
+module SkillForget
+  class Scene_ActorSelectBase < Scene_MenuBase
+    ACTOR_SELECT_HELP_MESSAGE = "Please select a character"
+    def start
+      super
+      create_all_window
+      setting_window
+    end
+
+    def prepare(select_data)
+      @select_data = select_data
+    end
+
+    def setting_window
+      return unless @select_data
+
+      @sort_eval_window.eval_id = @select_data[1]
+      @sort_eval_window.refresh
+      @actors_window.select(@select_data[0])
+    end
+
+    def create_all_window
+      create_information_window
+      create_actor_status_window
+      create_actors_window
+      create_help_window
+      create_sort_eval_window
+    end
+
+    def create_information_window
+      @information_window = Foo::JobChange::Window_Information.new
+    end
+
+    def create_sort_eval_window
+      @sort_eval_window = Foo::JobChange::Window_SortEval.new(@actors_window)
+    end
+
+    def create_help_window
+      @help_window = Foo::JobChange::Window_Help.new
+      @help_window.text = ACTOR_SELECT_HELP_MESSAGE
+    end
+
+    def create_actor_status_window
+      @actor_status_window = Foo::JobChange::Window_ActorStatus.new
+    end
+
+    def create_actors_window
+      @actors_window = Foo::JobChange::Window_Actors.new(@actor_status_window)
+      @actors_window.set_handler(:cancel, method(:return_scene))
+      @actors_window.set_handler(:ok, method(:process_actor_ok))
+    end
+
+    def select_data
+      [@actors_window.index, @sort_eval_window.eval_id]
+    end
+
+    def actor
+      $game_actors[@actors_window.select_actor_id]
+    end
+  end
+end
